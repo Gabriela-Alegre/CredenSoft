@@ -1,0 +1,9 @@
+# Ignorar la carpeta de configuracion de Visual Studio
+.vs/
+
+# Ignorar archivos de paquetes de Visual Studio/binarios de compilacion
+[Bb]in/
+[Oo]bj/
+*.pdb
+*.suo
+*.user
