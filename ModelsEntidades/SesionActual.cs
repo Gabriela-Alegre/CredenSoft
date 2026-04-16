@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ModelsEntidades; // Para que reconozca la clase Usuario
 
-namespace ServicesNegocio
+namespace ModelsEntidades
 {
     public static class SesionActual
     {
