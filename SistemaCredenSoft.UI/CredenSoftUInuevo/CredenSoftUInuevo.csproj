@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <!-- Ajustes importantes -->
+    <RootNamespace>CredenSoftUInuevo</RootNamespace>
+    <AssemblyName>CredenSoftUInuevo</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\CredenSoftInicio\CredenSoftInicio.csproj" />
+    <ProjectReference Include="..\..\DataEF\DataEF.csproj" />
+    <ProjectReference Include="..\..\ModelsEntidades\ModelsEntidades.csproj" />
+    <ProjectReference Include="..\..\ServicesNegocio\ServicesNegocio.csproj" />
+  </ItemGroup>
+
+</Project>
+

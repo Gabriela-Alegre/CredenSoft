@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DataEF\DataEF.csproj" />
     <ProjectReference Include="..\ModelsEntidades\ModelsEntidades.csproj" />
+    <ProjectReference Include="..\ServicesNegocio\ServicesNegocio.csproj" />
   </ItemGroup>
 
 </Project>
