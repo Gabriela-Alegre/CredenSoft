@@ -14,85 +14,100 @@ namespace ServicesNegocio
 
         public UsuarioService(CredenSoftContext context)
         {
-            // Importante: usamos el contexto que se pasa por parámetro
             _context = context;
         }
 
-        
-        // Valida las credenciales y devuelve el usuario con su Rol cargado.
-       
-        public Usuario Login(string nombreUsuario, string passwordIngresada)
+        /// <summary>
+        /// HU03 y HU04: Valida credenciales y estado del usuario.
+        /// </summary>
+        public Usuario Login(string email, string passwordIngresada)
         {
-            // Buscamos al usuario incluyendo la tabla de Roles
+            // 1. Buscamos al usuario por Email (HU03) incluyendo su Rol
             var usuario = _context.Usuarios
                 .Include(u => u.Rol)
-                .FirstOrDefault(u => u.Nombre == nombreUsuario);
+                .FirstOrDefault(u => u.Email == email);
 
+            // Validación: ¿Existe el correo?
             if (usuario == null)
             {
-                throw new Exception("El nombre de usuario no existe en el sistema.");
+                throw new Exception("El correo electrónico no se encuentra registrado.");
             }
 
-            // Verificamos el hash de la contraseña
+            // 2. HU04: Validación de Estado del Usuario
+            // Verificamos que no esté "Inactivo" (ignorando mayúsculas/minúsculas)
+            if (usuario.Estado.Trim().Equals("Inactivo", StringComparison.OrdinalIgnoreCase))
+            {
+                throw new Exception("Acceso denegado: Su cuenta de la PSA se encuentra inactiva.");
+            }
+
+            // 3. Verificación de Contraseña (HU03)
             bool esValida = BCrypt.Net.BCrypt.Verify(passwordIngresada, usuario.Contrasenia);
 
             if (!esValida)
             {
-                throw new Exception("La contraseña ingresada es incorrecta.");
+                throw new Exception("Credenciales inválidas: La contraseña es incorrecta.");
             }
 
             return usuario;
         }
 
-        
-        // Registra un nuevo oficial en la base de datos con validaciones de seguridad.
-        
+        /// <summary>
+        /// HU01 y HU02: Registra un usuario validando que no existan duplicados.
+        /// </summary>
         public void RegistrarUsuario(Usuario nuevoUsuario, string passwordPlana)
         {
-            // 1. Validación de DNI único (Fundamental para PSA)
+            // 1. HU02: Validación de DNI único
             if (_context.Usuarios.Any(u => u.Dni == nuevoUsuario.Dni))
             {
-                throw new Exception($"Error: Ya existe un registro con el DNI {nuevoUsuario.Dni}.");
+                throw new Exception($"Error: Ya existe un oficial registrado con el DNI {nuevoUsuario.Dni}.");
             }
 
-            // 2. Validación de Nombre de Usuario único
-            if (_context.Usuarios.Any(u => u.Nombre == nuevoUsuario.Nombre))
+            // 2. HU02: Validación de Email único
+            if (_context.Usuarios.Any(u => u.Email == nuevoUsuario.Email))
             {
-                throw new Exception("Error: El nombre de usuario ya está en uso.");
+                throw new Exception("Error: El correo electrónico ya está en uso por otro usuario.");
             }
 
-            // 3. Hasheo de contraseña antes de guardar
+            // 3. Asegurar Estado Inicial (HU01)
+            // Si el front no lo envía, lo forzamos a "Activo"
+            if (string.IsNullOrEmpty(nuevoUsuario.Estado))
+            {
+                nuevoUsuario.Estado = "Activo";
+            }
+
+            // 4. Seguridad: Hasheo de contraseña
             nuevoUsuario.Contrasenia = BCrypt.Net.BCrypt.HashPassword(passwordPlana);
 
-            // 4. Guardado en BD
+            // 5. Guardado
             _context.Usuarios.Add(nuevoUsuario);
             _context.SaveChanges();
         }
+        public void RecuperarContrasenia(string email, string dni, string nuevaClave)
+        {
+            // 1. Buscamos al usuario que coincida con mail Y dni
+            var usuario = _context.Usuarios.FirstOrDefault(u => u.Email == email && u.Dni == dni);
 
-        
-        // Retorna todos los roles disponibles (para llenar ComboBox de Gaby).
-        
+            if (usuario == null)
+            {
+                throw new Exception("Los datos ingresados no coinciden con nuestros registros.");
+            }
+
+            // 2. Hasheamos la nueva clave antes de guardarla
+            string claveHasheada = BCrypt.Net.BCrypt.HashPassword(nuevaClave);
+            usuario.Contrasenia = claveHasheada;
+
+            // 3. Guardamos los cambios
+            _context.SaveChanges();
+        }
+
         public List<Rol> ObtenerRoles()
         {
             return _context.Roles.ToList();
         }
 
-        
-        // Retorna la lista de todos los usuarios (para la grilla de Gaby).
-        
         public List<Usuario> ObtenerTodos()
         {
-            return _context.Usuarios
-                .Include(u => u.Rol)
-                .ToList();
-        }
-
-       
-        // Método rápido para verificar si un DNI ya existe (uso preventivo en UI).
-        
-        public bool ExisteDni(string dni)
-        {
-            return _context.Usuarios.Any(u => u.Dni == dni);
+            return _context.Usuarios.Include(u => u.Rol).ToList();
         }
     }
 }

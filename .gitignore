@@ -1,9 +1,23 @@
-# Ignorar la carpeta de configuracion de Visual Studio
+# === Visual Studio: Archivos de configuración y temporales ===
 .vs/
-
-# Ignorar archivos de paquetes de Visual Studio/binarios de compilacion
 [Bb]in/
 [Oo]bj/
 *.pdb
 *.suo
 *.user
+*.userosscache
+*.sln.docstates
+
+# === SQL Server: Archivos de Base de Datos (Locales) ===
+# No subimos la base física, solo el código de las migraciones
+*.mdf
+*.ldf
+*.ndf
+
+# === Archivos de paquetes de NuGet ===
+packages/
+*.nupkg
+
+# === Otros archivos del sistema ===
+.DS_Store
+Thumbs.db
