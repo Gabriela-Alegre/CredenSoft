@@ -2,15 +2,8 @@
 {
     partial class FrmUsuarios
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,10 +15,6 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             lblGestionDeUsuarios = new Label();
@@ -59,7 +48,7 @@
             btnEliminar.Margin = new Padding(4, 3, 4, 3);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(88, 27);
-            btnEliminar.TabIndex = 1;
+            btnEliminar.TabIndex = 2; // Ajustado el orden
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
             // 
@@ -69,7 +58,7 @@
             btnEditar.Margin = new Padding(4, 3, 4, 3);
             btnEditar.Name = "btnEditar";
             btnEditar.Size = new Size(88, 27);
-            btnEditar.TabIndex = 2;
+            btnEditar.TabIndex = 1; // Ajustado el orden
             btnEditar.Text = "Editar";
             btnEditar.UseVisualStyleBackColor = true;
             // 
@@ -79,7 +68,7 @@
             btnNuevo.Margin = new Padding(4, 3, 4, 3);
             btnNuevo.Name = "btnNuevo";
             btnNuevo.Size = new Size(88, 27);
-            btnNuevo.TabIndex = 3;
+            btnNuevo.TabIndex = 0; // Ahora el foco empieza aquí
             btnNuevo.Text = "Nuevo";
             btnNuevo.UseVisualStyleBackColor = true;
             btnNuevo.Click += btnNuevo_Click;
@@ -92,36 +81,42 @@
             dgvUsuario.Margin = new Padding(4, 3, 4, 3);
             dgvUsuario.Name = "dgvUsuario";
             dgvUsuario.Size = new Size(755, 173);
-            dgvUsuario.TabIndex = 4;
+            dgvUsuario.TabIndex = 3;
             dgvUsuario.CellContentClick += dgvUsuario_CellContentClick;
             // 
             // colNombre
             // 
+            colNombre.DataPropertyName = "Nombre"; // Vínculo con SQL
             colNombre.HeaderText = "Nombre";
             colNombre.Name = "colNombre";
             // 
             // colApellido
             // 
+            colApellido.DataPropertyName = "Apellido"; // Vínculo con SQL
             colApellido.HeaderText = "Apellido";
             colApellido.Name = "colApellido";
             // 
             // ColDni
             // 
+            ColDni.DataPropertyName = "Dni"; // Vínculo con SQL
             ColDni.HeaderText = "DNI";
             ColDni.Name = "ColDni";
             // 
             // colEmail
             // 
+            colEmail.DataPropertyName = "Email"; // Vínculo con SQL
             colEmail.HeaderText = "Email";
             colEmail.Name = "colEmail";
             // 
             // colRol
             // 
+            colRol.DataPropertyName = "IdRol"; // Vínculo con SQL
             colRol.HeaderText = "Rol";
             colRol.Name = "colRol";
             // 
             // colEstado
             // 
+            colEstado.DataPropertyName = "Estado"; // Vínculo con SQL
             colEstado.HeaderText = "Estado";
             colEstado.Name = "colEstado";
             // 
@@ -129,7 +124,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(933, 519);
+            ClientSize = new Size(850, 400); // Ajustado un poco el tamaño
             Controls.Add(dgvUsuario);
             Controls.Add(btnNuevo);
             Controls.Add(btnEditar);
@@ -137,11 +132,11 @@
             Controls.Add(lblGestionDeUsuarios);
             Margin = new Padding(4, 3, 4, 3);
             Name = "FrmUsuarios";
-            Text = "Usuarios";
+            Text = "Usuarios - CredenSoft";
+            Load += FrmUsuarios_Load; // VÍNCULO PARA CARGAR AL INICIAR
             ((System.ComponentModel.ISupportInitialize)dgvUsuario).EndInit();
             ResumeLayout(false);
             PerformLayout();
-
         }
 
         #endregion

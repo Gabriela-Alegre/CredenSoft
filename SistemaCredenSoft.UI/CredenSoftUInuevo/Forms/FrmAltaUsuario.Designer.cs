@@ -17,203 +17,224 @@
 
         private void InitializeComponent()
         {
-            this.lblNombre = new System.Windows.Forms.Label();
-            this.txtNombre = new System.Windows.Forms.TextBox();
-            this.lblApellido = new System.Windows.Forms.Label();
-            this.txtApellido = new System.Windows.Forms.TextBox();
-            this.lblDni = new System.Windows.Forms.Label();
-            this.txtDni = new System.Windows.Forms.TextBox();
-            this.lblEmail = new System.Windows.Forms.Label();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.lblContrasenia = new System.Windows.Forms.Label();
-            this.txtContrasenia = new System.Windows.Forms.TextBox();
-            this.cmbRol = new System.Windows.Forms.ComboBox();
-            this.lblRol = new System.Windows.Forms.Label();
-            this.lblEstado = new System.Windows.Forms.Label();
-            this.cmbEstado = new System.Windows.Forms.ComboBox();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            lblNombre = new Label();
+            txtNombre = new TextBox();
+            lblApellido = new Label();
+            txtApellido = new TextBox();
+            lblDni = new Label();
+            txtDni = new TextBox();
+            lblEmail = new Label();
+            txtEmail = new TextBox();
+            lblContrasenia = new Label();
+            txtContrasenia = new TextBox();
+            cmbRol = new ComboBox();
+            lblRol = new Label();
+            lblEstado = new Label();
+            cmbEstado = new ComboBox();
+            btnGuardar = new Button();
+            btnCancelar = new Button();
+            errorProvider1 = new ErrorProvider(components);
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
+            SuspendLayout();
             // 
             // lblNombre
             // 
-            this.lblNombre.AutoSize = true;
-            this.lblNombre.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblNombre.Location = new System.Drawing.Point(12, 32);
-            this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(69, 19);
-            this.lblNombre.TabIndex = 13;
-            this.lblNombre.Text = "Nombre:";
+            lblNombre.AutoSize = true;
+            lblNombre.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblNombre.Location = new Point(14, 37);
+            lblNombre.Margin = new Padding(4, 0, 4, 0);
+            lblNombre.Name = "lblNombre";
+            lblNombre.Size = new Size(69, 19);
+            lblNombre.TabIndex = 13;
+            lblNombre.Text = "Nombre:";
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(120, 32);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(200, 20);
-            this.txtNombre.TabIndex = 6;
+            txtNombre.Location = new Point(140, 37);
+            txtNombre.Margin = new Padding(4, 3, 4, 3);
+            txtNombre.Name = "txtNombre";
+            txtNombre.Size = new Size(233, 23);
+            txtNombre.TabIndex = 0;
             // 
             // lblApellido
             // 
-            this.lblApellido.AutoSize = true;
-            this.lblApellido.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblApellido.Location = new System.Drawing.Point(12, 67);
-            this.lblApellido.Name = "lblApellido";
-            this.lblApellido.Size = new System.Drawing.Size(70, 19);
-            this.lblApellido.TabIndex = 12;
-            this.lblApellido.Text = "Apellido:";
+            lblApellido.AutoSize = true;
+            lblApellido.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblApellido.Location = new Point(14, 77);
+            lblApellido.Margin = new Padding(4, 0, 4, 0);
+            lblApellido.Name = "lblApellido";
+            lblApellido.Size = new Size(70, 19);
+            lblApellido.TabIndex = 12;
+            lblApellido.Text = "Apellido:";
             // 
             // txtApellido
             // 
-            this.txtApellido.Location = new System.Drawing.Point(120, 67);
-            this.txtApellido.Name = "txtApellido";
-            this.txtApellido.Size = new System.Drawing.Size(200, 20);
-            this.txtApellido.TabIndex = 5;
+            txtApellido.Location = new Point(140, 77);
+            txtApellido.Margin = new Padding(4, 3, 4, 3);
+            txtApellido.Name = "txtApellido";
+            txtApellido.Size = new Size(233, 23);
+            txtApellido.TabIndex = 1;
             // 
             // lblDni
             // 
-            this.lblDni.AutoSize = true;
-            this.lblDni.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblDni.Location = new System.Drawing.Point(12, 101);
-            this.lblDni.Name = "lblDni";
-            this.lblDni.Size = new System.Drawing.Size(38, 19);
-            this.lblDni.TabIndex = 11;
-            this.lblDni.Text = "DNI:";
+            lblDni.AutoSize = true;
+            lblDni.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblDni.Location = new Point(14, 117);
+            lblDni.Margin = new Padding(4, 0, 4, 0);
+            lblDni.Name = "lblDni";
+            lblDni.Size = new Size(38, 19);
+            lblDni.TabIndex = 11;
+            lblDni.Text = "DNI:";
             // 
             // txtDni
             // 
-            this.txtDni.Location = new System.Drawing.Point(120, 101);
-            this.txtDni.Name = "txtDni";
-            this.txtDni.Size = new System.Drawing.Size(200, 20);
-            this.txtDni.TabIndex = 4;
+            txtDni.Location = new Point(140, 117);
+            txtDni.Margin = new Padding(4, 3, 4, 3);
+            txtDni.Name = "txtDni";
+            txtDni.Size = new Size(233, 23);
+            txtDni.TabIndex = 2;
+            txtDni.KeyPress += txtDni_KeyPress;
             // 
             // lblEmail
             // 
-            this.lblEmail.AutoSize = true;
-            this.lblEmail.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblEmail.Location = new System.Drawing.Point(12, 135);
-            this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(49, 19);
-            this.lblEmail.TabIndex = 10;
-            this.lblEmail.Text = "Email:";
+            lblEmail.AutoSize = true;
+            lblEmail.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblEmail.Location = new Point(14, 156);
+            lblEmail.Margin = new Padding(4, 0, 4, 0);
+            lblEmail.Name = "lblEmail";
+            lblEmail.Size = new Size(49, 19);
+            lblEmail.TabIndex = 10;
+            lblEmail.Text = "Email:";
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(120, 135);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(200, 20);
-            this.txtEmail.TabIndex = 3;
+            txtEmail.Location = new Point(140, 156);
+            txtEmail.Margin = new Padding(4, 3, 4, 3);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(233, 23);
+            txtEmail.TabIndex = 3;
             // 
             // lblContrasenia
             // 
-            this.lblContrasenia.AutoSize = true;
-            this.lblContrasenia.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblContrasenia.Location = new System.Drawing.Point(12, 170);
-            this.lblContrasenia.Name = "lblContrasenia";
-            this.lblContrasenia.Size = new System.Drawing.Size(88, 19);
-            this.lblContrasenia.TabIndex = 9;
-            this.lblContrasenia.Text = "Contraseña:";
+            lblContrasenia.AutoSize = true;
+            lblContrasenia.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblContrasenia.Location = new Point(14, 196);
+            lblContrasenia.Margin = new Padding(4, 0, 4, 0);
+            lblContrasenia.Name = "lblContrasenia";
+            lblContrasenia.Size = new Size(88, 19);
+            lblContrasenia.TabIndex = 9;
+            lblContrasenia.Text = "Contraseña:";
             // 
             // txtContrasenia
             // 
-            this.txtContrasenia.Location = new System.Drawing.Point(120, 170);
-            this.txtContrasenia.Name = "txtContrasenia";
-            this.txtContrasenia.Size = new System.Drawing.Size(200, 20);
-            this.txtContrasenia.TabIndex = 2;
-            this.txtContrasenia.UseSystemPasswordChar = true;
+            txtContrasenia.Location = new Point(140, 196);
+            txtContrasenia.Margin = new Padding(4, 3, 4, 3);
+            txtContrasenia.Name = "txtContrasenia";
+            txtContrasenia.Size = new Size(233, 23);
+            txtContrasenia.TabIndex = 4;
+            txtContrasenia.UseSystemPasswordChar = true;
             // 
             // cmbRol
             // 
-            this.cmbRol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbRol.FormattingEnabled = true;
-            this.cmbRol.Items.AddRange(new object[] {
-            "Administrador Central",
-            "Administrador Local",
-            "Agente"});
-            this.cmbRol.Location = new System.Drawing.Point(120, 205);
-            this.cmbRol.Name = "cmbRol";
-            this.cmbRol.Size = new System.Drawing.Size(200, 21);
-            this.cmbRol.TabIndex = 1;
+            cmbRol.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbRol.FormattingEnabled = true;
+            cmbRol.Items.AddRange(new object[] { "Administrador Central", "Administrador Local", "Agente" });
+            cmbRol.Location = new Point(140, 237);
+            cmbRol.Margin = new Padding(4, 3, 4, 3);
+            cmbRol.Name = "cmbRol";
+            cmbRol.Size = new Size(233, 23);
+            cmbRol.TabIndex = 5;
             // 
             // lblRol
             // 
-            this.lblRol.AutoSize = true;
-            this.lblRol.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblRol.Location = new System.Drawing.Point(12, 205);
-            this.lblRol.Name = "lblRol";
-            this.lblRol.Size = new System.Drawing.Size(35, 19);
-            this.lblRol.TabIndex = 8;
-            this.lblRol.Text = "Rol:";
+            lblRol.AutoSize = true;
+            lblRol.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblRol.Location = new Point(14, 237);
+            lblRol.Margin = new Padding(4, 0, 4, 0);
+            lblRol.Name = "lblRol";
+            lblRol.Size = new Size(35, 19);
+            lblRol.TabIndex = 8;
+            lblRol.Text = "Rol:";
             // 
             // lblEstado
             // 
-            this.lblEstado.AutoSize = true;
-            this.lblEstado.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblEstado.Location = new System.Drawing.Point(12, 240);
-            this.lblEstado.Name = "lblEstado";
-            this.lblEstado.Size = new System.Drawing.Size(57, 19);
-            this.lblEstado.TabIndex = 7;
-            this.lblEstado.Text = "Estado:";
+            lblEstado.AutoSize = true;
+            lblEstado.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblEstado.Location = new Point(14, 277);
+            lblEstado.Margin = new Padding(4, 0, 4, 0);
+            lblEstado.Name = "lblEstado";
+            lblEstado.Size = new Size(57, 19);
+            lblEstado.TabIndex = 7;
+            lblEstado.Text = "Estado:";
             // 
             // cmbEstado
             // 
-            this.cmbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbEstado.FormattingEnabled = true;
-            this.cmbEstado.Items.AddRange(new object[] {
-            "Activo",
-            "Inactivo"});
-            this.cmbEstado.Location = new System.Drawing.Point(120, 240);
-            this.cmbEstado.Name = "cmbEstado";
-            this.cmbEstado.Size = new System.Drawing.Size(200, 21);
-            this.cmbEstado.TabIndex = 0;
+            cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbEstado.FormattingEnabled = true;
+            cmbEstado.Items.AddRange(new object[] { "Activo", "Inactivo" });
+            cmbEstado.Location = new Point(140, 277);
+            cmbEstado.Margin = new Padding(4, 3, 4, 3);
+            cmbEstado.Name = "cmbEstado";
+            cmbEstado.Size = new Size(233, 23);
+            cmbEstado.TabIndex = 6;
             // 
             // btnGuardar
             // 
-            this.btnGuardar.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnGuardar.Location = new System.Drawing.Point(49, 289);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
-            this.btnGuardar.TabIndex = 14;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = false;
+            btnGuardar.BackColor = SystemColors.ActiveCaption;
+            btnGuardar.Location = new Point(57, 333);
+            btnGuardar.Margin = new Padding(4, 3, 4, 3);
+            btnGuardar.Name = "btnGuardar";
+            btnGuardar.Size = new Size(88, 27);
+            btnGuardar.TabIndex = 7;
+            btnGuardar.Text = "Guardar";
+            btnGuardar.UseVisualStyleBackColor = false;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // btnCancelar
             // 
-            this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(230, 100, 34);
-            this.btnCancelar.Location = new System.Drawing.Point(210, 289);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 15;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = false;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            btnCancelar.BackColor = Color.FromArgb(230, 100, 34);
+            btnCancelar.Location = new Point(245, 333);
+            btnCancelar.Margin = new Padding(4, 3, 4, 3);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(88, 27);
+            btnCancelar.TabIndex = 8;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Click += btnCancelar_Click;
+            // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
             // 
             // FrmAltaUsuario
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(350, 340);
-            this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.cmbEstado);
-            this.Controls.Add(this.cmbRol);
-            this.Controls.Add(this.txtContrasenia);
-            this.Controls.Add(this.txtEmail);
-            this.Controls.Add(this.txtDni);
-            this.Controls.Add(this.txtApellido);
-            this.Controls.Add(this.txtNombre);
-            this.Controls.Add(this.lblEstado);
-            this.Controls.Add(this.lblRol);
-            this.Controls.Add(this.lblContrasenia);
-            this.Controls.Add(this.lblEmail);
-            this.Controls.Add(this.lblDni);
-            this.Controls.Add(this.lblApellido);
-            this.Controls.Add(this.lblNombre);
-            this.Name = "FrmAltaUsuario";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Alta de Usuario";
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(408, 392);
+            Controls.Add(btnCancelar);
+            Controls.Add(btnGuardar);
+            Controls.Add(cmbEstado);
+            Controls.Add(cmbRol);
+            Controls.Add(txtContrasenia);
+            Controls.Add(txtEmail);
+            Controls.Add(txtDni);
+            Controls.Add(txtApellido);
+            Controls.Add(txtNombre);
+            Controls.Add(lblEstado);
+            Controls.Add(lblRol);
+            Controls.Add(lblContrasenia);
+            Controls.Add(lblEmail);
+            Controls.Add(lblDni);
+            Controls.Add(lblApellido);
+            Controls.Add(lblNombre);
+            Margin = new Padding(4, 3, 4, 3);
+            Name = "FrmAltaUsuario";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Alta de Usuario";
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -234,5 +255,6 @@
         private System.Windows.Forms.ComboBox cmbEstado;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnCancelar;
+        private ErrorProvider errorProvider1;
     }
 }

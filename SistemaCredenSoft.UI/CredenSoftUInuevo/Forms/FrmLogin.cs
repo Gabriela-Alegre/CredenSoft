@@ -2,20 +2,14 @@
 using ModelsEntidades;
 using ServicesNegocio;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace CredenSoftUInuevo.Forms
 {
     public partial class FrmLogin : Form
     {
-        // Inicializamos el servicio apuntando al contexto de datos
+        // Servicio para conectar con la base de datos
         private readonly UsuarioService _usuarioService = new UsuarioService(new CredenSoftContext());
 
         public FrmLogin()
@@ -23,41 +17,61 @@ namespace CredenSoftUInuevo.Forms
             InitializeComponent();
         }
 
-        private void FrmLogin_Load(object sender, EventArgs e)
-        {
-            // Código opcional al cargar
-        }
-
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             try
             {
-                // Intentamos el login con los datos de los TextBox
-                var usuario = _usuarioService.Login(
-                    txtUsuario.Text,
-                    txtContrasenia.Text);
+                // 1. Validación de campos vacíos (Front-end)
+                if (string.IsNullOrWhiteSpace(txtUsuario.Text) || string.IsNullOrWhiteSpace(txtContrasenia.Text))
+                {
+                    MessageBox.Show("Por favor, ingrese su email y contraseña.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-                // Si llegamos aquí es porque el login fue exitoso
+                // 2. Intento de Login
+                var usuario = _usuarioService.Login(txtUsuario.Text, txtContrasenia.Text);
+
+                // Guardamos el usuario en la sesión global
                 SesionActual.UsuarioLogueado = usuario;
 
-                // Abrimos el Dashboard
+                // 3. Abrir Dashboard y ocultar Login
                 FrmDashboard frm = new FrmDashboard();
                 frm.Show();
-
-                // Ocultamos el Login
                 this.Hide();
             }
             catch (Exception ex)
             {
-                // Si el servicio lanza una excepción (usuario no encontrado, etc.)
-                MessageBox.Show(ex.Message, "Error de Acceso");
+                // Muestra el error de credenciales con icono de Error (Círculo rojo con X)
+                MessageBox.Show(ex.Message, "Error de Acceso", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        
+        private void label2_Click(object sender, EventArgs e)
+        {
+            // Mensaje con el icono de información (el círculo con la "i")
+            MessageBox.Show("El registro de oficiales es gestionado únicamente por el Administrador Central de la PSA.\n\nPor favor, contacte a su superior para obtener sus credenciales de acceso.",
+                            "Aviso de Seguridad",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+        }
+
+        // Método para la recuperación de contraseña
+        private void lnkRecuperar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FrmRecuperarContrasenia frmRecuperar = new FrmRecuperarContrasenia(_usuarioService);
+            frmRecuperar.ShowDialog();
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            // Cierra toda la aplicación
             Application.Exit();
+        }
+
+        private void FrmLogin_Load(object sender, EventArgs e)
+        {
+            // Hace que el cursor aparezca directamente en el campo de usuario
+            txtUsuario.Select();
         }
     }
 }

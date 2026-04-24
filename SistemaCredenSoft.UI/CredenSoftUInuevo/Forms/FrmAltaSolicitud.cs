@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ServicesNegocio;
 using ModelsEntidades;
@@ -15,28 +9,64 @@ namespace CredenSoftUInuevo.Forms
 {
     public partial class FrmAltaSolicitud : Form
     {
-        SolicitudService _solicitudService =
-            new SolicitudService(new CredenSoftContext());
+        // Instanciamos los servicios
+        SolicitudService _solicitudService = new SolicitudService(new CredenSoftContext());
 
         public FrmAltaSolicitud()
         {
             InitializeComponent();
         }
 
+        // AGREGADO: Este método carga los datos apenas abrís la ventana
+        private void FrmAltaSolicitud_Load(object sender, EventArgs e)
+        {
+            CargarTiposSolicitud();
+            dateTimeFecha.Value = DateTime.Now; // Setea fecha actual
+        }
+
+        private void CargarTiposSolicitud()
+        {
+            try
+            {
+                // Le pedimos al service la lista de tipos
+                
+               // cmbTipoDeSolicitud.DataSource = _solicitudService.ObtenerTiposCredencial();
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show("Error al cargar tipos: " + ex.Message);
+            }
+        }
+
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             try
             {
+                // Validación básica
+                if (cmbTipoDeSolicitud.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Por favor, seleccione un tipo de solicitud.");
+                    return;
+                }
+
                 Solicitud nueva = new Solicitud
                 {
+                    // Usamos la sesión actual para saber quién es el usuario
                     IdUsuario = SesionActual.UsuarioLogueado.IdUsuario,
-                    TipoSolicitud = cmbTipoDeSolicitud.Text,
-                    Descripcion = txtDescripcion.Text
+
+                    // CORRECCIÓN: Usamos SelectedValue (el ID numérico) y no el .Text
+                   // IdTipoCredencial = (int)cmbTipoDeSolicitud.SelectedValue,
+
+                    Descripcion = txtDescripcion.Text,
+                    FechaSolicitud = dateTimeFecha.Value,
+                   // EstadoSolicitud = "Pendiente"
                 };
 
                 _solicitudService.CrearSolicitud(nueva);
 
-                MessageBox.Show("Solicitud enviada correctamente.");
+                MessageBox.Show("Solicitud enviada correctamente.", "Éxito");
+
+                this.DialogResult = DialogResult.OK; // Avisa a la grilla principal que se actualice
                 this.Close();
             }
             catch (Exception ex)

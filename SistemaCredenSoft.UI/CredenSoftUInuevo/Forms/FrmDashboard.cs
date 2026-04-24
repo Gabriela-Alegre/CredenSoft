@@ -18,12 +18,14 @@ namespace CredenSoftUInuevo.Forms
 
         private void btnSolicitudes_Click(object sender, EventArgs e)
         {
-            FrmSolicitudes frm = new FrmSolicitudes();
+            
+            FrmSolicitud frm = new FrmSolicitud();
             frm.ShowDialog();
         }
 
         private void btnCredenciales_Click(object sender, EventArgs e)
         {
+           
             FrmCredenciales frm = new FrmCredenciales();
             frm.ShowDialog();
         }
