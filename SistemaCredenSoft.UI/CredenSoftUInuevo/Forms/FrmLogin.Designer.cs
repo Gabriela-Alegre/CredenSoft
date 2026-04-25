@@ -36,13 +36,14 @@
             lnkRecuperar = new LinkLabel();
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
-            pictureBox3 = new PictureBox();
+            picVerContrasenia = new PictureBox();
             lblIdentificacionDeSeguridad = new Label();
             label1 = new Label();
             label2 = new Label();
+            lblErrorInactivo = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picVerContrasenia).BeginInit();
             SuspendLayout();
             // 
             // lblCredenSoft
@@ -62,12 +63,12 @@
             lblUsuario.BackColor = Color.Transparent;
             lblUsuario.Font = new Font("Microsoft Sans Serif", 13F);
             lblUsuario.ForeColor = SystemColors.ControlDarkDark;
-            lblUsuario.Location = new Point(180, 143);
+            lblUsuario.Location = new Point(142, 143);
             lblUsuario.Margin = new Padding(4, 0, 4, 0);
             lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(121, 22);
+            lblUsuario.Size = new Size(159, 22);
             lblUsuario.TabIndex = 1;
-            lblUsuario.Text = "Email/Usuario";
+            lblUsuario.Text = "Correo Electrónico";
             // 
             // txtUsuario
             // 
@@ -107,7 +108,7 @@
             btnIngresar.BackColor = SystemColors.Highlight;
             btnIngresar.Font = new Font("Segoe UI", 9F);
             btnIngresar.ForeColor = Color.White;
-            btnIngresar.Location = new Point(475, 307);
+            btnIngresar.Location = new Point(442, 315);
             btnIngresar.Margin = new Padding(4, 3, 4, 3);
             btnIngresar.Name = "btnIngresar";
             btnIngresar.Size = new Size(121, 27);
@@ -118,7 +119,7 @@
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(180, 387);
+            btnSalir.Location = new Point(142, 404);
             btnSalir.Margin = new Padding(4, 3, 4, 3);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(88, 27);
@@ -130,7 +131,7 @@
             // lnkRecuperar
             // 
             lnkRecuperar.AutoSize = true;
-            lnkRecuperar.Location = new Point(298, 343);
+            lnkRecuperar.Location = new Point(256, 359);
             lnkRecuperar.Name = "lnkRecuperar";
             lnkRecuperar.Size = new Size(128, 15);
             lnkRecuperar.TabIndex = 7;
@@ -161,17 +162,19 @@
             pictureBox2.TabIndex = 9;
             pictureBox2.TabStop = false;
             // 
-            // pictureBox3
+            // picVerContrasenia
             // 
-            pictureBox3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            pictureBox3.BackColor = Color.Transparent;
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(568, 207);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(18, 19);
-            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox3.TabIndex = 10;
-            pictureBox3.TabStop = false;
+            picVerContrasenia.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            picVerContrasenia.BackColor = Color.Transparent;
+            picVerContrasenia.Cursor = Cursors.Hand;
+            picVerContrasenia.Image = (Image)resources.GetObject("picVerContrasenia.Image");
+            picVerContrasenia.Location = new Point(568, 207);
+            picVerContrasenia.Name = "picVerContrasenia";
+            picVerContrasenia.Size = new Size(18, 19);
+            picVerContrasenia.SizeMode = PictureBoxSizeMode.Zoom;
+            picVerContrasenia.TabIndex = 10;
+            picVerContrasenia.TabStop = false;
+            picVerContrasenia.Click += picVerContrasenia_Click;
             // 
             // lblIdentificacionDeSeguridad
             // 
@@ -189,22 +192,35 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 11F);
             label1.ForeColor = SystemColors.AppWorkspace;
-            label1.Location = new Point(235, 272);
+            label1.Location = new Point(242, 317);
             label1.Name = "label1";
-            label1.Size = new Size(426, 20);
+            label1.Size = new Size(157, 20);
             label1.TabIndex = 0;
-            label1.Text = "Para obtener su cuenta, solicite el Alta al Administrador Central";
+            label1.Text = "¿Ya tienes una cuenta?";
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            label2.Location = new Point(278, 309);
+            label2.Location = new Point(216, 265);
             label2.Name = "label2";
-            label2.Size = new Size(166, 20);
+            label2.Size = new Size(380, 20);
             label2.TabIndex = 12;
-            label2.Text = "¿ya tienes una cuenta?";
+            label2.Text = "Crea tu cuenta o registrate con tu dirección de correo";
             label2.Click += label2_Click;
+            // 
+            // lblErrorInactivo
+            // 
+            lblErrorInactivo.AutoSize = true;
+            lblErrorInactivo.BackColor = Color.IndianRed;
+            lblErrorInactivo.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblErrorInactivo.ForeColor = Color.SeaShell;
+            lblErrorInactivo.Location = new Point(361, 114);
+            lblErrorInactivo.Name = "lblErrorInactivo";
+            lblErrorInactivo.Size = new Size(215, 15);
+            lblErrorInactivo.TabIndex = 13;
+            lblErrorInactivo.Text = "ACCESO DENEGADO: Usuario Inactivo";
+            lblErrorInactivo.Visible = false;
             // 
             // FrmLogin
             // 
@@ -212,10 +228,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(916, 561);
+            Controls.Add(lblErrorInactivo);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(lblIdentificacionDeSeguridad);
-            Controls.Add(pictureBox3);
+            Controls.Add(picVerContrasenia);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
             Controls.Add(lnkRecuperar);
@@ -236,7 +253,7 @@
             Load += FrmLogin_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picVerContrasenia).EndInit();
             ResumeLayout(false);
             PerformLayout();
 
@@ -254,9 +271,10 @@
         private LinkLabel lnkRecuperar;
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
-        private PictureBox pictureBox3;
+        private PictureBox picVerContrasenia;
         private Label lblIdentificacionDeSeguridad;
         private Label label1;
         private Label label2;
+        private Label lblErrorInactivo;
     }
 }

@@ -17,96 +17,131 @@
 
         private void InitializeComponent()
         {
-            this.lblUsuario = new System.Windows.Forms.Label();
-            this.cmbUsuario = new System.Windows.Forms.ComboBox();
-            this.lblTipoDeSolicitud = new System.Windows.Forms.Label();
-            this.cmbTipoDeSolicitud = new System.Windows.Forms.ComboBox();
-            this.lblDescripcion = new System.Windows.Forms.Label();
-            this.txtDescripcion = new System.Windows.Forms.TextBox();
-            this.lblFecha = new System.Windows.Forms.Label();
-            this.dateTimeFecha = new System.Windows.Forms.DateTimePicker();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.SuspendLayout();
-
+            lblUsuario = new Label();
+            cmbUsuario = new ComboBox();
+            lblTipoDeSolicitud = new Label();
+            cmbTipoDeSolicitud = new ComboBox();
+            lblDescripcion = new Label();
+            txtDescripcion = new TextBox();
+            lblFecha = new Label();
+            dateTimeFecha = new DateTimePicker();
+            btnGuardar = new Button();
+            btnCancelar = new Button();
+            SuspendLayout();
+            // 
             // lblUsuario
-            this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Location = new System.Drawing.Point(33, 59);
-            this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(43, 13);
-            this.lblUsuario.Text = "Usuario";
-
+            // 
+            lblUsuario.AutoSize = true;
+            lblUsuario.Location = new Point(33, 59);
+            lblUsuario.Name = "lblUsuario";
+            lblUsuario.Size = new Size(47, 15);
+            lblUsuario.TabIndex = 9;
+            lblUsuario.Text = "Usuario";
+            // 
             // cmbUsuario
-            this.cmbUsuario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbUsuario.Location = new System.Drawing.Point(153, 49);
-            this.cmbUsuario.Name = "cmbUsuario";
-            this.cmbUsuario.Size = new System.Drawing.Size(200, 21);
-            this.cmbUsuario.DisplayMember = "Nombre";
-            this.cmbUsuario.ValueMember = "IdUsuario";
-
+            // 
+            cmbUsuario.DisplayMember = "Nombre";
+            cmbUsuario.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbUsuario.Location = new Point(153, 49);
+            cmbUsuario.Name = "cmbUsuario";
+            cmbUsuario.Size = new Size(200, 23);
+            cmbUsuario.TabIndex = 8;
+            cmbUsuario.ValueMember = "IdUsuario";
+            // 
+            // lblTipoDeSolicitud
+            // 
+            lblTipoDeSolicitud.Location = new Point(0, 0);
+            lblTipoDeSolicitud.Name = "lblTipoDeSolicitud";
+            lblTipoDeSolicitud.Size = new Size(100, 23);
+            lblTipoDeSolicitud.TabIndex = 7;
+            // 
             // cmbTipoDeSolicitud
-            this.cmbTipoDeSolicitud.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTipoDeSolicitud.Location = new System.Drawing.Point(153, 87);
-            this.cmbTipoDeSolicitud.Name = "cmbTipoDeSolicitud";
-            this.cmbTipoDeSolicitud.Size = new System.Drawing.Size(200, 21);
-            this.cmbTipoDeSolicitud.DisplayMember = "NombreTipo";
-            this.cmbTipoDeSolicitud.ValueMember = "IdTipoCredencial";
-
+            // 
+            cmbTipoDeSolicitud.DisplayMember = "NombreTipo";
+            cmbTipoDeSolicitud.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbTipoDeSolicitud.Location = new Point(153, 87);
+            cmbTipoDeSolicitud.Name = "cmbTipoDeSolicitud";
+            cmbTipoDeSolicitud.Size = new Size(200, 23);
+            cmbTipoDeSolicitud.TabIndex = 6;
+            cmbTipoDeSolicitud.ValueMember = "IdTipoCredencial";
+            // 
+            // lblDescripcion
+            // 
+            lblDescripcion.Location = new Point(0, 0);
+            lblDescripcion.Name = "lblDescripcion";
+            lblDescripcion.Size = new Size(100, 23);
+            lblDescripcion.TabIndex = 5;
+            // 
             // txtDescripcion
-            this.txtDescripcion.Location = new System.Drawing.Point(153, 125);
-            this.txtDescripcion.Multiline = true;
-            this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(200, 90);
-
+            // 
+            txtDescripcion.Location = new Point(153, 125);
+            txtDescripcion.Multiline = true;
+            txtDescripcion.Name = "txtDescripcion";
+            txtDescripcion.Size = new Size(200, 90);
+            txtDescripcion.TabIndex = 4;
+            // 
             // lblFecha
-            this.lblFecha.AutoSize = true;
-            this.lblFecha.Location = new System.Drawing.Point(33, 230);
-            this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(37, 13);
-            this.lblFecha.Text = "Fecha";
-
+            // 
+            lblFecha.AutoSize = true;
+            lblFecha.Location = new Point(33, 230);
+            lblFecha.Name = "lblFecha";
+            lblFecha.Size = new Size(38, 15);
+            lblFecha.TabIndex = 0;
+            lblFecha.Text = "Fecha";
+            // 
             // dateTimeFecha
-            this.dateTimeFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimeFecha.Location = new System.Drawing.Point(153, 221);
-            this.dateTimeFecha.Name = "dateTimeFecha";
-            this.dateTimeFecha.Size = new System.Drawing.Size(200, 20);
-
+            // 
+            dateTimeFecha.Format = DateTimePickerFormat.Short;
+            dateTimeFecha.Location = new Point(153, 221);
+            dateTimeFecha.Name = "dateTimeFecha";
+            dateTimeFecha.Size = new Size(200, 23);
+            dateTimeFecha.TabIndex = 3;
+            // 
             // btnGuardar
-            this.btnGuardar.Location = new System.Drawing.Point(20, 272);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-
+            // 
+            btnGuardar.BackColor = SystemColors.ActiveCaption;
+            btnGuardar.Location = new Point(20, 272);
+            btnGuardar.Name = "btnGuardar";
+            btnGuardar.Size = new Size(75, 23);
+            btnGuardar.TabIndex = 2;
+            btnGuardar.Text = "Guardar";
+            btnGuardar.UseVisualStyleBackColor = false;
+            btnGuardar.Click += btnGuardar_Click;
+            // 
             // btnCancelar
-            this.btnCancelar.Location = new System.Drawing.Point(268, 272);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-
+            // 
+            btnCancelar.BackColor = Color.FromArgb(200, 70, 34);
+            btnCancelar.Location = new Point(268, 272);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(75, 23);
+            btnCancelar.TabIndex = 1;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Click += btnCancelar_Click;
+            // 
             // FrmAltaSolicitud
-            this.ClientSize = new System.Drawing.Size(400, 320);
-            this.Controls.Add(this.lblFecha); // Agregado para que se vea el label de fecha
-            this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.dateTimeFecha);
-            this.Controls.Add(this.txtDescripcion);
-            this.Controls.Add(this.lblDescripcion); // Agregado
-            this.Controls.Add(this.cmbTipoDeSolicitud);
-            this.Controls.Add(this.lblTipoDeSolicitud); // Agregado
-            this.Controls.Add(this.cmbUsuario);
-            this.Controls.Add(this.lblUsuario);
-            this.Name = "FrmAltaSolicitud";
-            this.Text = "Nueva Solicitud";
-            this.Load += new System.EventHandler(this.FrmAltaSolicitud_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            // 
+            ClientSize = new Size(400, 320);
+            Controls.Add(lblFecha);
+            Controls.Add(btnCancelar);
+            Controls.Add(btnGuardar);
+            Controls.Add(dateTimeFecha);
+            Controls.Add(txtDescripcion);
+            Controls.Add(lblDescripcion);
+            Controls.Add(cmbTipoDeSolicitud);
+            Controls.Add(lblTipoDeSolicitud);
+            Controls.Add(cmbUsuario);
+            Controls.Add(lblUsuario);
+            Name = "FrmAltaSolicitud";
+            Text = "Nueva Solicitud";
+            Load += FrmAltaSolicitud_Load;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        
+
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.ComboBox cmbUsuario;
         private System.Windows.Forms.Label lblTipoDeSolicitud;

@@ -44,33 +44,36 @@
             // 
             // btnEliminar
             // 
+            btnEliminar.BackColor = Color.FromArgb(200, 70, 34);
             btnEliminar.Location = new Point(215, 73);
             btnEliminar.Margin = new Padding(4, 3, 4, 3);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(88, 27);
-            btnEliminar.TabIndex = 2; // Ajustado el orden
+            btnEliminar.TabIndex = 2;
             btnEliminar.Text = "Eliminar";
-            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.UseVisualStyleBackColor = false;
             // 
             // btnEditar
             // 
+            btnEditar.BackColor = SystemColors.ActiveCaption;
             btnEditar.Location = new Point(127, 73);
             btnEditar.Margin = new Padding(4, 3, 4, 3);
             btnEditar.Name = "btnEditar";
             btnEditar.Size = new Size(88, 27);
-            btnEditar.TabIndex = 1; // Ajustado el orden
+            btnEditar.TabIndex = 1;
             btnEditar.Text = "Editar";
-            btnEditar.UseVisualStyleBackColor = true;
+            btnEditar.UseVisualStyleBackColor = false;
             // 
             // btnNuevo
             // 
+            btnNuevo.BackColor = SystemColors.ActiveCaption;
             btnNuevo.Location = new Point(40, 73);
             btnNuevo.Margin = new Padding(4, 3, 4, 3);
             btnNuevo.Name = "btnNuevo";
             btnNuevo.Size = new Size(88, 27);
-            btnNuevo.TabIndex = 0; // Ahora el foco empieza aquí
+            btnNuevo.TabIndex = 0;
             btnNuevo.Text = "Nuevo";
-            btnNuevo.UseVisualStyleBackColor = true;
+            btnNuevo.UseVisualStyleBackColor = false;
             btnNuevo.Click += btnNuevo_Click;
             // 
             // dgvUsuario
@@ -86,37 +89,37 @@
             // 
             // colNombre
             // 
-            colNombre.DataPropertyName = "Nombre"; // Vínculo con SQL
+            colNombre.DataPropertyName = "Nombre";
             colNombre.HeaderText = "Nombre";
             colNombre.Name = "colNombre";
             // 
             // colApellido
             // 
-            colApellido.DataPropertyName = "Apellido"; // Vínculo con SQL
+            colApellido.DataPropertyName = "Apellido";
             colApellido.HeaderText = "Apellido";
             colApellido.Name = "colApellido";
             // 
             // ColDni
             // 
-            ColDni.DataPropertyName = "Dni"; // Vínculo con SQL
+            ColDni.DataPropertyName = "Dni";
             ColDni.HeaderText = "DNI";
             ColDni.Name = "ColDni";
             // 
             // colEmail
             // 
-            colEmail.DataPropertyName = "Email"; // Vínculo con SQL
+            colEmail.DataPropertyName = "Email";
             colEmail.HeaderText = "Email";
             colEmail.Name = "colEmail";
             // 
             // colRol
             // 
-            colRol.DataPropertyName = "IdRol"; // Vínculo con SQL
+            colRol.DataPropertyName = "IdRol";
             colRol.HeaderText = "Rol";
             colRol.Name = "colRol";
             // 
             // colEstado
             // 
-            colEstado.DataPropertyName = "Estado"; // Vínculo con SQL
+            colEstado.DataPropertyName = "Estado";
             colEstado.HeaderText = "Estado";
             colEstado.Name = "colEstado";
             // 
@@ -124,7 +127,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(850, 400); // Ajustado un poco el tamaño
+            ClientSize = new Size(850, 400);
             Controls.Add(dgvUsuario);
             Controls.Add(btnNuevo);
             Controls.Add(btnEditar);
@@ -133,7 +136,7 @@
             Margin = new Padding(4, 3, 4, 3);
             Name = "FrmUsuarios";
             Text = "Usuarios - CredenSoft";
-            Load += FrmUsuarios_Load; // VÍNCULO PARA CARGAR AL INICIAR
+            Load += FrmUsuarios_Load;
             ((System.ComponentModel.ISupportInitialize)dgvUsuario).EndInit();
             ResumeLayout(false);
             PerformLayout();

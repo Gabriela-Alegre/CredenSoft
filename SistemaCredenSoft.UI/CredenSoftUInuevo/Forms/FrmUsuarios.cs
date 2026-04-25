@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using ServicesNegocio; // Asegurate que este using esté
-using DataEF;         // Y este también
+using ServicesNegocio; 
+using DataEF;        
 
 namespace CredenSoftUInuevo.Forms
 {
@@ -21,12 +21,11 @@ namespace CredenSoftUInuevo.Forms
         private void ConfigurarGrilla()
         {
             this.dgvUsuario.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvUsuario.ReadOnly = true; // Mejor dejarlo en true si usás ventana de Alta/Editar
+            this.dgvUsuario.ReadOnly = true;
             this.dgvUsuario.AllowUserToAddRows = false;
             this.dgvUsuario.CellFormatting += dgvUsuario_CellFormatting;
         }
 
-        // Este es el evento que se ejecuta al abrir la ventana
         private void FrmUsuarios_Load(object sender, EventArgs e)
         {
             CargarGrilla();

@@ -14,11 +14,9 @@ namespace CredenSoftUInuevo.Forms
         public FrmAltaUsuario()
         {
             InitializeComponent();
-            // Conectamos los eventos para que se limpien al escribir
             VincularEventosLimpieza();
         }
 
-        // MÉTODO PARA VINCULAR EVENTOS 
         private void VincularEventosLimpieza()
         {
             txtNombre.TextChanged += LimpiarErrorAlEscribir;
@@ -26,13 +24,10 @@ namespace CredenSoftUInuevo.Forms
             txtDni.TextChanged += LimpiarErrorAlEscribir;
             txtEmail.TextChanged += LimpiarErrorAlEscribir;
             txtContrasenia.TextChanged += LimpiarErrorAlEscribir;
-
-            // Para los ComboBox usamos SelectedIndexChanged
             cmbRol.SelectedIndexChanged += LimpiarErrorAlEscribir;
             cmbEstado.SelectedIndexChanged += LimpiarErrorAlEscribir;
         }
 
-        
         private void LimpiarErrorAlEscribir(object sender, EventArgs e)
         {
             if (sender is TextBox tb)
@@ -61,6 +56,7 @@ namespace CredenSoftUInuevo.Forms
             {
                 bool hayError = false;
 
+                // VALIDACIONES (HU 01)
                 if (string.IsNullOrWhiteSpace(txtNombre.Text))
                 {
                     errorProvider1.SetError(txtNombre, "El nombre es obligatorio");
@@ -110,10 +106,12 @@ namespace CredenSoftUInuevo.Forms
 
                 if (hayError)
                 {
+                    // Mensaje de advertencia
                     MessageBox.Show("Por favor, complete los campos resaltados.", "Validación de Datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
+                // CREACIÓN DEL OBJETO
                 Usuario nuevo = new Usuario
                 {
                     Nombre = txtNombre.Text,
@@ -124,13 +122,17 @@ namespace CredenSoftUInuevo.Forms
                     IdRol = cmbRol.SelectedIndex + 1
                 };
 
+                
                 _usuarioService.RegistrarUsuario(nuevo, txtContrasenia.Text);
 
+                // ÉXITO (Icono de Información "i")
                 MessageBox.Show("Usuario registrado con éxito.", "¡Hecho!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
             catch (Exception ex)
             {
+                // ERROR DE DNI DUPLICADO (HU 02)
+                
                 MessageBox.Show(ex.Message, "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -151,9 +153,19 @@ namespace CredenSoftUInuevo.Forms
 
         private void txtDni_KeyPress(object sender, KeyPressEventArgs e)
         {
+            // Solo números (HU 01)
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void FrmAltaUsuario_Load(object sender, EventArgs e)
+        {
+            //estado por defecto debe ser "Activo"
+            if (cmbEstado.Items.Count > 0)
+            {
+                cmbEstado.SelectedIndex = 0; // Asumiendo que "Activo" es el primero en la lista
             }
         }
     }

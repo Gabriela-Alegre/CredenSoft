@@ -9,54 +9,72 @@ namespace CredenSoftUInuevo.Forms
 {
     public partial class FrmLogin : Form
     {
-        // Servicio para conectar con la base de datos
         private readonly UsuarioService _usuarioService = new UsuarioService(new CredenSoftContext());
 
         public FrmLogin()
         {
             InitializeComponent();
+            txtContrasenia.PasswordChar = '*';
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             try
             {
-                // 1. Validación de campos vacíos (Front-end)
+                // 1. Validación de campos vacíos (Advertencia amarilla)
                 if (string.IsNullOrWhiteSpace(txtUsuario.Text) || string.IsNullOrWhiteSpace(txtContrasenia.Text))
                 {
-                    MessageBox.Show("Por favor, ingrese su email y contraseña.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Por favor, ingrese su correo electrónico y contraseña.",
+                    "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 // 2. Intento de Login
                 var usuario = _usuarioService.Login(txtUsuario.Text, txtContrasenia.Text);
 
-                // Guardamos el usuario en la sesión global
+                // 3. VALIDACIÓN DE USUARIO INACTIVO (HU 04)
+                // Si las credenciales son correctas pero el usuario está dado de baja
+                if (usuario.Estado != "Activo")
+                {
+                    MessageBox.Show("ACCESO DENEGADO: Su usuario se encuentra INACTIVO.\nContacte al administrador central de la PSA.",
+                                    "Usuario Bloqueado",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Stop); // <--- Señal de Stop/Prohibido
+                    return; 
+                }
+
+                // 4. Éxito: Guardamos sesión y entramos
                 SesionActual.UsuarioLogueado = usuario;
 
-                // 3. Abrir Dashboard y ocultar Login
                 FrmDashboard frm = new FrmDashboard();
                 frm.Show();
                 this.Hide();
             }
             catch (Exception ex)
             {
-                // Muestra el error de credenciales con icono de Error (Círculo rojo con X)
+                // HU 03: Credenciales Incorrectas
                 MessageBox.Show(ex.Message, "Error de Acceso", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        
-        private void label2_Click(object sender, EventArgs e)
+        private void picVerContrasenia_Click(object sender, EventArgs e)
         {
-            // Mensaje con el icono de información (el círculo con la "i")
-            MessageBox.Show("El registro de oficiales es gestionado únicamente por el Administrador Central de la PSA.\n\nPor favor, contacte a su superior para obtener sus credenciales de acceso.",
-                            "Aviso de Seguridad",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
+            if (txtContrasenia.PasswordChar == '*')
+            {
+                txtContrasenia.PasswordChar = '\0';
+            }
+            else
+            {
+                txtContrasenia.PasswordChar = '*';
+            }
         }
 
-        // Método para la recuperación de contraseña
+        private void label2_Click(object sender, EventArgs e)
+        {
+            FrmAltaUsuario frmRegistro = new FrmAltaUsuario();
+            frmRegistro.ShowDialog();
+        }
+
         private void lnkRecuperar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             FrmRecuperarContrasenia frmRecuperar = new FrmRecuperarContrasenia(_usuarioService);
@@ -70,7 +88,6 @@ namespace CredenSoftUInuevo.Forms
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
-            // Hace que el cursor aparezca directamente en el campo de usuario
             txtUsuario.Select();
         }
     }

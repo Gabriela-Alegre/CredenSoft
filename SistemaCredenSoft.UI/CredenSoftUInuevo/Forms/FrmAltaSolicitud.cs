@@ -28,9 +28,7 @@ namespace CredenSoftUInuevo.Forms
         {
             try
             {
-                // Le pedimos al service la lista de tipos
                 
-               // cmbTipoDeSolicitud.DataSource = _solicitudService.ObtenerTiposCredencial();
             }
             catch (Exception ex)
             {
@@ -54,8 +52,7 @@ namespace CredenSoftUInuevo.Forms
                     // Usamos la sesión actual para saber quién es el usuario
                     IdUsuario = SesionActual.UsuarioLogueado.IdUsuario,
 
-                    // CORRECCIÓN: Usamos SelectedValue (el ID numérico) y no el .Text
-                   // IdTipoCredencial = (int)cmbTipoDeSolicitud.SelectedValue,
+                    
 
                     Descripcion = txtDescripcion.Text,
                     FechaSolicitud = dateTimeFecha.Value,

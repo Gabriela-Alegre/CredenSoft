@@ -17,65 +17,73 @@
 
         private void InitializeComponent()
         {
-            this.dgvSolicitudes = new System.Windows.Forms.DataGridView();
-            this.btnNueva = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnVer = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSolicitudes)).BeginInit();
-            this.SuspendLayout();
+            dgvSolicitudes = new DataGridView();
+            btnNueva = new Button();
+            btnEliminar = new Button();
+            btnVer = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgvSolicitudes).BeginInit();
+            SuspendLayout();
             // 
             // dgvSolicitudes
             // 
-            this.dgvSolicitudes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSolicitudes.Location = new System.Drawing.Point(12, 12);
-            this.dgvSolicitudes.Name = "dgvSolicitudes";
-            this.dgvSolicitudes.Size = new System.Drawing.Size(560, 300);
-            this.dgvSolicitudes.TabIndex = 0;
+            dgvSolicitudes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvSolicitudes.Location = new Point(14, 14);
+            dgvSolicitudes.Margin = new Padding(4, 3, 4, 3);
+            dgvSolicitudes.Name = "dgvSolicitudes";
+            dgvSolicitudes.Size = new Size(653, 346);
+            dgvSolicitudes.TabIndex = 0;
             // 
             // btnNueva
             // 
-            this.btnNueva.Location = new System.Drawing.Point(12, 325);
-            this.btnNueva.Name = "btnNueva";
-            this.btnNueva.Size = new System.Drawing.Size(75, 23);
-            this.btnNueva.TabIndex = 1;
-            this.btnNueva.Text = "Nueva";
-            this.btnNueva.UseVisualStyleBackColor = true;
-            this.btnNueva.Click += new System.EventHandler(this.btnNueva_Click);
+            btnNueva.BackColor = SystemColors.ActiveCaption;
+            btnNueva.Location = new Point(14, 375);
+            btnNueva.Margin = new Padding(4, 3, 4, 3);
+            btnNueva.Name = "btnNueva";
+            btnNueva.Size = new Size(88, 27);
+            btnNueva.TabIndex = 1;
+            btnNueva.Text = "Nueva";
+            btnNueva.UseVisualStyleBackColor = false;
+            btnNueva.Click += btnNueva_Click;
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(500, 325);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
-            this.btnEliminar.TabIndex = 2;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            btnEliminar.BackColor = Color.FromArgb(200, 70, 34);
+            btnEliminar.Location = new Point(583, 375);
+            btnEliminar.Margin = new Padding(4, 3, 4, 3);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(88, 27);
+            btnEliminar.TabIndex = 2;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnVer
             // 
-            this.btnVer.Location = new System.Drawing.Point(410, 325);
-            this.btnVer.Name = "btnVer";
-            this.btnVer.Size = new System.Drawing.Size(75, 23);
-            this.btnVer.TabIndex = 3;
-            this.btnVer.Text = "Ver";
-            this.btnVer.UseVisualStyleBackColor = true;
-            this.btnVer.Click += new System.EventHandler(this.btnVer_Click);
+            btnVer.BackColor = SystemColors.ActiveCaption;
+            btnVer.Location = new Point(478, 375);
+            btnVer.Margin = new Padding(4, 3, 4, 3);
+            btnVer.Name = "btnVer";
+            btnVer.Size = new Size(88, 27);
+            btnVer.TabIndex = 3;
+            btnVer.Text = "Ver";
+            btnVer.UseVisualStyleBackColor = false;
+            btnVer.Click += btnVer_Click;
             // 
             // FrmSolicitud
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 361);
-            this.Controls.Add(this.btnVer);
-            this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.btnNueva);
-            this.Controls.Add(this.dgvSolicitudes);
-            this.Name = "FrmSolicitud";
-            this.Text = "Listado de Solicitudes";
-            this.Load += new System.EventHandler(this.FrmSolicitud_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSolicitudes)).EndInit();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(681, 417);
+            Controls.Add(btnVer);
+            Controls.Add(btnEliminar);
+            Controls.Add(btnNueva);
+            Controls.Add(dgvSolicitudes);
+            Margin = new Padding(4, 3, 4, 3);
+            Name = "FrmSolicitud";
+            Text = "Listado de Solicitudes";
+            Load += FrmSolicitud_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvSolicitudes).EndInit();
+            ResumeLayout(false);
 
         }
 
