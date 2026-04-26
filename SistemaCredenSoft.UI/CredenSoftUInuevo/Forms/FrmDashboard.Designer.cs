@@ -17,192 +17,206 @@
 
         private void InitializeComponent()
         {
-            this.panelHeader = new System.Windows.Forms.Panel();
-            this.lblInfoUsuario = new System.Windows.Forms.Label();
-            this.lblTitulo = new System.Windows.Forms.Label();
-            this.panelMenu = new System.Windows.Forms.Panel();
-            this.btnCerrarSesion = new System.Windows.Forms.Button();
-            this.btnAuditoria = new System.Windows.Forms.Button();
-            this.btnUsuarios = new System.Windows.Forms.Button();
-            this.btnCredenciales = new System.Windows.Forms.Button();
-            this.btnSolicitudes = new System.Windows.Forms.Button();
-            this.panelContent = new System.Windows.Forms.Panel();
-            this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.panelHeader.SuspendLayout();
-            this.panelMenu.SuspendLayout();
-            this.statusStrip.SuspendLayout();
-            this.SuspendLayout();
+            panelHeader = new Panel();
+            lblInfoUsuario = new Label();
+            lblTitulo = new Label();
+            panelMenu = new Panel();
+            btnCerrarSesion = new Button();
+            btnAuditoria = new Button();
+            btnUsuarios = new Button();
+            btnCredenciales = new Button();
+            btnSolicitudes = new Button();
+            panelContent = new Panel();
+            statusStrip = new StatusStrip();
+            lblStatus = new ToolStripStatusLabel();
+            panelHeader.SuspendLayout();
+            panelMenu.SuspendLayout();
+            statusStrip.SuspendLayout();
+            SuspendLayout();
             // 
             // panelHeader
             // 
-            // AZUL MARINO PROFUNDO (Identidad PSA)
-            this.panelHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(40)))), ((int)(((byte)(70)))));
-            this.panelHeader.Controls.Add(this.lblInfoUsuario);
-            this.panelHeader.Controls.Add(this.lblTitulo);
-            this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelHeader.Location = new System.Drawing.Point(0, 0);
-            this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1000, 60);
-            this.panelHeader.TabIndex = 0;
+            panelHeader.BackColor = Color.FromArgb(20, 40, 70);
+            panelHeader.Controls.Add(lblInfoUsuario);
+            panelHeader.Controls.Add(lblTitulo);
+            panelHeader.Dock = DockStyle.Top;
+            panelHeader.Location = new Point(0, 0);
+            panelHeader.Margin = new Padding(4, 3, 4, 3);
+            panelHeader.Name = "panelHeader";
+            panelHeader.Size = new Size(1167, 69);
+            panelHeader.TabIndex = 0;
             // 
             // lblInfoUsuario
             // 
-            this.lblInfoUsuario.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblInfoUsuario.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblInfoUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblInfoUsuario.Location = new System.Drawing.Point(700, 0);
-            this.lblInfoUsuario.Name = "lblInfoUsuario";
-            this.lblInfoUsuario.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
-            this.lblInfoUsuario.Size = new System.Drawing.Size(300, 60);
-            this.lblInfoUsuario.TabIndex = 1;
-            this.lblInfoUsuario.Text = "Oficial: Cargando...";
-            this.lblInfoUsuario.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            lblInfoUsuario.Dock = DockStyle.Right;
+            lblInfoUsuario.Font = new Font("Segoe UI", 10F);
+            lblInfoUsuario.ForeColor = Color.FromArgb(224, 224, 224);
+            lblInfoUsuario.Location = new Point(817, 0);
+            lblInfoUsuario.Margin = new Padding(4, 0, 4, 0);
+            lblInfoUsuario.Name = "lblInfoUsuario";
+            lblInfoUsuario.Padding = new Padding(0, 0, 23, 0);
+            lblInfoUsuario.Size = new Size(350, 69);
+            lblInfoUsuario.TabIndex = 1;
+            lblInfoUsuario.Text = "Oficial: Cargando...";
+            lblInfoUsuario.TextAlign = ContentAlignment.MiddleRight;
             // 
             // lblTitulo
             // 
-            this.lblTitulo.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblTitulo.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
-            this.lblTitulo.ForeColor = System.Drawing.Color.White;
-            this.lblTitulo.Location = new System.Drawing.Point(0, 0);
-            this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.lblTitulo.Size = new System.Drawing.Size(500, 60);
-            this.lblTitulo.TabIndex = 0;
-            this.lblTitulo.Text = "CredenSoft - PSA";
-            this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            lblTitulo.Dock = DockStyle.Left;
+            lblTitulo.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            lblTitulo.ForeColor = Color.White;
+            lblTitulo.Location = new Point(0, 0);
+            lblTitulo.Margin = new Padding(4, 0, 4, 0);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Padding = new Padding(23, 0, 0, 0);
+            lblTitulo.Size = new Size(583, 69);
+            lblTitulo.TabIndex = 0;
+            lblTitulo.Text = "CredenSoft - PSA";
+            lblTitulo.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // panelMenu
             // 
-            // AZUL MUY OSCURO (Estructura de Menú)
-            this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
-            this.panelMenu.Controls.Add(this.btnCerrarSesion);
-            this.panelMenu.Controls.Add(this.btnAuditoria);
-            this.panelMenu.Controls.Add(this.btnUsuarios);
-            this.panelMenu.Controls.Add(this.btnCredenciales);
-            this.panelMenu.Controls.Add(this.btnSolicitudes);
-            this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelMenu.Location = new System.Drawing.Point(0, 60);
-            this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(200, 540);
-            this.panelMenu.TabIndex = 1;
+            panelMenu.BackColor = Color.FromArgb(25, 35, 50);
+            panelMenu.Controls.Add(btnCerrarSesion);
+            panelMenu.Controls.Add(btnAuditoria);
+            panelMenu.Controls.Add(btnUsuarios);
+            panelMenu.Controls.Add(btnCredenciales);
+            panelMenu.Controls.Add(btnSolicitudes);
+            panelMenu.Dock = DockStyle.Left;
+            panelMenu.Location = new Point(0, 69);
+            panelMenu.Margin = new Padding(4, 3, 4, 3);
+            panelMenu.Name = "panelMenu";
+            panelMenu.Size = new Size(233, 623);
+            panelMenu.TabIndex = 1;
             // 
             // btnCerrarSesion
             // 
-            this.btnCerrarSesion.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnCerrarSesion.FlatAppearance.BorderSize = 0;
-            // ROJO/NARANJA (Color de cancelación/salida del Login)
-            this.btnCerrarSesion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
-            this.btnCerrarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCerrarSesion.ForeColor = System.Drawing.Color.White;
-            this.btnCerrarSesion.Location = new System.Drawing.Point(0, 490);
-            this.btnCerrarSesion.Name = "btnCerrarSesion";
-            this.btnCerrarSesion.Size = new System.Drawing.Size(200, 50);
-            this.btnCerrarSesion.TabIndex = 4;
-            this.btnCerrarSesion.Text = "Cerrar Sesión";
-            this.btnCerrarSesion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
+            btnCerrarSesion.Cursor = Cursors.Hand;
+            btnCerrarSesion.Dock = DockStyle.Bottom;
+            btnCerrarSesion.FlatAppearance.BorderSize = 0;
+            btnCerrarSesion.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 57, 43);
+            btnCerrarSesion.FlatStyle = FlatStyle.Flat;
+            btnCerrarSesion.ForeColor = Color.White;
+            btnCerrarSesion.Location = new Point(0, 565);
+            btnCerrarSesion.Margin = new Padding(4, 3, 4, 3);
+            btnCerrarSesion.Name = "btnCerrarSesion";
+            btnCerrarSesion.Size = new Size(233, 58);
+            btnCerrarSesion.TabIndex = 4;
+            btnCerrarSesion.Text = "Cerrar Sesión";
+            btnCerrarSesion.Click += btnCerrarSesion_Click;
             // 
-            // btnAuditoria, btnUsuarios, btnCredenciales, btnSolicitudes
-            // CONFIGURACIÓN DE COLOR CELESTE HOVER PARA TODOS: Color.FromArgb(70, 130, 180)
-
-            this.btnAuditoria.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnAuditoria.FlatAppearance.BorderSize = 0;
-            this.btnAuditoria.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(180)))));
-            this.btnAuditoria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAuditoria.ForeColor = System.Drawing.Color.White;
-            this.btnAuditoria.Location = new System.Drawing.Point(0, 150);
-            this.btnAuditoria.Name = "btnAuditoria";
-            this.btnAuditoria.Size = new System.Drawing.Size(200, 50);
-            this.btnAuditoria.TabIndex = 3;
-            this.btnAuditoria.Text = "Auditoría";
-            this.btnAuditoria.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAuditoria.Click += new System.EventHandler(this.btnAuditoria_Click);
-
-            this.btnUsuarios.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnUsuarios.FlatAppearance.BorderSize = 0;
-            this.btnUsuarios.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(180)))));
-            this.btnUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUsuarios.ForeColor = System.Drawing.Color.White;
-            this.btnUsuarios.Location = new System.Drawing.Point(0, 100);
-            this.btnUsuarios.Name = "btnUsuarios";
-            this.btnUsuarios.Size = new System.Drawing.Size(200, 50);
-            this.btnUsuarios.TabIndex = 2;
-            this.btnUsuarios.Text = "Usuarios";
-            this.btnUsuarios.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
-
-            this.btnCredenciales.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnCredenciales.FlatAppearance.BorderSize = 0;
-            this.btnCredenciales.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(180)))));
-            this.btnCredenciales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCredenciales.ForeColor = System.Drawing.Color.White;
-            this.btnCredenciales.Location = new System.Drawing.Point(0, 50);
-            this.btnCredenciales.Name = "btnCredenciales";
-            this.btnCredenciales.Size = new System.Drawing.Size(200, 50);
-            this.btnCredenciales.TabIndex = 1;
-            this.btnCredenciales.Text = "Credenciales";
-            this.btnCredenciales.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCredenciales.Click += new System.EventHandler(this.btnCredenciales_Click);
-
-            this.btnSolicitudes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnSolicitudes.FlatAppearance.BorderSize = 0;
-            this.btnSolicitudes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(180)))));
-            this.btnSolicitudes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSolicitudes.ForeColor = System.Drawing.Color.White;
-            this.btnSolicitudes.Location = new System.Drawing.Point(0, 0);
-            this.btnSolicitudes.Name = "btnSolicitudes";
-            this.btnSolicitudes.Size = new System.Drawing.Size(200, 50);
-            this.btnSolicitudes.TabIndex = 0;
-            this.btnSolicitudes.Text = "Solicitudes";
-            this.btnSolicitudes.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSolicitudes.Click += new System.EventHandler(this.btnSolicitudes_Click);
+            // btnAuditoria
+            // 
+            btnAuditoria.Cursor = Cursors.Hand;
+            btnAuditoria.Dock = DockStyle.Top;
+            btnAuditoria.FlatAppearance.BorderSize = 0;
+            btnAuditoria.FlatAppearance.MouseOverBackColor = Color.FromArgb(70, 130, 180);
+            btnAuditoria.FlatStyle = FlatStyle.Flat;
+            btnAuditoria.ForeColor = Color.White;
+            btnAuditoria.Location = new Point(0, 174);
+            btnAuditoria.Margin = new Padding(4, 3, 4, 3);
+            btnAuditoria.Name = "btnAuditoria";
+            btnAuditoria.Size = new Size(233, 58);
+            btnAuditoria.TabIndex = 3;
+            btnAuditoria.Text = "Auditoría";
+            btnAuditoria.Click += btnAuditoria_Click;
+            // 
+            // btnUsuarios
+            // 
+            btnUsuarios.Cursor = Cursors.Hand;
+            btnUsuarios.Dock = DockStyle.Top;
+            btnUsuarios.FlatAppearance.BorderSize = 0;
+            btnUsuarios.FlatAppearance.MouseOverBackColor = Color.FromArgb(70, 130, 180);
+            btnUsuarios.FlatStyle = FlatStyle.Flat;
+            btnUsuarios.ForeColor = Color.White;
+            btnUsuarios.Location = new Point(0, 116);
+            btnUsuarios.Margin = new Padding(4, 3, 4, 3);
+            btnUsuarios.Name = "btnUsuarios";
+            btnUsuarios.Size = new Size(233, 58);
+            btnUsuarios.TabIndex = 2;
+            btnUsuarios.Text = "Usuarios";
+            btnUsuarios.Click += btnUsuarios_Click;
+            // 
+            // btnCredenciales
+            // 
+            btnCredenciales.Cursor = Cursors.Hand;
+            btnCredenciales.Dock = DockStyle.Top;
+            btnCredenciales.FlatAppearance.BorderSize = 0;
+            btnCredenciales.FlatAppearance.MouseOverBackColor = Color.FromArgb(70, 130, 180);
+            btnCredenciales.FlatStyle = FlatStyle.Flat;
+            btnCredenciales.ForeColor = Color.White;
+            btnCredenciales.Location = new Point(0, 58);
+            btnCredenciales.Margin = new Padding(4, 3, 4, 3);
+            btnCredenciales.Name = "btnCredenciales";
+            btnCredenciales.Size = new Size(233, 58);
+            btnCredenciales.TabIndex = 1;
+            btnCredenciales.Text = "Credenciales";
+            btnCredenciales.Click += btnCredenciales_Click;
+            // 
+            // btnSolicitudes
+            // 
+            btnSolicitudes.Cursor = Cursors.Hand;
+            btnSolicitudes.Dock = DockStyle.Top;
+            btnSolicitudes.FlatAppearance.BorderSize = 0;
+            btnSolicitudes.FlatAppearance.MouseOverBackColor = Color.FromArgb(70, 130, 180);
+            btnSolicitudes.FlatStyle = FlatStyle.Flat;
+            btnSolicitudes.ForeColor = Color.White;
+            btnSolicitudes.Location = new Point(0, 0);
+            btnSolicitudes.Margin = new Padding(4, 3, 4, 3);
+            btnSolicitudes.Name = "btnSolicitudes";
+            btnSolicitudes.Size = new Size(233, 58);
+            btnSolicitudes.TabIndex = 0;
+            btnSolicitudes.Text = "Solicitudes";
+            btnSolicitudes.Click += btnSolicitudes_Click;
             // 
             // panelContent
             // 
-            this.panelContent.BackColor = System.Drawing.Color.White;
-            this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContent.Location = new System.Drawing.Point(200, 60);
-            this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(800, 540);
-            this.panelContent.TabIndex = 2;
+            panelContent.BackColor = Color.White;
+            panelContent.Dock = DockStyle.Fill;
+            panelContent.Location = new Point(233, 69);
+            panelContent.Margin = new Padding(4, 3, 4, 3);
+            panelContent.Name = "panelContent";
+            panelContent.Size = new Size(934, 623);
+            panelContent.TabIndex = 2;
             // 
             // statusStrip
             // 
-            // AZUL OSCURO MATE (Footer)
-            this.statusStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(40)))), ((int)(((byte)(55)))));
-            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lblStatus});
-            this.statusStrip.Location = new System.Drawing.Point(200, 578);
-            this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(800, 22);
-            this.statusStrip.TabIndex = 3;
+            statusStrip.BackColor = Color.FromArgb(30, 40, 55);
+            statusStrip.Items.AddRange(new ToolStripItem[] { lblStatus });
+            statusStrip.Location = new Point(233, 670);
+            statusStrip.Name = "statusStrip";
+            statusStrip.Padding = new Padding(1, 0, 16, 0);
+            statusStrip.Size = new Size(934, 22);
+            statusStrip.TabIndex = 3;
             // 
             // lblStatus
             // 
-            this.lblStatus.ForeColor = System.Drawing.Color.LimeGreen;
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Text = "● Sistema Online - Conexión Segura";
+            lblStatus.ForeColor = Color.LimeGreen;
+            lblStatus.Name = "lblStatus";
+            lblStatus.Size = new Size(197, 17);
+            lblStatus.Text = "● Sistema Online - Conexión Segura";
             // 
             // FrmDashboard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 600);
-            this.Controls.Add(this.statusStrip);
-            this.Controls.Add(this.panelContent);
-            this.Controls.Add(this.panelMenu);
-            this.Controls.Add(this.panelHeader);
-            this.Name = "FrmDashboard";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CredenSoft v1.0 - Gestión de Credenciales";
-            this.Load += new System.EventHandler(this.FrmDashboard_Load);
-            this.panelHeader.ResumeLayout(false);
-            this.panelMenu.ResumeLayout(false);
-            this.statusStrip.ResumeLayout(false);
-            this.statusStrip.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1167, 692);
+            Controls.Add(statusStrip);
+            Controls.Add(panelContent);
+            Controls.Add(panelMenu);
+            Controls.Add(panelHeader);
+            Margin = new Padding(4, 3, 4, 3);
+            Name = "FrmDashboard";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "CredenSoft v1.0 - Gestión de Credenciales";
+            Load += FrmDashboard_Load;
+            Shown += FrmDashboard_Shown;
+            panelHeader.ResumeLayout(false);
+            panelMenu.ResumeLayout(false);
+            statusStrip.ResumeLayout(false);
+            statusStrip.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 

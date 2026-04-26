@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Drawing;
-using ModelsEntidades; // Importante para SesionActual
+using ModelsEntidades;
 
 namespace CredenSoftUInuevo.Forms
 {
@@ -12,12 +12,25 @@ namespace CredenSoftUInuevo.Forms
             InitializeComponent();
         }
 
+        // --- CAMBIO AQUÍ: Evento Shown para la bienvenida ---
+        private void FrmDashboard_Shown(object sender, EventArgs e)
+        {
+            if (SesionActual.UsuarioLogueado != null)
+            {
+                // El mensaje de bienvenida que quitamos del Login ahora aparece aquí
+                MessageBox.Show($"¡Bienvenido al Sistema, {SesionActual.UsuarioLogueado.Nombre}!\n\nSesión iniciada como: {SesionActual.UsuarioLogueado.Rol}",
+                                "Acceso Confirmado - CredenSoft",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+            }
+        }
+
         private void FrmDashboard_Load(object sender, EventArgs e)
         {
             // 1. Cargamos los datos del usuario logueado en el Header
             CargarDatosUsuario();
 
-            // 2. Validación de seguridad extra (HU 04)
+            // 2. Validación de seguridad extra
             if (SesionActual.UsuarioLogueado != null && SesionActual.UsuarioLogueado.Estado != "Activo")
             {
                 MessageBox.Show("Sesión inválida: Usuario Inactivo.", "Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -29,7 +42,6 @@ namespace CredenSoftUInuevo.Forms
         {
             if (SesionActual.UsuarioLogueado != null)
             {
-                // Mostramos Nombre, Apellido y Rol en el label que creamos en el Designer
                 lblInfoUsuario.Text = $"Oficial: {SesionActual.UsuarioLogueado.Nombre} {SesionActual.UsuarioLogueado.Apellido} | Rol: {SesionActual.UsuarioLogueado.Rol}";
             }
             else
@@ -38,16 +50,14 @@ namespace CredenSoftUInuevo.Forms
             }
         }
 
-        // --- MÉTODO CLAVE: Abre formularios dentro del Panel Central ---
         private void AbrirFormEnPanel(Form formularioHijo)
         {
-            // Si ya hay un formulario abierto,cerramos para liberar memoria
             if (this.panelContent.Controls.Count > 0)
                 this.panelContent.Controls.RemoveAt(0);
 
             formularioHijo.TopLevel = false;
-            formularioHijo.FormBorderStyle = FormBorderStyle.None; // Quita bordes (X, minimizar, etc)
-            formularioHijo.Dock = DockStyle.Fill; // Hace que ocupe todo el espacio blanco
+            formularioHijo.FormBorderStyle = FormBorderStyle.None;
+            formularioHijo.Dock = DockStyle.Fill;
 
             this.panelContent.Controls.Add(formularioHijo);
             this.panelContent.Tag = formularioHijo;
@@ -58,7 +68,6 @@ namespace CredenSoftUInuevo.Forms
 
         private void btnSolicitudes_Click(object sender, EventArgs e)
         {
-            // Ahora se abre ADENTRO del dashboard
             AbrirFormEnPanel(new FrmAltaSolicitud());
             lblStatus.Text = "● Navegando: Gestión de Solicitudes";
         }
@@ -90,13 +99,10 @@ namespace CredenSoftUInuevo.Forms
 
             if (resultado == DialogResult.Yes)
             {
-                // Limpiamos la sesión
                 SesionActual.UsuarioLogueado = null;
-
-                // Volvemos al Login
                 FrmLogin login = new FrmLogin();
                 login.Show();
-                this.Hide(); // Escondemos el Dash 
+                this.Hide();
             }
         }
     }
