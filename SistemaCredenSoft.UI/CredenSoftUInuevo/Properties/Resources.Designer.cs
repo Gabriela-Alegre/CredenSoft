@@ -73,9 +73,9 @@ namespace CredenSoftUInuevo.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _9a7a9d90_d9a0_421a_94e8_b2534a41f1c7 {
+        internal static System.Drawing.Bitmap b6e50688_f5a5_4dfc_8398_dbfd6d6f8a81 {
             get {
-                object obj = ResourceManager.GetObject("9a7a9d90-d9a0-421a-94e8-b2534a41f1c7", resourceCulture);
+                object obj = ResourceManager.GetObject("b6e50688-f5a5-4dfc-8398-dbfd6d6f8a81", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,29 @@ namespace CredenSoftUInuevo.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap b6e50688_f5a5_4dfc_8398_dbfd6d6f8a81 {
+        internal static System.Drawing.Bitmap CredenSofTBlanco {
             get {
-                object obj = ResourceManager.GetObject("b6e50688-f5a5-4dfc-8398-dbfd6d6f8a81", resourceCulture);
+                object obj = ResourceManager.GetObject("CredenSofTBlanco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ojo_abierto {
+            get {
+                object obj = ResourceManager.GetObject("ojo_abierto", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ojo_cerrado {
+            get {
+                object obj = ResourceManager.GetObject("ojo_cerrado", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
