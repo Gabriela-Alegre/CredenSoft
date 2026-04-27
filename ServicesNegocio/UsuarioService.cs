@@ -140,12 +140,6 @@ namespace ServicesNegocio
         {
             return _context.Usuarios.Include(u => u.Rol).ToList();
         }
-        // Agrega esto al final de tu UsuarioService.cs
-        public Usuario ObtenerPorId(int id)
-        {
-            return _context.Usuarios
-                .Include(u => u.Rol)
-                .FirstOrDefault(u => u.IdRol == id);
-        }
+       
     }
 }
