@@ -36,28 +36,28 @@
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
             picVerContrasenia = new PictureBox();
-            label1 = new Label();
-            label2 = new Label();
             lblErrorInactivo = new Label();
             pictureBox3 = new PictureBox();
-            label3 = new Label();
             chkRecordarme = new CheckBox();
+            btnRegistrar = new Button();
+            pictureBox6 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picVerContrasenia).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             SuspendLayout();
             // 
             // lblUsuario
             // 
             lblUsuario.AutoSize = true;
             lblUsuario.BackColor = Color.Transparent;
-            lblUsuario.Font = new Font("Microsoft Sans Serif", 13F);
-            lblUsuario.ForeColor = SystemColors.ControlDarkDark;
-            lblUsuario.Location = new Point(185, 152);
+            lblUsuario.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblUsuario.ForeColor = SystemColors.ActiveCaptionText;
+            lblUsuario.Location = new Point(114, 151);
             lblUsuario.Margin = new Padding(4, 0, 4, 0);
             lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(159, 22);
+            lblUsuario.Size = new Size(173, 25);
             lblUsuario.TabIndex = 1;
             lblUsuario.Text = "Correo Electrónico";
             // 
@@ -65,44 +65,48 @@
             // 
             txtUsuario.BackColor = Color.White;
             txtUsuario.BorderStyle = BorderStyle.FixedSingle;
-            txtUsuario.Location = new Point(384, 151);
+            txtUsuario.Location = new Point(378, 151);
             txtUsuario.Margin = new Padding(4, 3, 4, 3);
             txtUsuario.Name = "txtUsuario";
-            txtUsuario.Size = new Size(327, 23);
+            txtUsuario.Size = new Size(370, 23);
             txtUsuario.TabIndex = 2;
             // 
             // lblContrasenia
             // 
             lblContrasenia.AutoSize = true;
             lblContrasenia.BackColor = Color.Transparent;
-            lblContrasenia.Font = new Font("Microsoft Sans Serif", 13F);
-            lblContrasenia.ForeColor = SystemColors.ControlDarkDark;
-            lblContrasenia.Location = new Point(185, 206);
+            lblContrasenia.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblContrasenia.ForeColor = SystemColors.ActiveCaptionText;
+            lblContrasenia.Location = new Point(114, 215);
             lblContrasenia.Margin = new Padding(4, 0, 4, 0);
             lblContrasenia.Name = "lblContrasenia";
-            lblContrasenia.Size = new Size(103, 22);
+            lblContrasenia.Size = new Size(114, 25);
             lblContrasenia.TabIndex = 3;
             lblContrasenia.Text = "Contraseña";
             // 
             // txtContrasenia
             // 
             txtContrasenia.BorderStyle = BorderStyle.FixedSingle;
-            txtContrasenia.Location = new Point(384, 208);
+            txtContrasenia.Location = new Point(378, 217);
             txtContrasenia.Margin = new Padding(4, 3, 4, 3);
             txtContrasenia.Name = "txtContrasenia";
             txtContrasenia.PasswordChar = '*';
-            txtContrasenia.Size = new Size(327, 23);
+            txtContrasenia.Size = new Size(370, 23);
             txtContrasenia.TabIndex = 4;
             // 
             // btnIngresar
             // 
-            btnIngresar.BackColor = SystemColors.Highlight;
-            btnIngresar.Font = new Font("Segoe UI", 9F);
+            btnIngresar.BackColor = Color.RoyalBlue;
+            btnIngresar.BackgroundImageLayout = ImageLayout.None;
+            btnIngresar.FlatAppearance.BorderSize = 0;
+            btnIngresar.FlatStyle = FlatStyle.Flat;
+            btnIngresar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnIngresar.ForeColor = Color.White;
-            btnIngresar.Location = new Point(492, 345);
+            btnIngresar.ImageAlign = ContentAlignment.MiddleLeft;
+            btnIngresar.Location = new Point(264, 363);
             btnIngresar.Margin = new Padding(4, 3, 4, 3);
             btnIngresar.Name = "btnIngresar";
-            btnIngresar.Size = new Size(121, 27);
+            btnIngresar.Size = new Size(151, 41);
             btnIngresar.TabIndex = 5;
             btnIngresar.Text = "INICIAR SESION";
             btnIngresar.UseVisualStyleBackColor = false;
@@ -110,23 +114,27 @@
             // 
             // btnSalir
             // 
-            btnSalir.BackColor = Color.FromArgb(200, 70, 34);
-            btnSalir.ForeColor = SystemColors.Window;
-            btnSalir.Location = new Point(94, 433);
+            btnSalir.BackColor = SystemColors.ButtonHighlight;
+            btnSalir.FlatAppearance.BorderSize = 0;
+            btnSalir.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSalir.ForeColor = Color.Red;
+            btnSalir.Location = new Point(809, 508);
             btnSalir.Margin = new Padding(4, 3, 4, 3);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(88, 27);
+            btnSalir.Size = new Size(85, 41);
             btnSalir.TabIndex = 6;
             btnSalir.Text = "Salir";
+            btnSalir.TextAlign = ContentAlignment.MiddleRight;
             btnSalir.UseVisualStyleBackColor = false;
             btnSalir.Click += btnSalir_Click;
             // 
             // lnkRecuperar
             // 
             lnkRecuperar.AutoSize = true;
-            lnkRecuperar.Location = new Point(306, 387);
+            lnkRecuperar.Font = new Font("Segoe UI", 10F);
+            lnkRecuperar.Location = new Point(12, 508);
             lnkRecuperar.Name = "lnkRecuperar";
-            lnkRecuperar.Size = new Size(128, 15);
+            lnkRecuperar.Size = new Size(150, 19);
             lnkRecuperar.TabIndex = 7;
             lnkRecuperar.TabStop = true;
             lnkRecuperar.Text = "¿Olvido su contraseña?";
@@ -137,9 +145,9 @@
             pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Image = Properties.Resources.b6e50688_f5a5_4dfc_8398_dbfd6d6f8a81;
             pictureBox1.InitialImage = Properties.Resources.b6e50688_f5a5_4dfc_8398_dbfd6d6f8a81;
-            pictureBox1.Location = new Point(351, 208);
+            pictureBox1.Location = new Point(310, 213);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(26, 20);
+            pictureBox1.Size = new Size(44, 27);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 8;
             pictureBox1.TabStop = false;
@@ -148,9 +156,9 @@
             // 
             pictureBox2.BackColor = Color.Transparent;
             pictureBox2.Image = Properties.Resources._3b1b6ede_8345_4121_a42d_39862e99710c;
-            pictureBox2.Location = new Point(351, 151);
+            pictureBox2.Location = new Point(310, 151);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(26, 19);
+            pictureBox2.Size = new Size(44, 27);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 9;
             pictureBox2.TabStop = false;
@@ -161,40 +169,13 @@
             picVerContrasenia.BackColor = Color.Transparent;
             picVerContrasenia.Cursor = Cursors.Hand;
             picVerContrasenia.Image = (Image)resources.GetObject("picVerContrasenia.Image");
-            picVerContrasenia.Location = new Point(682, 209);
+            picVerContrasenia.Location = new Point(711, 217);
             picVerContrasenia.Name = "picVerContrasenia";
-            picVerContrasenia.Size = new Size(18, 19);
+            picVerContrasenia.Size = new Size(37, 23);
             picVerContrasenia.SizeMode = PictureBoxSizeMode.Zoom;
             picVerContrasenia.TabIndex = 10;
             picVerContrasenia.TabStop = false;
             picVerContrasenia.Click += picVerContrasenia_Click;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 11F);
-            label1.ForeColor = SystemColors.AppWorkspace;
-            label1.Location = new Point(292, 345);
-            label1.Name = "label1";
-            label1.Size = new Size(157, 20);
-            label1.TabIndex = 0;
-            label1.Text = "¿Ya tienes una cuenta?";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.BackColor = SystemColors.Highlight;
-            label2.BorderStyle = BorderStyle.Fixed3D;
-            label2.Cursor = Cursors.Hand;
-            label2.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = SystemColors.Window;
-            label2.Location = new Point(497, 310);
-            label2.Margin = new Padding(4, 0, 4, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(113, 19);
-            label2.TabIndex = 12;
-            label2.Text = "   REGISTRARSE   ";
-            label2.Click += label2_Click;
             // 
             // lblErrorInactivo
             // 
@@ -219,29 +200,47 @@
             pictureBox3.TabIndex = 14;
             pictureBox3.TabStop = false;
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 11F);
-            label3.ForeColor = SystemColors.AppWorkspace;
-            label3.Location = new Point(292, 309);
-            label3.Name = "label3";
-            label3.Size = new Size(162, 20);
-            label3.TabIndex = 15;
-            label3.Text = "¿No tienes una cuenta?";
-            // 
             // chkRecordarme
             // 
             chkRecordarme.AutoSize = true;
             chkRecordarme.Cursor = Cursors.Hand;
             chkRecordarme.FlatStyle = FlatStyle.Flat;
-            chkRecordarme.Font = new Font("Segoe UI", 10F);
-            chkRecordarme.Location = new Point(190, 254);
+            chkRecordarme.Font = new Font("Arial", 12.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            chkRecordarme.Location = new Point(114, 273);
             chkRecordarme.Name = "chkRecordarme";
-            chkRecordarme.Size = new Size(184, 23);
+            chkRecordarme.Size = new Size(224, 23);
             chkRecordarme.TabIndex = 20;
             chkRecordarme.Text = "Recordar mis Credenciales";
             chkRecordarme.UseVisualStyleBackColor = true;
+            // 
+            // btnRegistrar
+            // 
+            btnRegistrar.BackColor = Color.White;
+            btnRegistrar.BackgroundImageLayout = ImageLayout.Center;
+            btnRegistrar.FlatAppearance.BorderColor = Color.CornflowerBlue;
+            btnRegistrar.FlatAppearance.BorderSize = 2;
+            btnRegistrar.FlatStyle = FlatStyle.Flat;
+            btnRegistrar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnRegistrar.ForeColor = SystemColors.Highlight;
+            btnRegistrar.ImageAlign = ContentAlignment.MiddleLeft;
+            btnRegistrar.Location = new Point(524, 363);
+            btnRegistrar.Name = "btnRegistrar";
+            btnRegistrar.Size = new Size(144, 41);
+            btnRegistrar.TabIndex = 21;
+            btnRegistrar.Text = "REGISTRARSE";
+            btnRegistrar.UseVisualStyleBackColor = false;
+            btnRegistrar.Click += btnRegistrar_Click;
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.BackColor = Color.Transparent;
+            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
+            pictureBox6.Location = new Point(820, 518);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(31, 21);
+            pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox6.TabIndex = 24;
+            pictureBox6.TabStop = false;
             // 
             // FrmLogin
             // 
@@ -249,22 +248,21 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(916, 561);
+            Controls.Add(btnIngresar);
+            Controls.Add(pictureBox6);
             Controls.Add(chkRecordarme);
-            Controls.Add(label3);
             Controls.Add(pictureBox3);
             Controls.Add(lblErrorInactivo);
-            Controls.Add(label2);
-            Controls.Add(label1);
             Controls.Add(picVerContrasenia);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
             Controls.Add(lnkRecuperar);
             Controls.Add(btnSalir);
-            Controls.Add(btnIngresar);
             Controls.Add(txtContrasenia);
             Controls.Add(lblContrasenia);
             Controls.Add(txtUsuario);
             Controls.Add(lblUsuario);
+            Controls.Add(btnRegistrar);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(4, 3, 4, 3);
             MaximizeBox = false;
@@ -277,6 +275,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)picVerContrasenia).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ResumeLayout(false);
             PerformLayout();
 
@@ -293,11 +292,10 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private PictureBox picVerContrasenia;
-        private Label label1;
-        private Label label2;
         private Label lblErrorInactivo;
         private PictureBox pictureBox3;
-        private Label label3;
         private CheckBox chkRecordarme;
+        private Button btnRegistrar;
+        private PictureBox pictureBox6;
     }
 }

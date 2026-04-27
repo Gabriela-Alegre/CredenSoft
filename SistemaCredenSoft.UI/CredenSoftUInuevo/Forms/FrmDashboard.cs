@@ -12,13 +12,22 @@ namespace CredenSoftUInuevo.Forms
             InitializeComponent();
         }
 
-        // --- CAMBIO AQUÍ: Evento Shown para la bienvenida ---
         private void FrmDashboard_Shown(object sender, EventArgs e)
         {
             if (SesionActual.UsuarioLogueado != null)
             {
-                // El mensaje de bienvenida que quitamos del Login ahora aparece aquí
-                MessageBox.Show($"¡Bienvenido al Sistema, {SesionActual.UsuarioLogueado.Nombre}!\n\nSesión iniciada como: {SesionActual.UsuarioLogueado.Rol}",
+                string nombreRolStr = "Sin Rol";
+
+                // Casteo seguro al tipo Rol
+                var objetoRol = SesionActual.UsuarioLogueado.Rol as ModelsEntidades.Rol;
+
+                if (objetoRol != null)
+                {
+                 
+                    nombreRolStr = objetoRol.NombreRol;
+                }
+
+                MessageBox.Show($"¡Bienvenido al Sistema, {SesionActual.UsuarioLogueado.Nombre}!\n\nSesión iniciada como: {nombreRolStr}",
                                 "Acceso Confirmado - CredenSoft",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
@@ -27,10 +36,8 @@ namespace CredenSoftUInuevo.Forms
 
         private void FrmDashboard_Load(object sender, EventArgs e)
         {
-            // 1. Cargamos los datos del usuario logueado en el Header
             CargarDatosUsuario();
 
-            // 2. Validación de seguridad extra
             if (SesionActual.UsuarioLogueado != null && SesionActual.UsuarioLogueado.Estado != "Activo")
             {
                 MessageBox.Show("Sesión inválida: Usuario Inactivo.", "Seguridad", MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -42,7 +49,17 @@ namespace CredenSoftUInuevo.Forms
         {
             if (SesionActual.UsuarioLogueado != null)
             {
-                lblInfoUsuario.Text = $"Oficial: {SesionActual.UsuarioLogueado.Nombre} {SesionActual.UsuarioLogueado.Apellido} | Rol: {SesionActual.UsuarioLogueado.Rol}";
+                string rolActualStr = "No asignado";
+
+                var objetoRol = SesionActual.UsuarioLogueado.Rol as ModelsEntidades.Rol;
+
+                if (objetoRol != null)
+                {
+                    // CORRECCIÓN: Usamos NombreRol
+                    rolActualStr = objetoRol.NombreRol;
+                }
+
+                lblInfoUsuario.Text = $"Oficial: {SesionActual.UsuarioLogueado.Nombre} {SesionActual.UsuarioLogueado.Apellido} | Rol: {rolActualStr}";
             }
             else
             {
@@ -99,7 +116,7 @@ namespace CredenSoftUInuevo.Forms
 
             if (resultado == DialogResult.Yes)
             {
-                SesionActual.UsuarioLogueado = null;
+                SesionActual.Logout();
                 FrmLogin login = new FrmLogin();
                 login.Show();
                 this.Hide();
