@@ -54,33 +54,64 @@ namespace ServicesNegocio
         /// <summary>
         /// HU01 y HU02: Registra un usuario validando que no existan duplicados.
         /// </summary>
+        /// <summary>
+        /// HU01 y HU02: Registra un usuario validando que no existan duplicados.
+        /// Mensajes de error personalizados en español.
+        /// </summary>
         public void RegistrarUsuario(Usuario nuevoUsuario, string passwordPlana)
         {
-            // 1. HU02: Validación de DNI único
-            if (_context.Usuarios.Any(u => u.Dni == nuevoUsuario.Dni))
+            try
             {
-                throw new Exception($"Error: Ya existe un oficial registrado con el DNI {nuevoUsuario.Dni}.");
-            }
+                // 1. HU02: Validación de DNI único
+                if (_context.Usuarios.Any(u => u.Dni == nuevoUsuario.Dni))
+                {
+                    throw new Exception($"Error: Ya existe un oficial registrado con el DNI {nuevoUsuario.Dni}.");
+                }
 
-            // 2. HU02: Validación de Email único
-            if (_context.Usuarios.Any(u => u.Email == nuevoUsuario.Email))
+                // 2. HU02: Validación de Email único
+                if (_context.Usuarios.Any(u => u.Email == nuevoUsuario.Email))
+                {
+                    throw new Exception("Error: El correo electrónico ya está en uso por otro usuario.");
+                }
+
+                // 3. Asegurar Estado Inicial (HU01)
+                if (string.IsNullOrEmpty(nuevoUsuario.Estado))
+                {
+                    nuevoUsuario.Estado = "Activo";
+                }
+
+                // 4. Seguridad: Hasheo de contraseña
+                // BCrypt genera una cadena de 60 caracteres.
+                nuevoUsuario.Contrasenia = BCrypt.Net.BCrypt.HashPassword(passwordPlana);
+
+                // 5. Guardado
+                _context.Usuarios.Add(nuevoUsuario);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateException ex)
             {
-                throw new Exception("Error: El correo electrónico ya está en uso por otro usuario.");
-            }
+                // Extraemos el error técnico de SQL Server
+                var errorSql = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
 
-            // 3. Asegurar Estado Inicial (HU01)
-            // Si el front no lo envía, lo forzamos a "Activo"
-            if (string.IsNullOrEmpty(nuevoUsuario.Estado))
+                // Traducimos los errores más comunes de la base de datos
+                if (errorSql.Contains("FOREIGN KEY") || errorSql.Contains("id_rol"))
+                {
+                    throw new Exception("Error de base de datos: El Rol seleccionado no es válido o no existe en la tabla de roles.");
+                }
+                else if (errorSql.Contains("String or binary data would be truncated") || errorSql.Contains("truncados"))
+                {
+                    throw new Exception("Error de base de datos: Uno de los campos es demasiado largo (revisa que la contraseña en la BD sea VARCHAR(255)).");
+                }
+                else
+                {
+                    throw new Exception($"Error técnico al guardar: {errorSql}");
+                }
+            }
+            catch (Exception ex)
             {
-                nuevoUsuario.Estado = "Activo";
+                // Errores generales
+                throw new Exception($"Ocurrió un error inesperado: {ex.Message}");
             }
-
-            // 4. Seguridad: Hasheo de contraseña
-            nuevoUsuario.Contrasenia = BCrypt.Net.BCrypt.HashPassword(passwordPlana);
-
-            // 5. Guardado
-            _context.Usuarios.Add(nuevoUsuario);
-            _context.SaveChanges();
         }
         public void RecuperarContrasenia(string email, string dni, string nuevaClave)
         {
