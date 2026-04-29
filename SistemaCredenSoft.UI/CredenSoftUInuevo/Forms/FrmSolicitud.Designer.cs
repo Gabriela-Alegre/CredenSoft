@@ -59,8 +59,8 @@
             // 
             // btnVer
             // 
-            btnVer.BackColor = SystemColors.ActiveCaption;
-            btnVer.Location = new Point(478, 375);
+            btnVer.BackColor = Color.DarkSeaGreen;
+            btnVer.Location = new Point(121, 375);
             btnVer.Margin = new Padding(4, 3, 4, 3);
             btnVer.Name = "btnVer";
             btnVer.Size = new Size(88, 27);

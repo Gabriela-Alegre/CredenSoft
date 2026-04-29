@@ -34,18 +34,18 @@
             // lblGestionDeUsuarios
             // 
             lblGestionDeUsuarios.AutoSize = true;
-            lblGestionDeUsuarios.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblGestionDeUsuarios.Location = new Point(4, 10);
+            lblGestionDeUsuarios.Font = new Font("Gabriola", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblGestionDeUsuarios.Location = new Point(32, -4);
             lblGestionDeUsuarios.Margin = new Padding(4, 0, 4, 0);
             lblGestionDeUsuarios.Name = "lblGestionDeUsuarios";
-            lblGestionDeUsuarios.Size = new Size(279, 31);
+            lblGestionDeUsuarios.Size = new Size(240, 59);
             lblGestionDeUsuarios.TabIndex = 0;
             lblGestionDeUsuarios.Text = "Gestion de Usuarios";
             // 
             // btnEliminar
             // 
             btnEliminar.BackColor = Color.FromArgb(200, 70, 34);
-            btnEliminar.Location = new Point(215, 73);
+            btnEliminar.Location = new Point(587, 350);
             btnEliminar.Margin = new Padding(4, 3, 4, 3);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(88, 27);
@@ -55,8 +55,8 @@
             // 
             // btnEditar
             // 
-            btnEditar.BackColor = SystemColors.ActiveCaption;
-            btnEditar.Location = new Point(127, 73);
+            btnEditar.BackColor = Color.DarkSeaGreen;
+            btnEditar.Location = new Point(141, 350);
             btnEditar.Margin = new Padding(4, 3, 4, 3);
             btnEditar.Name = "btnEditar";
             btnEditar.Size = new Size(88, 27);
@@ -67,7 +67,7 @@
             // btnNuevo
             // 
             btnNuevo.BackColor = SystemColors.ActiveCaption;
-            btnNuevo.Location = new Point(40, 73);
+            btnNuevo.Location = new Point(32, 350);
             btnNuevo.Margin = new Padding(4, 3, 4, 3);
             btnNuevo.Name = "btnNuevo";
             btnNuevo.Size = new Size(88, 27);
@@ -80,10 +80,10 @@
             // 
             dgvUsuario.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvUsuario.Columns.AddRange(new DataGridViewColumn[] { colNombre, colApellido, ColDni, colEmail, colRol, colEstado });
-            dgvUsuario.Location = new Point(40, 123);
+            dgvUsuario.Location = new Point(32, 58);
             dgvUsuario.Margin = new Padding(4, 3, 4, 3);
             dgvUsuario.Name = "dgvUsuario";
-            dgvUsuario.Size = new Size(755, 173);
+            dgvUsuario.Size = new Size(643, 269);
             dgvUsuario.TabIndex = 3;
             dgvUsuario.CellContentClick += dgvUsuario_CellContentClick;
             // 

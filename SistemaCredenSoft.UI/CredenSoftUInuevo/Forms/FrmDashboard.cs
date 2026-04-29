@@ -23,7 +23,7 @@ namespace CredenSoftUInuevo.Forms
 
                 if (objetoRol != null)
                 {
-                 
+
                     nombreRolStr = objetoRol.NombreRol;
                 }
 
@@ -121,6 +121,11 @@ namespace CredenSoftUInuevo.Forms
                 login.Show();
                 this.Hide();
             }
+        }
+
+        private void panelMenu_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

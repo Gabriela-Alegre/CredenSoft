@@ -194,7 +194,7 @@
             // btnCancelar
             // 
             btnCancelar.BackColor = Color.FromArgb(200, 70, 34);
-            btnCancelar.Location = new Point(245, 333);
+            btnCancelar.Location = new Point(285, 333);
             btnCancelar.Margin = new Padding(4, 3, 4, 3);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(88, 27);

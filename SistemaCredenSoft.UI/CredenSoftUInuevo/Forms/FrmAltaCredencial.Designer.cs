@@ -28,134 +28,145 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblSolicitud = new System.Windows.Forms.Label();
-            this.cmbSolicitud = new System.Windows.Forms.ComboBox();
-            this.lblFechaDeEmision = new System.Windows.Forms.Label();
-            this.dateTimeFechaDeEmision = new System.Windows.Forms.DateTimePicker();
-            this.lblFechaDeVencimiento = new System.Windows.Forms.Label();
-            this.dateTimeFechaDeVencimiento = new System.Windows.Forms.DateTimePicker();
-            this.lblEstado = new System.Windows.Forms.Label();
-            this.cmbEstado = new System.Windows.Forms.ComboBox();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            lblSolicitud = new Label();
+            cmbSolicitud = new ComboBox();
+            lblFechaDeEmision = new Label();
+            dateTimeFechaDeEmision = new DateTimePicker();
+            lblFechaDeVencimiento = new Label();
+            dateTimeFechaDeVencimiento = new DateTimePicker();
+            lblEstado = new Label();
+            cmbEstado = new ComboBox();
+            btnGuardar = new Button();
+            btnCancelar = new Button();
+            SuspendLayout();
             // 
             // lblSolicitud
             // 
-            this.lblSolicitud.AutoSize = true;
-            this.lblSolicitud.Location = new System.Drawing.Point(65, 50);
-            this.lblSolicitud.Name = "lblSolicitud";
-            this.lblSolicitud.Size = new System.Drawing.Size(47, 13);
-            this.lblSolicitud.TabIndex = 0;
-            this.lblSolicitud.Text = "Solicitud";
+            lblSolicitud.AutoSize = true;
+            lblSolicitud.Location = new Point(76, 58);
+            lblSolicitud.Margin = new Padding(4, 0, 4, 0);
+            lblSolicitud.Name = "lblSolicitud";
+            lblSolicitud.Size = new Size(53, 15);
+            lblSolicitud.TabIndex = 0;
+            lblSolicitud.Text = "Solicitud";
             // 
             // cmbSolicitud
             // 
-            this.cmbSolicitud.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSolicitud.FormattingEnabled = true;
-            this.cmbSolicitud.Location = new System.Drawing.Point(247, 42);
-            this.cmbSolicitud.Name = "cmbSolicitud";
-            this.cmbSolicitud.Size = new System.Drawing.Size(121, 21);
-            this.cmbSolicitud.TabIndex = 1;
+            cmbSolicitud.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbSolicitud.FormattingEnabled = true;
+            cmbSolicitud.Location = new Point(288, 48);
+            cmbSolicitud.Margin = new Padding(4, 3, 4, 3);
+            cmbSolicitud.Name = "cmbSolicitud";
+            cmbSolicitud.Size = new Size(140, 23);
+            cmbSolicitud.TabIndex = 1;
             // 
             // lblFechaDeEmision
             // 
-            this.lblFechaDeEmision.AutoSize = true;
-            this.lblFechaDeEmision.Location = new System.Drawing.Point(65, 94);
-            this.lblFechaDeEmision.Name = "lblFechaDeEmision";
-            this.lblFechaDeEmision.Size = new System.Drawing.Size(91, 13);
-            this.lblFechaDeEmision.TabIndex = 2;
-            this.lblFechaDeEmision.Text = "Fecha de Emisión";
+            lblFechaDeEmision.AutoSize = true;
+            lblFechaDeEmision.Location = new Point(76, 108);
+            lblFechaDeEmision.Margin = new Padding(4, 0, 4, 0);
+            lblFechaDeEmision.Name = "lblFechaDeEmision";
+            lblFechaDeEmision.Size = new Size(99, 15);
+            lblFechaDeEmision.TabIndex = 2;
+            lblFechaDeEmision.Text = "Fecha de Emisión";
             // 
             // dateTimeFechaDeEmision
             // 
-            this.dateTimeFechaDeEmision.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimeFechaDeEmision.Location = new System.Drawing.Point(247, 83);
-            this.dateTimeFechaDeEmision.Name = "dateTimeFechaDeEmision";
-            this.dateTimeFechaDeEmision.Size = new System.Drawing.Size(200, 20);
-            this.dateTimeFechaDeEmision.TabIndex = 3;
+            dateTimeFechaDeEmision.Format = DateTimePickerFormat.Short;
+            dateTimeFechaDeEmision.Location = new Point(288, 96);
+            dateTimeFechaDeEmision.Margin = new Padding(4, 3, 4, 3);
+            dateTimeFechaDeEmision.Name = "dateTimeFechaDeEmision";
+            dateTimeFechaDeEmision.Size = new Size(233, 23);
+            dateTimeFechaDeEmision.TabIndex = 3;
             // 
             // lblFechaDeVencimiento
             // 
-            this.lblFechaDeVencimiento.AutoSize = true;
-            this.lblFechaDeVencimiento.Location = new System.Drawing.Point(65, 138);
-            this.lblFechaDeVencimiento.Name = "lblFechaDeVencimiento";
-            this.lblFechaDeVencimiento.Size = new System.Drawing.Size(113, 13);
-            this.lblFechaDeVencimiento.TabIndex = 4;
-            this.lblFechaDeVencimiento.Text = "Fecha de Vencimiento";
+            lblFechaDeVencimiento.AutoSize = true;
+            lblFechaDeVencimiento.Location = new Point(76, 159);
+            lblFechaDeVencimiento.Margin = new Padding(4, 0, 4, 0);
+            lblFechaDeVencimiento.Name = "lblFechaDeVencimiento";
+            lblFechaDeVencimiento.Size = new Size(123, 15);
+            lblFechaDeVencimiento.TabIndex = 4;
+            lblFechaDeVencimiento.Text = "Fecha de Vencimiento";
             // 
             // dateTimeFechaDeVencimiento
             // 
-            this.dateTimeFechaDeVencimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimeFechaDeVencimiento.Location = new System.Drawing.Point(247, 123);
-            this.dateTimeFechaDeVencimiento.Name = "dateTimeFechaDeVencimiento";
-            this.dateTimeFechaDeVencimiento.Size = new System.Drawing.Size(200, 20);
-            this.dateTimeFechaDeVencimiento.TabIndex = 5;
+            dateTimeFechaDeVencimiento.Format = DateTimePickerFormat.Short;
+            dateTimeFechaDeVencimiento.Location = new Point(288, 142);
+            dateTimeFechaDeVencimiento.Margin = new Padding(4, 3, 4, 3);
+            dateTimeFechaDeVencimiento.Name = "dateTimeFechaDeVencimiento";
+            dateTimeFechaDeVencimiento.Size = new Size(233, 23);
+            dateTimeFechaDeVencimiento.TabIndex = 5;
             // 
             // lblEstado
             // 
-            this.lblEstado.AutoSize = true;
-            this.lblEstado.Location = new System.Drawing.Point(65, 182);
-            this.lblEstado.Name = "lblEstado";
-            this.lblEstado.Size = new System.Drawing.Size(40, 13);
-            this.lblEstado.TabIndex = 6;
-            this.lblEstado.Text = "Estado";
+            lblEstado.AutoSize = true;
+            lblEstado.Location = new Point(76, 210);
+            lblEstado.Margin = new Padding(4, 0, 4, 0);
+            lblEstado.Name = "lblEstado";
+            lblEstado.Size = new Size(42, 15);
+            lblEstado.TabIndex = 6;
+            lblEstado.Text = "Estado";
             // 
             // cmbEstado
             // 
-            this.cmbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbEstado.FormattingEnabled = true;
-            this.cmbEstado.Location = new System.Drawing.Point(247, 163);
-            this.cmbEstado.Name = "cmbEstado";
-            this.cmbEstado.Size = new System.Drawing.Size(121, 21);
-            this.cmbEstado.TabIndex = 7;
+            cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbEstado.FormattingEnabled = true;
+            cmbEstado.Location = new Point(288, 188);
+            cmbEstado.Margin = new Padding(4, 3, 4, 3);
+            cmbEstado.Name = "cmbEstado";
+            cmbEstado.Size = new Size(140, 23);
+            cmbEstado.TabIndex = 7;
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnGuardar.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnGuardar.Location = new System.Drawing.Point(80, 258);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
-            this.btnGuardar.TabIndex = 8;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = false;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            btnGuardar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnGuardar.BackColor = SystemColors.ActiveCaption;
+            btnGuardar.Location = new Point(76, 298);
+            btnGuardar.Margin = new Padding(4, 3, 4, 3);
+            btnGuardar.Name = "btnGuardar";
+            btnGuardar.Size = new Size(88, 27);
+            btnGuardar.TabIndex = 8;
+            btnGuardar.Text = "Guardar";
+            btnGuardar.UseVisualStyleBackColor = false;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(200, 70, 34);
-            this.btnCancelar.Location = new System.Drawing.Point(263, 258);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 9;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = false;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnCancelar.BackColor = Color.FromArgb(200, 70, 34);
+            btnCancelar.Location = new Point(433, 298);
+            btnCancelar.Margin = new Padding(4, 3, 4, 3);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(88, 27);
+            btnCancelar.TabIndex = 9;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // FrmAltaCredencial
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.cmbEstado);
-            this.Controls.Add(this.lblEstado);
-            this.Controls.Add(this.dateTimeFechaDeVencimiento);
-            this.Controls.Add(this.lblFechaDeVencimiento);
-            this.Controls.Add(this.dateTimeFechaDeEmision);
-            this.Controls.Add(this.lblFechaDeEmision);
-            this.Controls.Add(this.cmbSolicitud);
-            this.Controls.Add(this.lblSolicitud);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Name = "FrmAltaCredencial";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Nueva Credencial";
-            this.Load += new System.EventHandler(this.FrmCredencial_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(933, 519);
+            Controls.Add(btnCancelar);
+            Controls.Add(btnGuardar);
+            Controls.Add(cmbEstado);
+            Controls.Add(lblEstado);
+            Controls.Add(dateTimeFechaDeVencimiento);
+            Controls.Add(lblFechaDeVencimiento);
+            Controls.Add(dateTimeFechaDeEmision);
+            Controls.Add(lblFechaDeEmision);
+            Controls.Add(cmbSolicitud);
+            Controls.Add(lblSolicitud);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            Margin = new Padding(4, 3, 4, 3);
+            Name = "FrmAltaCredencial";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Nueva Credencial";
+            Load += FrmCredencial_Load;
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 

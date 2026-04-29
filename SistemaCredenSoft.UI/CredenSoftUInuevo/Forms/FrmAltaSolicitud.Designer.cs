@@ -100,7 +100,7 @@
             // btnGuardar
             // 
             btnGuardar.BackColor = SystemColors.ActiveCaption;
-            btnGuardar.Location = new Point(20, 272);
+            btnGuardar.Location = new Point(25, 272);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(75, 23);
             btnGuardar.TabIndex = 2;
@@ -111,7 +111,7 @@
             // btnCancelar
             // 
             btnCancelar.BackColor = Color.FromArgb(200, 70, 34);
-            btnCancelar.Location = new Point(268, 272);
+            btnCancelar.Location = new Point(278, 272);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(75, 23);
             btnCancelar.TabIndex = 1;

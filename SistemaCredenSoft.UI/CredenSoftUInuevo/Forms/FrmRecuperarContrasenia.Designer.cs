@@ -60,7 +60,7 @@
             // btnConfirmar
             // 
             btnConfirmar.BackColor = SystemColors.ActiveCaption;
-            btnConfirmar.Location = new Point(200, 210);
+            btnConfirmar.Location = new Point(174, 210);
             btnConfirmar.Name = "btnConfirmar";
             btnConfirmar.Size = new Size(95, 35);
             btnConfirmar.TabIndex = 3;
@@ -71,7 +71,7 @@
             // btnCancelar
             // 
             btnCancelar.BackColor = Color.FromArgb(200, 70, 34);
-            btnCancelar.Location = new Point(305, 210);
+            btnCancelar.Location = new Point(348, 210);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(95, 35);
             btnCancelar.TabIndex = 4;

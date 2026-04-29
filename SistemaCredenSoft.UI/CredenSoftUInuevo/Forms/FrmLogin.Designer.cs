@@ -68,7 +68,7 @@
             txtUsuario.Location = new Point(378, 151);
             txtUsuario.Margin = new Padding(4, 3, 4, 3);
             txtUsuario.Name = "txtUsuario";
-            txtUsuario.Size = new Size(370, 23);
+            txtUsuario.Size = new Size(380, 23);
             txtUsuario.TabIndex = 2;
             // 
             // lblContrasenia
@@ -87,16 +87,16 @@
             // txtContrasenia
             // 
             txtContrasenia.BorderStyle = BorderStyle.FixedSingle;
-            txtContrasenia.Location = new Point(378, 217);
+            txtContrasenia.Location = new Point(378, 215);
             txtContrasenia.Margin = new Padding(4, 3, 4, 3);
             txtContrasenia.Name = "txtContrasenia";
             txtContrasenia.PasswordChar = '*';
-            txtContrasenia.Size = new Size(370, 23);
+            txtContrasenia.Size = new Size(380, 23);
             txtContrasenia.TabIndex = 4;
             // 
             // btnIngresar
             // 
-            btnIngresar.BackColor = Color.RoyalBlue;
+            btnIngresar.BackColor = Color.FromArgb(28, 78, 128);
             btnIngresar.BackgroundImageLayout = ImageLayout.None;
             btnIngresar.FlatAppearance.BorderSize = 0;
             btnIngresar.FlatStyle = FlatStyle.Flat;
@@ -108,14 +108,18 @@
             btnIngresar.Name = "btnIngresar";
             btnIngresar.Size = new Size(151, 41);
             btnIngresar.TabIndex = 5;
-            btnIngresar.Text = "INICIAR SESION";
+            btnIngresar.Text = "▷ INICIAR SESIÓN";
             btnIngresar.UseVisualStyleBackColor = false;
             btnIngresar.Click += btnIngresar_Click;
             // 
             // btnSalir
             // 
             btnSalir.BackColor = SystemColors.ButtonHighlight;
+            btnSalir.Cursor = Cursors.Hand;
             btnSalir.FlatAppearance.BorderSize = 0;
+            btnSalir.FlatAppearance.MouseDownBackColor = Color.White;
+            btnSalir.FlatAppearance.MouseOverBackColor = Color.White;
+            btnSalir.FlatStyle = FlatStyle.Flat;
             btnSalir.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSalir.ForeColor = Color.Red;
             btnSalir.Location = new Point(809, 508);
@@ -145,7 +149,7 @@
             pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Image = Properties.Resources.b6e50688_f5a5_4dfc_8398_dbfd6d6f8a81;
             pictureBox1.InitialImage = Properties.Resources.b6e50688_f5a5_4dfc_8398_dbfd6d6f8a81;
-            pictureBox1.Location = new Point(310, 213);
+            pictureBox1.Location = new Point(318, 215);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(44, 27);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -155,10 +159,10 @@
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.Transparent;
-            pictureBox2.Image = Properties.Resources._3b1b6ede_8345_4121_a42d_39862e99710c;
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
             pictureBox2.Location = new Point(310, 151);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(44, 27);
+            pictureBox2.Size = new Size(60, 34);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 9;
             pictureBox2.TabStop = false;
@@ -169,9 +173,9 @@
             picVerContrasenia.BackColor = Color.Transparent;
             picVerContrasenia.Cursor = Cursors.Hand;
             picVerContrasenia.Image = (Image)resources.GetObject("picVerContrasenia.Image");
-            picVerContrasenia.Location = new Point(711, 217);
+            picVerContrasenia.Location = new Point(704, 217);
             picVerContrasenia.Name = "picVerContrasenia";
-            picVerContrasenia.Size = new Size(37, 23);
+            picVerContrasenia.Size = new Size(44, 15);
             picVerContrasenia.SizeMode = PictureBoxSizeMode.Zoom;
             picVerContrasenia.TabIndex = 10;
             picVerContrasenia.TabStop = false;
@@ -219,15 +223,17 @@
             btnRegistrar.BackgroundImageLayout = ImageLayout.Center;
             btnRegistrar.FlatAppearance.BorderColor = Color.CornflowerBlue;
             btnRegistrar.FlatAppearance.BorderSize = 2;
+            btnRegistrar.FlatAppearance.MouseDownBackColor = SystemColors.ActiveCaption;
+            btnRegistrar.FlatAppearance.MouseOverBackColor = SystemColors.ActiveCaption;
             btnRegistrar.FlatStyle = FlatStyle.Flat;
             btnRegistrar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnRegistrar.ForeColor = SystemColors.Highlight;
             btnRegistrar.ImageAlign = ContentAlignment.MiddleLeft;
             btnRegistrar.Location = new Point(524, 363);
             btnRegistrar.Name = "btnRegistrar";
-            btnRegistrar.Size = new Size(144, 41);
+            btnRegistrar.Size = new Size(151, 41);
             btnRegistrar.TabIndex = 21;
-            btnRegistrar.Text = "REGISTRARSE";
+            btnRegistrar.Text = "✚ REGISTRARSE";
             btnRegistrar.UseVisualStyleBackColor = false;
             btnRegistrar.Click += btnRegistrar_Click;
             // 
