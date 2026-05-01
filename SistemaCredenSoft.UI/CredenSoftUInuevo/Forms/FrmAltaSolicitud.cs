@@ -28,7 +28,7 @@ namespace CredenSoftUInuevo.Forms
         {
             try
             {
-                
+
             }
             catch (Exception ex)
             {
@@ -52,11 +52,11 @@ namespace CredenSoftUInuevo.Forms
                     // Usamos la sesión actual para saber quién es el usuario
                     IdUsuario = SesionActual.UsuarioLogueado.IdUsuario,
 
-                    
+
 
                     Descripcion = txtDescripcion.Text,
                     FechaSolicitud = dateTimeFecha.Value,
-                   // EstadoSolicitud = "Pendiente"
+                    // EstadoSolicitud = "Pendiente"
                 };
 
                 _solicitudService.CrearSolicitud(nueva);
@@ -75,6 +75,16 @@ namespace CredenSoftUInuevo.Forms
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void lblUsuario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

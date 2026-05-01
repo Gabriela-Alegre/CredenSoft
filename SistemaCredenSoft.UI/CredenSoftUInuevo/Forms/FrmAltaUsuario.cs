@@ -1,20 +1,38 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using ServicesNegocio;
 using ModelsEntidades;
 using DataEF;
-using System.Drawing;
 
 namespace CredenSoftUInuevo.Forms
 {
     public partial class FrmAltaUsuario : Form
     {
-        UsuarioService _usuarioService = new UsuarioService(new CredenSoftContext());
+        // Servicio de negocio para gestionar los usuarios
+        private readonly UsuarioService _usuarioService = new UsuarioService(new CredenSoftContext());
 
         public FrmAltaUsuario()
         {
             InitializeComponent();
             VincularEventosLimpieza();
+
+            
+            // Desactivamos el carácter de sistema para que el código tenga el control total
+            txtContrasenia.UseSystemPasswordChar = false;
+            txtConfirmarContrasenia.UseSystemPasswordChar = false;
+
+            // Seteamos el asterisco como máscara inicial
+            txtContrasenia.PasswordChar = '*';
+            txtConfirmarContrasenia.PasswordChar = '*';
+
+            // Carga de imágenes iniciales
+            picVerContrasenia.Image = Properties.Resources.ojo_cerrado;
+            picVerConfirmarContrasenia.Image = Properties.Resources.ojo_cerrado;
+
+            // Aseguramos que los ojos estén por encima de los cuadros de texto
+            picVerContrasenia.BringToFront();
+            picVerConfirmarContrasenia.BringToFront();
         }
 
         private void VincularEventosLimpieza()
@@ -24,6 +42,7 @@ namespace CredenSoftUInuevo.Forms
             txtDni.TextChanged += LimpiarErrorAlEscribir;
             txtEmail.TextChanged += LimpiarErrorAlEscribir;
             txtContrasenia.TextChanged += LimpiarErrorAlEscribir;
+            txtConfirmarContrasenia.TextChanged += LimpiarErrorAlEscribir;
             cmbRol.SelectedIndexChanged += LimpiarErrorAlEscribir;
             cmbEstado.SelectedIndexChanged += LimpiarErrorAlEscribir;
         }
@@ -47,6 +66,38 @@ namespace CredenSoftUInuevo.Forms
             }
         }
 
+        // --- LÓGICA DE VISIBILIDAD (COMO EN TU LOGIN) ---
+
+        private void picVerContrasenia_Click(object sender, EventArgs e)
+        {
+            if (txtContrasenia.PasswordChar == '*')
+            {
+                txtContrasenia.PasswordChar = '\0'; // Muestra la contraseña
+                picVerContrasenia.Image = Properties.Resources.ojo_abierto;
+            }
+            else
+            {
+                txtContrasenia.PasswordChar = '*'; // Oculta la contraseña
+                picVerContrasenia.Image = Properties.Resources.ojo_cerrado;
+            }
+        }
+
+        private void picVerConfirmarContrasenia_Click(object sender, EventArgs e)
+        {
+            if (txtConfirmarContrasenia.PasswordChar == '*')
+            {
+                txtConfirmarContrasenia.PasswordChar = '\0';
+                picVerConfirmarContrasenia.Image = Properties.Resources.ojo_abierto;
+            }
+            else
+            {
+                txtConfirmarContrasenia.PasswordChar = '*';
+                picVerConfirmarContrasenia.Image = Properties.Resources.ojo_cerrado;
+            }
+        }
+
+        // --- ACCIONES DE GUARDADO ---
+
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             errorProvider1.Clear();
@@ -56,62 +107,25 @@ namespace CredenSoftUInuevo.Forms
             {
                 bool hayError = false;
 
-                // VALIDACIONES (HU 01)
-                if (string.IsNullOrWhiteSpace(txtNombre.Text))
+                if (string.IsNullOrWhiteSpace(txtNombre.Text)) { errorProvider1.SetError(txtNombre, "Nombre obligatorio"); txtNombre.BackColor = Color.LightPink; hayError = true; }
+                if (string.IsNullOrWhiteSpace(txtApellido.Text)) { errorProvider1.SetError(txtApellido, "Apellido obligatorio"); txtApellido.BackColor = Color.LightPink; hayError = true; }
+                if (string.IsNullOrWhiteSpace(txtDni.Text)) { errorProvider1.SetError(txtDni, "DNI obligatorio"); txtDni.BackColor = Color.LightPink; hayError = true; }
+                if (string.IsNullOrWhiteSpace(txtEmail.Text)) { errorProvider1.SetError(txtEmail, "Email obligatorio"); txtEmail.BackColor = Color.LightPink; hayError = true; }
+
+                if (string.IsNullOrWhiteSpace(txtContrasenia.Text)) { errorProvider1.SetError(txtContrasenia, "Contraseña obligatoria"); txtContrasenia.BackColor = Color.LightPink; hayError = true; }
+
+                if (txtContrasenia.Text != txtConfirmarContrasenia.Text)
                 {
-                    errorProvider1.SetError(txtNombre, "El nombre es obligatorio");
-                    txtNombre.BackColor = Color.LightPink;
+                    errorProvider1.SetError(txtConfirmarContrasenia, "Las contraseñas no coinciden");
+                    txtConfirmarContrasenia.BackColor = Color.LightPink;
                     hayError = true;
                 }
 
-                if (string.IsNullOrWhiteSpace(txtApellido.Text))
-                {
-                    errorProvider1.SetError(txtApellido, "El apellido es obligatorio");
-                    txtApellido.BackColor = Color.LightPink;
-                    hayError = true;
-                }
+                if (cmbRol.SelectedIndex == -1) { errorProvider1.SetError(cmbRol, "Seleccione un rol"); hayError = true; }
+                if (cmbEstado.SelectedIndex == -1) { errorProvider1.SetError(cmbEstado, "Seleccione un estado"); hayError = true; }
 
-                if (string.IsNullOrWhiteSpace(txtDni.Text))
-                {
-                    errorProvider1.SetError(txtDni, "El DNI es obligatorio");
-                    txtDni.BackColor = Color.LightPink;
-                    hayError = true;
-                }
+                if (hayError) return;
 
-                if (string.IsNullOrWhiteSpace(txtEmail.Text))
-                {
-                    errorProvider1.SetError(txtEmail, "El email es obligatorio");
-                    txtEmail.BackColor = Color.LightPink;
-                    hayError = true;
-                }
-
-                if (string.IsNullOrWhiteSpace(txtContrasenia.Text))
-                {
-                    errorProvider1.SetError(txtContrasenia, "La contraseña es obligatoria");
-                    txtContrasenia.BackColor = Color.LightPink;
-                    hayError = true;
-                }
-
-                if (cmbRol.SelectedIndex == -1)
-                {
-                    errorProvider1.SetError(cmbRol, "Debe seleccionar un rol");
-                    hayError = true;
-                }
-
-                if (cmbEstado.SelectedIndex == -1)
-                {
-                    errorProvider1.SetError(cmbEstado, "Debe seleccionar un estado");
-                    hayError = true;
-                }
-
-                if (hayError)
-                {
-                    // Mensaje de advertencia
-                    MessageBox.Show("Por favor, complete los campos resaltados.", "Validación de Datos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // CREACIÓN DEL OBJETO
                 Usuario nuevo = new Usuario
                 {
                     Nombre = txtNombre.Text,
@@ -122,18 +136,14 @@ namespace CredenSoftUInuevo.Forms
                     IdRol = cmbRol.SelectedIndex + 1
                 };
 
-                
                 _usuarioService.RegistrarUsuario(nuevo, txtContrasenia.Text);
 
-                // ÉXITO (Icono de Información "i")
-                MessageBox.Show("Usuario registrado con éxito.", "¡Hecho!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Usuario registrado con éxito.", "CredenSoft", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
             catch (Exception ex)
             {
-                // ERROR DE DNI DUPLICADO (HU 02)
-                
-                MessageBox.Show(ex.Message, "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -144,6 +154,7 @@ namespace CredenSoftUInuevo.Forms
             txtDni.BackColor = Color.White;
             txtEmail.BackColor = Color.White;
             txtContrasenia.BackColor = Color.White;
+            txtConfirmarContrasenia.BackColor = Color.White;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -153,20 +164,12 @@ namespace CredenSoftUInuevo.Forms
 
         private void txtDni_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Solo números (HU 01)
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)) e.Handled = true;
         }
 
         private void FrmAltaUsuario_Load(object sender, EventArgs e)
         {
-            //estado por defecto debe ser "Activo"
-            if (cmbEstado.Items.Count > 0)
-            {
-                cmbEstado.SelectedIndex = 0; // Asumiendo que "Activo" es el primero en la lista
-            }
+            if (cmbEstado.Items.Count > 0) cmbEstado.SelectedIndex = 0;
         }
     }
 }

@@ -34,21 +34,22 @@
             // lblGestionDeUsuarios
             // 
             lblGestionDeUsuarios.AutoSize = true;
-            lblGestionDeUsuarios.Font = new Font("Gabriola", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblGestionDeUsuarios.Location = new Point(32, -4);
-            lblGestionDeUsuarios.Margin = new Padding(4, 0, 4, 0);
+            lblGestionDeUsuarios.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblGestionDeUsuarios.ForeColor = Color.FromArgb(28, 78, 128);
+            lblGestionDeUsuarios.Location = new Point(46, 24);
+            lblGestionDeUsuarios.Margin = new Padding(6, 0, 6, 0);
             lblGestionDeUsuarios.Name = "lblGestionDeUsuarios";
-            lblGestionDeUsuarios.Size = new Size(240, 59);
+            lblGestionDeUsuarios.Size = new Size(327, 38);
             lblGestionDeUsuarios.TabIndex = 0;
-            lblGestionDeUsuarios.Text = "Gestion de Usuarios";
+            lblGestionDeUsuarios.Text = "GESTIÒN DE USUARIOS";
             // 
             // btnEliminar
             // 
             btnEliminar.BackColor = Color.FromArgb(200, 70, 34);
-            btnEliminar.Location = new Point(587, 350);
-            btnEliminar.Margin = new Padding(4, 3, 4, 3);
+            btnEliminar.Location = new Point(839, 583);
+            btnEliminar.Margin = new Padding(6, 5, 6, 5);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(88, 27);
+            btnEliminar.Size = new Size(126, 45);
             btnEliminar.TabIndex = 2;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = false;
@@ -56,10 +57,10 @@
             // btnEditar
             // 
             btnEditar.BackColor = Color.DarkSeaGreen;
-            btnEditar.Location = new Point(141, 350);
-            btnEditar.Margin = new Padding(4, 3, 4, 3);
+            btnEditar.Location = new Point(201, 583);
+            btnEditar.Margin = new Padding(6, 5, 6, 5);
             btnEditar.Name = "btnEditar";
-            btnEditar.Size = new Size(88, 27);
+            btnEditar.Size = new Size(126, 45);
             btnEditar.TabIndex = 1;
             btnEditar.Text = "Editar";
             btnEditar.UseVisualStyleBackColor = false;
@@ -67,10 +68,10 @@
             // btnNuevo
             // 
             btnNuevo.BackColor = SystemColors.ActiveCaption;
-            btnNuevo.Location = new Point(32, 350);
-            btnNuevo.Margin = new Padding(4, 3, 4, 3);
+            btnNuevo.Location = new Point(46, 583);
+            btnNuevo.Margin = new Padding(6, 5, 6, 5);
             btnNuevo.Name = "btnNuevo";
-            btnNuevo.Size = new Size(88, 27);
+            btnNuevo.Size = new Size(126, 45);
             btnNuevo.TabIndex = 0;
             btnNuevo.Text = "Nuevo";
             btnNuevo.UseVisualStyleBackColor = false;
@@ -80,10 +81,11 @@
             // 
             dgvUsuario.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvUsuario.Columns.AddRange(new DataGridViewColumn[] { colNombre, colApellido, ColDni, colEmail, colRol, colEstado });
-            dgvUsuario.Location = new Point(32, 58);
-            dgvUsuario.Margin = new Padding(4, 3, 4, 3);
+            dgvUsuario.Location = new Point(46, 97);
+            dgvUsuario.Margin = new Padding(6, 5, 6, 5);
             dgvUsuario.Name = "dgvUsuario";
-            dgvUsuario.Size = new Size(643, 269);
+            dgvUsuario.RowHeadersWidth = 62;
+            dgvUsuario.Size = new Size(919, 448);
             dgvUsuario.TabIndex = 3;
             dgvUsuario.CellContentClick += dgvUsuario_CellContentClick;
             // 
@@ -91,49 +93,61 @@
             // 
             colNombre.DataPropertyName = "Nombre";
             colNombre.HeaderText = "Nombre";
+            colNombre.MinimumWidth = 8;
             colNombre.Name = "colNombre";
+            colNombre.Width = 150;
             // 
             // colApellido
             // 
             colApellido.DataPropertyName = "Apellido";
             colApellido.HeaderText = "Apellido";
+            colApellido.MinimumWidth = 8;
             colApellido.Name = "colApellido";
+            colApellido.Width = 150;
             // 
             // ColDni
             // 
             ColDni.DataPropertyName = "Dni";
             ColDni.HeaderText = "DNI";
+            ColDni.MinimumWidth = 8;
             ColDni.Name = "ColDni";
+            ColDni.Width = 150;
             // 
             // colEmail
             // 
             colEmail.DataPropertyName = "Email";
             colEmail.HeaderText = "Email";
+            colEmail.MinimumWidth = 8;
             colEmail.Name = "colEmail";
+            colEmail.Width = 150;
             // 
             // colRol
             // 
             colRol.DataPropertyName = "IdRol";
             colRol.HeaderText = "Rol";
+            colRol.MinimumWidth = 8;
             colRol.Name = "colRol";
+            colRol.Width = 150;
             // 
             // colEstado
             // 
             colEstado.DataPropertyName = "Estado";
             colEstado.HeaderText = "Estado";
+            colEstado.MinimumWidth = 8;
             colEstado.Name = "colEstado";
+            colEstado.Width = 150;
             // 
             // FrmUsuarios
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(850, 400);
+            ClientSize = new Size(1214, 667);
             Controls.Add(dgvUsuario);
             Controls.Add(btnNuevo);
             Controls.Add(btnEditar);
             Controls.Add(btnEliminar);
             Controls.Add(lblGestionDeUsuarios);
-            Margin = new Padding(4, 3, 4, 3);
+            Margin = new Padding(6, 5, 6, 5);
             Name = "FrmUsuarios";
             Text = "Usuarios - CredenSoft";
             Load += FrmUsuarios_Load;

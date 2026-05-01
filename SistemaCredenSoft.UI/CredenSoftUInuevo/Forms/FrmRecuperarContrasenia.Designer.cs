@@ -28,41 +28,46 @@
             lblNuevaContrasenia = new Label();
             errorProvider1 = new ErrorProvider(components);
             lblMensajeExito = new Label();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(174, 50);
+            txtEmail.Location = new Point(249, 123);
+            txtEmail.Margin = new Padding(4, 5, 4, 5);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(269, 23);
+            txtEmail.Size = new Size(412, 31);
             txtEmail.TabIndex = 0;
             txtEmail.TextChanged += LimpiarError_TextChanged;
             // 
             // txtDni
             // 
-            txtDni.Location = new Point(174, 100);
+            txtDni.Location = new Point(249, 255);
+            txtDni.Margin = new Padding(4, 5, 4, 5);
             txtDni.Name = "txtDni";
-            txtDni.Size = new Size(269, 23);
+            txtDni.Size = new Size(412, 31);
             txtDni.TabIndex = 1;
             txtDni.TextChanged += LimpiarError_TextChanged;
             txtDni.KeyPress += txtDni_KeyPress;
             // 
             // txtNuevaContrasenia
             // 
-            txtNuevaContrasenia.Location = new Point(174, 150);
+            txtNuevaContrasenia.Location = new Point(249, 343);
+            txtNuevaContrasenia.Margin = new Padding(4, 5, 4, 5);
             txtNuevaContrasenia.Name = "txtNuevaContrasenia";
             txtNuevaContrasenia.PasswordChar = '*';
-            txtNuevaContrasenia.Size = new Size(269, 23);
+            txtNuevaContrasenia.Size = new Size(412, 31);
             txtNuevaContrasenia.TabIndex = 2;
             txtNuevaContrasenia.TextChanged += LimpiarError_TextChanged;
             // 
             // btnConfirmar
             // 
             btnConfirmar.BackColor = SystemColors.ActiveCaption;
-            btnConfirmar.Location = new Point(174, 210);
+            btnConfirmar.Location = new Point(151, 495);
+            btnConfirmar.Margin = new Padding(4, 5, 4, 5);
             btnConfirmar.Name = "btnConfirmar";
-            btnConfirmar.Size = new Size(95, 35);
+            btnConfirmar.Size = new Size(136, 58);
             btnConfirmar.TabIndex = 3;
             btnConfirmar.Text = "Confirmar";
             btnConfirmar.UseVisualStyleBackColor = false;
@@ -71,9 +76,10 @@
             // btnCancelar
             // 
             btnCancelar.BackColor = Color.FromArgb(200, 70, 34);
-            btnCancelar.Location = new Point(348, 210);
+            btnCancelar.Location = new Point(496, 495);
+            btnCancelar.Margin = new Padding(4, 5, 4, 5);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(95, 35);
+            btnCancelar.Size = new Size(136, 58);
             btnCancelar.TabIndex = 4;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = false;
@@ -82,27 +88,33 @@
             // lblEmail
             // 
             lblEmail.AutoSize = true;
-            lblEmail.Location = new Point(50, 53);
+            lblEmail.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblEmail.Location = new Point(12, 123);
+            lblEmail.Margin = new Padding(4, 0, 4, 0);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(105, 15);
+            lblEmail.Size = new Size(187, 28);
             lblEmail.TabIndex = 7;
             lblEmail.Text = "Correo Electrónico";
             // 
             // lblDni
             // 
             lblDni.AutoSize = true;
-            lblDni.Location = new Point(50, 103);
+            lblDni.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblDni.Location = new Point(12, 255);
+            lblDni.Margin = new Padding(4, 0, 4, 0);
             lblDni.Name = "lblDni";
-            lblDni.Size = new Size(83, 15);
+            lblDni.Size = new Size(152, 28);
             lblDni.TabIndex = 6;
             lblDni.Text = "DNI del Oficial";
             // 
             // lblNuevaContrasenia
             // 
             lblNuevaContrasenia.AutoSize = true;
-            lblNuevaContrasenia.Location = new Point(50, 153);
+            lblNuevaContrasenia.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblNuevaContrasenia.Location = new Point(12, 343);
+            lblNuevaContrasenia.Margin = new Padding(4, 0, 4, 0);
             lblNuevaContrasenia.Name = "lblNuevaContrasenia";
-            lblNuevaContrasenia.Size = new Size(104, 15);
+            lblNuevaContrasenia.Size = new Size(185, 28);
             lblNuevaContrasenia.TabIndex = 5;
             lblNuevaContrasenia.Text = "Nueva Contraseña";
             // 
@@ -113,20 +125,33 @@
             // lblMensajeExito
             // 
             lblMensajeExito.AutoSize = true;
-            lblMensajeExito.BackColor = Color.LightGreen;
+            lblMensajeExito.BackColor = Color.DarkSeaGreen;
             lblMensajeExito.ForeColor = Color.DarkGreen;
-            lblMensajeExito.Location = new Point(174, 76);
+            lblMensajeExito.Location = new Point(249, 167);
+            lblMensajeExito.Margin = new Padding(4, 0, 4, 0);
             lblMensajeExito.Name = "lblMensajeExito";
-            lblMensajeExito.Size = new Size(269, 15);
+            lblMensajeExito.Size = new Size(412, 25);
             lblMensajeExito.TabIndex = 8;
             lblMensajeExito.Text = "✔ Se envio un enlace de recuperación a su correo";
             lblMensajeExito.Visible = false;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.FromArgb(28, 78, 128);
+            label1.Location = new Point(12, 26);
+            label1.Name = "label1";
+            label1.Size = new Size(320, 32);
+            label1.TabIndex = 0;
+            label1.Text = "RECUPERAR CONTRASEÑA";
+            // 
             // FrmRecuperarContrasenia
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(480, 280);
+            ClientSize = new Size(796, 587);
+            Controls.Add(label1);
             Controls.Add(lblMensajeExito);
             Controls.Add(btnCancelar);
             Controls.Add(lblNuevaContrasenia);
@@ -136,6 +161,7 @@
             Controls.Add(txtNuevaContrasenia);
             Controls.Add(txtDni);
             Controls.Add(txtEmail);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "FrmRecuperarContrasenia";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Recuperar Contraseña - CredenSoft";
@@ -157,5 +183,6 @@
         private System.Windows.Forms.Label lblNuevaContrasenia;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private Label lblMensajeExito;
+        private Label label1;
     }
 }

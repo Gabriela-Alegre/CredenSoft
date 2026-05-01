@@ -21,25 +21,27 @@
             btnNueva = new Button();
             btnEliminar = new Button();
             btnVer = new Button();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvSolicitudes).BeginInit();
             SuspendLayout();
             // 
             // dgvSolicitudes
             // 
             dgvSolicitudes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvSolicitudes.Location = new Point(14, 14);
-            dgvSolicitudes.Margin = new Padding(4, 3, 4, 3);
+            dgvSolicitudes.Location = new Point(20, 93);
+            dgvSolicitudes.Margin = new Padding(6, 5, 6, 5);
             dgvSolicitudes.Name = "dgvSolicitudes";
-            dgvSolicitudes.Size = new Size(653, 346);
+            dgvSolicitudes.RowHeadersWidth = 62;
+            dgvSolicitudes.Size = new Size(933, 507);
             dgvSolicitudes.TabIndex = 0;
             // 
             // btnNueva
             // 
             btnNueva.BackColor = SystemColors.ActiveCaption;
-            btnNueva.Location = new Point(14, 375);
-            btnNueva.Margin = new Padding(4, 3, 4, 3);
+            btnNueva.Location = new Point(20, 625);
+            btnNueva.Margin = new Padding(6, 5, 6, 5);
             btnNueva.Name = "btnNueva";
-            btnNueva.Size = new Size(88, 27);
+            btnNueva.Size = new Size(126, 45);
             btnNueva.TabIndex = 1;
             btnNueva.Text = "Nueva";
             btnNueva.UseVisualStyleBackColor = false;
@@ -48,10 +50,10 @@
             // btnEliminar
             // 
             btnEliminar.BackColor = Color.FromArgb(200, 70, 34);
-            btnEliminar.Location = new Point(583, 375);
-            btnEliminar.Margin = new Padding(4, 3, 4, 3);
+            btnEliminar.Location = new Point(833, 625);
+            btnEliminar.Margin = new Padding(6, 5, 6, 5);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(88, 27);
+            btnEliminar.Size = new Size(126, 45);
             btnEliminar.TabIndex = 2;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = false;
@@ -60,30 +62,43 @@
             // btnVer
             // 
             btnVer.BackColor = Color.DarkSeaGreen;
-            btnVer.Location = new Point(121, 375);
-            btnVer.Margin = new Padding(4, 3, 4, 3);
+            btnVer.Location = new Point(173, 625);
+            btnVer.Margin = new Padding(6, 5, 6, 5);
             btnVer.Name = "btnVer";
-            btnVer.Size = new Size(88, 27);
+            btnVer.Size = new Size(126, 45);
             btnVer.TabIndex = 3;
             btnVer.Text = "Ver";
             btnVer.UseVisualStyleBackColor = false;
             btnVer.Click += btnVer_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.FromArgb(28, 78, 128);
+            label1.Location = new Point(20, 22);
+            label1.Name = "label1";
+            label1.Size = new Size(306, 32);
+            label1.TabIndex = 4;
+            label1.Text = "LISTADO DE SOLICITUDES";
+            // 
             // FrmSolicitud
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(681, 417);
+            ClientSize = new Size(973, 695);
+            Controls.Add(label1);
             Controls.Add(btnVer);
             Controls.Add(btnEliminar);
             Controls.Add(btnNueva);
             Controls.Add(dgvSolicitudes);
-            Margin = new Padding(4, 3, 4, 3);
+            Margin = new Padding(6, 5, 6, 5);
             Name = "FrmSolicitud";
             Text = "Listado de Solicitudes";
             Load += FrmSolicitud_Load;
             ((System.ComponentModel.ISupportInitialize)dgvSolicitudes).EndInit();
             ResumeLayout(false);
+            PerformLayout();
 
         }
 
@@ -93,5 +108,6 @@
         private System.Windows.Forms.Button btnNueva;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnVer;
+        private Label label1;
     }
 }

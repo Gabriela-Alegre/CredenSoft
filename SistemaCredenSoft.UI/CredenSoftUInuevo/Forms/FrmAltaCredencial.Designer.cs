@@ -38,15 +38,17 @@
             cmbEstado = new ComboBox();
             btnGuardar = new Button();
             btnCancelar = new Button();
+            label1 = new Label();
             SuspendLayout();
             // 
             // lblSolicitud
             // 
             lblSolicitud.AutoSize = true;
-            lblSolicitud.Location = new Point(76, 58);
-            lblSolicitud.Margin = new Padding(4, 0, 4, 0);
+            lblSolicitud.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblSolicitud.Location = new Point(18, 110);
+            lblSolicitud.Margin = new Padding(6, 0, 6, 0);
             lblSolicitud.Name = "lblSolicitud";
-            lblSolicitud.Size = new Size(53, 15);
+            lblSolicitud.Size = new Size(95, 28);
             lblSolicitud.TabIndex = 0;
             lblSolicitud.Text = "Solicitud";
             // 
@@ -54,57 +56,60 @@
             // 
             cmbSolicitud.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbSolicitud.FormattingEnabled = true;
-            cmbSolicitud.Location = new Point(288, 48);
-            cmbSolicitud.Margin = new Padding(4, 3, 4, 3);
+            cmbSolicitud.Location = new Point(320, 110);
+            cmbSolicitud.Margin = new Padding(6, 5, 6, 5);
             cmbSolicitud.Name = "cmbSolicitud";
-            cmbSolicitud.Size = new Size(140, 23);
+            cmbSolicitud.Size = new Size(198, 33);
             cmbSolicitud.TabIndex = 1;
             // 
             // lblFechaDeEmision
             // 
             lblFechaDeEmision.AutoSize = true;
-            lblFechaDeEmision.Location = new Point(76, 108);
-            lblFechaDeEmision.Margin = new Padding(4, 0, 4, 0);
+            lblFechaDeEmision.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblFechaDeEmision.Location = new Point(18, 190);
+            lblFechaDeEmision.Margin = new Padding(6, 0, 6, 0);
             lblFechaDeEmision.Name = "lblFechaDeEmision";
-            lblFechaDeEmision.Size = new Size(99, 15);
+            lblFechaDeEmision.Size = new Size(175, 28);
             lblFechaDeEmision.TabIndex = 2;
             lblFechaDeEmision.Text = "Fecha de Emisión";
             // 
             // dateTimeFechaDeEmision
             // 
             dateTimeFechaDeEmision.Format = DateTimePickerFormat.Short;
-            dateTimeFechaDeEmision.Location = new Point(288, 96);
-            dateTimeFechaDeEmision.Margin = new Padding(4, 3, 4, 3);
+            dateTimeFechaDeEmision.Location = new Point(320, 190);
+            dateTimeFechaDeEmision.Margin = new Padding(6, 5, 6, 5);
             dateTimeFechaDeEmision.Name = "dateTimeFechaDeEmision";
-            dateTimeFechaDeEmision.Size = new Size(233, 23);
+            dateTimeFechaDeEmision.Size = new Size(331, 31);
             dateTimeFechaDeEmision.TabIndex = 3;
             // 
             // lblFechaDeVencimiento
             // 
             lblFechaDeVencimiento.AutoSize = true;
-            lblFechaDeVencimiento.Location = new Point(76, 159);
-            lblFechaDeVencimiento.Margin = new Padding(4, 0, 4, 0);
+            lblFechaDeVencimiento.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblFechaDeVencimiento.Location = new Point(18, 267);
+            lblFechaDeVencimiento.Margin = new Padding(6, 0, 6, 0);
             lblFechaDeVencimiento.Name = "lblFechaDeVencimiento";
-            lblFechaDeVencimiento.Size = new Size(123, 15);
+            lblFechaDeVencimiento.Size = new Size(219, 28);
             lblFechaDeVencimiento.TabIndex = 4;
             lblFechaDeVencimiento.Text = "Fecha de Vencimiento";
             // 
             // dateTimeFechaDeVencimiento
             // 
             dateTimeFechaDeVencimiento.Format = DateTimePickerFormat.Short;
-            dateTimeFechaDeVencimiento.Location = new Point(288, 142);
-            dateTimeFechaDeVencimiento.Margin = new Padding(4, 3, 4, 3);
+            dateTimeFechaDeVencimiento.Location = new Point(320, 267);
+            dateTimeFechaDeVencimiento.Margin = new Padding(6, 5, 6, 5);
             dateTimeFechaDeVencimiento.Name = "dateTimeFechaDeVencimiento";
-            dateTimeFechaDeVencimiento.Size = new Size(233, 23);
+            dateTimeFechaDeVencimiento.Size = new Size(331, 31);
             dateTimeFechaDeVencimiento.TabIndex = 5;
             // 
             // lblEstado
             // 
             lblEstado.AutoSize = true;
-            lblEstado.Location = new Point(76, 210);
-            lblEstado.Margin = new Padding(4, 0, 4, 0);
+            lblEstado.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblEstado.Location = new Point(18, 343);
+            lblEstado.Margin = new Padding(6, 0, 6, 0);
             lblEstado.Name = "lblEstado";
-            lblEstado.Size = new Size(42, 15);
+            lblEstado.Size = new Size(75, 28);
             lblEstado.TabIndex = 6;
             lblEstado.Text = "Estado";
             // 
@@ -112,20 +117,20 @@
             // 
             cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEstado.FormattingEnabled = true;
-            cmbEstado.Location = new Point(288, 188);
-            cmbEstado.Margin = new Padding(4, 3, 4, 3);
+            cmbEstado.Location = new Point(320, 343);
+            cmbEstado.Margin = new Padding(6, 5, 6, 5);
             cmbEstado.Name = "cmbEstado";
-            cmbEstado.Size = new Size(140, 23);
+            cmbEstado.Size = new Size(198, 33);
             cmbEstado.TabIndex = 7;
             // 
             // btnGuardar
             // 
             btnGuardar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnGuardar.BackColor = SystemColors.ActiveCaption;
-            btnGuardar.Location = new Point(76, 298);
-            btnGuardar.Margin = new Padding(4, 3, 4, 3);
+            btnGuardar.Location = new Point(15, 521);
+            btnGuardar.Margin = new Padding(6, 5, 6, 5);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(88, 27);
+            btnGuardar.Size = new Size(126, 45);
             btnGuardar.TabIndex = 8;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = false;
@@ -135,20 +140,32 @@
             // 
             btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnCancelar.BackColor = Color.FromArgb(200, 70, 34);
-            btnCancelar.Location = new Point(433, 298);
-            btnCancelar.Margin = new Padding(4, 3, 4, 3);
+            btnCancelar.Location = new Point(525, 521);
+            btnCancelar.Margin = new Padding(6, 5, 6, 5);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(88, 27);
+            btnCancelar.Size = new Size(126, 45);
             btnCancelar.TabIndex = 9;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = false;
             btnCancelar.Click += btnCancelar_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.FromArgb(28, 78, 128);
+            label1.Location = new Point(14, 18);
+            label1.Name = "label1";
+            label1.Size = new Size(337, 32);
+            label1.TabIndex = 10;
+            label1.Text = "EMITIR NUEVA CREDENCIAL";
+            // 
             // FrmAltaCredencial
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(933, 519);
+            ClientSize = new Size(895, 865);
+            Controls.Add(label1);
             Controls.Add(btnCancelar);
             Controls.Add(btnGuardar);
             Controls.Add(cmbEstado);
@@ -160,7 +177,7 @@
             Controls.Add(cmbSolicitud);
             Controls.Add(lblSolicitud);
             FormBorderStyle = FormBorderStyle.FixedDialog;
-            Margin = new Padding(4, 3, 4, 3);
+            Margin = new Padding(6, 5, 6, 5);
             Name = "FrmAltaCredencial";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Nueva Credencial";
@@ -182,5 +199,6 @@
         private System.Windows.Forms.ComboBox cmbEstado;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnCancelar;
+        private Label label1;
     }
 }
