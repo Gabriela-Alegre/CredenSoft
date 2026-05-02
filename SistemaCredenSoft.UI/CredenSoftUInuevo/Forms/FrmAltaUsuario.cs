@@ -17,20 +17,15 @@ namespace CredenSoftUInuevo.Forms
             InitializeComponent();
             VincularEventosLimpieza();
 
-            
-            // Desactivamos el carácter de sistema para que el código tenga el control total
+            // Configuración inicial de las contraseñas
             txtContrasenia.UseSystemPasswordChar = false;
             txtConfirmarContrasenia.UseSystemPasswordChar = false;
-
-            // Seteamos el asterisco como máscara inicial
             txtContrasenia.PasswordChar = '*';
             txtConfirmarContrasenia.PasswordChar = '*';
 
-            // Carga de imágenes iniciales
+            // Carga de imágenes iniciales y posición
             picVerContrasenia.Image = Properties.Resources.ojo_cerrado;
             picVerConfirmarContrasenia.Image = Properties.Resources.ojo_cerrado;
-
-            // Aseguramos que los ojos estén por encima de los cuadros de texto
             picVerContrasenia.BringToFront();
             picVerConfirmarContrasenia.BringToFront();
         }
@@ -61,23 +56,24 @@ namespace CredenSoftUInuevo.Forms
             {
                 if (cb.SelectedIndex != -1)
                 {
+                    cb.BackColor = Color.White;
                     errorProvider1.SetError(cb, "");
                 }
             }
         }
 
-        // --- LÓGICA DE VISIBILIDAD (COMO EN TU LOGIN) ---
+        // --- LÓGICA DE VISIBILIDAD DE CONTRASEÑAS ---
 
         private void picVerContrasenia_Click(object sender, EventArgs e)
         {
             if (txtContrasenia.PasswordChar == '*')
             {
-                txtContrasenia.PasswordChar = '\0'; // Muestra la contraseña
+                txtContrasenia.PasswordChar = '\0';
                 picVerContrasenia.Image = Properties.Resources.ojo_abierto;
             }
             else
             {
-                txtContrasenia.PasswordChar = '*'; // Oculta la contraseña
+                txtContrasenia.PasswordChar = '*';
                 picVerContrasenia.Image = Properties.Resources.ojo_cerrado;
             }
         }
@@ -96,7 +92,7 @@ namespace CredenSoftUInuevo.Forms
             }
         }
 
-        // --- ACCIONES DE GUARDADO ---
+        // --- ACCIONES DE GUARDADO Y VALIDACIÓN ---
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
@@ -107,31 +103,42 @@ namespace CredenSoftUInuevo.Forms
             {
                 bool hayError = false;
 
+                // Validación de campos de texto básicos
                 if (string.IsNullOrWhiteSpace(txtNombre.Text)) { errorProvider1.SetError(txtNombre, "Nombre obligatorio"); txtNombre.BackColor = Color.LightPink; hayError = true; }
                 if (string.IsNullOrWhiteSpace(txtApellido.Text)) { errorProvider1.SetError(txtApellido, "Apellido obligatorio"); txtApellido.BackColor = Color.LightPink; hayError = true; }
                 if (string.IsNullOrWhiteSpace(txtDni.Text)) { errorProvider1.SetError(txtDni, "DNI obligatorio"); txtDni.BackColor = Color.LightPink; hayError = true; }
                 if (string.IsNullOrWhiteSpace(txtEmail.Text)) { errorProvider1.SetError(txtEmail, "Email obligatorio"); txtEmail.BackColor = Color.LightPink; hayError = true; }
 
+                // Validación de Contraseña
                 if (string.IsNullOrWhiteSpace(txtContrasenia.Text)) { errorProvider1.SetError(txtContrasenia, "Contraseña obligatoria"); txtContrasenia.BackColor = Color.LightPink; hayError = true; }
 
-                if (txtContrasenia.Text != txtConfirmarContrasenia.Text)
+                // Validación de Confirmación de Contraseña
+                if (string.IsNullOrWhiteSpace(txtConfirmarContrasenia.Text))
+                {
+                    errorProvider1.SetError(txtConfirmarContrasenia, "Debe confirmar la contraseña");
+                    txtConfirmarContrasenia.BackColor = Color.LightPink;
+                    hayError = true;
+                }
+                else if (txtContrasenia.Text != txtConfirmarContrasenia.Text)
                 {
                     errorProvider1.SetError(txtConfirmarContrasenia, "Las contraseñas no coinciden");
                     txtConfirmarContrasenia.BackColor = Color.LightPink;
                     hayError = true;
                 }
 
-                if (cmbRol.SelectedIndex == -1) { errorProvider1.SetError(cmbRol, "Seleccione un rol"); hayError = true; }
-                if (cmbEstado.SelectedIndex == -1) { errorProvider1.SetError(cmbEstado, "Seleccione un estado"); hayError = true; }
+                // Validación de ComboBoxes
+                if (cmbRol.SelectedIndex == -1) { errorProvider1.SetError(cmbRol, "Seleccione un rol"); cmbRol.BackColor = Color.LightPink; hayError = true; }
+                if (cmbEstado.SelectedIndex == -1) { errorProvider1.SetError(cmbEstado, "Seleccione un estado"); cmbEstado.BackColor = Color.LightPink; hayError = true; }
 
                 if (hayError) return;
 
+                // Mapeo del objeto Usuario
                 Usuario nuevo = new Usuario
                 {
-                    Nombre = txtNombre.Text,
-                    Apellido = txtApellido.Text,
-                    Dni = txtDni.Text,
-                    Email = txtEmail.Text,
+                    Nombre = txtNombre.Text.Trim().ToUpper(),
+                    Apellido = txtApellido.Text.Trim().ToUpper(),
+                    Dni = txtDni.Text.Trim(),
+                    Email = txtEmail.Text.Trim(),
                     Estado = cmbEstado.SelectedItem.ToString(),
                     IdRol = cmbRol.SelectedIndex + 1
                 };
@@ -155,6 +162,8 @@ namespace CredenSoftUInuevo.Forms
             txtEmail.BackColor = Color.White;
             txtContrasenia.BackColor = Color.White;
             txtConfirmarContrasenia.BackColor = Color.White;
+            cmbRol.BackColor = Color.White;
+            cmbEstado.BackColor = Color.White;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -164,11 +173,13 @@ namespace CredenSoftUInuevo.Forms
 
         private void txtDni_KeyPress(object sender, KeyPressEventArgs e)
         {
+            // Solo permite números en el DNI
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)) e.Handled = true;
         }
 
         private void FrmAltaUsuario_Load(object sender, EventArgs e)
         {
+            // Opcional: inicializar el estado en el primer elemento
             if (cmbEstado.Items.Count > 0) cmbEstado.SelectedIndex = 0;
         }
     }

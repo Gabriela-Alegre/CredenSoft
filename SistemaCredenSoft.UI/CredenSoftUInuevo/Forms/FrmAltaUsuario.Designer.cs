@@ -49,57 +49,57 @@
             // 
             lblNombre.AutoSize = true;
             lblNombre.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblNombre.Location = new Point(15, 93);
-            lblNombre.Margin = new Padding(6, 0, 6, 0);
+            lblNombre.Location = new Point(10, 56);
+            lblNombre.Margin = new Padding(4, 0, 4, 0);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(94, 28);
+            lblNombre.Size = new Size(69, 19);
             lblNombre.TabIndex = 13;
             lblNombre.Text = "Nombre:";
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(206, 93);
-            txtNombre.Margin = new Padding(6, 5, 6, 5);
+            txtNombre.Location = new Point(144, 56);
+            txtNombre.Margin = new Padding(4, 3, 4, 3);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(331, 31);
+            txtNombre.Size = new Size(233, 23);
             txtNombre.TabIndex = 0;
             // 
             // lblApellido
             // 
             lblApellido.AutoSize = true;
             lblApellido.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblApellido.Location = new Point(15, 149);
-            lblApellido.Margin = new Padding(6, 0, 6, 0);
+            lblApellido.Location = new Point(10, 89);
+            lblApellido.Margin = new Padding(4, 0, 4, 0);
             lblApellido.Name = "lblApellido";
-            lblApellido.Size = new Size(96, 28);
+            lblApellido.Size = new Size(70, 19);
             lblApellido.TabIndex = 12;
             lblApellido.Text = "Apellido:";
             // 
             // txtApellido
             // 
-            txtApellido.Location = new Point(206, 149);
-            txtApellido.Margin = new Padding(6, 5, 6, 5);
+            txtApellido.Location = new Point(144, 89);
+            txtApellido.Margin = new Padding(4, 3, 4, 3);
             txtApellido.Name = "txtApellido";
-            txtApellido.Size = new Size(331, 31);
+            txtApellido.Size = new Size(233, 23);
             txtApellido.TabIndex = 1;
             // 
             // lblDni
             // 
             lblDni.AutoSize = true;
             lblDni.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblDni.Location = new Point(15, 208);
-            lblDni.Margin = new Padding(6, 0, 6, 0);
+            lblDni.Location = new Point(10, 125);
+            lblDni.Margin = new Padding(4, 0, 4, 0);
             lblDni.Name = "lblDni";
-            lblDni.Size = new Size(54, 28);
+            lblDni.Size = new Size(38, 19);
             lblDni.TabIndex = 11;
             lblDni.Text = "DNI:";
             // 
             // txtDni
             // 
-            txtDni.Location = new Point(206, 205);
-            txtDni.Margin = new Padding(6, 5, 6, 5);
+            txtDni.Location = new Point(144, 123);
+            txtDni.Margin = new Padding(4, 3, 4, 3);
             txtDni.Name = "txtDni";
-            txtDni.Size = new Size(331, 31);
+            txtDni.Size = new Size(233, 23);
             txtDni.TabIndex = 2;
             txtDni.KeyPress += txtDni_KeyPress;
             // 
@@ -107,38 +107,38 @@
             // 
             lblEmail.AutoSize = true;
             lblEmail.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblEmail.Location = new Point(15, 264);
-            lblEmail.Margin = new Padding(6, 0, 6, 0);
+            lblEmail.Location = new Point(10, 158);
+            lblEmail.Margin = new Padding(4, 0, 4, 0);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(69, 28);
+            lblEmail.Size = new Size(49, 19);
             lblEmail.TabIndex = 10;
             lblEmail.Text = "Email:";
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(206, 261);
-            txtEmail.Margin = new Padding(6, 5, 6, 5);
+            txtEmail.Location = new Point(144, 157);
+            txtEmail.Margin = new Padding(4, 3, 4, 3);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(331, 31);
+            txtEmail.Size = new Size(233, 23);
             txtEmail.TabIndex = 3;
             // 
             // lblContrasenia
             // 
             lblContrasenia.AutoSize = true;
             lblContrasenia.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblContrasenia.Location = new Point(15, 320);
-            lblContrasenia.Margin = new Padding(6, 0, 6, 0);
+            lblContrasenia.Location = new Point(10, 192);
+            lblContrasenia.Margin = new Padding(4, 0, 4, 0);
             lblContrasenia.Name = "lblContrasenia";
-            lblContrasenia.Size = new Size(123, 28);
+            lblContrasenia.Size = new Size(88, 19);
             lblContrasenia.TabIndex = 9;
             lblContrasenia.Text = "Contraseña:";
             // 
             // txtContrasenia
             // 
-            txtContrasenia.Location = new Point(206, 317);
-            txtContrasenia.Margin = new Padding(6, 5, 6, 5);
+            txtContrasenia.Location = new Point(144, 190);
+            txtContrasenia.Margin = new Padding(4, 3, 4, 3);
             txtContrasenia.Name = "txtContrasenia";
-            txtContrasenia.Size = new Size(331, 31);
+            txtContrasenia.Size = new Size(233, 23);
             txtContrasenia.TabIndex = 4;
             txtContrasenia.UseSystemPasswordChar = true;
             // 
@@ -147,20 +147,20 @@
             cmbRol.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbRol.FormattingEnabled = true;
             cmbRol.Items.AddRange(new object[] { "Administrador Central", "Administrador Local", "Agente" });
-            cmbRol.Location = new Point(206, 429);
-            cmbRol.Margin = new Padding(6, 5, 6, 5);
+            cmbRol.Location = new Point(144, 257);
+            cmbRol.Margin = new Padding(4, 3, 4, 3);
             cmbRol.Name = "cmbRol";
-            cmbRol.Size = new Size(331, 33);
+            cmbRol.Size = new Size(233, 23);
             cmbRol.TabIndex = 5;
             // 
             // lblRol
             // 
             lblRol.AutoSize = true;
             lblRol.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblRol.Location = new Point(15, 434);
-            lblRol.Margin = new Padding(6, 0, 6, 0);
+            lblRol.Location = new Point(10, 260);
+            lblRol.Margin = new Padding(4, 0, 4, 0);
             lblRol.Name = "lblRol";
-            lblRol.Size = new Size(48, 28);
+            lblRol.Size = new Size(35, 19);
             lblRol.TabIndex = 8;
             lblRol.Text = "Rol:";
             // 
@@ -168,10 +168,10 @@
             // 
             lblEstado.AutoSize = true;
             lblEstado.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblEstado.Location = new Point(15, 492);
-            lblEstado.Margin = new Padding(6, 0, 6, 0);
+            lblEstado.Location = new Point(10, 295);
+            lblEstado.Margin = new Padding(4, 0, 4, 0);
             lblEstado.Name = "lblEstado";
-            lblEstado.Size = new Size(80, 28);
+            lblEstado.Size = new Size(57, 19);
             lblEstado.TabIndex = 7;
             lblEstado.Text = "Estado:";
             // 
@@ -180,19 +180,19 @@
             cmbEstado.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbEstado.FormattingEnabled = true;
             cmbEstado.Items.AddRange(new object[] { "Activo", "Inactivo" });
-            cmbEstado.Location = new Point(206, 487);
-            cmbEstado.Margin = new Padding(6, 5, 6, 5);
+            cmbEstado.Location = new Point(144, 292);
+            cmbEstado.Margin = new Padding(4, 3, 4, 3);
             cmbEstado.Name = "cmbEstado";
-            cmbEstado.Size = new Size(331, 33);
+            cmbEstado.Size = new Size(233, 23);
             cmbEstado.TabIndex = 6;
             // 
             // btnGuardar
             // 
             btnGuardar.BackColor = SystemColors.ActiveCaption;
-            btnGuardar.Location = new Point(85, 582);
-            btnGuardar.Margin = new Padding(6, 5, 6, 5);
+            btnGuardar.Location = new Point(60, 349);
+            btnGuardar.Margin = new Padding(4, 3, 4, 3);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(126, 45);
+            btnGuardar.Size = new Size(88, 27);
             btnGuardar.TabIndex = 7;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = false;
@@ -201,10 +201,10 @@
             // btnCancelar
             // 
             btnCancelar.BackColor = Color.FromArgb(200, 70, 34);
-            btnCancelar.Location = new Point(411, 582);
-            btnCancelar.Margin = new Padding(6, 5, 6, 5);
+            btnCancelar.Location = new Point(288, 349);
+            btnCancelar.Margin = new Padding(4, 3, 4, 3);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(126, 45);
+            btnCancelar.Size = new Size(88, 27);
             btnCancelar.TabIndex = 8;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = false;
@@ -216,10 +216,11 @@
             // 
             // txtConfirmarContrasenia
             // 
-            txtConfirmarContrasenia.Location = new Point(206, 373);
+            txtConfirmarContrasenia.Location = new Point(144, 224);
+            txtConfirmarContrasenia.Margin = new Padding(2, 2, 2, 2);
             txtConfirmarContrasenia.Name = "txtConfirmarContrasenia";
             txtConfirmarContrasenia.PasswordChar = '*';
-            txtConfirmarContrasenia.Size = new Size(331, 31);
+            txtConfirmarContrasenia.Size = new Size(233, 23);
             txtConfirmarContrasenia.TabIndex = 14;
             txtConfirmarContrasenia.UseSystemPasswordChar = true;
             // 
@@ -227,9 +228,10 @@
             // 
             lblConfirmar.AutoSize = true;
             lblConfirmar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblConfirmar.Location = new Point(15, 376);
+            lblConfirmar.Location = new Point(10, 226);
+            lblConfirmar.Margin = new Padding(2, 0, 2, 0);
             lblConfirmar.Name = "lblConfirmar";
-            lblConfirmar.Size = new Size(113, 28);
+            lblConfirmar.Size = new Size(82, 19);
             lblConfirmar.TabIndex = 15;
             lblConfirmar.Text = "Confirmar:";
             // 
@@ -238,9 +240,10 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             label2.ForeColor = Color.FromArgb(28, 78, 128);
-            label2.Location = new Point(12, 23);
+            label2.Location = new Point(8, 14);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(346, 32);
+            label2.Size = new Size(230, 21);
             label2.TabIndex = 16;
             label2.Text = "REGISTRAR NUEVO USUARIO";
             // 
@@ -249,9 +252,10 @@
             picVerContrasenia.BackColor = Color.White;
             picVerContrasenia.Cursor = Cursors.Hand;
             picVerContrasenia.Image = Properties.Resources.ojo_cerrado;
-            picVerContrasenia.Location = new Point(500, 320);
+            picVerContrasenia.Location = new Point(350, 192);
+            picVerContrasenia.Margin = new Padding(2, 2, 2, 2);
             picVerContrasenia.Name = "picVerContrasenia";
-            picVerContrasenia.Size = new Size(22, 25);
+            picVerContrasenia.Size = new Size(15, 15);
             picVerContrasenia.SizeMode = PictureBoxSizeMode.Zoom;
             picVerContrasenia.TabIndex = 17;
             picVerContrasenia.TabStop = false;
@@ -259,12 +263,13 @@
             // 
             // picVerConfirmarContrasenia
             // 
-            picVerConfirmarContrasenia.BackColor = Color.White;
+            picVerConfirmarContrasenia.BackColor = Color.Transparent;
             picVerConfirmarContrasenia.Cursor = Cursors.Hand;
             picVerConfirmarContrasenia.Image = Properties.Resources.ojo_cerrado;
-            picVerConfirmarContrasenia.Location = new Point(500, 376);
+            picVerConfirmarContrasenia.Location = new Point(350, 226);
+            picVerConfirmarContrasenia.Margin = new Padding(2, 2, 2, 2);
             picVerConfirmarContrasenia.Name = "picVerConfirmarContrasenia";
-            picVerConfirmarContrasenia.Size = new Size(22, 25);
+            picVerConfirmarContrasenia.Size = new Size(15, 15);
             picVerConfirmarContrasenia.SizeMode = PictureBoxSizeMode.Zoom;
             picVerConfirmarContrasenia.TabIndex = 18;
             picVerConfirmarContrasenia.TabStop = false;
@@ -272,9 +277,9 @@
             // 
             // FrmAltaUsuario
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(583, 653);
+            ClientSize = new Size(408, 392);
             Controls.Add(picVerConfirmarContrasenia);
             Controls.Add(picVerContrasenia);
             Controls.Add(label2);
@@ -296,7 +301,7 @@
             Controls.Add(lblDni);
             Controls.Add(lblApellido);
             Controls.Add(lblNombre);
-            Margin = new Padding(6, 5, 6, 5);
+            Margin = new Padding(4, 3, 4, 3);
             Name = "FrmAltaUsuario";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Alta de Usuario";
