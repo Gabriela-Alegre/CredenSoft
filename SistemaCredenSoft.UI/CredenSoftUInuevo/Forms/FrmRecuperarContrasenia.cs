@@ -13,6 +13,44 @@ namespace CredenSoftUInuevo.Forms
         {
             InitializeComponent();
             _usuarioService = usuarioService;
+
+            // Configuración inicial de visibilidad
+            ConfigurarPasswordChar(txtNuevaContrasenia, picVerContrasenia);
+            ConfigurarPasswordChar(txtConfirmarContrasenia, picVerConfirmarContrasenia);
+        }
+
+        private void ConfigurarPasswordChar(TextBox txt, PictureBox pic)
+        {
+            txt.UseSystemPasswordChar = false;
+            txt.PasswordChar = '*';
+            pic.Image = Properties.Resources.ojo_cerrado;
+            pic.BringToFront();
+        }
+
+        // Evento para el ojo de Nueva Contraseña
+        private void picVerContrasenia_Click(object sender, EventArgs e)
+        {
+            GestionarVisibilidad(txtNuevaContrasenia, picVerContrasenia);
+        }
+
+        // Evento para el ojo de Confirmar Contraseña
+        private void picVerConfirmarContrasenia_Click(object sender, EventArgs e)
+        {
+            GestionarVisibilidad(txtConfirmarContrasenia, picVerConfirmarContrasenia);
+        }
+
+        private void GestionarVisibilidad(TextBox txt, PictureBox pic)
+        {
+            if (txt.PasswordChar == '*')
+            {
+                txt.PasswordChar = '\0';
+                pic.Image = Properties.Resources.ojo_abierto;
+            }
+            else
+            {
+                txt.PasswordChar = '*';
+                pic.Image = Properties.Resources.ojo_cerrado;
+            }
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
@@ -20,10 +58,10 @@ namespace CredenSoftUInuevo.Forms
             errorProvider1.Clear();
             bool hayError = false;
 
-            // Validación visual (HU 05)
             if (string.IsNullOrWhiteSpace(txtEmail.Text)) { MarcarError(txtEmail); hayError = true; }
             if (string.IsNullOrWhiteSpace(txtDni.Text)) { MarcarError(txtDni); hayError = true; }
             if (string.IsNullOrWhiteSpace(txtNuevaContrasenia.Text)) { MarcarError(txtNuevaContrasenia); hayError = true; }
+            if (string.IsNullOrWhiteSpace(txtConfirmarContrasenia.Text)) { MarcarError(txtConfirmarContrasenia); hayError = true; }
 
             if (hayError)
             {
@@ -31,30 +69,28 @@ namespace CredenSoftUInuevo.Forms
                 return;
             }
 
+            if (txtNuevaContrasenia.Text != txtConfirmarContrasenia.Text)
+            {
+                MessageBox.Show("Las contraseñas no coinciden.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             try
             {
                 _usuarioService.RecuperarContrasenia(txtEmail.Text, txtDni.Text, txtNuevaContrasenia.Text);
 
-                // --- INTEGRACIÓN MENSAJE VERDE ---
-               
                 lblMensajeExito.Text = "✔ Se ha enviado un enlace de recuperación.";
                 lblMensajeExito.ForeColor = Color.DarkGreen;
                 lblMensajeExito.BackColor = Color.Honeydew;
                 lblMensajeExito.Visible = true;
 
-                // HU 05: Éxito
-                MessageBox.Show("Contraseña actualizada con éxito. Se envió un correo de confirmación.",
-                                "Recuperación Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                MessageBox.Show("Contraseña actualizada con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
             catch (Exception ex)
             {
-                
                 lblMensajeExito.Visible = false;
-
-                // HU 05: Error (X roja)
-                MessageBox.Show(ex.Message, "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -71,28 +107,16 @@ namespace CredenSoftUInuevo.Forms
                 txt.BackColor = Color.White;
                 errorProvider1.SetError(txt, "");
             }
-            // Si el usuario vuelve a escribir, ocultamos el label
             lblMensajeExito.Visible = false;
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        private void btnCancelar_Click(object sender, EventArgs e) { this.Close(); }
 
         private void txtDni_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Solo permite números en el DNI
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)) e.Handled = true;
         }
 
-        private void FrmRecuperarContrasenia_Load(object sender, EventArgs e)
-        {
-            // Aseguramos que el label de éxito esté oculto al abrir el form
-            lblMensajeExito.Visible = false;
-        }
+        private void FrmRecuperarContrasenia_Load(object sender, EventArgs e) { lblMensajeExito.Visible = false; }
     }
 }
