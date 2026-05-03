@@ -40,36 +40,40 @@
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(174, 74);
+            txtEmail.Location = new Point(249, 123);
+            txtEmail.Margin = new Padding(4, 5, 4, 5);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(290, 23);
+            txtEmail.Size = new Size(413, 31);
             txtEmail.TabIndex = 0;
             txtEmail.TextChanged += LimpiarError_TextChanged;
             // 
             // txtDni
             // 
-            txtDni.Location = new Point(174, 118);
+            txtDni.Location = new Point(249, 197);
+            txtDni.Margin = new Padding(4, 5, 4, 5);
             txtDni.Name = "txtDni";
-            txtDni.Size = new Size(290, 23);
+            txtDni.Size = new Size(413, 31);
             txtDni.TabIndex = 1;
             txtDni.TextChanged += LimpiarError_TextChanged;
             txtDni.KeyPress += txtDni_KeyPress;
             // 
             // txtNuevaContrasenia
             // 
-            txtNuevaContrasenia.Location = new Point(174, 170);
+            txtNuevaContrasenia.Location = new Point(249, 283);
+            txtNuevaContrasenia.Margin = new Padding(4, 5, 4, 5);
             txtNuevaContrasenia.Name = "txtNuevaContrasenia";
             txtNuevaContrasenia.PasswordChar = '*';
-            txtNuevaContrasenia.Size = new Size(290, 23);
+            txtNuevaContrasenia.Size = new Size(413, 31);
             txtNuevaContrasenia.TabIndex = 4;
             txtNuevaContrasenia.TextChanged += LimpiarError_TextChanged;
             // 
             // btnConfirmar
             // 
             btnConfirmar.BackColor = SystemColors.ActiveCaption;
-            btnConfirmar.Location = new Point(106, 300);
+            btnConfirmar.Location = new Point(151, 500);
+            btnConfirmar.Margin = new Padding(4, 5, 4, 5);
             btnConfirmar.Name = "btnConfirmar";
-            btnConfirmar.Size = new Size(95, 35);
+            btnConfirmar.Size = new Size(136, 58);
             btnConfirmar.TabIndex = 3;
             btnConfirmar.Text = "Confirmar";
             btnConfirmar.UseVisualStyleBackColor = false;
@@ -78,9 +82,10 @@
             // btnCancelar
             // 
             btnCancelar.BackColor = Color.FromArgb(200, 70, 34);
-            btnCancelar.Location = new Point(347, 297);
+            btnCancelar.Location = new Point(496, 495);
+            btnCancelar.Margin = new Padding(4, 5, 4, 5);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(95, 35);
+            btnCancelar.Size = new Size(136, 58);
             btnCancelar.TabIndex = 4;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = false;
@@ -90,9 +95,10 @@
             // 
             lblEmail.AutoSize = true;
             lblEmail.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblEmail.Location = new Point(8, 74);
+            lblEmail.Location = new Point(11, 123);
+            lblEmail.Margin = new Padding(4, 0, 4, 0);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(134, 19);
+            lblEmail.Size = new Size(187, 28);
             lblEmail.TabIndex = 7;
             lblEmail.Text = "Correo Electrónico";
             // 
@@ -100,9 +106,10 @@
             // 
             lblDni.AutoSize = true;
             lblDni.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblDni.Location = new Point(8, 118);
+            lblDni.Location = new Point(11, 197);
+            lblDni.Margin = new Padding(4, 0, 4, 0);
             lblDni.Name = "lblDni";
-            lblDni.Size = new Size(106, 19);
+            lblDni.Size = new Size(152, 28);
             lblDni.TabIndex = 6;
             lblDni.Text = "DNI del Oficial";
             // 
@@ -110,9 +117,10 @@
             // 
             lblNuevaContrasenia.AutoSize = true;
             lblNuevaContrasenia.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblNuevaContrasenia.Location = new Point(8, 174);
+            lblNuevaContrasenia.Location = new Point(11, 290);
+            lblNuevaContrasenia.Margin = new Padding(4, 0, 4, 0);
             lblNuevaContrasenia.Name = "lblNuevaContrasenia";
-            lblNuevaContrasenia.Size = new Size(131, 19);
+            lblNuevaContrasenia.Size = new Size(185, 28);
             lblNuevaContrasenia.TabIndex = 5;
             lblNuevaContrasenia.Text = "Nueva Contraseña";
             // 
@@ -125,9 +133,10 @@
             lblMensajeExito.AutoSize = true;
             lblMensajeExito.BackColor = Color.DarkSeaGreen;
             lblMensajeExito.ForeColor = Color.DarkGreen;
-            lblMensajeExito.Location = new Point(174, 100);
+            lblMensajeExito.Location = new Point(249, 167);
+            lblMensajeExito.Margin = new Padding(4, 0, 4, 0);
             lblMensajeExito.Name = "lblMensajeExito";
-            lblMensajeExito.Size = new Size(269, 15);
+            lblMensajeExito.Size = new Size(412, 25);
             lblMensajeExito.TabIndex = 8;
             lblMensajeExito.Text = "✔ Se envio un enlace de recuperación a su correo";
             lblMensajeExito.Visible = false;
@@ -137,10 +146,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(28, 78, 128);
-            label1.Location = new Point(8, 16);
-            label1.Margin = new Padding(2, 0, 2, 0);
+            label1.Location = new Point(11, 27);
             label1.Name = "label1";
-            label1.Size = new Size(212, 21);
+            label1.Size = new Size(320, 32);
             label1.TabIndex = 0;
             label1.Text = "RECUPERAR CONTRASEÑA";
             // 
@@ -148,26 +156,29 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            label2.Location = new Point(8, 223);
+            label2.Location = new Point(11, 372);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(160, 19);
+            label2.Size = new Size(224, 28);
             label2.TabIndex = 9;
             label2.Text = "Confirmar Contraseña:";
             // 
             // txtConfirmarContrasenia
             // 
-            txtConfirmarContrasenia.Location = new Point(174, 219);
+            txtConfirmarContrasenia.Location = new Point(249, 365);
+            txtConfirmarContrasenia.Margin = new Padding(4, 5, 4, 5);
             txtConfirmarContrasenia.Name = "txtConfirmarContrasenia";
-            txtConfirmarContrasenia.Size = new Size(290, 23);
+            txtConfirmarContrasenia.Size = new Size(413, 31);
             txtConfirmarContrasenia.TabIndex = 4;
             // 
             // picVerContrasenia
             // 
             picVerContrasenia.BackColor = Color.White;
             picVerContrasenia.Image = Properties.Resources.ojo_cerrado;
-            picVerContrasenia.Location = new Point(417, 223);
+            picVerContrasenia.Location = new Point(599, 290);
+            picVerContrasenia.Margin = new Padding(4, 5, 4, 5);
             picVerContrasenia.Name = "picVerContrasenia";
-            picVerContrasenia.Size = new Size(37, 14);
+            picVerContrasenia.Size = new Size(43, 21);
             picVerContrasenia.SizeMode = PictureBoxSizeMode.Zoom;
             picVerContrasenia.TabIndex = 11;
             picVerContrasenia.TabStop = false;
@@ -177,9 +188,10 @@
             // 
             picVerConfirmarContrasenia.BackColor = Color.White;
             picVerConfirmarContrasenia.Image = Properties.Resources.ojo_cerrado;
-            picVerConfirmarContrasenia.Location = new Point(417, 174);
+            picVerConfirmarContrasenia.Location = new Point(589, 372);
+            picVerConfirmarContrasenia.Margin = new Padding(4, 5, 4, 5);
             picVerConfirmarContrasenia.Name = "picVerConfirmarContrasenia";
-            picVerConfirmarContrasenia.Size = new Size(37, 14);
+            picVerConfirmarContrasenia.Size = new Size(53, 22);
             picVerConfirmarContrasenia.SizeMode = PictureBoxSizeMode.Zoom;
             picVerConfirmarContrasenia.TabIndex = 12;
             picVerConfirmarContrasenia.TabStop = false;
@@ -187,9 +199,9 @@
             // 
             // FrmRecuperarContrasenia
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(583, 389);
+            ClientSize = new Size(833, 648);
             Controls.Add(picVerConfirmarContrasenia);
             Controls.Add(picVerContrasenia);
             Controls.Add(txtConfirmarContrasenia);
@@ -204,6 +216,7 @@
             Controls.Add(txtDni);
             Controls.Add(txtEmail);
             Controls.Add(txtNuevaContrasenia);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "FrmRecuperarContrasenia";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Recuperar Contraseña - CredenSoft";
