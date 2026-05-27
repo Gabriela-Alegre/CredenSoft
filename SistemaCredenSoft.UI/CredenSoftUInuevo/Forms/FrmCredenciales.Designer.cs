@@ -90,6 +90,7 @@
             // dgvCredenciales
             // 
             dgvCredenciales.AllowUserToAddRows = false;
+            dgvCredenciales.BackgroundColor = Color.WhiteSmoke;
             dgvCredenciales.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvCredenciales.Columns.AddRange(new DataGridViewColumn[] { colcredencial, colUsuario, colFechaDeEmision, colFechaDeVencimiento, colEstado });
             dgvCredenciales.Location = new Point(51, 100);

@@ -27,6 +27,7 @@
             // 
             // dgvSolicitudes
             // 
+            dgvSolicitudes.BackgroundColor = Color.WhiteSmoke;
             dgvSolicitudes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSolicitudes.Location = new Point(20, 93);
             dgvSolicitudes.Margin = new Padding(6, 5, 6, 5);

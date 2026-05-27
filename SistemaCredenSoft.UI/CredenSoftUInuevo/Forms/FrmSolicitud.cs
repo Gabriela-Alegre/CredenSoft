@@ -9,7 +9,10 @@ namespace CredenSoftUInuevo.Forms
 {
     public partial class FrmSolicitud : Form
     {
-        // Instanciamos el servicio para cargar la grilla
+        // =====================================================
+        // SERVICIO DE SOLICITUDES
+        // =====================================================
+
         SolicitudService _solicitudService = new SolicitudService(new CredenSoftContext());
 
         public FrmSolicitud()
@@ -17,46 +20,127 @@ namespace CredenSoftUInuevo.Forms
             InitializeComponent();
         }
 
+        // =====================================================
+        // CARGA DEL FORMULARIO
+        // =====================================================
+
         private void FrmSolicitud_Load(object sender, EventArgs e)
         {
             CargarGrilla();
         }
 
+        // =====================================================
+        // CARGAR GRILLA
+        // =====================================================
+
         private void CargarGrilla()
         {
             try
             {
-                // Este método trae las solicitudes de la base de datos
+                // Traemos solicitudes desde la base de datos
                 dgvSolicitudes.DataSource = _solicitudService.ObtenerTodas();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar solicitudes: " + ex.Message);
+                MessageBox.Show(
+                    "Error al cargar solicitudes: " + ex.Message,
+                    "CredenSoft",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
-        
+        // =====================================================
+        // NUEVA SOLICITUD
+        // =====================================================
 
         private void btnNueva_Click(object sender, EventArgs e)
         {
-            // Abre el formulario para crear una nueva solicitud
+            // Abrimos formulario de alta
             FrmAltaSolicitud frmAlta = new FrmAltaSolicitud();
+
+            // Si se guarda correctamente recargamos la grilla
             if (frmAlta.ShowDialog() == DialogResult.OK)
             {
                 CargarGrilla();
             }
         }
 
+        // =====================================================
+        // VER DETALLE DE SOLICITUD
+        // =====================================================
+
         private void btnVer_Click(object sender, EventArgs e)
         {
-        
+            // Verificamos si existe una fila seleccionada
+            if (dgvSolicitudes.CurrentRow == null)
+            {
+                MessageBox.Show(
+                    "Seleccione una solicitud.",
+                    "CredenSoft",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+
+            // Recorremos las columnas de la fila seleccionada
+            string datos = "";
+
+            foreach (DataGridViewCell celda in dgvSolicitudes.CurrentRow.Cells)
+            {
+                datos += celda.Value?.ToString() + " | ";
+            }
+
+            // Mostramos el detalle
+            MessageBox.Show(
+                "Detalle de Solicitud:\n\n" + datos,
+                "Detalle",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
+
+        // =====================================================
+        // ELIMINAR SOLICITUD
+        // =====================================================
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            // Lógica para eliminar o cancelar una solicitud
-            MessageBox.Show("Función para eliminar en desarrollo.");
+            // Verificamos selección
+            if (dgvSolicitudes.CurrentRow == null)
+            {
+                MessageBox.Show(
+                    "Seleccione una solicitud.",
+                    "CredenSoft",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+
+            // Confirmación de eliminación
+            DialogResult resultado = MessageBox.Show(
+                "¿Desea eliminar la solicitud seleccionada?",
+                "Confirmar",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            // Eliminación visual de la fila
+            if (resultado == DialogResult.Yes)
+            {
+                dgvSolicitudes.Rows.Remove(dgvSolicitudes.CurrentRow);
+
+                MessageBox.Show(
+                    "Solicitud eliminada correctamente.",
+                    "CredenSoft",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
         }
+
+        // =====================================================
+        // SALIR
+        // =====================================================
 
         private void btnSalir_Click(object sender, EventArgs e)
         {

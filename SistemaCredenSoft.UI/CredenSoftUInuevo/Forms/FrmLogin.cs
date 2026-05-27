@@ -8,7 +8,9 @@ namespace CredenSoftUInuevo.Forms
 {
     public partial class FrmLogin : Form
     {
-        private readonly UsuarioService _usuarioService = new UsuarioService(new CredenSoftContext());
+        // Servicio que se conecta con la base de datos
+        private readonly UsuarioService _usuarioService =
+            new UsuarioService(new CredenSoftContext());
 
         public FrmLogin()
         {
@@ -17,16 +19,16 @@ namespace CredenSoftUInuevo.Forms
             // Configuramos el carácter de máscara para la contraseña
             txtContrasenia.PasswordChar = '*';
 
-            // Permite que al apretar "Enter" se ejecute el botón Ingresar
+            // Permite ejecutar el botón Ingresar con Enter
             this.AcceptButton = btnIngresar;
         }
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
-            // Foco inicial en el cuadro de usuario
+            // Foco inicial en el textbox usuario
             txtUsuario.Select();
 
-            // Seteamos el icono inicial del ojo
+            // Ícono inicial del ojo
             picVerContrasenia.Image = Properties.Resources.ojo_cerrado;
         }
 
@@ -34,54 +36,132 @@ namespace CredenSoftUInuevo.Forms
         {
             try
             {
-                // Validación de campos vacíos
-                if (string.IsNullOrWhiteSpace(txtUsuario.Text) || string.IsNullOrWhiteSpace(txtContrasenia.Text))
+                // =====================================================
+                // VALIDACIÓN DE CAMPOS VACÍOS
+                // =====================================================
+
+                if (string.IsNullOrWhiteSpace(txtUsuario.Text) ||
+                    string.IsNullOrWhiteSpace(txtContrasenia.Text))
                 {
-                    MessageBox.Show("Por favor, ingrese su correo electrónico y contraseña.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(
+                        "Por favor, ingrese su correo electrónico y contraseña.",
+                        "Atención",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
                     return;
                 }
 
-                // Intento de Login a través del servicio
-                var usuario = _usuarioService.Login(txtUsuario.Text, txtContrasenia.Text);
+                // =====================================================
+                // LOGIN DEL USUARIO
+                // =====================================================
+
+                var usuario = _usuarioService.Login(
+                    txtUsuario.Text,
+                    txtContrasenia.Text);
+
+                // =====================================================
+                // VALIDACIÓN DE USUARIO
+                // =====================================================
 
                 if (usuario == null)
                 {
-                    MessageBox.Show("Acceso inválido, por favor inténtelo nuevamente.", "Error de Acceso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(
+                        "Acceso inválido, por favor inténtelo nuevamente.",
+                        "Error de Acceso",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+
                     txtContrasenia.Clear();
                     return;
                 }
 
-                // Verificación de estado del usuario
+                // =====================================================
+                // VALIDACIÓN DE ESTADO
+                // =====================================================
+
                 if (usuario.Estado != "Activo")
                 {
-                    MessageBox.Show("ACCESO DENEGADO: Su usuario se encuentra INACTIVO.", "Usuario Bloqueado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    MessageBox.Show(
+                        "ACCESO DENEGADO: Su usuario se encuentra INACTIVO.",
+                        "Usuario Bloqueado",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Stop);
+
                     return;
                 }
 
-                // --- LOGIN EXITOSO ---
-                // Guardamos los datos en la sesión (incluye el Rol si está cargado)
+                // =====================================================
+                // LOGIN EXITOSO
+                // =====================================================
+
+                // Guardamos los datos del usuario en la sesión actual
                 SesionActual.UsuarioLogueado = usuario;
 
-                FrmDashboard frm = new FrmDashboard();
-                frm.Show();
+                // =====================================================
+                // REDIRECCIÓN SEGÚN ROL
+                // PASO 3 - Gestión de Roles y Permisos
+                // =====================================================
+
+                // ADMINISTRADOR CENTRAL
+                if (usuario.IdRol == 1)
+                {
+                    FrmDashboardAdmin frm = new FrmDashboardAdmin();
+                    frm.Show();
+                }
+
+                // ADMINISTRADOR LOCAL
+                else if (usuario.IdRol == 2)
+                {
+                    FrmDashboardLocal frm = new FrmDashboardLocal();
+                    frm.Show();
+                }
+
+                // AGENTE
+                else if (usuario.IdRol == 3)
+                {
+                    FrmDashboardAgente frm = new FrmDashboardAgente();
+                    frm.Show();
+                }
+
+                // ROL NO VÁLIDO
+                else
+                {
+                    MessageBox.Show(
+                        "El usuario no tiene un rol válido.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+
+                    return;
+                }
+
+                // Oculta el Login luego de ingresar correctamente
                 this.Hide();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message, "Error Crítico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "Error: " + ex.Message,
+                    "Error Crítico",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            // Abre el formulario de alta como una ventana emergente
+            // Abre el formulario de registro
             FrmAltaUsuario frmRegistro = new FrmAltaUsuario();
             frmRegistro.ShowDialog();
         }
 
         private void picVerContrasenia_Click(object sender, EventArgs e)
         {
-            // Lógica para mostrar/ocultar contraseña
+            // =====================================================
+            // MOSTRAR / OCULTAR CONTRASEÑA
+            // =====================================================
+
             if (txtContrasenia.PasswordChar == '*')
             {
                 txtContrasenia.PasswordChar = '\0';
@@ -96,12 +176,16 @@ namespace CredenSoftUInuevo.Forms
 
         private void lnkRecuperar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            FrmRecuperarContrasenia frmRecuperar = new FrmRecuperarContrasenia(_usuarioService);
+            // Abre el formulario de recuperación de contraseña
+            FrmRecuperarContrasenia frmRecuperar =
+                new FrmRecuperarContrasenia(_usuarioService);
+
             frmRecuperar.ShowDialog();
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
+            // Cierra completamente la aplicación
             Application.Exit();
         }
     }
