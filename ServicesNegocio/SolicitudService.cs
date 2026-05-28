@@ -13,13 +13,26 @@ namespace ServicesNegocio
             _context = context;
         }
 
-        public void CrearSolicitud(Solicitud nueva)
+        public void CrearSolicitud(Solicitud nuevaSolicitud)
         {
-            nueva.FechaSolicitud = DateTime.Now;
-            // Podés setear un estado inicial por defecto (ej: ID 1 = Pendiente)
-            // nueva.EstadoId = 1; 
+            // 1. Validaciones iniciales (siempre al principio)
+            if (nuevaSolicitud == null)
+            {
+                throw new ArgumentNullException(nameof(nuevaSolicitud));
+            }
 
-            _context.Solicitudes.Add(nueva);
+            if (string.IsNullOrEmpty(nuevaSolicitud.TipoSolicitud))
+            {
+                throw new BusinessException("El tipo de solicitud es requerido.");
+                // Nota: Es mejor usar excepciones personalizadas que 'Exception' genérica
+            }
+
+            // 2. Asignación de valores por defecto
+            nuevaSolicitud.FechaSolicitud = DateTime.Now;
+            // nuevaSolicitud.EstadoId = 1; // Descomentalo si lo necesitás
+
+            // 3. Persistencia en la base de datos
+            _context.Solicitudes.Add(nuevaSolicitud);
             _context.SaveChanges();
         }
 
@@ -73,21 +86,8 @@ namespace ServicesNegocio
         /// <summary>
         /// Inserta una nueva solicitud de credencial en la Base de Datos.
         /// </summary>
-        public void CrearSolicitud(Solicitud nuevaSolicitud)
-        {
-            if (nuevaSolicitud == null) throw new ArgumentNullException(nameof(nuevaSolicitud));
-
-            // Validamos datos mínimos de negocio
-            if (string.IsNullOrEmpty(nuevaSolicitud.TipoSolicitud))
-            {
-                throw new Exception("El tipo de solicitud es requerido.");
-            }
-
-            nuevaSolicitud.FechaSolicitud = DateTime.Now; // Asignamos fecha actual del servidor
-
-            _context.Solicitudes.Add(nuevaSolicitud);
-            _context.SaveChanges();
-        }
+        
+        
 
         /// <summary>
         /// Consulta general: Trae todas las solicitudes con los datos del usuario que la pidió.
