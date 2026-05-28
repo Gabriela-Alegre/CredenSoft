@@ -19,7 +19,7 @@ namespace DataEF // Esto le dice a Visual Studio que este archivo vive en la car
         {
             if (!optionsBuilder.IsConfigured)
             {
-                // Aquí va tu conexión local
+                //  
                 optionsBuilder.UseSqlServer("Server=localhost;Database=CredenSoft;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True;");
             }
         }
