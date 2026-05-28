@@ -70,5 +70,43 @@ namespace ServicesNegocio
             _context.Solicitudes.Remove(solicitud);
             _context.SaveChanges();
         }
+        /// <summary>
+        /// Inserta una nueva solicitud de credencial en la Base de Datos.
+        /// </summary>
+        public void CrearSolicitud(Solicitud nuevaSolicitud)
+        {
+            if (nuevaSolicitud == null) throw new ArgumentNullException(nameof(nuevaSolicitud));
+
+            // Validamos datos mínimos de negocio
+            if (string.IsNullOrEmpty(nuevaSolicitud.TipoSolicitud))
+            {
+                throw new Exception("El tipo de solicitud es requerido.");
+            }
+
+            nuevaSolicitud.FechaSolicitud = DateTime.Now; // Asignamos fecha actual del servidor
+
+            _context.Solicitudes.Add(nuevaSolicitud);
+            _context.SaveChanges();
+        }
+
+        /// <summary>
+        /// Consulta general: Trae todas las solicitudes con los datos del usuario que la pidió.
+        /// </summary>
+        public List<Solicitud> ObtenerTodasLasSolicitudes()
+        {
+            return _context.Solicitudes
+                .Include(s => s.Usuario) // Para saber qué agente hizo la solicitud
+                .ToList();
+        }
+        /// <summary>
+        /// Consulta específica: Trae únicamente las solicitudes creadas por un agente en particular.
+        /// </summary>
+        public List<Solicitud> ObtenerSolicitudesPorUsuario(int idUsuario)
+        {
+            return _context.Solicitudes
+                .Include(s => s.Usuario)
+                .Where(s => s.IdUsuario == idUsuario)
+                .ToList();
+        }
     }
 }

@@ -49,6 +49,26 @@ namespace ServicesNegocio
             }
 
             return usuario;
+
+            var usuario = _context.Usuarios
+        .Include(u => u.Rol)
+        .FirstOrDefault(u => u.NombreUsuario == username && u.Password == password);
+
+            if (usuario == null)
+            {
+                throw new Exception("Usuario o contraseña incorrectos.");
+            }
+
+            //  LO QUE FALTA DE LA HU10: Bloqueo por baja lógica
+            if (usuario.Estado.Equals("Inactivo", StringComparison.OrdinalIgnoreCase))
+            {
+                throw new Exception("Acceso denegado: Esta cuenta ha sido suspendida por seguridad.");
+            }
+
+            // Si está activo, guardamos la sesión
+            SesionActual.UsuarioLogueado = usuario;
+            return usuario;
+
         }
 
         /// <summary>
@@ -204,6 +224,41 @@ namespace ServicesNegocio
             usuario.Estado = "Inactivo";
 
             _context.SaveChanges();
+        }
+        /// <summary>
+        /// HU09: Valida si un Nombre de Usuario o DNI ya existen en el sistema antes de registrar.
+        /// </summary>
+        public void ValidarUsuarioNuevo(string nombreUsuario, string dni)
+        {
+            // Verificar si el Nombre de Usuario ya existe
+            var existeUsername = _context.Usuarios.Any(u => u.NombreUsuario == nombreUsuario);
+            if (existeUsername)
+            {
+                throw new Exception("El nombre de usuario ya está asignado a otro agente.");
+            }
+
+            // Verificar si el DNI ya existe
+            var existeDni = _context.Usuarios.Any(u => u.Dni == dni);
+            if (existeDni)
+            {
+                throw new Exception("Ya existe un usuario registrado con ese número de DNI.");
+            }
+        }
+        /// <summary>
+        /// HU06: Trae todos los roles disponibles en la base de datos para cargar los ComboBox de la interfaz.
+        /// </summary>
+        public List<Rol> ObtenerTodosLosRoles()
+        {
+            return _context.Roles.ToList();
+        }
+        /// <summary>
+        /// Consulta general de usuarios para la grilla de administración, incluyendo su rol.
+        /// </summary>
+        public List<Usuario> ObtenerTodosLosUsuarios()
+        {
+            return _context.Usuarios
+                .Include(u => u.Rol)
+                .ToList();
         }
 
     }
