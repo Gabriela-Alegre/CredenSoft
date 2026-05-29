@@ -213,5 +213,30 @@ namespace ServicesNegocio
         {
             return _context.Usuarios.Include(u => u.Rol).ToList();
         }
+        /// <summary>
+        /// Busca usuarios activos cuyo nombre, apellido o email coincidan con el término ingresado.
+        /// </summary>
+        public List<Usuario> BuscarUsuarios(string termino)
+        {
+            // Si el buscador está vacío o tiene solo espacios, devolvemos todos los activos
+            if (string.IsNullOrWhiteSpace(termino))
+            {
+                return _context.Usuarios
+                               .Include(u => u.Rol)
+                               .Where(u => u.Estado != "Inactivo")
+                               .ToList();
+            }
+
+            string terminoLimpio = termino.Trim().ToLower();
+
+            // Buscamos coincidencias en Nombre, Apellido o Email, pero SOLO de usuarios activos
+            return _context.Usuarios
+                           .Include(u => u.Rol)
+                           .Where(u => u.Estado != "Inactivo" &&
+                                      (u.Nombre.ToLower().Contains(terminoLimpio) ||
+                                       u.Apellido.ToLower().Contains(terminoLimpio) ||
+                                       u.Email.ToLower().Contains(terminoLimpio)))
+                           .ToList();
+        }
     }
 }
