@@ -23,7 +23,7 @@ namespace ServicesNegocio
 
             if (string.IsNullOrEmpty(nuevaSolicitud.TipoSolicitud))
             {
-                throw new BusinessException("El tipo de solicitud es requerido.");
+                throw new Exception("El tipo de solicitud es requerido.");
                 // Nota: Es mejor usar excepciones personalizadas que 'Exception' genérica
             }
 

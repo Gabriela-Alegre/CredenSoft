@@ -209,7 +209,7 @@ namespace ServicesNegocio
         /// <summary>
         /// Consulta general de usuarios para la grilla de administración, incluyendo su rol.
         /// </summary>
-        public List<Usuario> ObtenerTodosLosUsuarios()
+        public List<Usuario> ObtenerTodos()
         {
             return _context.Usuarios.Include(u => u.Rol).ToList();
         }
