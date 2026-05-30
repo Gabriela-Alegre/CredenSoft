@@ -38,6 +38,7 @@
             btnMiCredencial = new Button();
             btnInicio = new Button();
             panelContenido = new Panel();
+            btnProbarValidaciones = new Button();
             btnActualizarPerfil = new Button();
             btnNuevaSolicitud = new Button();
             btnVerCredencial = new Button();
@@ -61,7 +62,6 @@
             lblApellido = new Label();
             lblNombre = new Label();
             lblMiPaneldeUsuario = new Label();
-            btnProbarValidaciones = new Button();
             panelTop.SuspendLayout();
             panelMenu.SuspendLayout();
             panelContenido.SuspendLayout();
@@ -78,7 +78,7 @@
             panelTop.Location = new Point(0, 0);
             panelTop.MinimumSize = new Size(0, 80);
             panelTop.Name = "panelTop";
-            panelTop.Size = new Size(1207, 80);
+            panelTop.Size = new Size(1366, 80);
             panelTop.TabIndex = 0;
             // 
             // label1
@@ -193,8 +193,20 @@
             panelContenido.Dock = DockStyle.Fill;
             panelContenido.Location = new Point(235, 80);
             panelContenido.Name = "panelContenido";
-            panelContenido.Size = new Size(972, 961);
+            panelContenido.Size = new Size(1131, 961);
             panelContenido.TabIndex = 2;
+            // 
+            // btnProbarValidaciones
+            // 
+            btnProbarValidaciones.BackColor = Color.DarkOrange;
+            btnProbarValidaciones.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnProbarValidaciones.Location = new Point(687, 883);
+            btnProbarValidaciones.Name = "btnProbarValidaciones";
+            btnProbarValidaciones.Size = new Size(204, 54);
+            btnProbarValidaciones.TabIndex = 9;
+            btnProbarValidaciones.Text = "ProbarValidaciones";
+            btnProbarValidaciones.UseVisualStyleBackColor = false;
+            btnProbarValidaciones.Click += btnProbarValidaciones_Click;
             // 
             // btnActualizarPerfil
             // 
@@ -259,7 +271,7 @@
             dgvSolicitudes.ReadOnly = true;
             dgvSolicitudes.RowHeadersVisible = false;
             dgvSolicitudes.RowHeadersWidth = 62;
-            dgvSolicitudes.Size = new Size(940, 225);
+            dgvSolicitudes.Size = new Size(1077, 225);
             dgvSolicitudes.TabIndex = 4;
             dgvSolicitudes.CellContentClick += dgvSolicitudes_CellContentClick;
             // 
@@ -310,7 +322,7 @@
             groupCredencial.Controls.Add(lblCredencial);
             groupCredencial.Location = new Point(516, 80);
             groupCredencial.Name = "groupCredencial";
-            groupCredencial.Size = new Size(453, 348);
+            groupCredencial.Size = new Size(581, 348);
             groupCredencial.TabIndex = 2;
             groupCredencial.TabStop = false;
             groupCredencial.Text = "Estado de Credencial";
@@ -444,24 +456,12 @@
             lblMiPaneldeUsuario.Text = "Mi Panel de Usuario";
             lblMiPaneldeUsuario.Click += lblMiPaneldeUsuario_Click;
             // 
-            // btnProbarValidaciones
-            // 
-            btnProbarValidaciones.BackColor = Color.DarkOrange;
-            btnProbarValidaciones.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnProbarValidaciones.Location = new Point(687, 883);
-            btnProbarValidaciones.Name = "btnProbarValidaciones";
-            btnProbarValidaciones.Size = new Size(204, 54);
-            btnProbarValidaciones.TabIndex = 9;
-            btnProbarValidaciones.Text = "ProbarValidaciones";
-            btnProbarValidaciones.UseVisualStyleBackColor = false;
-            btnProbarValidaciones.Click += btnProbarValidaciones_Click;
-            // 
             // FrmDashboardAgente
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
-            ClientSize = new Size(1207, 1041);
+            ClientSize = new Size(1366, 1041);
             Controls.Add(panelContenido);
             Controls.Add(panelMenu);
             Controls.Add(panelTop);

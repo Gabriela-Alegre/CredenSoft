@@ -10,6 +10,7 @@
             {
                 components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
@@ -37,51 +38,55 @@
             lblUsuario.Location = new Point(6, 78);
             lblUsuario.Name = "lblUsuario";
             lblUsuario.Size = new Size(84, 28);
-            lblUsuario.TabIndex = 9;
+            lblUsuario.TabIndex = 0;
             lblUsuario.Text = "Usuario";
             lblUsuario.Click += lblUsuario_Click;
             // 
             // cmbUsuario
             // 
-            cmbUsuario.DisplayMember = "Nombre";
             cmbUsuario.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbUsuario.Location = new Point(126, 78);
+            cmbUsuario.FormattingEnabled = true;
+            cmbUsuario.Location = new Point(198, 78);
             cmbUsuario.Name = "cmbUsuario";
             cmbUsuario.Size = new Size(357, 33);
-            cmbUsuario.TabIndex = 8;
-            cmbUsuario.ValueMember = "IdUsuario";
+            cmbUsuario.TabIndex = 1;
             // 
             // lblTipoDeSolicitud
             // 
-            lblTipoDeSolicitud.Location = new Point(0, 0);
+            lblTipoDeSolicitud.AutoSize = true;
+            lblTipoDeSolicitud.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblTipoDeSolicitud.Location = new Point(6, 153);
             lblTipoDeSolicitud.Name = "lblTipoDeSolicitud";
-            lblTipoDeSolicitud.Size = new Size(100, 23);
-            lblTipoDeSolicitud.TabIndex = 7;
+            lblTipoDeSolicitud.Size = new Size(172, 28);
+            lblTipoDeSolicitud.TabIndex = 2;
+            lblTipoDeSolicitud.Text = "Tipo de Solicitud";
             // 
             // cmbTipoDeSolicitud
             // 
-            cmbTipoDeSolicitud.DisplayMember = "NombreTipo";
             cmbTipoDeSolicitud.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbTipoDeSolicitud.Location = new Point(126, 153);
+            cmbTipoDeSolicitud.FormattingEnabled = true;
+            cmbTipoDeSolicitud.Location = new Point(198, 153);
             cmbTipoDeSolicitud.Name = "cmbTipoDeSolicitud";
             cmbTipoDeSolicitud.Size = new Size(357, 33);
-            cmbTipoDeSolicitud.TabIndex = 6;
-            cmbTipoDeSolicitud.ValueMember = "IdTipoCredencial";
+            cmbTipoDeSolicitud.TabIndex = 3;
             // 
             // lblDescripcion
             // 
-            lblDescripcion.Location = new Point(0, 0);
+            lblDescripcion.AutoSize = true;
+            lblDescripcion.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblDescripcion.Location = new Point(6, 215);
             lblDescripcion.Name = "lblDescripcion";
-            lblDescripcion.Size = new Size(100, 23);
-            lblDescripcion.TabIndex = 5;
+            lblDescripcion.Size = new Size(123, 28);
+            lblDescripcion.TabIndex = 4;
+            lblDescripcion.Text = "Descripción";
             // 
             // txtDescripcion
             // 
-            txtDescripcion.Location = new Point(126, 215);
+            txtDescripcion.Location = new Point(198, 215);
             txtDescripcion.Multiline = true;
             txtDescripcion.Name = "txtDescripcion";
             txtDescripcion.Size = new Size(357, 174);
-            txtDescripcion.TabIndex = 4;
+            txtDescripcion.TabIndex = 5;
             // 
             // lblFecha
             // 
@@ -90,24 +95,24 @@
             lblFecha.Location = new Point(6, 429);
             lblFecha.Name = "lblFecha";
             lblFecha.Size = new Size(66, 28);
-            lblFecha.TabIndex = 0;
+            lblFecha.TabIndex = 6;
             lblFecha.Text = "Fecha";
             // 
             // dateTimeFecha
             // 
             dateTimeFecha.Format = DateTimePickerFormat.Short;
-            dateTimeFecha.Location = new Point(126, 426);
+            dateTimeFecha.Location = new Point(198, 426);
             dateTimeFecha.Name = "dateTimeFecha";
             dateTimeFecha.Size = new Size(357, 31);
-            dateTimeFecha.TabIndex = 3;
+            dateTimeFecha.TabIndex = 7;
             // 
             // btnGuardar
             // 
             btnGuardar.BackColor = SystemColors.ActiveCaption;
-            btnGuardar.Location = new Point(6, 531);
+            btnGuardar.Location = new Point(82, 583);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(106, 51);
-            btnGuardar.TabIndex = 2;
+            btnGuardar.TabIndex = 8;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = false;
             btnGuardar.Click += btnGuardar_Click;
@@ -115,10 +120,10 @@
             // btnCancelar
             // 
             btnCancelar.BackColor = Color.FromArgb(200, 70, 34);
-            btnCancelar.Location = new Point(378, 531);
+            btnCancelar.Location = new Point(454, 583);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(105, 51);
-            btnCancelar.TabIndex = 1;
+            btnCancelar.TabIndex = 9;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = false;
             btnCancelar.Click += btnCancelar_Click;
@@ -137,12 +142,14 @@
             // 
             // FrmAltaSolicitud
             // 
-            ClientSize = new Size(816, 651);
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1069, 675);
             Controls.Add(label1);
-            Controls.Add(lblFecha);
             Controls.Add(btnCancelar);
             Controls.Add(btnGuardar);
             Controls.Add(dateTimeFecha);
+            Controls.Add(lblFecha);
             Controls.Add(txtDescripcion);
             Controls.Add(lblDescripcion);
             Controls.Add(cmbTipoDeSolicitud);
@@ -150,6 +157,7 @@
             Controls.Add(cmbUsuario);
             Controls.Add(lblUsuario);
             Name = "FrmAltaSolicitud";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Nueva Solicitud";
             Load += FrmAltaSolicitud_Load;
             ResumeLayout(false);
@@ -158,17 +166,16 @@
 
         #endregion
 
-
-        private System.Windows.Forms.Label lblUsuario;
-        private System.Windows.Forms.ComboBox cmbUsuario;
-        private System.Windows.Forms.Label lblTipoDeSolicitud;
-        private System.Windows.Forms.ComboBox cmbTipoDeSolicitud;
-        private System.Windows.Forms.Label lblDescripcion;
-        private System.Windows.Forms.TextBox txtDescripcion;
-        private System.Windows.Forms.Label lblFecha;
-        private System.Windows.Forms.DateTimePicker dateTimeFecha;
-        private System.Windows.Forms.Button btnGuardar;
-        private System.Windows.Forms.Button btnCancelar;
+        private Label lblUsuario;
+        private ComboBox cmbUsuario;
+        private Label lblTipoDeSolicitud;
+        private ComboBox cmbTipoDeSolicitud;
+        private Label lblDescripcion;
+        private TextBox txtDescripcion;
+        private Label lblFecha;
+        private DateTimePicker dateTimeFecha;
+        private Button btnGuardar;
+        private Button btnCancelar;
         private Label label1;
     }
 }

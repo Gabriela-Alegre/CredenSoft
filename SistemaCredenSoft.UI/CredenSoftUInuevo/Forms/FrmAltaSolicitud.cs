@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using ServicesNegocio;
 using ModelsEntidades;
@@ -9,68 +8,122 @@ namespace CredenSoftUInuevo.Forms
 {
     public partial class FrmAltaSolicitud : Form
     {
-        // Instanciamos los servicios
-        SolicitudService _solicitudService = new SolicitudService(new CredenSoftContext());
+        // =====================================================
+        // SERVICIO
+        // =====================================================
+
+        SolicitudService _solicitudService =
+            new SolicitudService(new CredenSoftContext());
 
         public FrmAltaSolicitud()
         {
             InitializeComponent();
         }
 
-        // AGREGADO: Este método carga los datos apenas abrís la ventana
+        // =====================================================
+        // LOAD
+        // =====================================================
+
         private void FrmAltaSolicitud_Load(object sender, EventArgs e)
         {
             CargarTiposSolicitud();
-            dateTimeFecha.Value = DateTime.Now; // Setea fecha actual
+
+            // Fecha automática
+            dateTimeFecha.Value = DateTime.Now;
+
+            // Mostrar usuario logueado
+            cmbUsuario.Items.Clear();
+
+            cmbUsuario.Items.Add(
+                SesionActual.UsuarioLogueado.Nombre
+            );
+
+            cmbUsuario.SelectedIndex = 0;
+
+            // Bloqueamos edición
+            cmbUsuario.Enabled = false;
         }
+
+        // =====================================================
+        // TIPOS DE SOLICITUD
+        // =====================================================
 
         private void CargarTiposSolicitud()
         {
             try
             {
+                cmbTipoDeSolicitud.Items.Clear();
 
+                cmbTipoDeSolicitud.Items.Add("Credencial Permanente");
+                cmbTipoDeSolicitud.Items.Add("Credencial Temporal");
+                cmbTipoDeSolicitud.Items.Add("Renovación");
+                cmbTipoDeSolicitud.Items.Add("Reimpresión");
+
+                cmbTipoDeSolicitud.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
-                //MessageBox.Show("Error al cargar tipos: " + ex.Message);
+                MessageBox.Show(
+                    "Error al cargar tipos: " + ex.Message
+                );
             }
         }
+
+        // =====================================================
+        // GUARDAR
+        // =====================================================
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             try
             {
-                // Validación básica
+                // Validación
                 if (cmbTipoDeSolicitud.SelectedIndex == -1)
                 {
-                    MessageBox.Show("Por favor, seleccione un tipo de solicitud.");
+                    MessageBox.Show(
+                        "Seleccione un tipo de solicitud."
+                    );
+
                     return;
                 }
 
                 Solicitud nueva = new Solicitud
                 {
-                    // Usamos la sesión actual para saber quién es el usuario
                     IdUsuario = SesionActual.UsuarioLogueado.IdUsuario,
 
-
+                    TipoSolicitud = cmbTipoDeSolicitud.Text,
 
                     Descripcion = txtDescripcion.Text,
-                    FechaSolicitud = dateTimeFecha.Value,
-                    // EstadoSolicitud = "Pendiente"
+
+                    FechaSolicitud = dateTimeFecha.Value
                 };
 
                 _solicitudService.CrearSolicitud(nueva);
 
-                MessageBox.Show("Solicitud enviada correctamente.", "Éxito");
+                MessageBox.Show(
+                    "Solicitud enviada correctamente.",
+                    "CredenSoft",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
 
-                this.DialogResult = DialogResult.OK; // Avisa a la grilla principal que se actualice
+                this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                MessageBox.Show(
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
         }
+
+        // =====================================================
+        // CANCELAR
+        // =====================================================
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
