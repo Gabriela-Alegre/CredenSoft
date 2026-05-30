@@ -78,7 +78,7 @@
             panelTop.Location = new Point(0, 0);
             panelTop.MinimumSize = new Size(0, 80);
             panelTop.Name = "panelTop";
-            panelTop.Size = new Size(1366, 80);
+            panelTop.Size = new Size(1465, 80);
             panelTop.TabIndex = 0;
             // 
             // label1
@@ -193,20 +193,15 @@
             panelContenido.Dock = DockStyle.Fill;
             panelContenido.Location = new Point(235, 80);
             panelContenido.Name = "panelContenido";
-            panelContenido.Size = new Size(1131, 961);
+            panelContenido.Size = new Size(1230, 961);
             panelContenido.TabIndex = 2;
             // 
             // btnProbarValidaciones
             // 
-            btnProbarValidaciones.BackColor = Color.DarkOrange;
-            btnProbarValidaciones.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnProbarValidaciones.Location = new Point(687, 883);
+            btnProbarValidaciones.Location = new Point(0, 0);
             btnProbarValidaciones.Name = "btnProbarValidaciones";
-            btnProbarValidaciones.Size = new Size(204, 54);
-            btnProbarValidaciones.TabIndex = 9;
-            btnProbarValidaciones.Text = "ProbarValidaciones";
-            btnProbarValidaciones.UseVisualStyleBackColor = false;
-            btnProbarValidaciones.Click += btnProbarValidaciones_Click;
+            btnProbarValidaciones.Size = new Size(75, 23);
+            btnProbarValidaciones.TabIndex = 0;
             // 
             // btnActualizarPerfil
             // 
@@ -461,7 +456,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
-            ClientSize = new Size(1366, 1041);
+            ClientSize = new Size(1465, 1041);
             Controls.Add(panelContenido);
             Controls.Add(panelMenu);
             Controls.Add(panelTop);

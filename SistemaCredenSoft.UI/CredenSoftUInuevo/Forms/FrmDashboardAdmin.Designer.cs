@@ -76,7 +76,7 @@
             panelSuperior.Location = new Point(0, 0);
             panelSuperior.MaximumSize = new Size(0, 80);
             panelSuperior.Name = "panelSuperior";
-            panelSuperior.Size = new Size(1016, 65);
+            panelSuperior.Size = new Size(1173, 65);
             panelSuperior.TabIndex = 0;
             // 
             // label1
@@ -190,6 +190,7 @@
             btnGestiónDeUsuarios.Text = "Gestión de Usuarios";
             btnGestiónDeUsuarios.TextAlign = ContentAlignment.MiddleLeft;
             btnGestiónDeUsuarios.UseVisualStyleBackColor = false;
+            btnGestiónDeUsuarios.Click += btnGestiónDeUsuarios_Click;
             // 
             // btnInicio
             // 
@@ -220,7 +221,7 @@
             panelPrincipal.Dock = DockStyle.Fill;
             panelPrincipal.Location = new Point(262, 65);
             panelPrincipal.Name = "panelPrincipal";
-            panelPrincipal.Size = new Size(754, 786);
+            panelPrincipal.Size = new Size(911, 786);
             panelPrincipal.TabIndex = 2;
             // 
             // groupBox2
@@ -444,7 +445,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1016, 851);
+            ClientSize = new Size(1173, 851);
             Controls.Add(panelPrincipal);
             Controls.Add(panelMenu);
             Controls.Add(panelSuperior);

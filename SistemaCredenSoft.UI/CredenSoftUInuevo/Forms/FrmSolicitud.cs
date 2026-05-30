@@ -18,6 +18,17 @@ namespace CredenSoftUInuevo.Forms
         public FrmSolicitud()
         {
             InitializeComponent();
+
+            dgvSolicitudes.ReadOnly = true;
+            dgvSolicitudes.AllowUserToAddRows = false;
+            dgvSolicitudes.AllowUserToDeleteRows = false;
+            dgvSolicitudes.AutoSizeColumnsMode =
+                DataGridViewAutoSizeColumnsMode.Fill;
+
+            dgvSolicitudes.SelectionMode =
+                DataGridViewSelectionMode.FullRowSelect;
+
+            dgvSolicitudes.MultiSelect = false;
         }
 
         // =====================================================
@@ -37,7 +48,7 @@ namespace CredenSoftUInuevo.Forms
         {
             try
             {
-                // Traemos solicitudes desde la base de datos
+                dgvSolicitudes.DataSource = null;
                 dgvSolicitudes.DataSource = _solicitudService.ObtenerTodas();
             }
             catch (Exception ex)
@@ -56,10 +67,8 @@ namespace CredenSoftUInuevo.Forms
 
         private void btnNueva_Click(object sender, EventArgs e)
         {
-            // Abrimos formulario de alta
             FrmAltaSolicitud frmAlta = new FrmAltaSolicitud();
 
-            // Si se guarda correctamente recargamos la grilla
             if (frmAlta.ShowDialog() == DialogResult.OK)
             {
                 CargarGrilla();
@@ -72,7 +81,6 @@ namespace CredenSoftUInuevo.Forms
 
         private void btnVer_Click(object sender, EventArgs e)
         {
-            // Verificamos si existe una fila seleccionada
             if (dgvSolicitudes.CurrentRow == null)
             {
                 MessageBox.Show(
@@ -84,7 +92,6 @@ namespace CredenSoftUInuevo.Forms
                 return;
             }
 
-            // Recorremos las columnas de la fila seleccionada
             string datos = "";
 
             foreach (DataGridViewCell celda in dgvSolicitudes.CurrentRow.Cells)
@@ -92,7 +99,6 @@ namespace CredenSoftUInuevo.Forms
                 datos += celda.Value?.ToString() + " | ";
             }
 
-            // Mostramos el detalle
             MessageBox.Show(
                 "Detalle de Solicitud:\n\n" + datos,
                 "Detalle",
@@ -106,7 +112,6 @@ namespace CredenSoftUInuevo.Forms
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            // Verificamos selección
             if (dgvSolicitudes.CurrentRow == null)
             {
                 MessageBox.Show(
@@ -118,23 +123,21 @@ namespace CredenSoftUInuevo.Forms
                 return;
             }
 
-            // Confirmación de eliminación
             DialogResult resultado = MessageBox.Show(
                 "¿Desea eliminar la solicitud seleccionada?",
                 "Confirmar",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
 
-            // Eliminación visual de la fila
             if (resultado == DialogResult.Yes)
             {
-                dgvSolicitudes.Rows.Remove(dgvSolicitudes.CurrentRow);
-
                 MessageBox.Show(
-                    "Solicitud eliminada correctamente.",
+                    "Funcionalidad pendiente de integración con Backend.\n\nLa solicitud sería eliminada correctamente.",
                     "CredenSoft",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
+
+                CargarGrilla();
             }
         }
 

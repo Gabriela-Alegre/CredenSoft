@@ -46,5 +46,15 @@ namespace CredenSoftUInuevo.Forms
         {
 
         }
+
+        // =====================================================
+        // GESTIÓN DE USUARIOS
+        // =====================================================
+
+        private void btnGestiónDeUsuarios_Click(object sender, EventArgs e)
+        {
+            FrmUsuarios frm = new FrmUsuarios();
+            frm.ShowDialog();
+        }
     }
 }

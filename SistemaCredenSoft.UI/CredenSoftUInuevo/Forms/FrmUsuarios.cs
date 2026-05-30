@@ -1,9 +1,8 @@
 ﻿using ModelsEntidades;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using ServicesNegocio; 
-using DataEF;        
+using ServicesNegocio;
+using DataEF;
 
 namespace CredenSoftUInuevo.Forms
 {
@@ -20,10 +19,15 @@ namespace CredenSoftUInuevo.Forms
 
         private void ConfigurarGrilla()
         {
-            this.dgvUsuario.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvUsuario.ReadOnly = true;
-            this.dgvUsuario.AllowUserToAddRows = false;
-            this.dgvUsuario.CellFormatting += dgvUsuario_CellFormatting;
+            dgvUsuario.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvUsuario.ReadOnly = true;
+            dgvUsuario.AllowUserToAddRows = false;
+
+            // NUEVO
+            dgvUsuario.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvUsuario.MultiSelect = false;
+
+            dgvUsuario.CellFormatting += dgvUsuario_CellFormatting;
         }
 
         private void FrmUsuarios_Load(object sender, EventArgs e)
@@ -35,14 +39,18 @@ namespace CredenSoftUInuevo.Forms
         {
             try
             {
-                // Traemos la lista real de la base de datos
                 var lista = _usuarioService.ObtenerTodos();
+
                 dgvUsuario.DataSource = null;
                 dgvUsuario.DataSource = lista;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar: " + ex.Message);
+                MessageBox.Show(
+                    "Error al cargar: " + ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -50,7 +58,108 @@ namespace CredenSoftUInuevo.Forms
         {
             FrmAltaUsuario frm = new FrmAltaUsuario();
             frm.ShowDialog();
-            CargarGrilla(); // Recargamos para ver al nuevo usuario
+
+            CargarGrilla();
+        }
+
+        // =====================================================
+        // BAJA LÓGICA DE USUARIO
+        // =====================================================
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvUsuario.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show(
+                        "Seleccione un usuario.",
+                        "Atención",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+
+                Usuario usuario =
+                    dgvUsuario.SelectedRows[0].DataBoundItem as Usuario;
+
+                if (usuario == null)
+                {
+                    MessageBox.Show(
+                        "No se pudo obtener el usuario seleccionado.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+
+                    return;
+                }
+
+                DialogResult respuesta = MessageBox.Show(
+                    $"¿Desea dar de baja al usuario {usuario.Nombre} {usuario.Apellido}?",
+                    "Confirmar Baja",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    _usuarioService.BajaLogicaUsuario(usuario.IdUsuario);
+
+                    MessageBox.Show(
+                        "Usuario dado de baja correctamente.",
+                        "CredenSoft",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+                    CargarGrilla();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        // =====================================================
+        // EDICIÓN DE USUARIO
+        // =====================================================
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (dgvUsuario.SelectedRows.Count == 0)
+            {
+                MessageBox.Show(
+                    "Seleccione un usuario.",
+                    "Atención",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+
+            Usuario usuario =
+                dgvUsuario.SelectedRows[0].DataBoundItem as Usuario;
+
+            if (usuario == null)
+            {
+                MessageBox.Show(
+                    "No se pudo obtener el usuario seleccionado.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                return;
+            }
+
+            MessageBox.Show(
+                $"Editar usuario:\n\n{usuario.Nombre} {usuario.Apellido}\n\nFuncionalidad pendiente de implementación.",
+                "Editar Usuario",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
 
         private void dgvUsuario_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -58,6 +167,7 @@ namespace CredenSoftUInuevo.Forms
             if (dgvUsuario.Columns[e.ColumnIndex].Name == "colRol")
             {
                 var usuario = dgvUsuario.Rows[e.RowIndex].DataBoundItem as Usuario;
+
                 if (usuario != null && usuario.Rol != null)
                 {
                     e.Value = usuario.Rol.NombreRol;
