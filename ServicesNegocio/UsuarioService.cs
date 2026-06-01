@@ -147,22 +147,23 @@ namespace ServicesNegocio
         /// <summary>
         /// HU08 y HU09: Permite modificar datos personales controlando la unicidad del Email.
         /// </summary>
-        public void ActualizarPerfilPersonal(int idUsuario, string nombre, string apellido, string email)
+        // Opción alternativa para el futuro si agregas más campos
+        public void ActualizarUsuarioCompleto(Usuario usuarioEditado)
         {
-            var usuario = _context.Usuarios.FirstOrDefault(u => u.IdUsuario == idUsuario);
-            if (usuario == null)
+            var usuarioBD = _context.Usuarios.FirstOrDefault(u => u.IdUsuario == usuarioEditado.IdUsuario);
+            if (usuarioBD == null) throw new Exception("Usuario no encontrado.");
+
+            // Validar email repetido
+            if (_context.Usuarios.Any(u => u.Email == usuarioEditado.Email && u.IdUsuario != usuarioEditado.IdUsuario))
             {
-                throw new Exception("Usuario no encontrado.");
+                throw new Exception("El correo electrónico ya se encuentra registrado.");
             }
 
-            if (_context.Usuarios.Any(u => u.Email == email && u.IdUsuario != idUsuario))
-            {
-                throw new Exception("El correo electrónico ya se encuentra registrado por otro agente.");
-            }
-
-            usuario.Nombre = nombre;
-            usuario.Apellido = apellido;
-            usuario.Email = email;
+            // Mapeas los cambios que permitas editar
+            usuarioBD.Nombre = usuarioEditado.Nombre;
+            usuarioBD.Apellido = usuarioEditado.Apellido;
+            usuarioBD.Email = usuarioEditado.Email;
+            usuarioBD.Dni = usuarioEditado.Dni; // Si permites editar DNI
 
             _context.SaveChanges();
         }
@@ -212,6 +213,31 @@ namespace ServicesNegocio
         public List<Usuario> ObtenerTodos()
         {
             return _context.Usuarios.Include(u => u.Rol).ToList();
+        }
+        /// <summary>
+        /// Busca usuarios activos cuyo nombre, apellido o email coincidan con el término ingresado.
+        /// </summary>
+        public List<Usuario> BuscarUsuarios(string termino)
+        {
+            // Si el buscador está vacío o tiene solo espacios, devolvemos todos los activos
+            if (string.IsNullOrWhiteSpace(termino))
+            {
+                return _context.Usuarios
+                               .Include(u => u.Rol)
+                               .Where(u => u.Estado != "Inactivo")
+                               .ToList();
+            }
+
+            string terminoLimpio = termino.Trim().ToLower();
+
+            // Buscamos coincidencias en Nombre, Apellido o Email, pero SOLO de usuarios activos
+            return _context.Usuarios
+                           .Include(u => u.Rol)
+                           .Where(u => u.Estado != "Inactivo" &&
+                                      (u.Nombre.ToLower().Contains(terminoLimpio) ||
+                                       u.Apellido.ToLower().Contains(terminoLimpio) ||
+                                       u.Email.ToLower().Contains(terminoLimpio)))
+                           .ToList();
         }
     }
 }
