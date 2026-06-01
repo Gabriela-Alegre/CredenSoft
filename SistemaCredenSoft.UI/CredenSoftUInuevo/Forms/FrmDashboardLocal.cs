@@ -73,5 +73,20 @@ namespace CredenSoftUInuevo.Forms
             // Ocultamos el Dashboard Local
             this.Hide();
         }
+
+        private void btnConfiguración_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCredenciales_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSolicitudes_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

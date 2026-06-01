@@ -39,10 +39,8 @@
             btnRechazar = new Button();
             btnVerDetalle = new Button();
             btnVolver = new Button();
-
             ((System.ComponentModel.ISupportInitialize)dgvValidaciones).BeginInit();
             SuspendLayout();
-
             // 
             // lblGestióndeValidaciones
             // 
@@ -54,18 +52,17 @@
             lblGestióndeValidaciones.Size = new Size(285, 32);
             lblGestióndeValidaciones.TabIndex = 0;
             lblGestióndeValidaciones.Text = "Gestión de Validaciones";
-
             // 
             // lblSolicitudesPendientesdeValidación
             // 
             lblSolicitudesPendientesdeValidación.AutoSize = true;
-            lblSolicitudesPendientesdeValidación.Font = new Font("Segoe UI", 12F);
+            lblSolicitudesPendientesdeValidación.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            lblSolicitudesPendientesdeValidación.ForeColor = Color.FromArgb(28, 78, 128);
             lblSolicitudesPendientesdeValidación.Location = new Point(12, 108);
             lblSolicitudesPendientesdeValidación.Name = "lblSolicitudesPendientesdeValidación";
-            lblSolicitudesPendientesdeValidación.Size = new Size(402, 32);
+            lblSolicitudesPendientesdeValidación.Size = new Size(493, 38);
             lblSolicitudesPendientesdeValidación.TabIndex = 1;
             lblSolicitudesPendientesdeValidación.Text = "Solicitudes Pendientes de Validación";
-
             // 
             // dgvValidaciones
             // 
@@ -73,23 +70,14 @@
             dgvValidaciones.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvValidaciones.BackgroundColor = Color.White;
             dgvValidaciones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvValidaciones.Columns.AddRange(new DataGridViewColumn[]
-            {
-                colID,
-                colAgente,
-                colTipo,
-                colFecha,
-                colEstado
-            });
-
+            dgvValidaciones.Columns.AddRange(new DataGridViewColumn[] { colID, colAgente, colTipo, colFecha, colEstado });
             dgvValidaciones.GridColor = Color.WhiteSmoke;
             dgvValidaciones.Location = new Point(12, 168);
             dgvValidaciones.Name = "dgvValidaciones";
             dgvValidaciones.ReadOnly = true;
             dgvValidaciones.RowHeadersWidth = 62;
-            dgvValidaciones.Size = new Size(1142, 268);
+            dgvValidaciones.Size = new Size(1329, 268);
             dgvValidaciones.TabIndex = 2;
-
             // 
             // colID
             // 
@@ -97,7 +85,6 @@
             colID.MinimumWidth = 8;
             colID.Name = "colID";
             colID.ReadOnly = true;
-
             // 
             // colAgente
             // 
@@ -105,7 +92,6 @@
             colAgente.MinimumWidth = 8;
             colAgente.Name = "colAgente";
             colAgente.ReadOnly = true;
-
             // 
             // colTipo
             // 
@@ -113,7 +99,6 @@
             colTipo.MinimumWidth = 8;
             colTipo.Name = "colTipo";
             colTipo.ReadOnly = true;
-
             // 
             // colFecha
             // 
@@ -121,7 +106,6 @@
             colFecha.MinimumWidth = 8;
             colFecha.Name = "colFecha";
             colFecha.ReadOnly = true;
-
             // 
             // colEstado
             // 
@@ -129,62 +113,57 @@
             colEstado.MinimumWidth = 8;
             colEstado.Name = "colEstado";
             colEstado.ReadOnly = true;
-
             // 
             // btnAprobar
             // 
             btnAprobar.BackColor = SystemColors.ActiveCaption;
             btnAprobar.ForeColor = Color.Black;
-            btnAprobar.Location = new Point(12, 503);
+            btnAprobar.Location = new Point(15, 600);
             btnAprobar.Name = "btnAprobar";
-            btnAprobar.Size = new Size(142, 50);
+            btnAprobar.Size = new Size(210, 55);
             btnAprobar.TabIndex = 3;
             btnAprobar.Text = "Aprobar";
             btnAprobar.UseVisualStyleBackColor = false;
             btnAprobar.Click += btnAprobar_Click;
-
             // 
             // btnRechazar
             // 
             btnRechazar.BackColor = Color.IndianRed;
-            btnRechazar.Location = new Point(226, 503);
+            btnRechazar.Location = new Point(253, 600);
             btnRechazar.Name = "btnRechazar";
-            btnRechazar.Size = new Size(142, 50);
+            btnRechazar.Size = new Size(210, 55);
             btnRechazar.TabIndex = 4;
             btnRechazar.Text = "Rechazar";
             btnRechazar.UseVisualStyleBackColor = false;
             btnRechazar.Click += btnRechazar_Click;
-
             // 
             // btnVerDetalle
             // 
-            btnVerDetalle.BackColor = Color.DarkSeaGreen;
-            btnVerDetalle.Location = new Point(440, 503);
+            btnVerDetalle.BackColor = Color.Lavender;
+            btnVerDetalle.Location = new Point(491, 600);
             btnVerDetalle.Name = "btnVerDetalle";
-            btnVerDetalle.Size = new Size(142, 50);
+            btnVerDetalle.Size = new Size(210, 55);
             btnVerDetalle.TabIndex = 5;
             btnVerDetalle.Text = "Ver Detalle";
             btnVerDetalle.UseVisualStyleBackColor = false;
             btnVerDetalle.Click += btnVerDetalle_Click;
-
             // 
             // btnVolver
             // 
             btnVolver.BackColor = Color.DarkSalmon;
-            btnVolver.Location = new Point(654, 503);
+            btnVolver.Location = new Point(729, 600);
             btnVolver.Name = "btnVolver";
-            btnVolver.Size = new Size(142, 50);
+            btnVolver.Size = new Size(210, 55);
             btnVolver.TabIndex = 6;
             btnVolver.Text = "Volver";
             btnVolver.UseVisualStyleBackColor = false;
             btnVolver.Click += btnVolver_Click;
-
             // 
             // FrmValidaciones
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1188, 707);
+            ClientSize = new Size(1375, 707);
             Controls.Add(btnVolver);
             Controls.Add(btnVerDetalle);
             Controls.Add(btnRechazar);
@@ -192,13 +171,11 @@
             Controls.Add(dgvValidaciones);
             Controls.Add(lblSolicitudesPendientesdeValidación);
             Controls.Add(lblGestióndeValidaciones);
-
             Name = "FrmValidaciones";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Validaciones";
             WindowState = FormWindowState.Maximized;
             Load += FrmValidaciones_Load;
-
             ((System.ComponentModel.ISupportInitialize)dgvValidaciones).EndInit();
             ResumeLayout(false);
             PerformLayout();

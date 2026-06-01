@@ -139,7 +139,7 @@
             // btnCancelar
             // 
             btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnCancelar.BackColor = Color.FromArgb(200, 70, 34);
+            btnCancelar.BackColor = Color.IndianRed;
             btnCancelar.Location = new Point(525, 521);
             btnCancelar.Margin = new Padding(6, 5, 6, 5);
             btnCancelar.Name = "btnCancelar";

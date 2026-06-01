@@ -35,18 +35,18 @@
             lblEmail = new Label();
             lblApellido = new Label();
             grpDatosNoEditables = new GroupBox();
-            grpDatosPersonales = new GroupBox();
-            lblDni = new Label();
-            lblUsuario = new Label();
-            lblRol = new Label();
             txtUsuario = new TextBox();
             txtDni = new TextBox();
+            lblRol = new Label();
             txtRol = new TextBox();
+            lblUsuario = new Label();
+            lblDni = new Label();
+            grpDatosPersonales = new GroupBox();
             grpSeguridad = new GroupBox();
             txtNuevaContrasenia = new TextBox();
             lblNuevaContrasenia = new Label();
             btnGuardar = new Button();
-            btnCambiarContraseña = new Button();
+            btnCambiarContrasenia = new Button();
             grpDatosNoEditables.SuspendLayout();
             grpDatosPersonales.SuspendLayout();
             grpSeguridad.SuspendLayout();
@@ -62,9 +62,10 @@
             // lblNombre
             // 
             lblNombre.AutoSize = true;
+            lblNombre.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblNombre.Location = new Point(16, 30);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(78, 25);
+            lblNombre.Size = new Size(89, 28);
             lblNombre.TabIndex = 1;
             lblNombre.Text = "Nombre";
             // 
@@ -85,9 +86,10 @@
             // lblEmail
             // 
             lblEmail.AutoSize = true;
+            lblEmail.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblEmail.Location = new Point(16, 120);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(54, 25);
+            lblEmail.Size = new Size(64, 28);
             lblEmail.TabIndex = 4;
             lblEmail.Text = "Email";
             lblEmail.Click += lblEmail_Click;
@@ -95,9 +97,10 @@
             // lblApellido
             // 
             lblApellido.AutoSize = true;
+            lblApellido.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblApellido.Location = new Point(16, 75);
             lblApellido.Name = "lblApellido";
-            lblApellido.Size = new Size(78, 25);
+            lblApellido.Size = new Size(91, 28);
             lblApellido.TabIndex = 5;
             lblApellido.Text = "Apellido";
             // 
@@ -117,49 +120,6 @@
             grpDatosNoEditables.TabStop = false;
             grpDatosNoEditables.Text = "Datos No Editables";
             // 
-            // grpDatosPersonales
-            // 
-            grpDatosPersonales.BackColor = Color.White;
-            grpDatosPersonales.Controls.Add(txtNombre);
-            grpDatosPersonales.Controls.Add(lblNombre);
-            grpDatosPersonales.Controls.Add(lblApellido);
-            grpDatosPersonales.Controls.Add(txtApellido);
-            grpDatosPersonales.Controls.Add(lblEmail);
-            grpDatosPersonales.Controls.Add(txtEmail);
-            grpDatosPersonales.Location = new Point(12, 21);
-            grpDatosPersonales.Name = "grpDatosPersonales";
-            grpDatosPersonales.Size = new Size(857, 234);
-            grpDatosPersonales.TabIndex = 7;
-            grpDatosPersonales.TabStop = false;
-            grpDatosPersonales.Text = "Datos Personales";
-            // 
-            // lblDni
-            // 
-            lblDni.AutoSize = true;
-            lblDni.Location = new Point(16, 87);
-            lblDni.Name = "lblDni";
-            lblDni.Size = new Size(43, 25);
-            lblDni.TabIndex = 6;
-            lblDni.Text = "DNI";
-            // 
-            // lblUsuario
-            // 
-            lblUsuario.AutoSize = true;
-            lblUsuario.Location = new Point(16, 48);
-            lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(72, 25);
-            lblUsuario.TabIndex = 7;
-            lblUsuario.Text = "Usuario";
-            // 
-            // lblRol
-            // 
-            lblRol.AutoSize = true;
-            lblRol.Location = new Point(16, 126);
-            lblRol.Name = "lblRol";
-            lblRol.Size = new Size(37, 25);
-            lblRol.TabIndex = 8;
-            lblRol.Text = "Rol";
-            // 
             // txtUsuario
             // 
             txtUsuario.Location = new Point(244, 45);
@@ -176,6 +136,16 @@
             txtDni.Size = new Size(372, 31);
             txtDni.TabIndex = 7;
             // 
+            // lblRol
+            // 
+            lblRol.AutoSize = true;
+            lblRol.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblRol.Location = new Point(16, 126);
+            lblRol.Name = "lblRol";
+            lblRol.Size = new Size(43, 28);
+            lblRol.TabIndex = 8;
+            lblRol.Text = "Rol";
+            // 
             // txtRol
             // 
             txtRol.Location = new Point(244, 145);
@@ -183,6 +153,42 @@
             txtRol.ReadOnly = true;
             txtRol.Size = new Size(372, 31);
             txtRol.TabIndex = 8;
+            // 
+            // lblUsuario
+            // 
+            lblUsuario.AutoSize = true;
+            lblUsuario.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblUsuario.Location = new Point(16, 48);
+            lblUsuario.Name = "lblUsuario";
+            lblUsuario.Size = new Size(84, 28);
+            lblUsuario.TabIndex = 7;
+            lblUsuario.Text = "Usuario";
+            // 
+            // lblDni
+            // 
+            lblDni.AutoSize = true;
+            lblDni.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblDni.Location = new Point(16, 87);
+            lblDni.Name = "lblDni";
+            lblDni.Size = new Size(49, 28);
+            lblDni.TabIndex = 6;
+            lblDni.Text = "DNI";
+            // 
+            // grpDatosPersonales
+            // 
+            grpDatosPersonales.BackColor = Color.White;
+            grpDatosPersonales.Controls.Add(txtNombre);
+            grpDatosPersonales.Controls.Add(lblNombre);
+            grpDatosPersonales.Controls.Add(lblApellido);
+            grpDatosPersonales.Controls.Add(txtApellido);
+            grpDatosPersonales.Controls.Add(lblEmail);
+            grpDatosPersonales.Controls.Add(txtEmail);
+            grpDatosPersonales.Location = new Point(12, 21);
+            grpDatosPersonales.Name = "grpDatosPersonales";
+            grpDatosPersonales.Size = new Size(857, 234);
+            grpDatosPersonales.TabIndex = 7;
+            grpDatosPersonales.TabStop = false;
+            grpDatosPersonales.Text = "Datos Personales";
             // 
             // grpSeguridad
             // 
@@ -207,42 +213,48 @@
             // lblNuevaContrasenia
             // 
             lblNuevaContrasenia.AutoSize = true;
+            lblNuevaContrasenia.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblNuevaContrasenia.Location = new Point(16, 48);
             lblNuevaContrasenia.Name = "lblNuevaContrasenia";
-            lblNuevaContrasenia.Size = new Size(156, 25);
+            lblNuevaContrasenia.Size = new Size(185, 28);
             lblNuevaContrasenia.TabIndex = 7;
             lblNuevaContrasenia.Text = "Nueva Contraseña";
             // 
             // btnGuardar
             // 
+            btnGuardar.BackColor = SystemColors.ActiveCaption;
             btnGuardar.Location = new Point(72, 737);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(234, 66);
             btnGuardar.TabIndex = 10;
             btnGuardar.Text = "Guardar Cambios";
-            btnGuardar.UseVisualStyleBackColor = true;
+            btnGuardar.UseVisualStyleBackColor = false;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // btnCambiarContraseña
             // 
-            btnCambiarContraseña.Location = new Point(417, 737);
-            btnCambiarContraseña.Name = "btnCambiarContraseña";
-            btnCambiarContraseña.Size = new Size(234, 66);
-            btnCambiarContraseña.TabIndex = 11;
-            btnCambiarContraseña.Text = "Cambiar Contraseña";
-            btnCambiarContraseña.UseVisualStyleBackColor = true;
+            btnCambiarContrasenia.Location = new Point(417, 737);
+            btnCambiarContrasenia.Name = "btnCambiarContrasenia";
+            btnCambiarContrasenia.Size = new Size(234, 66);
+            btnCambiarContrasenia.TabIndex = 11;
+            btnCambiarContrasenia.Text = "Cambiar Contraseña";
+            btnCambiarContrasenia.UseVisualStyleBackColor = false;
+            btnCambiarContrasenia.Click += btnCambiarContrasenia_Click;
             // 
             // FrmPerfil
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(1295, 815);
-            Controls.Add(btnCambiarContraseña);
+            Controls.Add(btnCambiarContrasenia);
             Controls.Add(btnGuardar);
             Controls.Add(grpSeguridad);
             Controls.Add(grpDatosPersonales);
             Controls.Add(grpDatosNoEditables);
             Name = "FrmPerfil";
             Text = "FrmPerfil";
+            Load += FrmPerfil_Load;
             grpDatosNoEditables.ResumeLayout(false);
             grpDatosNoEditables.PerformLayout();
             grpDatosPersonales.ResumeLayout(false);
@@ -272,6 +284,6 @@
         private TextBox txtNuevaContrasenia;
         private Label lblNuevaContrasenia;
         private Button btnGuardar;
-        private Button btnCambiarContraseña;
+        private Button btnCambiarContrasenia;
     }
 }

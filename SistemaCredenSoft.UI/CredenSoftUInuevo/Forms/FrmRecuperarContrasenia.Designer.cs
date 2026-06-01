@@ -73,7 +73,7 @@
             btnConfirmar.Location = new Point(151, 500);
             btnConfirmar.Margin = new Padding(4, 5, 4, 5);
             btnConfirmar.Name = "btnConfirmar";
-            btnConfirmar.Size = new Size(136, 58);
+            btnConfirmar.Size = new Size(210, 55);
             btnConfirmar.TabIndex = 3;
             btnConfirmar.Text = "Confirmar";
             btnConfirmar.UseVisualStyleBackColor = false;
@@ -81,11 +81,11 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.BackColor = Color.FromArgb(200, 70, 34);
+            btnCancelar.BackColor = Color.IndianRed;
             btnCancelar.Location = new Point(496, 495);
             btnCancelar.Margin = new Padding(4, 5, 4, 5);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(136, 58);
+            btnCancelar.Size = new Size(210, 55);
             btnCancelar.TabIndex = 4;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = false;
@@ -201,7 +201,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(833, 648);
+            ClientSize = new Size(1124, 648);
             Controls.Add(picVerConfirmarContrasenia);
             Controls.Add(picVerContrasenia);
             Controls.Add(txtConfirmarContrasenia);

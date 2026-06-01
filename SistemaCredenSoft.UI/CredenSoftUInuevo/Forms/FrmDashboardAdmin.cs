@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ModelsEntidades;
+using System;
 using System.Windows.Forms;
-
-// IMPORTANTE:
-// Agregamos esta referencia para acceder a la sesión actual
-using ModelsEntidades;
 
 namespace CredenSoftUInuevo.Forms
 {
@@ -23,12 +13,24 @@ namespace CredenSoftUInuevo.Forms
 
         // =====================================================
         // VALIDACIÓN DE ACCESO POR ROL
-        // PASO 3.3 - Restricción de Funcionalidades
         // =====================================================
 
         private void FrmDashboardAdmin_Load(object sender, EventArgs e)
         {
-            // Verificamos si el usuario logueado NO es Administrador Central
+            // Verificar sesión
+            if (SesionActual.UsuarioLogueado == null)
+            {
+                MessageBox.Show(
+                    "No hay sesión iniciada.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                this.Close();
+                return;
+            }
+
+            // Solo Administrador Central
             if (SesionActual.UsuarioLogueado.IdRol != 1)
             {
                 MessageBox.Show(
@@ -37,14 +39,25 @@ namespace CredenSoftUInuevo.Forms
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Stop);
 
-                // Cerramos el formulario
                 this.Close();
+                return;
             }
-        }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
+            // Mostrar datos de sesión
+            lblUsuario.Text =
+                "Usuario: " +
+                SesionActual.UsuarioLogueado.Nombre + " " +
+                SesionActual.UsuarioLogueado.Apellido;
 
+            lblRol.Text =
+                "Rol: " +
+                SesionActual.UsuarioLogueado.Rol.NombreRol;
+
+            lblFecha.Text =
+                "Fecha: " +
+                DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+
+            lblEstado.Text = "Estado: Activo";
         }
 
         // =====================================================
@@ -55,6 +68,37 @@ namespace CredenSoftUInuevo.Forms
         {
             FrmUsuarios frm = new FrmUsuarios();
             frm.ShowDialog();
+        }
+
+        // =====================================================
+        // CERRAR SESIÓN
+        // =====================================================
+
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            FrmLogin frm = new FrmLogin();
+            frm.Show();
+
+            this.Hide();
+        }
+
+        // =====================================================
+        // EVENTOS VACÍOS DEL DISEÑADOR
+        // =====================================================
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblÚltimasSolicitudes_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelMenu_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -33,7 +33,7 @@
             dgvSolicitudes.Margin = new Padding(6, 5, 6, 5);
             dgvSolicitudes.Name = "dgvSolicitudes";
             dgvSolicitudes.RowHeadersWidth = 62;
-            dgvSolicitudes.Size = new Size(1095, 507);
+            dgvSolicitudes.Size = new Size(1329, 507);
             dgvSolicitudes.TabIndex = 0;
             // 
             // btnNueva
@@ -42,7 +42,7 @@
             btnNueva.Location = new Point(20, 625);
             btnNueva.Margin = new Padding(6, 5, 6, 5);
             btnNueva.Name = "btnNueva";
-            btnNueva.Size = new Size(126, 45);
+            btnNueva.Size = new Size(210, 55);
             btnNueva.TabIndex = 1;
             btnNueva.Text = "Nueva";
             btnNueva.UseVisualStyleBackColor = false;
@@ -50,11 +50,11 @@
             // 
             // btnEliminar
             // 
-            btnEliminar.BackColor = Color.FromArgb(200, 70, 34);
-            btnEliminar.Location = new Point(833, 625);
+            btnEliminar.BackColor = Color.IndianRed;
+            btnEliminar.Location = new Point(480, 625);
             btnEliminar.Margin = new Padding(6, 5, 6, 5);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(126, 45);
+            btnEliminar.Size = new Size(210, 55);
             btnEliminar.TabIndex = 2;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = false;
@@ -62,11 +62,11 @@
             // 
             // btnVer
             // 
-            btnVer.BackColor = Color.DarkSeaGreen;
-            btnVer.Location = new Point(173, 625);
+            btnVer.BackColor = Color.Lavender;
+            btnVer.Location = new Point(250, 625);
             btnVer.Margin = new Padding(6, 5, 6, 5);
             btnVer.Name = "btnVer";
-            btnVer.Size = new Size(126, 45);
+            btnVer.Size = new Size(210, 55);
             btnVer.TabIndex = 3;
             btnVer.Text = "Ver";
             btnVer.UseVisualStyleBackColor = false;
@@ -87,7 +87,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1130, 695);
+            ClientSize = new Size(1364, 695);
             Controls.Add(label1);
             Controls.Add(btnVer);
             Controls.Add(btnEliminar);
