@@ -1,7 +1,7 @@
 ﻿using ModelsEntidades;
 using System;
 using System.Windows.Forms;
-using DataEF; // 👈 IMPORTANTE (tu DbContext está acá)
+using DataEF;
 using ServicesNegocio;
 
 namespace CredenSoftUInuevo.Forms
@@ -14,7 +14,7 @@ namespace CredenSoftUInuevo.Forms
         {
             InitializeComponent();
 
-            // 🔥 CREÁS EL CONTEXTO UNA SOLA VEZ
+            // Crear contexto una sola vez
             _context = new CredenSoftContext();
         }
 
@@ -24,8 +24,12 @@ namespace CredenSoftUInuevo.Forms
 
             if (usuario == null)
             {
-                MessageBox.Show("No hay usuario logueado", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "No hay usuario logueado",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
                 this.Close();
                 return;
             }
@@ -55,7 +59,12 @@ namespace CredenSoftUInuevo.Forms
                 string.IsNullOrWhiteSpace(txtApellido.Text) ||
                 string.IsNullOrWhiteSpace(txtEmail.Text))
             {
-                MessageBox.Show("Complete todos los campos");
+                MessageBox.Show(
+                    "Complete todos los campos",
+                    "Validación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
                 return;
             }
 
@@ -63,23 +72,35 @@ namespace CredenSoftUInuevo.Forms
             {
                 UsuarioService servicio = new UsuarioService(_context);
 
-                servicio.ActualizarPerfilPersonal(
-                    usuario.IdUsuario,
-                    txtNombre.Text,
-                    txtApellido.Text,
-                    txtEmail.Text
-                );
+                Usuario usuarioEditado = new Usuario
+                {
+                    IdUsuario = usuario.IdUsuario,
+                    Nombre = txtNombre.Text.Trim(),
+                    Apellido = txtApellido.Text.Trim(),
+                    Email = txtEmail.Text.Trim(),
+                    Dni = usuario.Dni
+                };
 
-                // 🔥 actualizar sesión también
-                usuario.Nombre = txtNombre.Text;
-                usuario.Apellido = txtApellido.Text;
-                usuario.Email = txtEmail.Text;
+                servicio.ActualizarUsuarioCompleto(usuarioEditado);
 
-                MessageBox.Show("Perfil actualizado correctamente");
+                // Actualizar sesión
+                usuario.Nombre = usuarioEditado.Nombre;
+                usuario.Apellido = usuarioEditado.Apellido;
+                usuario.Email = usuarioEditado.Email;
+
+                MessageBox.Show(
+                    "Perfil actualizado correctamente",
+                    "CredenSoft",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show(
+                    "Error: " + ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -95,7 +116,12 @@ namespace CredenSoftUInuevo.Forms
 
             if (string.IsNullOrWhiteSpace(txtNuevaContrasenia.Text))
             {
-                MessageBox.Show("Ingrese una contraseña");
+                MessageBox.Show(
+                    "Ingrese una contraseña",
+                    "Validación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
                 return;
             }
 
@@ -109,13 +135,21 @@ namespace CredenSoftUInuevo.Forms
                     txtNuevaContrasenia.Text
                 );
 
-                MessageBox.Show("Contraseña actualizada");
+                MessageBox.Show(
+                    "Contraseña actualizada",
+                    "CredenSoft",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
 
                 txtNuevaContrasenia.Clear();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show(
+                    "Error: " + ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 

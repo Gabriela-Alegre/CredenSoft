@@ -23,7 +23,6 @@ namespace CredenSoftUInuevo.Forms
             dgvUsuario.ReadOnly = true;
             dgvUsuario.AllowUserToAddRows = false;
 
-            // NUEVO
             dgvUsuario.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvUsuario.MultiSelect = false;
 
@@ -130,36 +129,48 @@ namespace CredenSoftUInuevo.Forms
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            if (dgvUsuario.SelectedRows.Count == 0)
+            try
             {
-                MessageBox.Show(
-                    "Seleccione un usuario.",
-                    "Atención",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                if (dgvUsuario.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show(
+                        "Seleccione un usuario.",
+                        "Atención",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
 
-                return;
+                    return;
+                }
+
+                Usuario usuario =
+                    dgvUsuario.SelectedRows[0].DataBoundItem as Usuario;
+
+                if (usuario == null)
+                {
+                    MessageBox.Show(
+                        "No se pudo obtener el usuario seleccionado.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+
+                    return;
+                }
+
+                FrmEditarUsuario frm = new FrmEditarUsuario(usuario);
+
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    CargarGrilla();
+                }
             }
-
-            Usuario usuario =
-                dgvUsuario.SelectedRows[0].DataBoundItem as Usuario;
-
-            if (usuario == null)
+            catch (Exception ex)
             {
                 MessageBox.Show(
-                    "No se pudo obtener el usuario seleccionado.",
+                    ex.Message,
                     "Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-
-                return;
             }
-
-            MessageBox.Show(
-                $"Editar usuario:\n\n{usuario.Nombre} {usuario.Apellido}\n\nFuncionalidad pendiente de implementación.",
-                "Editar Usuario",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
         }
 
         private void dgvUsuario_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
