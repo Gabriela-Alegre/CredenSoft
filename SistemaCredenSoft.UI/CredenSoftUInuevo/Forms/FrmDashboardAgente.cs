@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CredenSoftUInuevo.Forms
@@ -17,16 +10,6 @@ namespace CredenSoftUInuevo.Forms
             InitializeComponent();
         }
 
-        private void lblMiPaneldeUsuario_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dgvSolicitudes_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         // =====================================================
         // MI CREDENCIAL
         // =====================================================
@@ -34,8 +17,7 @@ namespace CredenSoftUInuevo.Forms
         private void btnMiCredencial_Click(object sender, EventArgs e)
         {
             FrmMiCredencial frm = new FrmMiCredencial();
-            frm.Show();
-            this.Hide();
+            frm.ShowDialog();
         }
 
         // =====================================================
@@ -45,8 +27,7 @@ namespace CredenSoftUInuevo.Forms
         private void btnSolicitudes_Click(object sender, EventArgs e)
         {
             FrmSolicitud frm = new FrmSolicitud();
-            frm.Show();
-            this.Hide();
+            frm.ShowDialog();
         }
 
         // =====================================================
@@ -56,8 +37,7 @@ namespace CredenSoftUInuevo.Forms
         private void btnPerfil_Click(object sender, EventArgs e)
         {
             FrmPerfil frm = new FrmPerfil();
-            frm.Show();
-            this.Hide();
+            frm.ShowDialog();
         }
 
         // =====================================================
@@ -67,8 +47,7 @@ namespace CredenSoftUInuevo.Forms
         private void btnConfiguracion_Click(object sender, EventArgs e)
         {
             FrmConfiguracion frm = new FrmConfiguracion();
-            frm.Show();
-            this.Hide();
+            frm.ShowDialog();
         }
 
         // =====================================================
@@ -77,9 +56,19 @@ namespace CredenSoftUInuevo.Forms
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-            FrmLogin frm = new FrmLogin();
-            frm.Show();
-            this.Hide();
+            DialogResult resultado = MessageBox.Show(
+                "¿Desea cerrar sesión?",
+                "CredenSoft",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (resultado == DialogResult.Yes)
+            {
+                FrmLogin frm = new FrmLogin();
+                frm.Show();
+
+                this.Hide();
+            }
         }
 
         // =====================================================
@@ -89,8 +78,7 @@ namespace CredenSoftUInuevo.Forms
         private void btnVerCredencial_Click(object sender, EventArgs e)
         {
             FrmMiCredencial frm = new FrmMiCredencial();
-            frm.Show();
-            this.Hide();
+            frm.ShowDialog();
         }
 
         // =====================================================
@@ -100,8 +88,7 @@ namespace CredenSoftUInuevo.Forms
         private void btnNuevaSolicitud_Click(object sender, EventArgs e)
         {
             FrmSolicitud frm = new FrmSolicitud();
-            frm.Show();
-            this.Hide();
+            frm.ShowDialog();
         }
 
         // =====================================================
@@ -111,8 +98,21 @@ namespace CredenSoftUInuevo.Forms
         private void btnActualizarPerfil_Click(object sender, EventArgs e)
         {
             FrmPerfil frm = new FrmPerfil();
-            frm.Show();
-            this.Hide();
+            frm.ShowDialog();
+        }
+
+        // =====================================================
+        // EVENTOS VACÍOS
+        // =====================================================
+
+        private void lblMiPaneldeUsuario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvSolicitudes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
 
         private void lblAccionesRápidas_Click(object sender, EventArgs e)
@@ -128,18 +128,6 @@ namespace CredenSoftUInuevo.Forms
         private void lblFechaVencimiento_Click(object sender, EventArgs e)
         {
 
-        }
-
-        // =====================================================
-        // BOTÓN TEMPORAL DE PRUEBA
-        // VALIDACIÓN DE SEGURIDAD POR ROL
-        // =====================================================
-
-        private void btnProbarValidaciones_Click(object sender, EventArgs e)
-        {
-            // Intentamos abrir el formulario Validaciones
-            FrmValidaciones frm = new FrmValidaciones();
-            frm.Show();
         }
     }
 }

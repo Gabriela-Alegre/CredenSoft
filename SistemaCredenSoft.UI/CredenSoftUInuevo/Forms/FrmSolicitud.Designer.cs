@@ -33,7 +33,7 @@
             dgvSolicitudes.Margin = new Padding(6, 5, 6, 5);
             dgvSolicitudes.Name = "dgvSolicitudes";
             dgvSolicitudes.RowHeadersWidth = 62;
-            dgvSolicitudes.Size = new Size(933, 507);
+            dgvSolicitudes.Size = new Size(1095, 507);
             dgvSolicitudes.TabIndex = 0;
             // 
             // btnNueva
@@ -87,7 +87,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(973, 695);
+            ClientSize = new Size(1130, 695);
             Controls.Add(label1);
             Controls.Add(btnVer);
             Controls.Add(btnEliminar);
