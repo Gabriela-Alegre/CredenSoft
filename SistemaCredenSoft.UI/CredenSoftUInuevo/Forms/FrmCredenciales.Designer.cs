@@ -79,7 +79,7 @@
             // btnEliminar
             // 
             btnEliminar.BackColor = Color.IndianRed;
-            btnEliminar.Location = new Point(503, 785);
+            btnEliminar.Location = new Point(499, 785);
             btnEliminar.Margin = new Padding(6, 5, 6, 5);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(210, 55);

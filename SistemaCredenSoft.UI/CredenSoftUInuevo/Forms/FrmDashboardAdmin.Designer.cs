@@ -140,6 +140,7 @@
             btnSolicitudes.Text = "Solicitudes";
             btnSolicitudes.TextAlign = ContentAlignment.MiddleLeft;
             btnSolicitudes.UseVisualStyleBackColor = false;
+            btnSolicitudes.Click += btnSolicitudes_Click;
             // 
             // btnCredenciales
             // 
@@ -155,6 +156,7 @@
             btnCredenciales.Text = "Credenciales";
             btnCredenciales.TextAlign = ContentAlignment.MiddleLeft;
             btnCredenciales.UseVisualStyleBackColor = false;
+            btnCredenciales.Click += btnCredenciales_Click;
             // 
             // btnAuditoría
             // 
@@ -185,6 +187,7 @@
             btnConfiguración.Text = "Configuración";
             btnConfiguración.TextAlign = ContentAlignment.MiddleLeft;
             btnConfiguración.UseVisualStyleBackColor = false;
+            btnConfiguración.Click += btnConfiguracion_Click;
             // 
             // btnGestiónDeUsuarios
             // 
@@ -299,6 +302,7 @@
             btnEmitirCredencial.TabIndex = 7;
             btnEmitirCredencial.Text = "Emitir Credencial";
             btnEmitirCredencial.UseVisualStyleBackColor = false;
+            btnEmitirCredencial.Click += btnEmitirCredencial_Click;
             // 
             // btnVerSolicitudes
             // 
@@ -311,6 +315,7 @@
             btnVerSolicitudes.TabIndex = 6;
             btnVerSolicitudes.Text = "Ver Solicitudes";
             btnVerSolicitudes.UseVisualStyleBackColor = false;
+            btnVerSolicitudes.Click += btnVerSolicitudes_Click;
             // 
             // btnNuevoUsuario
             // 
@@ -323,6 +328,7 @@
             btnNuevoUsuario.TabIndex = 5;
             btnNuevoUsuario.Text = "Nuevo Usuario";
             btnNuevoUsuario.UseVisualStyleBackColor = false;
+            btnNuevoUsuario.Click += btnNuevoUsuario_Click;
             // 
             // lblAccionesRápidas
             // 

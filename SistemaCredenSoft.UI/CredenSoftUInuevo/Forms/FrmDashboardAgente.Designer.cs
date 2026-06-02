@@ -62,6 +62,9 @@
             lblApellido = new Label();
             lblNombre = new Label();
             lblMiPaneldeUsuario = new Label();
+            lblInfoUsuario = new Label();
+            statusStrip = new StatusStrip();
+            lblStatus = new ToolStripStatusLabel();
             panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelMenu.SuspendLayout();
@@ -69,11 +72,13 @@
             ((System.ComponentModel.ISupportInitialize)dgvSolicitudes).BeginInit();
             groupCredencial.SuspendLayout();
             groupDatosUsuario.SuspendLayout();
+            statusStrip.SuspendLayout();
             SuspendLayout();
             // 
             // panelTop
             // 
             panelTop.BackColor = Color.FromArgb(25, 35, 50);
+            panelTop.Controls.Add(lblInfoUsuario);
             panelTop.Controls.Add(pictureBox1);
             panelTop.Dock = DockStyle.Top;
             panelTop.Location = new Point(0, 0);
@@ -203,6 +208,7 @@
             // 
             // panelContenido
             // 
+            panelContenido.Controls.Add(statusStrip);
             panelContenido.Controls.Add(btnActualizarPerfil);
             panelContenido.Controls.Add(btnNuevaSolicitud);
             panelContenido.Controls.Add(btnVerCredencial);
@@ -224,7 +230,7 @@
             btnActualizarPerfil.FlatAppearance.BorderSize = 0;
             btnActualizarPerfil.FlatStyle = FlatStyle.Flat;
             btnActualizarPerfil.Font = new Font("Segoe UI", 11F);
-            btnActualizarPerfil.Location = new Point(283, 894);
+            btnActualizarPerfil.Location = new Point(271, 855);
             btnActualizarPerfil.Name = "btnActualizarPerfil";
             btnActualizarPerfil.Size = new Size(223, 55);
             btnActualizarPerfil.TabIndex = 8;
@@ -238,7 +244,7 @@
             btnNuevaSolicitud.FlatAppearance.BorderSize = 0;
             btnNuevaSolicitud.FlatStyle = FlatStyle.Flat;
             btnNuevaSolicitud.Font = new Font("Segoe UI", 11F);
-            btnNuevaSolicitud.Location = new Point(530, 894);
+            btnNuevaSolicitud.Location = new Point(518, 855);
             btnNuevaSolicitud.Name = "btnNuevaSolicitud";
             btnNuevaSolicitud.Size = new Size(223, 55);
             btnNuevaSolicitud.TabIndex = 7;
@@ -252,7 +258,7 @@
             btnVerCredencial.FlatAppearance.BorderSize = 0;
             btnVerCredencial.FlatStyle = FlatStyle.Flat;
             btnVerCredencial.Font = new Font("Segoe UI", 11F);
-            btnVerCredencial.Location = new Point(27, 894);
+            btnVerCredencial.Location = new Point(15, 855);
             btnVerCredencial.Name = "btnVerCredencial";
             btnVerCredencial.Size = new Size(223, 55);
             btnVerCredencial.TabIndex = 6;
@@ -469,6 +475,34 @@
             lblMiPaneldeUsuario.Text = "Mi Panel de Usuario";
             lblMiPaneldeUsuario.Click += lblMiPaneldeUsuario_Click;
             // 
+            // lblInfoUsuario
+            // 
+            lblInfoUsuario.AutoSize = true;
+            lblInfoUsuario.ForeColor = SystemColors.ButtonHighlight;
+            lblInfoUsuario.Location = new Point(1288, 27);
+            lblInfoUsuario.Name = "lblInfoUsuario";
+            lblInfoUsuario.Size = new Size(165, 25);
+            lblInfoUsuario.TabIndex = 5;
+            lblInfoUsuario.Text = "Cargando usuario...";
+            // 
+            // statusStrip
+            // 
+            statusStrip.BackColor = Color.FromArgb(30, 40, 55);
+            statusStrip.ImageScalingSize = new Size(24, 24);
+            statusStrip.Items.AddRange(new ToolStripItem[] { lblStatus });
+            statusStrip.Location = new Point(0, 929);
+            statusStrip.Name = "statusStrip";
+            statusStrip.Padding = new Padding(1, 0, 23, 0);
+            statusStrip.Size = new Size(1203, 32);
+            statusStrip.TabIndex = 9;
+            // 
+            // lblStatus
+            // 
+            lblStatus.ForeColor = Color.LimeGreen;
+            lblStatus.Name = "lblStatus";
+            lblStatus.Size = new Size(297, 25);
+            lblStatus.Text = "● Sistema Online - Conexión Segura";
+            // 
             // FrmDashboardAgente
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -484,6 +518,7 @@
             Text = "FrmDashboardAgente";
             WindowState = FormWindowState.Maximized;
             panelTop.ResumeLayout(false);
+            panelTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panelMenu.ResumeLayout(false);
             panelContenido.ResumeLayout(false);
@@ -493,6 +528,8 @@
             groupCredencial.PerformLayout();
             groupDatosUsuario.ResumeLayout(false);
             groupDatosUsuario.PerformLayout();
+            statusStrip.ResumeLayout(false);
+            statusStrip.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -531,5 +568,8 @@
         private DataGridViewTextBoxColumn colFecha;
         private Button btnCerrarSesion;
         private PictureBox pictureBox1;
+        private Label lblInfoUsuario;
+        private StatusStrip statusStrip;
+        private ToolStripStatusLabel lblStatus;
     }
 }

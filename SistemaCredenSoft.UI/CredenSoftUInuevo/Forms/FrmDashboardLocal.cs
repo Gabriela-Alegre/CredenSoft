@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ModelsEntidades;
+using System;
 using System.Windows.Forms;
 
 namespace CredenSoftUInuevo.Forms
@@ -15,78 +9,150 @@ namespace CredenSoftUInuevo.Forms
         public FrmDashboardLocal()
         {
             InitializeComponent();
+
+            Load += FrmDashboardLocal_Load;
+        }
+
+        // =====================================================
+        // CARGA DEL DASHBOARD
+        // =====================================================
+
+        private void FrmDashboardLocal_Load(object sender, EventArgs e)
+        {
+            // Verificar sesión activa
+            if (SesionActual.UsuarioLogueado == null)
+            {
+                MessageBox.Show(
+                    "No hay sesión iniciada.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                this.Close();
+                return;
+            }
+
+            // Verificar rol Administrador Local
+            if (SesionActual.UsuarioLogueado.IdRol != 2)
+            {
+                MessageBox.Show(
+                    "Acceso denegado.\nEste módulo es exclusivo para Administradores Locales.",
+                    "Seguridad",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Stop);
+
+                this.Close();
+                return;
+            }
+
+            // Mostrar datos del usuario
+            lblRol.Text =
+                "Rol: " +
+                SesionActual.UsuarioLogueado.Rol.NombreRol;
+
+            lblNombre.Text =
+                "Nombre: " +
+                SesionActual.UsuarioLogueado.Nombre + " " +
+                SesionActual.UsuarioLogueado.Apellido;
+
+            // Temporal hasta tener sede en BD
+            lblSede.Text = "Sede: Aeropuerto Local";
         }
 
         // =====================================================
         // CERRAR SESIÓN
-        // PASO 4 - Navegación del Sistema
         // =====================================================
 
         private void btnCerrarSesión_Click(object sender, EventArgs e)
         {
-            // Volvemos al formulario Login
-            FrmLogin frm = new FrmLogin();
-            frm.Show();
+            DialogResult resultado = MessageBox.Show(
+                "¿Desea cerrar sesión?",
+                "CredenSoft",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
 
-            // Ocultamos el Dashboard Local
-            this.Hide();
-        }
+            if (resultado == DialogResult.Yes)
+            {
+                SesionActual.Logout();
 
-        // =====================================================
-        // BOTÓN TEMPORAL DE PRUEBA
-        // PASO 3.3 - Validación de Restricción por Rol
-        // =====================================================
+                FrmLogin frm = new FrmLogin();
+                frm.Show();
 
-        private void btnProbarAcceso_Click(object sender, EventArgs e)
-        {
-            // Intentamos abrir el Dashboard Administrador Central
-            FrmDashboardAdmin frm = new FrmDashboardAdmin();
-            frm.Show();
+                this.Close();
+            }
         }
 
         // =====================================================
         // VALIDACIONES
-        // PASO 3.5 - Navegación a Validaciones
         // =====================================================
 
         private void btnValidaciones_Click(object sender, EventArgs e)
         {
-            // Abrimos el formulario de Validaciones
             FrmValidaciones frm = new FrmValidaciones();
             frm.Show();
 
-            // Ocultamos el Dashboard Local
             this.Hide();
         }
 
         // =====================================================
-        // SEGUNDO BOTÓN VALIDACIONES
-        // (si duplicaste el botón desde diseño)
+        // VALIDAR SOLICITUD
         // =====================================================
 
-        private void btnValidaciones2_Click(object sender, EventArgs e)
+        private void btnValidarSolicitud_Click(object sender, EventArgs e)
         {
-            // Abrimos el formulario de Validaciones
             FrmValidaciones frm = new FrmValidaciones();
             frm.Show();
 
-            // Ocultamos el Dashboard Local
             this.Hide();
         }
+
+        // =====================================================
+        // CONFIGURACIÓN
+        // =====================================================
 
         private void btnConfiguración_Click(object sender, EventArgs e)
         {
+            FrmConfiguracion frm = new FrmConfiguracion();
+            frm.Show();
 
+            this.Hide();
         }
+
+        // =====================================================
+        // CREDENCIALES
+        // =====================================================
 
         private void btnCredenciales_Click(object sender, EventArgs e)
         {
+            FrmCredenciales frm = new FrmCredenciales();
+            frm.Show();
 
+            this.Hide();
         }
+
+        // =====================================================
+        // GENERAR REPORTE
+        // =====================================================
+
+        private void btnGenerarReporte_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                "Funcionalidad en desarrollo.",
+                "CredenSoft",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+        }
+
+        // =====================================================
+        // SOLICITUDES
+        // =====================================================
 
         private void btnSolicitudes_Click(object sender, EventArgs e)
         {
+            FrmSolicitud frm = new FrmSolicitud();
+            frm.Show();
 
+            this.Hide();
         }
     }
 }

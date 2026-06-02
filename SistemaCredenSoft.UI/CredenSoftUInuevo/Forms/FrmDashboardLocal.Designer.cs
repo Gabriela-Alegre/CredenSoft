@@ -175,6 +175,7 @@
             btnValidarSolicitud.TabIndex = 5;
             btnValidarSolicitud.Text = "Validar Solicitud";
             btnValidarSolicitud.UseVisualStyleBackColor = false;
+            btnValidarSolicitud.Click += btnValidarSolicitud_Click;
             // 
             // lblÚltimasSolicitudes
             // 
@@ -293,6 +294,7 @@
             btnGenerarReporte.TabIndex = 7;
             btnGenerarReporte.Text = "Generar Reporte";
             btnGenerarReporte.UseVisualStyleBackColor = false;
+            btnGenerarReporte.Click += btnGenerarReporte_Click;
             // 
             // btnSolicitudes
             // 
