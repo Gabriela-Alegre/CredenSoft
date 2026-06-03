@@ -216,7 +216,10 @@
             Controls.Add(txtDni);
             Controls.Add(txtEmail);
             Controls.Add(txtNuevaContrasenia);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(4, 5, 4, 5);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "FrmRecuperarContrasenia";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Recuperar Contraseña - CredenSoft";

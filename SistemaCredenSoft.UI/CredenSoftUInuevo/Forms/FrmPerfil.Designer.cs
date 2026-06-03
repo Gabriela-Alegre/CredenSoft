@@ -231,7 +231,7 @@
             btnGuardar.UseVisualStyleBackColor = false;
             btnGuardar.Click += btnGuardar_Click;
             // 
-            // btnCambiarContraseña
+            // btnCambiarContrasenia
             // 
             btnCambiarContrasenia.Location = new Point(417, 737);
             btnCambiarContrasenia.Name = "btnCambiarContrasenia";
@@ -252,6 +252,9 @@
             Controls.Add(grpSeguridad);
             Controls.Add(grpDatosPersonales);
             Controls.Add(grpDatosNoEditables);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "FrmPerfil";
             Text = "FrmPerfil";
             Load += FrmPerfil_Load;

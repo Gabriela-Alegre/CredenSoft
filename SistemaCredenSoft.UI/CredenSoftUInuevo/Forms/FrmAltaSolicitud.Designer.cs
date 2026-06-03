@@ -156,6 +156,9 @@
             Controls.Add(lblTipoDeSolicitud);
             Controls.Add(cmbUsuario);
             Controls.Add(lblUsuario);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "FrmAltaSolicitud";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Nueva Solicitud";

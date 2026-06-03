@@ -61,6 +61,12 @@ namespace CredenSoftUInuevo.Forms
                 DateTime.Now.ToString("dd/MM/yyyy HH:mm");
 
             lblEstado.Text = "Estado: Activo";
+            lblInfoUsuario.Text =
+                $"{SesionActual.UsuarioLogueado.Nombre} " +
+                $"{SesionActual.UsuarioLogueado.Apellido} | " +
+                $"{SesionActual.UsuarioLogueado.Rol.NombreRol}";
+            lblStatus.Text =
+                "● Sesión activa | Conexión segura";
 
             // =====================================================
             // DATOS INFORMATIVOS
@@ -178,5 +184,18 @@ namespace CredenSoftUInuevo.Forms
                 MessageBoxButtons.OK,
         MessageBoxIcon.Information);
         }
+
+        private void btnValidaciones_Click(object sender, EventArgs e)
+        {
+            FrmValidaciones frm = new FrmValidaciones();
+            frm.Show();
+
+            this.Hide();
+        }
+
+        private void lblInfoUsuario_Click(object sender, EventArgs e)
+        {
+
+        }
     }
-    }
+}

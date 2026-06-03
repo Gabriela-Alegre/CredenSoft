@@ -147,8 +147,11 @@
             Controls.Add(btnEliminar);
             Controls.Add(lblGestionDeUsuarios);
             Margin = new Padding(6, 5, 6, 5);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "FrmUsuarios";
             Text = "Usuarios - CredenSoft";
+            WindowState = FormWindowState.Maximized;
             Load += FrmUsuarios_Load;
             ((System.ComponentModel.ISupportInitialize)dgvUsuario).EndInit();
             ResumeLayout(false);

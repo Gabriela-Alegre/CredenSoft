@@ -274,7 +274,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(583, 653);
+            ClientSize = new Size(955, 653);
             Controls.Add(picVerConfirmarContrasenia);
             Controls.Add(picVerContrasenia);
             Controls.Add(label2);
@@ -296,7 +296,10 @@
             Controls.Add(lblDni);
             Controls.Add(lblApellido);
             Controls.Add(lblNombre);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(6, 5, 6, 5);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "FrmAltaUsuario";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Alta de Usuario";

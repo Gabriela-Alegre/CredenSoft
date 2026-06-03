@@ -145,8 +145,12 @@
             Controls.Add(dgvCredenciales);
             Controls.Add(btnEliminar);
             Controls.Add(lblGestionDeCredenciales);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(6, 5, 6, 5);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "FrmCredenciales";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmCredenciales";
             ((System.ComponentModel.ISupportInitialize)dgvCredenciales).EndInit();
             ResumeLayout(false);

@@ -218,6 +218,9 @@
             Controls.Add(lblRol);
             Controls.Add(lblNombre);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "FrmEditarUsuario";
             Text = "FrmEditarUsuario";
             Load += FrmEditarUsuario_Load;

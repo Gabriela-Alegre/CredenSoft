@@ -176,8 +176,10 @@
             Controls.Add(lblFechaDeEmision);
             Controls.Add(cmbSolicitud);
             Controls.Add(lblSolicitud);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(6, 5, 6, 5);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "FrmAltaCredencial";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Nueva Credencial";

@@ -93,7 +93,10 @@
             Controls.Add(btnEliminar);
             Controls.Add(btnNueva);
             Controls.Add(dgvSolicitudes);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(6, 5, 6, 5);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "FrmSolicitud";
             Text = "Listado de Solicitudes";
             Load += FrmSolicitud_Load;

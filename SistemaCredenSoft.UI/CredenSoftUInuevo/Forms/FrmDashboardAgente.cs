@@ -46,12 +46,15 @@ namespace CredenSoftUInuevo.Forms
             lblEstado.Text =
                 "Estado: " +
                 SesionActual.UsuarioLogueado.Estado;
+
             lbDNI.Text =
                 "DNI: " +
                 SesionActual.UsuarioLogueado.Dni;
 
             lblInfoUsuario.Text =
-        $"{SesionActual.UsuarioLogueado.Nombre} {SesionActual.UsuarioLogueado.Apellido} | {SesionActual.UsuarioLogueado.Rol.NombreRol}";
+                $"{SesionActual.UsuarioLogueado.Nombre} " +
+                $"{SesionActual.UsuarioLogueado.Apellido} | " +
+                $"{SesionActual.UsuarioLogueado.Rol.NombreRol}";
 
             lblStatus.Text =
                 "● Sesión activa | Conexión segura";
@@ -111,10 +114,12 @@ namespace CredenSoftUInuevo.Forms
 
             if (resultado == DialogResult.Yes)
             {
+                SesionActual.Logout();
+
                 FrmLogin frm = new FrmLogin();
                 frm.Show();
 
-                this.Hide();
+                this.Close();
             }
         }
 

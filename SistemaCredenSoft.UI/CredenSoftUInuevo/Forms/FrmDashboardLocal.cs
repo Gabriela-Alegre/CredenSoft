@@ -56,7 +56,18 @@ namespace CredenSoftUInuevo.Forms
                 SesionActual.UsuarioLogueado.Apellido;
 
             // Temporal hasta tener sede en BD
-            lblSede.Text = "Sede: Aeropuerto Local";
+            lblSede.Text =
+                "Sede: Aeropuerto Local";
+
+            // Barra superior
+            lblInfoUsuario.Text =
+                $"{SesionActual.UsuarioLogueado.Nombre} " +
+                $"{SesionActual.UsuarioLogueado.Apellido} | " +
+                $"{SesionActual.UsuarioLogueado.Rol.NombreRol}";
+
+            // Barra inferior
+            lblStatus.Text =
+                "● Sesión activa | Conexión segura";
         }
 
         // =====================================================
@@ -150,6 +161,18 @@ namespace CredenSoftUInuevo.Forms
         private void btnSolicitudes_Click(object sender, EventArgs e)
         {
             FrmSolicitud frm = new FrmSolicitud();
+            frm.Show();
+
+            this.Hide();
+        }
+
+        // =====================================================
+        // GESTIÓN DE USUARIOS
+        // =====================================================
+
+        private void btnGestiónDeUsuarios_Click(object sender, EventArgs e)
+        {
+            FrmUsuarios frm = new FrmUsuarios();
             frm.Show();
 
             this.Hide();
