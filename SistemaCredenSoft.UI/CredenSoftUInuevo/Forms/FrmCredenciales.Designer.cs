@@ -56,10 +56,10 @@
             // btnNueva
             // 
             btnNueva.BackColor = SystemColors.ActiveCaption;
-            btnNueva.Location = new Point(51, 787);
+            btnNueva.Location = new Point(51, 785);
             btnNueva.Margin = new Padding(6, 5, 6, 5);
             btnNueva.Name = "btnNueva";
-            btnNueva.Size = new Size(126, 45);
+            btnNueva.Size = new Size(210, 55);
             btnNueva.TabIndex = 1;
             btnNueva.Text = "Nueva";
             btnNueva.UseVisualStyleBackColor = false;
@@ -67,11 +67,11 @@
             // 
             // btnVer
             // 
-            btnVer.BackColor = Color.DarkSeaGreen;
-            btnVer.Location = new Point(236, 785);
+            btnVer.BackColor = Color.Lavender;
+            btnVer.Location = new Point(277, 785);
             btnVer.Margin = new Padding(6, 5, 6, 5);
             btnVer.Name = "btnVer";
-            btnVer.Size = new Size(126, 45);
+            btnVer.Size = new Size(210, 55);
             btnVer.TabIndex = 2;
             btnVer.Text = "Ver";
             btnVer.UseVisualStyleBackColor = false;
@@ -79,10 +79,10 @@
             // btnEliminar
             // 
             btnEliminar.BackColor = Color.IndianRed;
-            btnEliminar.Location = new Point(876, 785);
+            btnEliminar.Location = new Point(499, 785);
             btnEliminar.Margin = new Padding(6, 5, 6, 5);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(126, 45);
+            btnEliminar.Size = new Size(210, 55);
             btnEliminar.TabIndex = 3;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = false;
@@ -97,7 +97,7 @@
             dgvCredenciales.Margin = new Padding(6, 5, 6, 5);
             dgvCredenciales.Name = "dgvCredenciales";
             dgvCredenciales.RowHeadersWidth = 62;
-            dgvCredenciales.Size = new Size(950, 623);
+            dgvCredenciales.Size = new Size(1047, 623);
             dgvCredenciales.TabIndex = 4;
             // 
             // colcredencial
@@ -145,8 +145,12 @@
             Controls.Add(dgvCredenciales);
             Controls.Add(btnEliminar);
             Controls.Add(lblGestionDeCredenciales);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(6, 5, 6, 5);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "FrmCredenciales";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmCredenciales";
             ((System.ComponentModel.ISupportInitialize)dgvCredenciales).EndInit();
             ResumeLayout(false);

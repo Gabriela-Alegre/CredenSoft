@@ -119,7 +119,7 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.BackColor = Color.FromArgb(200, 70, 34);
+            btnCancelar.BackColor = Color.IndianRed;
             btnCancelar.Location = new Point(454, 583);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(105, 51);
@@ -156,6 +156,9 @@
             Controls.Add(lblTipoDeSolicitud);
             Controls.Add(cmbUsuario);
             Controls.Add(lblUsuario);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "FrmAltaSolicitud";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Nueva Solicitud";

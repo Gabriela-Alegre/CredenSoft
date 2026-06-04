@@ -14,8 +14,10 @@ namespace CredenSoftUInuevo.Forms
         {
             InitializeComponent();
 
-            // Crear contexto una sola vez
             _context = new CredenSoftContext();
+
+            // IMPORTANTE
+            this.Load += FrmPerfil_Load;
         }
 
         private void FrmPerfil_Load(object sender, EventArgs e)
@@ -34,20 +36,17 @@ namespace CredenSoftUInuevo.Forms
                 return;
             }
 
-            // DATOS EDITABLES
             txtNombre.Text = usuario.Nombre;
             txtApellido.Text = usuario.Apellido;
             txtEmail.Text = usuario.Email;
 
-            // DATOS NO EDITABLES
             txtUsuario.Text = usuario.IdUsuario.ToString();
             txtDni.Text = usuario.Dni;
-            txtRol.Text = usuario.Rol.NombreRol;
+
+            if (usuario.Rol != null)
+                txtRol.Text = usuario.Rol.NombreRol;
         }
 
-        // =========================
-        // GUARDAR PERFIL
-        // =========================
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             var usuario = SesionActual.UsuarioLogueado;
@@ -60,7 +59,7 @@ namespace CredenSoftUInuevo.Forms
                 string.IsNullOrWhiteSpace(txtEmail.Text))
             {
                 MessageBox.Show(
-                    "Complete todos los campos",
+                    "Complete todos los campos.",
                     "Validación",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
@@ -70,7 +69,8 @@ namespace CredenSoftUInuevo.Forms
 
             try
             {
-                UsuarioService servicio = new UsuarioService(_context);
+                UsuarioService servicio =
+                    new UsuarioService(_context);
 
                 Usuario usuarioEditado = new Usuario
                 {
@@ -78,18 +78,19 @@ namespace CredenSoftUInuevo.Forms
                     Nombre = txtNombre.Text.Trim(),
                     Apellido = txtApellido.Text.Trim(),
                     Email = txtEmail.Text.Trim(),
-                    Dni = usuario.Dni
+                    Dni = usuario.Dni,
+                    IdRol = usuario.IdRol,
+                    Estado = usuario.Estado
                 };
 
                 servicio.ActualizarUsuarioCompleto(usuarioEditado);
 
-                // Actualizar sesión
                 usuario.Nombre = usuarioEditado.Nombre;
                 usuario.Apellido = usuarioEditado.Apellido;
                 usuario.Email = usuarioEditado.Email;
 
                 MessageBox.Show(
-                    "Perfil actualizado correctamente",
+                    "Perfil actualizado correctamente.",
                     "CredenSoft",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -97,17 +98,14 @@ namespace CredenSoftUInuevo.Forms
             catch (Exception ex)
             {
                 MessageBox.Show(
-                    "Error: " + ex.Message,
+                    ex.Message,
                     "Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
         }
 
-        // =========================
-        // CAMBIAR CONTRASEÑA
-        // =========================
-        private void btnCambiarContraseña_Click(object sender, EventArgs e)
+        private void btnCambiarContrasenia_Click(object sender, EventArgs e)
         {
             var usuario = SesionActual.UsuarioLogueado;
 
@@ -117,7 +115,7 @@ namespace CredenSoftUInuevo.Forms
             if (string.IsNullOrWhiteSpace(txtNuevaContrasenia.Text))
             {
                 MessageBox.Show(
-                    "Ingrese una contraseña",
+                    "Ingrese una nueva contraseña.",
                     "Validación",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
@@ -127,16 +125,16 @@ namespace CredenSoftUInuevo.Forms
 
             try
             {
-                UsuarioService servicio = new UsuarioService(_context);
+                UsuarioService servicio =
+                    new UsuarioService(_context);
 
                 servicio.RecuperarContrasenia(
                     usuario.Email,
                     usuario.Dni,
-                    txtNuevaContrasenia.Text
-                );
+                    txtNuevaContrasenia.Text);
 
                 MessageBox.Show(
-                    "Contraseña actualizada",
+                    "Contraseña actualizada correctamente.",
                     "CredenSoft",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -146,7 +144,7 @@ namespace CredenSoftUInuevo.Forms
             catch (Exception ex)
             {
                 MessageBox.Show(
-                    "Error: " + ex.Message,
+                    ex.Message,
                     "Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -155,6 +153,7 @@ namespace CredenSoftUInuevo.Forms
 
         private void lblEmail_Click(object sender, EventArgs e)
         {
+
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using ModelsEntidades;
 
 namespace CredenSoftUInuevo.Forms
 {
@@ -8,6 +9,55 @@ namespace CredenSoftUInuevo.Forms
         public FrmDashboardAgente()
         {
             InitializeComponent();
+
+            Load += FrmDashboardAgente_Load;
+        }
+
+        // =====================================================
+        // CARGA DEL DASHBOARD
+        // =====================================================
+
+        private void FrmDashboardAgente_Load(object sender, EventArgs e)
+        {
+            if (SesionActual.UsuarioLogueado == null)
+            {
+                MessageBox.Show(
+                    "No hay sesión iniciada.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                this.Close();
+                return;
+            }
+
+            lblNombre.Text =
+                "Nombre: " +
+                SesionActual.UsuarioLogueado.Nombre;
+
+            lblApellido.Text =
+                "Apellido: " +
+                SesionActual.UsuarioLogueado.Apellido;
+
+            lblRol.Text =
+                "Rol: " +
+                SesionActual.UsuarioLogueado.Rol.NombreRol;
+
+            lblEstado.Text =
+                "Estado: " +
+                SesionActual.UsuarioLogueado.Estado;
+
+            lbDNI.Text =
+                "DNI: " +
+                SesionActual.UsuarioLogueado.Dni;
+
+            lblInfoUsuario.Text =
+                $"{SesionActual.UsuarioLogueado.Nombre} " +
+                $"{SesionActual.UsuarioLogueado.Apellido} | " +
+                $"{SesionActual.UsuarioLogueado.Rol.NombreRol}";
+
+            lblStatus.Text =
+                "● Sesión activa | Conexión segura";
         }
 
         // =====================================================
@@ -64,10 +114,12 @@ namespace CredenSoftUInuevo.Forms
 
             if (resultado == DialogResult.Yes)
             {
+                SesionActual.Logout();
+
                 FrmLogin frm = new FrmLogin();
                 frm.Show();
 
-                this.Hide();
+                this.Close();
             }
         }
 

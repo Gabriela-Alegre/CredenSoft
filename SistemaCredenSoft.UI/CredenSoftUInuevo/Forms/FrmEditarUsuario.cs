@@ -110,5 +110,10 @@ namespace CredenSoftUInuevo.Forms
         private void cmbRol_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
+
+        private void lblNombre_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
