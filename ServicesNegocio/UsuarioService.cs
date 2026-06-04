@@ -150,7 +150,10 @@ namespace ServicesNegocio
         // Opción alternativa para el futuro si agregas más campos
         public void ActualizarUsuarioCompleto(Usuario usuarioEditado)
         {
-            var usuarioBD = _context.Usuarios.FirstOrDefault(u => u.IdUsuario == usuarioEditado.IdUsuario);
+            var usuarioBD = _context.Usuarios
+                                    .Include(u => u.Rol) // <--- Forzamos el Include acá también
+                                    .FirstOrDefault(u => u.IdUsuario == usuarioEditado.IdUsuario);
+
             if (usuarioBD == null) throw new Exception("Usuario no encontrado.");
 
             // Validar email repetido
@@ -163,9 +166,15 @@ namespace ServicesNegocio
             usuarioBD.Nombre = usuarioEditado.Nombre;
             usuarioBD.Apellido = usuarioEditado.Apellido;
             usuarioBD.Email = usuarioEditado.Email;
-            usuarioBD.Dni = usuarioEditado.Dni; // Si permites editar DNI
+            usuarioBD.Dni = usuarioEditado.Dni;
+
+            usuarioBD.IdRol = usuarioEditado.IdRol;
+            usuarioBD.Estado = usuarioEditado.Estado;
 
             _context.SaveChanges();
+
+            // El truco para la interfaz: Forzar la recarga de la propiedad de navegación en memoria
+            _context.Entry(usuarioBD).Reference(u => u.Rol).Load();
         }
 
         /// <summary>
