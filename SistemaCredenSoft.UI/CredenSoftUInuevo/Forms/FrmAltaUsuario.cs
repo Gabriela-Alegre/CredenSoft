@@ -146,7 +146,9 @@ namespace CredenSoftUInuevo.Forms
                 _usuarioService.RegistrarUsuario(nuevo, txtContrasenia.Text);
 
                 MessageBox.Show("Usuario registrado con éxito.", "CredenSoft", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.OK;
                 this.Close();
+
             }
             catch (Exception ex)
             {

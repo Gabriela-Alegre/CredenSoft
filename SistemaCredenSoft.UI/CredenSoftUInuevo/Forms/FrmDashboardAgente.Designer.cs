@@ -512,10 +512,10 @@
             Controls.Add(panelContenido);
             Controls.Add(panelMenu);
             Controls.Add(panelTop);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FrmDashboardAgente";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmDashboardAgente";
+            WindowState = FormWindowState.Maximized;
             panelTop.ResumeLayout(false);
             panelTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

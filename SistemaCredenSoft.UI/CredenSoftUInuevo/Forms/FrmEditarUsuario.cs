@@ -54,6 +54,7 @@ namespace CredenSoftUInuevo.Forms
                     MessageBoxIcon.Error);
             }
         }
+        
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
@@ -128,7 +129,7 @@ namespace CredenSoftUInuevo.Forms
                     MessageBoxIcon.Information);
 
                 DialogResult = DialogResult.OK;
-                Close();
+                this.Close();
             }
             catch (Exception ex)
             {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ModelsEntidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,23 @@ namespace CredenSoftUInuevo.Forms
         public FrmConfiguracion()
         {
             InitializeComponent();
+
+            // Validar rol antes de mostrar el formulario
+            if (SesionActual.UsuarioLogueado.IdRol != 2) // 2 = Administrador Local
+            {
+                MessageBox.Show(
+                    "Acceso denegado: su rol no tiene permisos para ingresar al módulo de Configuración.",
+                    "Permiso restringido",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                this.Close(); // Cierra el formulario inmediatamente
+                return;
+            }
+
         }
+      
+
+
     }
 }

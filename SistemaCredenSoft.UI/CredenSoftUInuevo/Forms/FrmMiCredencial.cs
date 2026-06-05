@@ -16,5 +16,18 @@ namespace CredenSoftUInuevo.Forms
         {
             InitializeComponent();
         }
+
+        private void FrmMiCredencial_Load(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                "El módulo Mi Credencial está en mantenimiento y no disponible en este sprint.",
+                "Mantenimiento",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+
+            this.Close(); // Cierra el formulario inmediatamente después del mensaje
+        }
+
+
     }
 }

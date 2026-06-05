@@ -124,7 +124,6 @@
             // 
             // colRol
             // 
-            colRol.DataPropertyName = "";
             colRol.HeaderText = "Rol";
             colRol.MinimumWidth = 8;
             colRol.Name = "colRol";
@@ -152,6 +151,7 @@
             Name = "FrmUsuarios";
             Text = "Usuarios - CredenSoft";
             WindowState = FormWindowState.Maximized;
+            Activated += FrmUsuarios_Activated;
             Load += FrmUsuarios_Load;
             ((System.ComponentModel.ISupportInitialize)dgvUsuario).EndInit();
             ResumeLayout(false);

@@ -14,7 +14,6 @@ namespace CredenSoftUInuevo.Forms
         // =====================================================
         // CARGA DEL DASHBOARD
         // =====================================================
-
         private void FrmDashboardAdmin_Load(object sender, EventArgs e)
         {
             // Verificar sesión
@@ -46,7 +45,6 @@ namespace CredenSoftUInuevo.Forms
             // =====================================================
             // DATOS DE SESIÓN
             // =====================================================
-
             lblUsuario.Text =
                 "Usuario: " +
                 SesionActual.UsuarioLogueado.Nombre + " " +
@@ -71,19 +69,12 @@ namespace CredenSoftUInuevo.Forms
             // =====================================================
             // DATOS INFORMATIVOS
             // =====================================================
-
-            lblUsuariosActivos.Text =
-                "Usuarios Activos: --";
-
-            lblSolicitudesPendientes.Text =
-                "Solicitudes Pendientes: --";
-
-            lblCredencialesEmitidas.Text =
-                "Credenciales Emitidas: --";
-
-            lblAccesosRegistradosHoy.Text =
-                "Accesos Registrados Hoy: --";
+            lblUsuariosActivos.Text = "Usuarios Activos: --";
+            lblSolicitudesPendientes.Text = "Solicitudes Pendientes: --";
+            lblCredencialesEmitidas.Text = "Credenciales Emitidas: --";
+            lblAccesosRegistradosHoy.Text = "Accesos Registrados Hoy: --";
         }
+
         // =====================================================
         // MI PERFIL
         // =====================================================
@@ -97,7 +88,6 @@ namespace CredenSoftUInuevo.Forms
         // GESTIÓN DE USUARIOS
         // SOLO ADMINISTRADOR LOCAL
         // =====================================================
-
         private void btnGestiónDeUsuarios_Click(object sender, EventArgs e)
         {
             MessageBox.Show(
@@ -110,7 +100,6 @@ namespace CredenSoftUInuevo.Forms
         // =====================================================
         // CERRAR SESIÓN
         // =====================================================
-
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show(
@@ -121,8 +110,6 @@ namespace CredenSoftUInuevo.Forms
 
             if (resultado == DialogResult.Yes)
             {
-                // Si existe el método Logout, dejarlo.
-                // Si da error, eliminar esta línea.
                 SesionActual.Logout();
 
                 FrmLogin frm = new FrmLogin();
@@ -135,21 +122,9 @@ namespace CredenSoftUInuevo.Forms
         // =====================================================
         // EVENTOS GENERADOS POR EL DISEÑADOR
         // =====================================================
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblÚltimasSolicitudes_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panelMenu_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+        private void label2_Click(object sender, EventArgs e) { }
+        private void lblÚltimasSolicitudes_Click(object sender, EventArgs e) { }
+        private void panelMenu_Paint(object sender, PaintEventArgs e) { }
 
         private void btnSolicitudes_Click(object sender, EventArgs e)
         {
@@ -165,6 +140,17 @@ namespace CredenSoftUInuevo.Forms
 
         private void btnConfiguracion_Click(object sender, EventArgs e)
         {
+            // Solo Administrador Local (IdRol = 2) puede acceder
+            if (SesionActual.UsuarioLogueado.IdRol != 2)
+            {
+                MessageBox.Show(
+                    "Acceso denegado: su rol no tiene permisos para ingresar al módulo de Configuración.",
+                    "Permiso restringido",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return; // no abre nada
+            }
+
             FrmConfiguracion frm = new FrmConfiguracion();
             frm.ShowDialog();
         }
@@ -190,20 +176,16 @@ namespace CredenSoftUInuevo.Forms
                 "Esta funcionalidad corresponde al Administrador Local.",
                 "Acceso Restringido",
                 MessageBoxButtons.OK,
-        MessageBoxIcon.Information);
+                MessageBoxIcon.Information);
         }
 
         private void btnValidaciones_Click(object sender, EventArgs e)
         {
             FrmValidaciones frm = new FrmValidaciones();
             frm.Show();
-
             this.Hide();
         }
 
-        private void lblInfoUsuario_Click(object sender, EventArgs e)
-        {
-
-        }
+        private void lblInfoUsuario_Click(object sender, EventArgs e) { }
     }
 }

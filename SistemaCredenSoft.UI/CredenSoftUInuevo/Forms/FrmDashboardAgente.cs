@@ -96,9 +96,22 @@ namespace CredenSoftUInuevo.Forms
 
         private void btnConfiguracion_Click(object sender, EventArgs e)
         {
+            // Solo Administrador Local (IdRol = 2) puede acceder
+            if (SesionActual.UsuarioLogueado.IdRol != 2)
+            {
+                MessageBox.Show(
+                    "Acceso denegado: su rol no tiene permisos para ingresar al módulo de Configuración.",
+                    "Permiso restringido",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return; // no abre nada
+            }
+
+            // Si es Local, abre el formulario
             FrmConfiguracion frm = new FrmConfiguracion();
             frm.ShowDialog();
         }
+
 
         // =====================================================
         // CERRAR SESIÓN

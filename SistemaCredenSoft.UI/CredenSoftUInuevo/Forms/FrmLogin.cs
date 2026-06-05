@@ -19,9 +19,24 @@ namespace CredenSoftUInuevo.Forms
             txtContrasenia.PasswordChar = '*';
             this.AcceptButton = btnIngresar;
 
+            // Centrar la ventana al abrir
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.WindowState = FormWindowState.Maximized;
+
+            // Mostrar en tamaño normal (no maximizado)
+            this.WindowState = FormWindowState.Normal;
+
+            // Tamaño inicial cómodo (similar al de tu referencia)
+            this.Size = new Size(1280, 720);
+
+            // Evitar que se abra demasiado grande o demasiado chico
+            this.MinimumSize = new Size(1100, 650);
+            this.MaximumSize = new Size(1400, 800);
+
+            // Permitir redimensionar si querés ajustar manualmente
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
         }
+
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
