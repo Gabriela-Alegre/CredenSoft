@@ -54,7 +54,7 @@
             lblNombre.Name = "lblNombre";
             lblNombre.Size = new Size(94, 28);
             lblNombre.TabIndex = 13;
-            lblNombre.Text = "Nombre:";
+            lblNombre.Text = "Nombre *";
             // 
             // txtNombre
             // 
@@ -73,7 +73,7 @@
             lblApellido.Name = "lblApellido";
             lblApellido.Size = new Size(96, 28);
             lblApellido.TabIndex = 12;
-            lblApellido.Text = "Apellido:";
+            lblApellido.Text = "Apellido *";
             // 
             // txtApellido
             // 
@@ -92,7 +92,7 @@
             lblDni.Name = "lblDni";
             lblDni.Size = new Size(54, 28);
             lblDni.TabIndex = 11;
-            lblDni.Text = "DNI:";
+            lblDni.Text = "DNI *";
             // 
             // txtDni
             // 
@@ -112,7 +112,7 @@
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(69, 28);
             lblEmail.TabIndex = 10;
-            lblEmail.Text = "Email:";
+            lblEmail.Text = "Email *";
             // 
             // txtEmail
             // 
@@ -131,7 +131,7 @@
             lblContrasenia.Name = "lblContrasenia";
             lblContrasenia.Size = new Size(123, 28);
             lblContrasenia.TabIndex = 9;
-            lblContrasenia.Text = "Contraseña:";
+            lblContrasenia.Text = "Contraseña *";
             // 
             // txtContrasenia
             // 
@@ -162,7 +162,7 @@
             lblRol.Name = "lblRol";
             lblRol.Size = new Size(48, 28);
             lblRol.TabIndex = 8;
-            lblRol.Text = "Rol:";
+            lblRol.Text = "Rol *";
             // 
             // lblEstado
             // 
@@ -173,7 +173,7 @@
             lblEstado.Name = "lblEstado";
             lblEstado.Size = new Size(80, 28);
             lblEstado.TabIndex = 7;
-            lblEstado.Text = "Estado:";
+            lblEstado.Text = "Estado *";
             // 
             // cmbEstado
             // 
@@ -231,7 +231,7 @@
             lblConfirmar.Name = "lblConfirmar";
             lblConfirmar.Size = new Size(113, 28);
             lblConfirmar.TabIndex = 15;
-            lblConfirmar.Text = "Confirmar:";
+            lblConfirmar.Text = "Confirmar *";
             // 
             // label2
             // 

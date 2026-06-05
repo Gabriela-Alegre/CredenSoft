@@ -3,6 +3,8 @@ using System;
 using System.Windows.Forms;
 using DataEF;
 using ServicesNegocio;
+using System.Drawing;
+using System.Text.RegularExpressions;
 
 namespace CredenSoftUInuevo.Forms
 {
@@ -18,6 +20,11 @@ namespace CredenSoftUInuevo.Forms
 
             // IMPORTANTE
             this.Load += FrmPerfil_Load;
+
+            // Validación visual HU09
+            txtNombre.TextChanged += LimpiarColorError;
+            txtApellido.TextChanged += LimpiarColorError;
+            txtEmail.TextChanged += LimpiarColorError;
         }
 
         private void FrmPerfil_Load(object sender, EventArgs e)
@@ -46,6 +53,11 @@ namespace CredenSoftUInuevo.Forms
             if (usuario.Rol != null)
                 txtRol.Text = usuario.Rol.NombreRol;
         }
+        private void LimpiarColorError(object sender, EventArgs e)
+        {
+            TextBox txt = (TextBox)sender;
+            txt.BackColor = Color.White;
+        }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
@@ -54,16 +66,56 @@ namespace CredenSoftUInuevo.Forms
             if (usuario == null)
                 return;
 
-            if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
-                string.IsNullOrWhiteSpace(txtApellido.Text) ||
-                string.IsNullOrWhiteSpace(txtEmail.Text))
+            // Restaurar colores normales
+            txtNombre.BackColor = Color.White;
+            txtApellido.BackColor = Color.White;
+            txtEmail.BackColor = Color.White;
+
+            bool hayErrores = false;
+
+            if (string.IsNullOrWhiteSpace(txtNombre.Text))
+            {
+                txtNombre.BackColor = Color.MistyRose;
+                hayErrores = true;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtApellido.Text))
+            {
+                txtApellido.BackColor = Color.MistyRose;
+                hayErrores = true;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                txtEmail.BackColor = Color.MistyRose;
+                hayErrores = true;
+            }
+
+            if (hayErrores)
             {
                 MessageBox.Show(
-                    "Complete todos los campos.",
+                    "Complete todos los campos obligatorios.",
                     "Validación",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
+                return;
+            }
+
+            string patronEmail =
+                @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+
+            if (!Regex.IsMatch(txtEmail.Text.Trim(), patronEmail))
+            {
+                txtEmail.BackColor = Color.MistyRose;
+
+                MessageBox.Show(
+                    "Ingrese un correo electrónico válido.",
+                    "Validación",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                txtEmail.Focus();
                 return;
             }
 
@@ -105,6 +157,7 @@ namespace CredenSoftUInuevo.Forms
             }
         }
 
+      
         private void btnCambiarContrasenia_Click(object sender, EventArgs e)
         {
             var usuario = SesionActual.UsuarioLogueado;

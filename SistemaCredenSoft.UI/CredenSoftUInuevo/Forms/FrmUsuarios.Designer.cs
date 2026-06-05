@@ -124,7 +124,7 @@
             // 
             // colRol
             // 
-            colRol.DataPropertyName = "IdRol";
+            colRol.DataPropertyName = "";
             colRol.HeaderText = "Rol";
             colRol.MinimumWidth = 8;
             colRol.Name = "colRol";

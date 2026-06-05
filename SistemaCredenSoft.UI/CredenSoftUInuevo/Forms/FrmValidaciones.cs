@@ -29,20 +29,7 @@ namespace CredenSoftUInuevo.Forms
             if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
                 return;
 
-            // Validamos sesión
-            if (SesionActual.UsuarioLogueado == null)
-            {
-                MessageBox.Show(
-                    "No hay sesión iniciada.",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-
-                this.Close();
-                return;
-            }
-
-            // Solo Administrador Local puede acceder
+            // Solo Administrador Local (IdRol == 2) puede acceder
             if (SesionActual.UsuarioLogueado.IdRol != 2)
             {
                 MessageBox.Show(
@@ -51,7 +38,10 @@ namespace CredenSoftUInuevo.Forms
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Stop);
 
-                this.Close();
+                // Deshabilitar botones en lugar de cerrar
+                btnAprobar.Enabled = false;
+                btnRechazar.Enabled = false;
+                btnVerDetalle.Enabled = false;
             }
         }
 
@@ -99,16 +89,24 @@ namespace CredenSoftUInuevo.Forms
         }
 
         // =====================================================
-        // VOLVER AL DASHBOARD LOCAL
+        // VOLVER AL DASHBOARD
         // PASO 3.6 - Navegación
         // =====================================================
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            FrmDashboardLocal frm = new FrmDashboardLocal();
-            frm.Show();
+            if (SesionActual.UsuarioLogueado.IdRol == 1) // Administrador Central
+            {
+                FrmDashboardAdmin frm = new FrmDashboardAdmin();
+                frm.Show();
+            }
+            else if (SesionActual.UsuarioLogueado.IdRol == 2) // Administrador Local
+            {
+                FrmDashboardLocal frm = new FrmDashboardLocal();
+                frm.Show();
+            }
 
-            this.Hide();
+            this.Close();
         }
     }
 }

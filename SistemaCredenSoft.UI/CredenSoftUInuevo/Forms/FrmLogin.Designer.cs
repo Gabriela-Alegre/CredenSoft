@@ -50,52 +50,59 @@
             // 
             // lblUsuario
             // 
+            lblUsuario.Anchor = AnchorStyles.Top;
             lblUsuario.AutoSize = true;
             lblUsuario.BackColor = Color.Transparent;
-            lblUsuario.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblUsuario.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Italic);
             lblUsuario.ForeColor = SystemColors.ActiveCaptionText;
-            lblUsuario.Location = new Point(163, 252);
+            lblUsuario.Location = new Point(122, 319);
             lblUsuario.Margin = new Padding(6, 0, 6, 0);
             lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(263, 36);
+            lblUsuario.Size = new Size(291, 37);
             lblUsuario.TabIndex = 1;
-            lblUsuario.Text = "Correo Electrónico";
+            lblUsuario.Text = "Correo Electrónico ";
             // 
             // txtUsuario
             // 
+            txtUsuario.Anchor = AnchorStyles.Top;
             txtUsuario.BackColor = Color.White;
             txtUsuario.BorderStyle = BorderStyle.FixedSingle;
-            txtUsuario.Location = new Point(540, 252);
+            txtUsuario.Font = new Font("Segoe UI", 13F);
+            txtUsuario.Location = new Point(537, 319);
             txtUsuario.Margin = new Padding(6, 5, 6, 5);
             txtUsuario.Name = "txtUsuario";
-            txtUsuario.Size = new Size(563, 31);
+            txtUsuario.Size = new Size(614, 42);
             txtUsuario.TabIndex = 2;
             // 
             // lblContrasenia
             // 
+            lblContrasenia.Anchor = AnchorStyles.Top;
             lblContrasenia.AutoSize = true;
             lblContrasenia.BackColor = Color.Transparent;
-            lblContrasenia.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblContrasenia.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Italic);
             lblContrasenia.ForeColor = SystemColors.ActiveCaptionText;
-            lblContrasenia.Location = new Point(163, 358);
+            lblContrasenia.Location = new Point(122, 404);
             lblContrasenia.Margin = new Padding(6, 0, 6, 0);
             lblContrasenia.Name = "lblContrasenia";
-            lblContrasenia.Size = new Size(168, 36);
+            lblContrasenia.Size = new Size(192, 37);
             lblContrasenia.TabIndex = 3;
-            lblContrasenia.Text = "Contraseña";
+            lblContrasenia.Text = "Contraseña ";
             // 
             // txtContrasenia
             // 
+            txtContrasenia.Anchor = AnchorStyles.Top;
             txtContrasenia.BorderStyle = BorderStyle.FixedSingle;
-            txtContrasenia.Location = new Point(540, 358);
+            txtContrasenia.Font = new Font("Segoe UI", 13F);
+            txtContrasenia.Location = new Point(537, 402);
             txtContrasenia.Margin = new Padding(6, 5, 6, 5);
             txtContrasenia.Name = "txtContrasenia";
             txtContrasenia.PasswordChar = '*';
-            txtContrasenia.Size = new Size(563, 31);
+            txtContrasenia.Size = new Size(614, 42);
             txtContrasenia.TabIndex = 4;
             // 
             // btnIngresar
             // 
+            btnIngresar.Anchor = AnchorStyles.Top;
             btnIngresar.BackColor = Color.FromArgb(28, 78, 128);
             btnIngresar.BackgroundImageLayout = ImageLayout.None;
             btnIngresar.FlatAppearance.BorderSize = 0;
@@ -103,10 +110,10 @@
             btnIngresar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnIngresar.ForeColor = Color.White;
             btnIngresar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnIngresar.Location = new Point(377, 605);
+            btnIngresar.Location = new Point(282, 722);
             btnIngresar.Margin = new Padding(6, 5, 6, 5);
             btnIngresar.Name = "btnIngresar";
-            btnIngresar.Size = new Size(216, 68);
+            btnIngresar.Size = new Size(315, 100);
             btnIngresar.TabIndex = 5;
             btnIngresar.Text = "▷ INICIAR SESIÓN";
             btnIngresar.UseVisualStyleBackColor = false;
@@ -114,6 +121,7 @@
             // 
             // btnSalir
             // 
+            btnSalir.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnSalir.BackColor = SystemColors.ButtonHighlight;
             btnSalir.Cursor = Cursors.Hand;
             btnSalir.FlatAppearance.BorderSize = 0;
@@ -122,10 +130,10 @@
             btnSalir.FlatStyle = FlatStyle.Flat;
             btnSalir.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSalir.ForeColor = Color.Red;
-            btnSalir.Location = new Point(1156, 847);
+            btnSalir.Location = new Point(1024, 943);
             btnSalir.Margin = new Padding(6, 5, 6, 5);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(121, 68);
+            btnSalir.Size = new Size(201, 106);
             btnSalir.TabIndex = 6;
             btnSalir.Text = "Salir";
             btnSalir.TextAlign = ContentAlignment.MiddleRight;
@@ -134,12 +142,13 @@
             // 
             // lnkRecuperar
             // 
+            lnkRecuperar.Anchor = AnchorStyles.Top;
             lnkRecuperar.AutoSize = true;
-            lnkRecuperar.Font = new Font("Segoe UI", 10F);
-            lnkRecuperar.Location = new Point(17, 847);
+            lnkRecuperar.Font = new Font("Segoe UI", 16F);
+            lnkRecuperar.Location = new Point(282, 847);
             lnkRecuperar.Margin = new Padding(4, 0, 4, 0);
             lnkRecuperar.Name = "lnkRecuperar";
-            lnkRecuperar.Size = new Size(213, 28);
+            lnkRecuperar.Size = new Size(346, 45);
             lnkRecuperar.TabIndex = 7;
             lnkRecuperar.TabStop = true;
             lnkRecuperar.Text = "¿Olvido su contraseña?";
@@ -147,10 +156,11 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.Anchor = AnchorStyles.Top;
             pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Image = Properties.Resources.b6e50688_f5a5_4dfc_8398_dbfd6d6f8a81;
             pictureBox1.InitialImage = Properties.Resources.b6e50688_f5a5_4dfc_8398_dbfd6d6f8a81;
-            pictureBox1.Location = new Point(454, 358);
+            pictureBox1.Location = new Point(456, 404);
             pictureBox1.Margin = new Padding(4, 5, 4, 5);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(63, 45);
@@ -160,26 +170,27 @@
             // 
             // pictureBox2
             // 
+            pictureBox2.Anchor = AnchorStyles.Top;
             pictureBox2.BackColor = Color.Transparent;
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(443, 252);
+            pictureBox2.Location = new Point(449, 319);
             pictureBox2.Margin = new Padding(4, 5, 4, 5);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(86, 57);
+            pictureBox2.Size = new Size(78, 47);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 9;
             pictureBox2.TabStop = false;
             // 
             // picVerContrasenia
             // 
-            picVerContrasenia.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            picVerContrasenia.Anchor = AnchorStyles.Top;
             picVerContrasenia.BackColor = Color.Transparent;
             picVerContrasenia.Cursor = Cursors.Hand;
             picVerContrasenia.Image = (Image)resources.GetObject("picVerContrasenia.Image");
-            picVerContrasenia.Location = new Point(1041, 366);
+            picVerContrasenia.Location = new Point(1078, 404);
             picVerContrasenia.Margin = new Padding(4, 5, 4, 5);
             picVerContrasenia.Name = "picVerContrasenia";
-            picVerContrasenia.Size = new Size(34, 23);
+            picVerContrasenia.Size = new Size(43, 37);
             picVerContrasenia.SizeMode = PictureBoxSizeMode.Zoom;
             picVerContrasenia.TabIndex = 10;
             picVerContrasenia.TabStop = false;
@@ -201,31 +212,34 @@
             // 
             // pictureBox3
             // 
+            pictureBox3.Anchor = AnchorStyles.Top;
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(114, 20);
+            pictureBox3.Location = new Point(122, 14);
             pictureBox3.Margin = new Padding(4, 5, 4, 5);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(1029, 187);
+            pictureBox3.Size = new Size(1068, 217);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 14;
             pictureBox3.TabStop = false;
             // 
             // chkRecordarme
             // 
+            chkRecordarme.Anchor = AnchorStyles.Top;
             chkRecordarme.AutoSize = true;
             chkRecordarme.Cursor = Cursors.Hand;
             chkRecordarme.FlatStyle = FlatStyle.Flat;
-            chkRecordarme.Font = new Font("Arial", 12.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            chkRecordarme.Location = new Point(163, 455);
+            chkRecordarme.Font = new Font("Arial", 15.75F);
+            chkRecordarme.Location = new Point(122, 511);
             chkRecordarme.Margin = new Padding(4, 5, 4, 5);
             chkRecordarme.Name = "chkRecordarme";
-            chkRecordarme.Size = new Size(348, 35);
+            chkRecordarme.Size = new Size(416, 40);
             chkRecordarme.TabIndex = 20;
             chkRecordarme.Text = "Recordar mis Credenciales";
             chkRecordarme.UseVisualStyleBackColor = true;
             // 
             // btnRegistrar
             // 
+            btnRegistrar.Anchor = AnchorStyles.Top;
             btnRegistrar.BackColor = Color.White;
             btnRegistrar.BackgroundImageLayout = ImageLayout.Center;
             btnRegistrar.FlatAppearance.BorderColor = Color.CornflowerBlue;
@@ -236,10 +250,10 @@
             btnRegistrar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnRegistrar.ForeColor = SystemColors.Highlight;
             btnRegistrar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnRegistrar.Location = new Point(749, 605);
+            btnRegistrar.Location = new Point(735, 722);
             btnRegistrar.Margin = new Padding(4, 5, 4, 5);
             btnRegistrar.Name = "btnRegistrar";
-            btnRegistrar.Size = new Size(216, 68);
+            btnRegistrar.Size = new Size(315, 100);
             btnRegistrar.TabIndex = 21;
             btnRegistrar.Text = "✚ REGISTRARSE";
             btnRegistrar.UseVisualStyleBackColor = false;
@@ -247,12 +261,13 @@
             // 
             // pictureBox6
             // 
+            pictureBox6.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             pictureBox6.BackColor = Color.Transparent;
             pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
-            pictureBox6.Location = new Point(1171, 863);
+            pictureBox6.Location = new Point(1039, 959);
             pictureBox6.Margin = new Padding(4, 5, 4, 5);
             pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(44, 35);
+            pictureBox6.Size = new Size(111, 66);
             pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox6.TabIndex = 24;
             pictureBox6.TabStop = false;
@@ -262,7 +277,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1349, 1014);
+            ClientSize = new Size(1327, 1050);
             Controls.Add(btnIngresar);
             Controls.Add(pictureBox6);
             Controls.Add(chkRecordarme);
@@ -278,7 +293,6 @@
             Controls.Add(txtUsuario);
             Controls.Add(lblUsuario);
             Controls.Add(btnRegistrar);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(6, 5, 6, 5);
             Name = "FrmLogin";
             SizeGripStyle = SizeGripStyle.Show;

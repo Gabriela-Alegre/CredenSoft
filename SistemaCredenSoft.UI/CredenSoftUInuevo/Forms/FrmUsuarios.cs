@@ -19,6 +19,7 @@ namespace CredenSoftUInuevo.Forms
 
         private void ConfigurarGrilla()
         {
+            dgvUsuario.AutoGenerateColumns = false;
             dgvUsuario.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvUsuario.ReadOnly = true;
             dgvUsuario.AllowUserToAddRows = false;

@@ -92,6 +92,14 @@ namespace CredenSoftUInuevo.Forms
                 this.Close();
             }
         }
+        // =====================================================
+        // MI PERFIL
+        // =====================================================
+        private void btnPerfil_Click(object sender, EventArgs e)
+        {
+            FrmPerfil frm = new FrmPerfil();
+            frm.ShowDialog();
+        }
 
         // =====================================================
         // VALIDACIONES
@@ -99,10 +107,13 @@ namespace CredenSoftUInuevo.Forms
 
         private void btnValidaciones_Click(object sender, EventArgs e)
         {
-            FrmValidaciones frm = new FrmValidaciones();
-            frm.Show();
-
             this.Hide();
+
+            FrmValidaciones frm = new FrmValidaciones();
+
+            frm.ShowDialog();
+
+            this.Show();
         }
 
         // =====================================================
@@ -111,10 +122,13 @@ namespace CredenSoftUInuevo.Forms
 
         private void btnValidarSolicitud_Click(object sender, EventArgs e)
         {
-            FrmValidaciones frm = new FrmValidaciones();
-            frm.Show();
-
             this.Hide();
+
+            FrmValidaciones frm = new FrmValidaciones();
+
+            frm.ShowDialog();
+
+            this.Show();
         }
 
         // =====================================================
@@ -123,10 +137,13 @@ namespace CredenSoftUInuevo.Forms
 
         private void btnConfiguración_Click(object sender, EventArgs e)
         {
-            FrmConfiguracion frm = new FrmConfiguracion();
-            frm.Show();
-
             this.Hide();
+
+            FrmConfiguracion frm = new FrmConfiguracion();
+
+            frm.ShowDialog();
+
+            this.Show();
         }
 
         // =====================================================
@@ -135,10 +152,13 @@ namespace CredenSoftUInuevo.Forms
 
         private void btnCredenciales_Click(object sender, EventArgs e)
         {
-            FrmCredenciales frm = new FrmCredenciales();
-            frm.Show();
-
             this.Hide();
+
+            FrmCredenciales frm = new FrmCredenciales();
+
+            frm.ShowDialog();
+
+            this.Show();
         }
 
         // =====================================================
@@ -160,10 +180,13 @@ namespace CredenSoftUInuevo.Forms
 
         private void btnSolicitudes_Click(object sender, EventArgs e)
         {
-            FrmSolicitud frm = new FrmSolicitud();
-            frm.Show();
-
             this.Hide();
+
+            FrmSolicitud frm = new FrmSolicitud();
+
+            frm.ShowDialog();
+
+            this.Show();
         }
 
         // =====================================================
@@ -172,10 +195,18 @@ namespace CredenSoftUInuevo.Forms
 
         private void btnGestiónDeUsuarios_Click(object sender, EventArgs e)
         {
-            FrmUsuarios frm = new FrmUsuarios();
-            frm.Show();
-
             this.Hide();
+
+            FrmUsuarios frm = new FrmUsuarios();
+
+            frm.ShowDialog();
+
+            this.Show();
+        }
+
+        private void panelMenu_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

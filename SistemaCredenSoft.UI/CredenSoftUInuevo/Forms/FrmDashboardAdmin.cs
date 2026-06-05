@@ -84,6 +84,14 @@ namespace CredenSoftUInuevo.Forms
             lblAccesosRegistradosHoy.Text =
                 "Accesos Registrados Hoy: --";
         }
+        // =====================================================
+        // MI PERFIL
+        // =====================================================
+        private void btnPerfil_Click(object sender, EventArgs e)
+        {
+            FrmPerfil frm = new FrmPerfil();
+            frm.ShowDialog();
+        }
 
         // =====================================================
         // GESTIÓN DE USUARIOS

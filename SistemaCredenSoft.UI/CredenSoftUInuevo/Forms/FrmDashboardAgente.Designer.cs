@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDashboardAgente));
             panelTop = new Panel();
+            lblInfoUsuario = new Label();
             pictureBox1 = new PictureBox();
             panelMenu = new Panel();
             btnCerrarSesion = new Button();
@@ -39,6 +40,8 @@
             btnMiCredencial = new Button();
             btnInicio = new Button();
             panelContenido = new Panel();
+            statusStrip = new StatusStrip();
+            lblStatus = new ToolStripStatusLabel();
             btnActualizarPerfil = new Button();
             btnNuevaSolicitud = new Button();
             btnVerCredencial = new Button();
@@ -62,17 +65,14 @@
             lblApellido = new Label();
             lblNombre = new Label();
             lblMiPaneldeUsuario = new Label();
-            lblInfoUsuario = new Label();
-            statusStrip = new StatusStrip();
-            lblStatus = new ToolStripStatusLabel();
             panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelMenu.SuspendLayout();
             panelContenido.SuspendLayout();
+            statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSolicitudes).BeginInit();
             groupCredencial.SuspendLayout();
             groupDatosUsuario.SuspendLayout();
-            statusStrip.SuspendLayout();
             SuspendLayout();
             // 
             // panelTop
@@ -86,6 +86,16 @@
             panelTop.Name = "panelTop";
             panelTop.Size = new Size(1465, 80);
             panelTop.TabIndex = 0;
+            // 
+            // lblInfoUsuario
+            // 
+            lblInfoUsuario.AutoSize = true;
+            lblInfoUsuario.ForeColor = SystemColors.ButtonHighlight;
+            lblInfoUsuario.Location = new Point(1288, 27);
+            lblInfoUsuario.Name = "lblInfoUsuario";
+            lblInfoUsuario.Size = new Size(165, 25);
+            lblInfoUsuario.TabIndex = 5;
+            lblInfoUsuario.Text = "Cargando usuario...";
             // 
             // pictureBox1
             // 
@@ -111,7 +121,7 @@
             panelMenu.ForeColor = Color.White;
             panelMenu.Location = new Point(0, 80);
             panelMenu.Name = "panelMenu";
-            panelMenu.Size = new Size(262, 961);
+            panelMenu.Size = new Size(262, 970);
             panelMenu.TabIndex = 1;
             // 
             // btnCerrarSesion
@@ -123,7 +133,7 @@
             btnCerrarSesion.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 57, 43);
             btnCerrarSesion.FlatStyle = FlatStyle.Flat;
             btnCerrarSesion.ForeColor = Color.White;
-            btnCerrarSesion.Location = new Point(0, 864);
+            btnCerrarSesion.Location = new Point(0, 873);
             btnCerrarSesion.Margin = new Padding(6, 5, 6, 5);
             btnCerrarSesion.Name = "btnCerrarSesion";
             btnCerrarSesion.Size = new Size(262, 97);
@@ -221,8 +231,26 @@
             panelContenido.Dock = DockStyle.Fill;
             panelContenido.Location = new Point(262, 80);
             panelContenido.Name = "panelContenido";
-            panelContenido.Size = new Size(1203, 961);
+            panelContenido.Size = new Size(1203, 970);
             panelContenido.TabIndex = 2;
+            // 
+            // statusStrip
+            // 
+            statusStrip.BackColor = Color.FromArgb(30, 40, 55);
+            statusStrip.ImageScalingSize = new Size(24, 24);
+            statusStrip.Items.AddRange(new ToolStripItem[] { lblStatus });
+            statusStrip.Location = new Point(0, 938);
+            statusStrip.Name = "statusStrip";
+            statusStrip.Padding = new Padding(1, 0, 23, 0);
+            statusStrip.Size = new Size(1203, 32);
+            statusStrip.TabIndex = 9;
+            // 
+            // lblStatus
+            // 
+            lblStatus.ForeColor = Color.LimeGreen;
+            lblStatus.Name = "lblStatus";
+            lblStatus.Size = new Size(297, 25);
+            lblStatus.Text = "● Sistema Online - Conexión Segura";
             // 
             // btnActualizarPerfil
             // 
@@ -475,40 +503,12 @@
             lblMiPaneldeUsuario.Text = "Mi Panel de Usuario";
             lblMiPaneldeUsuario.Click += lblMiPaneldeUsuario_Click;
             // 
-            // lblInfoUsuario
-            // 
-            lblInfoUsuario.AutoSize = true;
-            lblInfoUsuario.ForeColor = SystemColors.ButtonHighlight;
-            lblInfoUsuario.Location = new Point(1288, 27);
-            lblInfoUsuario.Name = "lblInfoUsuario";
-            lblInfoUsuario.Size = new Size(165, 25);
-            lblInfoUsuario.TabIndex = 5;
-            lblInfoUsuario.Text = "Cargando usuario...";
-            // 
-            // statusStrip
-            // 
-            statusStrip.BackColor = Color.FromArgb(30, 40, 55);
-            statusStrip.ImageScalingSize = new Size(24, 24);
-            statusStrip.Items.AddRange(new ToolStripItem[] { lblStatus });
-            statusStrip.Location = new Point(0, 929);
-            statusStrip.Name = "statusStrip";
-            statusStrip.Padding = new Padding(1, 0, 23, 0);
-            statusStrip.Size = new Size(1203, 32);
-            statusStrip.TabIndex = 9;
-            // 
-            // lblStatus
-            // 
-            lblStatus.ForeColor = Color.LimeGreen;
-            lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(297, 25);
-            lblStatus.Text = "● Sistema Online - Conexión Segura";
-            // 
             // FrmDashboardAgente
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
-            ClientSize = new Size(1465, 1041);
+            ClientSize = new Size(1465, 1050);
             Controls.Add(panelContenido);
             Controls.Add(panelMenu);
             Controls.Add(panelTop);
@@ -516,20 +516,19 @@
             Name = "FrmDashboardAgente";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmDashboardAgente";
-            WindowState = FormWindowState.Maximized;
             panelTop.ResumeLayout(false);
             panelTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panelMenu.ResumeLayout(false);
             panelContenido.ResumeLayout(false);
             panelContenido.PerformLayout();
+            statusStrip.ResumeLayout(false);
+            statusStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSolicitudes).EndInit();
             groupCredencial.ResumeLayout(false);
             groupCredencial.PerformLayout();
             groupDatosUsuario.ResumeLayout(false);
             groupDatosUsuario.PerformLayout();
-            statusStrip.ResumeLayout(false);
-            statusStrip.PerformLayout();
             ResumeLayout(false);
         }
 

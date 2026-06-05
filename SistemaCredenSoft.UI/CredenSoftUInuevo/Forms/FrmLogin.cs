@@ -16,11 +16,11 @@ namespace CredenSoftUInuevo.Forms
         {
             InitializeComponent();
 
-            // Configuramos el carácter de máscara para la contraseña
             txtContrasenia.PasswordChar = '*';
-
-            // Permite ejecutar el botón Ingresar con Enter
             this.AcceptButton = btnIngresar;
+
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void FrmLogin_Load(object sender, EventArgs e)

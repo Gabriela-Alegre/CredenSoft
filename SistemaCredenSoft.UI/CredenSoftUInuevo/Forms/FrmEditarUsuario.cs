@@ -3,6 +3,8 @@ using System.Windows.Forms;
 using ModelsEntidades;
 using ServicesNegocio;
 using DataEF;
+using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace CredenSoftUInuevo.Forms
 {
@@ -10,6 +12,7 @@ namespace CredenSoftUInuevo.Forms
     {
         private Usuario _usuario;
         private UsuarioService _usuarioService;
+        private string _estadoOriginal;
 
         public FrmEditarUsuario(Usuario usuario)
         {
@@ -40,6 +43,7 @@ namespace CredenSoftUInuevo.Forms
 
                 cmbRol.SelectedValue = _usuario.IdRol;
                 cmbEstado.Text = _usuario.Estado;
+                _estadoOriginal = _usuario.Estado;
             }
             catch (Exception ex)
             {
@@ -69,15 +73,53 @@ namespace CredenSoftUInuevo.Forms
                     return;
                 }
 
+                // Validar formato de email
+                if (!Regex.IsMatch(
+                        txtEmail.Text.Trim(),
+                        @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+                {
+                    MessageBox.Show(
+                        "Ingrese un correo electrónico válido.",
+                        "Validación",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    txtEmail.Focus();
+                    return;
+                }
+
                 _usuario.Nombre = txtNombre.Text.Trim();
                 _usuario.Apellido = txtApellido.Text.Trim();
                 _usuario.Dni = txtDni.Text.Trim();
                 _usuario.Email = txtEmail.Text.Trim();
 
+                if (_estadoOriginal != cmbEstado.Text)
+                {
+                    DialogResult resultado = MessageBox.Show(
+                        $"¿Está seguro de cambiar el estado del usuario de {_estadoOriginal} a {cmbEstado.Text}?",
+                        "Confirmar cambio de estado",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning);
+
+                    if (resultado == DialogResult.No)
+                        return;
+                }
+
                 _usuario.IdRol = Convert.ToInt32(cmbRol.SelectedValue);
                 _usuario.Estado = cmbEstado.Text;
 
                 _usuarioService.ActualizarUsuarioCompleto(_usuario);
+
+                if (SesionActual.UsuarioLogueado != null &&
+                    SesionActual.UsuarioLogueado.IdUsuario == _usuario.IdUsuario)
+                {
+                    SesionActual.UsuarioLogueado.IdRol = _usuario.IdRol;
+
+                    var todosLosRoles = _usuarioService.ObtenerTodosLosRoles();
+
+                    SesionActual.UsuarioLogueado.Rol =
+                        todosLosRoles.FirstOrDefault(r => r.IdRol == _usuario.IdRol);
+                }
 
                 MessageBox.Show(
                     "Usuario actualizado correctamente.",

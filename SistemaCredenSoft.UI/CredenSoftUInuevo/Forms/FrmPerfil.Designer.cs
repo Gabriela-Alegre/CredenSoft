@@ -67,7 +67,7 @@
             lblNombre.Name = "lblNombre";
             lblNombre.Size = new Size(89, 28);
             lblNombre.TabIndex = 1;
-            lblNombre.Text = "Nombre";
+            lblNombre.Text = "Nombre *";
             // 
             // txtApellido
             // 
@@ -91,7 +91,7 @@
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(64, 28);
             lblEmail.TabIndex = 4;
-            lblEmail.Text = "Email";
+            lblEmail.Text = "Email *";
             lblEmail.Click += lblEmail_Click;
             // 
             // lblApellido
@@ -102,7 +102,7 @@
             lblApellido.Name = "lblApellido";
             lblApellido.Size = new Size(91, 28);
             lblApellido.TabIndex = 5;
-            lblApellido.Text = "Apellido";
+            lblApellido.Text = "Apellido *";
             // 
             // grpDatosNoEditables
             // 
@@ -144,7 +144,7 @@
             lblRol.Name = "lblRol";
             lblRol.Size = new Size(43, 28);
             lblRol.TabIndex = 8;
-            lblRol.Text = "Rol";
+            lblRol.Text = "Rol *";
             // 
             // txtRol
             // 
@@ -172,7 +172,7 @@
             lblDni.Name = "lblDni";
             lblDni.Size = new Size(49, 28);
             lblDni.TabIndex = 6;
-            lblDni.Text = "DNI";
+            lblDni.Text = "DNI *";
             // 
             // grpDatosPersonales
             // 
@@ -218,7 +218,7 @@
             lblNuevaContrasenia.Name = "lblNuevaContrasenia";
             lblNuevaContrasenia.Size = new Size(185, 28);
             lblNuevaContrasenia.TabIndex = 7;
-            lblNuevaContrasenia.Text = "Nueva Contraseña";
+            lblNuevaContrasenia.Text = "Nueva Contraseña *";
             // 
             // btnGuardar
             // 
