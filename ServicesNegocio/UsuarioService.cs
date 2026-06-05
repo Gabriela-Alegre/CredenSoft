@@ -56,6 +56,9 @@ namespace ServicesNegocio
         /// <summary>
         /// HU01 y HU02: Registra un usuario validando que no existan duplicados.
         /// </summary>
+        /// <summary>
+        /// HU01 y HU02: Registra un usuario validando que no existan duplicados.
+        /// </summary>
         public void RegistrarUsuario(Usuario nuevoUsuario, string passwordPlana)
         {
             try
@@ -88,6 +91,13 @@ namespace ServicesNegocio
             catch (DbUpdateException ex)
             {
                 var errorSql = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+
+                // --- NUEVA VALIDACIÓN DE RESTRICCIÓN UNIQUE EN ESPAÑOL (PRUEBA 8) ---
+                if (errorSql.Contains("UQ") || errorSql.Contains("UNIQUE") || errorSql.Contains("violación de la restricción") || errorSql.Contains("duplicate key"))
+                {
+                    throw new Exception("Error de duplicidad: El DNI, Correo Electrónico o Nombre de Usuario ingresado ya se encuentra asignado a otro agente.");
+                }
+                // --------------------------------------------------------------------
 
                 if (errorSql.Contains("FOREIGN KEY") || errorSql.Contains("id_rol"))
                 {
@@ -148,33 +158,56 @@ namespace ServicesNegocio
         /// HU08 y HU09: Permite modificar datos personales controlando la unicidad del Email.
         /// </summary>
         // Opción alternativa para el futuro si agregas más campos
+        /// <summary>
+        /// HU08 y HU09: Permite modificar datos personales controlando la unicidad del Email.
+        /// </summary>
         public void ActualizarUsuarioCompleto(Usuario usuarioEditado)
         {
-            var usuarioBD = _context.Usuarios
-                                    .Include(u => u.Rol) // <--- Forzamos el Include acá también
-                                    .FirstOrDefault(u => u.IdUsuario == usuarioEditado.IdUsuario);
-
-            if (usuarioBD == null) throw new Exception("Usuario no encontrado.");
-
-            // Validar email repetido
-            if (_context.Usuarios.Any(u => u.Email == usuarioEditado.Email && u.IdUsuario != usuarioEditado.IdUsuario))
+            try
             {
-                throw new Exception("El correo electrónico ya se encuentra registrado.");
+                var usuarioBD = _context.Usuarios
+                                        .Include(u => u.Rol)
+                                        .FirstOrDefault(u => u.IdUsuario == usuarioEditado.IdUsuario);
+
+                if (usuarioBD == null) throw new Exception("Usuario no encontrado.");
+
+                // Validar email repetido preventivamente
+                if (_context.Usuarios.Any(u => u.Email == usuarioEditado.Email && u.IdUsuario != usuarioEditado.IdUsuario))
+                {
+                    throw new Exception("El correo electrónico ya se encuentra registrado por otro agente.");
+                }
+
+                // Mapeas los cambios que permitas editar
+                usuarioBD.Nombre = usuarioEditado.Nombre;
+                usuarioBD.Apellido = usuarioEditado.Apellido;
+                usuarioBD.Email = usuarioEditado.Email;
+                usuarioBD.Dni = usuarioEditado.Dni;
+
+                usuarioBD.IdRol = usuarioEditado.IdRol;
+                usuarioBD.Estado = usuarioEditado.Estado;
+
+                // Guardamos los cambios capturando posibles excepciones de la base de datos
+                _context.SaveChanges();
+
+                // El truco para la interfaz: Forzar la recarga de la propiedad de navegación en memoria
+                _context.Entry(usuarioBD).Reference(u => u.Rol).Load();
             }
+            catch (DbUpdateException ex)
+            {
+                var errorSql = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
 
-            // Mapeas los cambios que permitas editar
-            usuarioBD.Nombre = usuarioEditado.Nombre;
-            usuarioBD.Apellido = usuarioEditado.Apellido;
-            usuarioBD.Email = usuarioEditado.Email;
-            usuarioBD.Dni = usuarioEditado.Dni;
+                // --- CAPTURA DE RESTRICCIÓN UNIQUE PARA LA EDICIÓN ---
+                if (errorSql.Contains("UQ") || errorSql.Contains("UNIQUE") || errorSql.Contains("violación de la restricción") || errorSql.Contains("duplicate key"))
+                {
+                    throw new Exception("Error de duplicidad: El DNI o el Correo Electrónico ingresado ya pertenece a otro agente en el sistema.");
+                }
 
-            usuarioBD.IdRol = usuarioEditado.IdRol;
-            usuarioBD.Estado = usuarioEditado.Estado;
-
-            _context.SaveChanges();
-
-            // El truco para la interfaz: Forzar la recarga de la propiedad de navegación en memoria
-            _context.Entry(usuarioBD).Reference(u => u.Rol).Load();
+                throw new Exception($"Error de base de datos al actualizar: {errorSql}");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         /// <summary>
@@ -219,9 +252,15 @@ namespace ServicesNegocio
         /// <summary>
         /// Consulta general de usuarios para la grilla de administración, incluyendo su rol.
         /// </summary>
-        public List<Usuario> ObtenerTodos()
+        
+public List<Usuario> ObtenerTodos()
         {
-            return _context.Usuarios.Include(u => u.Rol).ToList();
+            using (var context = new CredenSoftContext())
+            {
+                return context.Usuarios
+                              .Include(u => u.Rol)
+                              .ToList();
+            }
         }
         /// <summary>
         /// Busca usuarios activos cuyo nombre, apellido o email coincidan con el término ingresado.
