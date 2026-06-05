@@ -219,9 +219,15 @@ namespace ServicesNegocio
         /// <summary>
         /// Consulta general de usuarios para la grilla de administración, incluyendo su rol.
         /// </summary>
-        public List<Usuario> ObtenerTodos()
+        
+public List<Usuario> ObtenerTodos()
         {
-            return _context.Usuarios.Include(u => u.Rol).ToList();
+            using (var context = new CredenSoftContext())
+            {
+                return context.Usuarios
+                              .Include(u => u.Rol)
+                              .ToList();
+            }
         }
         /// <summary>
         /// Busca usuarios activos cuyo nombre, apellido o email coincidan con el término ingresado.
