@@ -87,9 +87,10 @@
             // 
             // lblInfoUsuario
             // 
+            lblInfoUsuario.Anchor = AnchorStyles.Top;
             lblInfoUsuario.AutoSize = true;
             lblInfoUsuario.ForeColor = SystemColors.ButtonHighlight;
-            lblInfoUsuario.Location = new Point(823, 28);
+            lblInfoUsuario.Location = new Point(440, 23);
             lblInfoUsuario.Name = "lblInfoUsuario";
             lblInfoUsuario.Size = new Size(215, 25);
             lblInfoUsuario.TabIndex = 6;

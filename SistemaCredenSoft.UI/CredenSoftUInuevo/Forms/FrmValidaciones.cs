@@ -29,8 +29,8 @@ namespace CredenSoftUInuevo.Forms
             if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
                 return;
 
-            // Solo Administrador Local (IdRol == 2) puede acceder
-            if (SesionActual.UsuarioLogueado.IdRol != 2)
+            // Solo Administrador Central (IdRol == 1) puede acceder
+            if (SesionActual.UsuarioLogueado.IdRol != 1)
             {
                 MessageBox.Show(
                     "ACCESO DENEGADO.\nNo posee permisos para ingresar a Validaciones.",
@@ -45,6 +45,7 @@ namespace CredenSoftUInuevo.Forms
             }
         }
 
+        
         // =====================================================
         // APROBAR SOLICITUD
         // PASO 3.6 - Validaciones Simuladas

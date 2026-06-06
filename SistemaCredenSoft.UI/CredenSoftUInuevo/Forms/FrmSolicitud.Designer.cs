@@ -34,7 +34,7 @@
             dgvSolicitudes.Margin = new Padding(6, 5, 6, 5);
             dgvSolicitudes.Name = "dgvSolicitudes";
             dgvSolicitudes.RowHeadersWidth = 62;
-            dgvSolicitudes.Size = new Size(1169, 433);
+            dgvSolicitudes.Size = new Size(1169, 463);
             dgvSolicitudes.TabIndex = 0;
             // 
             // btnNueva

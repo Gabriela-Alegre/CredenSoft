@@ -47,9 +47,11 @@
             lblNuevaContrasenia = new Label();
             btnGuardar = new Button();
             btnCambiarContrasenia = new Button();
+            panel1 = new Panel();
             grpDatosNoEditables.SuspendLayout();
             grpDatosPersonales.SuspendLayout();
             grpSeguridad.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // txtNombre
@@ -224,7 +226,7 @@
             // 
             btnGuardar.Anchor = AnchorStyles.Bottom;
             btnGuardar.BackColor = SystemColors.ActiveCaption;
-            btnGuardar.Location = new Point(68, 740);
+            btnGuardar.Location = new Point(3, 3);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(268, 77);
             btnGuardar.TabIndex = 10;
@@ -236,7 +238,7 @@
             // 
             btnCambiarContrasenia.Anchor = AnchorStyles.Bottom;
             btnCambiarContrasenia.BackColor = SystemColors.ActiveCaption;
-            btnCambiarContrasenia.Location = new Point(413, 740);
+            btnCambiarContrasenia.Location = new Point(405, 3);
             btnCambiarContrasenia.Name = "btnCambiarContrasenia";
             btnCambiarContrasenia.Size = new Size(268, 77);
             btnCambiarContrasenia.TabIndex = 11;
@@ -244,14 +246,23 @@
             btnCambiarContrasenia.UseVisualStyleBackColor = false;
             btnCambiarContrasenia.Click += btnCambiarContrasenia_Click;
             // 
+            // panel1
+            // 
+            panel1.Controls.Add(btnGuardar);
+            panel1.Controls.Add(btnCambiarContrasenia);
+            panel1.Dock = DockStyle.Bottom;
+            panel1.Location = new Point(0, 685);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(947, 144);
+            panel1.TabIndex = 12;
+            // 
             // FrmPerfil
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(947, 829);
-            Controls.Add(btnCambiarContrasenia);
-            Controls.Add(btnGuardar);
+            Controls.Add(panel1);
             Controls.Add(grpSeguridad);
             Controls.Add(grpDatosPersonales);
             Controls.Add(grpDatosNoEditables);
@@ -268,6 +279,7 @@
             grpDatosPersonales.PerformLayout();
             grpSeguridad.ResumeLayout(false);
             grpSeguridad.PerformLayout();
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -292,5 +304,6 @@
         private Label lblNuevaContrasenia;
         private Button btnGuardar;
         private Button btnCambiarContrasenia;
+        private Panel panel1;
     }
 }
