@@ -65,7 +65,7 @@
             lblNombre.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblNombre.Location = new Point(16, 30);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(89, 28);
+            lblNombre.Size = new Size(104, 28);
             lblNombre.TabIndex = 1;
             lblNombre.Text = "Nombre *";
             // 
@@ -89,7 +89,7 @@
             lblEmail.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblEmail.Location = new Point(16, 120);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(64, 28);
+            lblEmail.Size = new Size(79, 28);
             lblEmail.TabIndex = 4;
             lblEmail.Text = "Email *";
             lblEmail.Click += lblEmail_Click;
@@ -100,7 +100,7 @@
             lblApellido.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblApellido.Location = new Point(16, 75);
             lblApellido.Name = "lblApellido";
-            lblApellido.Size = new Size(91, 28);
+            lblApellido.Size = new Size(106, 28);
             lblApellido.TabIndex = 5;
             lblApellido.Text = "Apellido *";
             // 
@@ -142,7 +142,7 @@
             lblRol.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblRol.Location = new Point(16, 126);
             lblRol.Name = "lblRol";
-            lblRol.Size = new Size(43, 28);
+            lblRol.Size = new Size(58, 28);
             lblRol.TabIndex = 8;
             lblRol.Text = "Rol *";
             // 
@@ -170,7 +170,7 @@
             lblDni.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblDni.Location = new Point(16, 87);
             lblDni.Name = "lblDni";
-            lblDni.Size = new Size(49, 28);
+            lblDni.Size = new Size(64, 28);
             lblDni.TabIndex = 6;
             lblDni.Text = "DNI *";
             // 
@@ -216,16 +216,17 @@
             lblNuevaContrasenia.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblNuevaContrasenia.Location = new Point(16, 48);
             lblNuevaContrasenia.Name = "lblNuevaContrasenia";
-            lblNuevaContrasenia.Size = new Size(185, 28);
+            lblNuevaContrasenia.Size = new Size(200, 28);
             lblNuevaContrasenia.TabIndex = 7;
             lblNuevaContrasenia.Text = "Nueva Contraseña *";
             // 
             // btnGuardar
             // 
+            btnGuardar.Anchor = AnchorStyles.Bottom;
             btnGuardar.BackColor = SystemColors.ActiveCaption;
-            btnGuardar.Location = new Point(72, 737);
+            btnGuardar.Location = new Point(68, 740);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(234, 66);
+            btnGuardar.Size = new Size(268, 77);
             btnGuardar.TabIndex = 10;
             btnGuardar.Text = "Guardar Cambios";
             btnGuardar.UseVisualStyleBackColor = false;
@@ -233,9 +234,11 @@
             // 
             // btnCambiarContrasenia
             // 
-            btnCambiarContrasenia.Location = new Point(417, 737);
+            btnCambiarContrasenia.Anchor = AnchorStyles.Bottom;
+            btnCambiarContrasenia.BackColor = SystemColors.ActiveCaption;
+            btnCambiarContrasenia.Location = new Point(413, 740);
             btnCambiarContrasenia.Name = "btnCambiarContrasenia";
-            btnCambiarContrasenia.Size = new Size(234, 66);
+            btnCambiarContrasenia.Size = new Size(268, 77);
             btnCambiarContrasenia.TabIndex = 11;
             btnCambiarContrasenia.Text = "Cambiar Contraseña";
             btnCambiarContrasenia.UseVisualStyleBackColor = false;
@@ -246,7 +249,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1295, 815);
+            ClientSize = new Size(947, 829);
             Controls.Add(btnCambiarContrasenia);
             Controls.Add(btnGuardar);
             Controls.Add(grpSeguridad);
@@ -256,6 +259,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "FrmPerfil";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "FrmPerfil";
             Load += FrmPerfil_Load;
             grpDatosNoEditables.ResumeLayout(false);

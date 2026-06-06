@@ -117,10 +117,11 @@
             // btnAprobar
             // 
             btnAprobar.BackColor = SystemColors.ActiveCaption;
+            btnAprobar.Font = new Font("Segoe UI", 13F);
             btnAprobar.ForeColor = Color.Black;
-            btnAprobar.Location = new Point(15, 600);
+            btnAprobar.Location = new Point(32, 573);
             btnAprobar.Name = "btnAprobar";
-            btnAprobar.Size = new Size(210, 55);
+            btnAprobar.Size = new Size(237, 79);
             btnAprobar.TabIndex = 3;
             btnAprobar.Text = "Aprobar";
             btnAprobar.UseVisualStyleBackColor = false;
@@ -129,9 +130,10 @@
             // btnRechazar
             // 
             btnRechazar.BackColor = Color.IndianRed;
-            btnRechazar.Location = new Point(253, 600);
+            btnRechazar.Font = new Font("Segoe UI", 13F);
+            btnRechazar.Location = new Point(294, 573);
             btnRechazar.Name = "btnRechazar";
-            btnRechazar.Size = new Size(210, 55);
+            btnRechazar.Size = new Size(237, 79);
             btnRechazar.TabIndex = 4;
             btnRechazar.Text = "Rechazar";
             btnRechazar.UseVisualStyleBackColor = false;
@@ -140,9 +142,10 @@
             // btnVerDetalle
             // 
             btnVerDetalle.BackColor = Color.Lavender;
-            btnVerDetalle.Location = new Point(491, 600);
+            btnVerDetalle.Font = new Font("Segoe UI", 13F);
+            btnVerDetalle.Location = new Point(556, 573);
             btnVerDetalle.Name = "btnVerDetalle";
-            btnVerDetalle.Size = new Size(210, 55);
+            btnVerDetalle.Size = new Size(237, 79);
             btnVerDetalle.TabIndex = 5;
             btnVerDetalle.Text = "Ver Detalle";
             btnVerDetalle.UseVisualStyleBackColor = false;
@@ -151,9 +154,10 @@
             // btnVolver
             // 
             btnVolver.BackColor = Color.DarkSalmon;
-            btnVolver.Location = new Point(729, 600);
+            btnVolver.Font = new Font("Segoe UI", 13F);
+            btnVolver.Location = new Point(818, 573);
             btnVolver.Name = "btnVolver";
-            btnVolver.Size = new Size(210, 55);
+            btnVolver.Size = new Size(237, 79);
             btnVolver.TabIndex = 6;
             btnVolver.Text = "Volver";
             btnVolver.UseVisualStyleBackColor = false;

@@ -31,7 +31,18 @@ namespace CredenSoftUInuevo.Forms
             }
 
         }
-      
+        private void FrmConfiguracion_Load(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                "El módulo de Configuración está en mantenimiento y no disponible en este sprint.",
+                "Mantenimiento",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+
+            this.Close(); // se cierra después del mensaje
+        }
+
+
 
 
     }

@@ -46,10 +46,11 @@
             // btnEliminar
             // 
             btnEliminar.BackColor = Color.IndianRed;
-            btnEliminar.Location = new Point(546, 981);
+            btnEliminar.Font = new Font("Segoe UI", 13F);
+            btnEliminar.Location = new Point(633, 750);
             btnEliminar.Margin = new Padding(6, 5, 6, 5);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(210, 55);
+            btnEliminar.Size = new Size(255, 72);
             btnEliminar.TabIndex = 2;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = false;
@@ -58,10 +59,11 @@
             // btnEditar
             // 
             btnEditar.BackColor = Color.DarkSeaGreen;
-            btnEditar.Location = new Point(296, 981);
+            btnEditar.Font = new Font("Segoe UI", 13F);
+            btnEditar.Location = new Point(353, 750);
             btnEditar.Margin = new Padding(6, 5, 6, 5);
             btnEditar.Name = "btnEditar";
-            btnEditar.Size = new Size(210, 55);
+            btnEditar.Size = new Size(255, 72);
             btnEditar.TabIndex = 1;
             btnEditar.Text = "Editar";
             btnEditar.UseVisualStyleBackColor = false;
@@ -70,10 +72,11 @@
             // btnNuevo
             // 
             btnNuevo.BackColor = SystemColors.ActiveCaption;
-            btnNuevo.Location = new Point(46, 981);
+            btnNuevo.Font = new Font("Segoe UI", 13F);
+            btnNuevo.Location = new Point(61, 750);
             btnNuevo.Margin = new Padding(6, 5, 6, 5);
             btnNuevo.Name = "btnNuevo";
-            btnNuevo.Size = new Size(210, 55);
+            btnNuevo.Size = new Size(255, 72);
             btnNuevo.TabIndex = 0;
             btnNuevo.Text = "Nuevo";
             btnNuevo.UseVisualStyleBackColor = false;

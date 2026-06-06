@@ -18,6 +18,9 @@ namespace CredenSoftUInuevo.Forms
         public FrmSolicitud()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Size = new Size(800, 500);   // tamaño inicial
+            this.MinimumSize = new Size(900, 650); // tamaño mínimo
 
             dgvSolicitudes.ReadOnly = true;
             dgvSolicitudes.AllowUserToAddRows = false;

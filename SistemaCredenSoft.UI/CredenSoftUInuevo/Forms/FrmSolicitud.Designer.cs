@@ -27,22 +27,25 @@
             // 
             // dgvSolicitudes
             // 
+            dgvSolicitudes.Anchor = AnchorStyles.Left;
             dgvSolicitudes.BackgroundColor = Color.WhiteSmoke;
             dgvSolicitudes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvSolicitudes.Location = new Point(20, 93);
+            dgvSolicitudes.Location = new Point(20, 59);
             dgvSolicitudes.Margin = new Padding(6, 5, 6, 5);
             dgvSolicitudes.Name = "dgvSolicitudes";
             dgvSolicitudes.RowHeadersWidth = 62;
-            dgvSolicitudes.Size = new Size(1329, 507);
+            dgvSolicitudes.Size = new Size(1169, 433);
             dgvSolicitudes.TabIndex = 0;
             // 
             // btnNueva
             // 
+            btnNueva.Anchor = AnchorStyles.Bottom;
             btnNueva.BackColor = SystemColors.ActiveCaption;
-            btnNueva.Location = new Point(20, 625);
+            btnNueva.Font = new Font("Segoe UI", 13F);
+            btnNueva.Location = new Point(70, 532);
             btnNueva.Margin = new Padding(6, 5, 6, 5);
             btnNueva.Name = "btnNueva";
-            btnNueva.Size = new Size(210, 55);
+            btnNueva.Size = new Size(222, 81);
             btnNueva.TabIndex = 1;
             btnNueva.Text = "Nueva";
             btnNueva.UseVisualStyleBackColor = false;
@@ -50,11 +53,13 @@
             // 
             // btnEliminar
             // 
+            btnEliminar.Anchor = AnchorStyles.Bottom;
             btnEliminar.BackColor = Color.IndianRed;
-            btnEliminar.Location = new Point(480, 625);
+            btnEliminar.Font = new Font("Segoe UI", 13F);
+            btnEliminar.Location = new Point(569, 532);
             btnEliminar.Margin = new Padding(6, 5, 6, 5);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(210, 55);
+            btnEliminar.Size = new Size(232, 81);
             btnEliminar.TabIndex = 2;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = false;
@@ -62,11 +67,13 @@
             // 
             // btnVer
             // 
+            btnVer.Anchor = AnchorStyles.Bottom;
             btnVer.BackColor = Color.Lavender;
-            btnVer.Location = new Point(250, 625);
+            btnVer.Font = new Font("Segoe UI", 13F);
+            btnVer.Location = new Point(324, 532);
             btnVer.Margin = new Padding(6, 5, 6, 5);
             btnVer.Name = "btnVer";
-            btnVer.Size = new Size(210, 55);
+            btnVer.Size = new Size(213, 81);
             btnVer.TabIndex = 3;
             btnVer.Text = "Ver";
             btnVer.UseVisualStyleBackColor = false;
@@ -87,7 +94,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1364, 695);
+            ClientSize = new Size(1226, 648);
             Controls.Add(label1);
             Controls.Add(btnVer);
             Controls.Add(btnEliminar);
@@ -98,6 +105,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "FrmSolicitud";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Listado de Solicitudes";
             Load += FrmSolicitud_Load;
             ((System.ComponentModel.ISupportInitialize)dgvSolicitudes).EndInit();
