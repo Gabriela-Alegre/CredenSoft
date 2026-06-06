@@ -1,12 +1,5 @@
 ﻿using ModelsEntidades;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CredenSoftUInuevo.Forms
@@ -26,11 +19,12 @@ namespace CredenSoftUInuevo.Forms
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
-                this.Close(); // Cierra el formulario inmediatamente
+                // Cerrar inmediatamente y volver al Dashboard
+                this.DialogResult = DialogResult.Cancel;
                 return;
             }
-
         }
+
         private void FrmConfiguracion_Load(object sender, EventArgs e)
         {
             MessageBox.Show(
@@ -39,11 +33,8 @@ namespace CredenSoftUInuevo.Forms
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
 
-            this.Close(); // se cierra después del mensaje
+            // Cerrar el formulario inmediatamente después del mensaje
+            this.DialogResult = DialogResult.Cancel;
         }
-
-
-
-
     }
 }

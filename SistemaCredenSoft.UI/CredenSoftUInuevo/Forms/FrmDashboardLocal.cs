@@ -9,14 +9,12 @@ namespace CredenSoftUInuevo.Forms
         public FrmDashboardLocal()
         {
             InitializeComponent();
-
             Load += FrmDashboardLocal_Load;
         }
 
         // =====================================================
         // CARGA DEL DASHBOARD
         // =====================================================
-
         private void FrmDashboardLocal_Load(object sender, EventArgs e)
         {
             // Verificar sesión activa
@@ -46,34 +44,16 @@ namespace CredenSoftUInuevo.Forms
             }
 
             // Mostrar datos del usuario
-            lblRol.Text =
-                "Rol: " +
-                SesionActual.UsuarioLogueado.Rol.NombreRol;
-
-            lblNombre.Text =
-                "Nombre: " +
-                SesionActual.UsuarioLogueado.Nombre + " " +
-                SesionActual.UsuarioLogueado.Apellido;
-
-            // Temporal hasta tener sede en BD
-            lblSede.Text =
-                "Sede: Aeropuerto Local";
-
-            // Barra superior
-            lblInfoUsuario.Text =
-                $"{SesionActual.UsuarioLogueado.Nombre} " +
-                $"{SesionActual.UsuarioLogueado.Apellido} | " +
-                $"{SesionActual.UsuarioLogueado.Rol.NombreRol}";
-
-            // Barra inferior
-            lblStatus.Text =
-                "● Sesión activa | Conexión segura";
+            lblRol.Text = "Rol: " + SesionActual.UsuarioLogueado.Rol.NombreRol;
+            lblNombre.Text = "Nombre: " + SesionActual.UsuarioLogueado.Nombre + " " + SesionActual.UsuarioLogueado.Apellido;
+            lblSede.Text = "Sede: Aeropuerto Local"; // Temporal hasta tener sede en BD
+            lblInfoUsuario.Text = $"{SesionActual.UsuarioLogueado.Nombre} {SesionActual.UsuarioLogueado.Apellido} | {SesionActual.UsuarioLogueado.Rol.NombreRol}";
+            lblStatus.Text = "● Sesión activa | Conexión segura";
         }
 
         // =====================================================
         // CERRAR SESIÓN
         // =====================================================
-
         private void btnCerrarSesión_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show(
@@ -85,13 +65,12 @@ namespace CredenSoftUInuevo.Forms
             if (resultado == DialogResult.Yes)
             {
                 SesionActual.Logout();
-
                 FrmLogin frm = new FrmLogin();
                 frm.Show();
-
                 this.Close();
             }
         }
+
         // =====================================================
         // MI PERFIL
         // =====================================================
@@ -104,67 +83,42 @@ namespace CredenSoftUInuevo.Forms
         // =====================================================
         // VALIDACIONES
         // =====================================================
-
         private void btnValidaciones_Click(object sender, EventArgs e)
         {
-            this.Hide();
-
             FrmValidaciones frm = new FrmValidaciones();
-
             frm.ShowDialog();
-
-            this.Show();
         }
 
         // =====================================================
         // VALIDAR SOLICITUD
         // =====================================================
-
         private void btnValidarSolicitud_Click(object sender, EventArgs e)
         {
-            this.Hide();
-
             FrmValidaciones frm = new FrmValidaciones();
-
             frm.ShowDialog();
-
-            this.Show();
         }
 
         // =====================================================
         // CONFIGURACIÓN
         // =====================================================
-
         private void btnConfiguración_Click(object sender, EventArgs e)
         {
-            this.Hide();
-
             FrmConfiguracion frm = new FrmConfiguracion();
-
-            frm.ShowDialog();
-
-            this.Show();
+            frm.ShowDialog(); // no se oculta el Dashboard
         }
 
         // =====================================================
         // CREDENCIALES
         // =====================================================
-
         private void btnCredenciales_Click(object sender, EventArgs e)
         {
-            this.Hide();
-
             FrmCredenciales frm = new FrmCredenciales();
-
             frm.ShowDialog();
-
-            this.Show();
         }
 
         // =====================================================
         // GENERAR REPORTE
         // =====================================================
-
         private void btnGenerarReporte_Click(object sender, EventArgs e)
         {
             MessageBox.Show(
@@ -177,36 +131,23 @@ namespace CredenSoftUInuevo.Forms
         // =====================================================
         // SOLICITUDES
         // =====================================================
-
         private void btnSolicitudes_Click(object sender, EventArgs e)
         {
-            this.Hide();
-
             FrmSolicitud frm = new FrmSolicitud();
-
             frm.ShowDialog();
-
-            this.Show();
         }
 
         // =====================================================
         // GESTIÓN DE USUARIOS
         // =====================================================
-
         private void btnGestiónDeUsuarios_Click(object sender, EventArgs e)
         {
-            this.Hide();
-
             FrmUsuarios frm = new FrmUsuarios();
-
             frm.ShowDialog();
-
-            this.Show();
         }
 
         private void panelMenu_Paint(object sender, PaintEventArgs e)
         {
-
         }
     }
 }
