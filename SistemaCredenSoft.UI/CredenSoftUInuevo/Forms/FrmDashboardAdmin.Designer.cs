@@ -79,10 +79,11 @@
             panelSuperior.BackColor = Color.FromArgb(0, 51, 102);
             panelSuperior.Controls.Add(lblInfoUsuario);
             panelSuperior.Dock = DockStyle.Top;
-            panelSuperior.Location = new Point(251, 0);
-            panelSuperior.MaximumSize = new Size(0, 80);
+            panelSuperior.Location = new Point(176, 0);
+            panelSuperior.Margin = new Padding(2);
+            panelSuperior.MaximumSize = new Size(0, 48);
             panelSuperior.Name = "panelSuperior";
-            panelSuperior.Size = new Size(1087, 80);
+            panelSuperior.Size = new Size(761, 48);
             panelSuperior.TabIndex = 0;
             // 
             // lblInfoUsuario
@@ -90,9 +91,10 @@
             lblInfoUsuario.Anchor = AnchorStyles.Top;
             lblInfoUsuario.AutoSize = true;
             lblInfoUsuario.ForeColor = SystemColors.ButtonHighlight;
-            lblInfoUsuario.Location = new Point(440, 23);
+            lblInfoUsuario.Location = new Point(688, 14);
+            lblInfoUsuario.Margin = new Padding(2, 0, 2, 0);
             lblInfoUsuario.Name = "lblInfoUsuario";
-            lblInfoUsuario.Size = new Size(215, 25);
+            lblInfoUsuario.Size = new Size(140, 15);
             lblInfoUsuario.TabIndex = 6;
             lblInfoUsuario.Text = "          Cargando usuario...";
             lblInfoUsuario.Click += lblInfoUsuario_Click;
@@ -110,8 +112,9 @@
             panelMenu.Controls.Add(btnInicio);
             panelMenu.Dock = DockStyle.Left;
             panelMenu.Location = new Point(0, 0);
+            panelMenu.Margin = new Padding(2);
             panelMenu.Name = "panelMenu";
-            panelMenu.Size = new Size(251, 1050);
+            panelMenu.Size = new Size(176, 529);
             panelMenu.TabIndex = 1;
             panelMenu.Paint += panelMenu_Paint;
             // 
@@ -122,9 +125,10 @@
             btnPerfil.FlatStyle = FlatStyle.Flat;
             btnPerfil.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnPerfil.ForeColor = Color.White;
-            btnPerfil.Location = new Point(-3, 497);
+            btnPerfil.Location = new Point(-2, 298);
+            btnPerfil.Margin = new Padding(2);
             btnPerfil.Name = "btnPerfil";
-            btnPerfil.Size = new Size(256, 55);
+            btnPerfil.Size = new Size(179, 33);
             btnPerfil.TabIndex = 8;
             btnPerfil.Text = "Perfil";
             btnPerfil.TextAlign = ContentAlignment.BottomLeft;
@@ -134,10 +138,9 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(-44, -7);
-            pictureBox1.Margin = new Padding(4, 5, 4, 5);
+            pictureBox1.Location = new Point(-31, -4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(326, 135);
+            pictureBox1.Size = new Size(228, 81);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 4;
             pictureBox1.TabStop = false;
@@ -152,10 +155,10 @@
             btnCerrarSesion.FlatStyle = FlatStyle.Flat;
             btnCerrarSesion.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             btnCerrarSesion.ForeColor = Color.White;
-            btnCerrarSesion.Location = new Point(0, 953);
-            btnCerrarSesion.Margin = new Padding(6, 5, 6, 5);
+            btnCerrarSesion.Location = new Point(0, 471);
+            btnCerrarSesion.Margin = new Padding(4, 3, 4, 3);
             btnCerrarSesion.Name = "btnCerrarSesion";
-            btnCerrarSesion.Size = new Size(251, 97);
+            btnCerrarSesion.Size = new Size(176, 58);
             btnCerrarSesion.TabIndex = 7;
             btnCerrarSesion.Text = "Cerrar Sesión";
             btnCerrarSesion.UseVisualStyleBackColor = false;
@@ -168,9 +171,10 @@
             btnCredenciales.FlatStyle = FlatStyle.Flat;
             btnCredenciales.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             btnCredenciales.ForeColor = Color.White;
-            btnCredenciales.Location = new Point(0, 197);
+            btnCredenciales.Location = new Point(0, 118);
+            btnCredenciales.Margin = new Padding(2);
             btnCredenciales.Name = "btnCredenciales";
-            btnCredenciales.Size = new Size(268, 60);
+            btnCredenciales.Size = new Size(188, 36);
             btnCredenciales.TabIndex = 5;
             btnCredenciales.Text = "Credenciales";
             btnCredenciales.TextAlign = ContentAlignment.MiddleLeft;
@@ -184,9 +188,10 @@
             btnValidaciones.FlatStyle = FlatStyle.Flat;
             btnValidaciones.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             btnValidaciones.ForeColor = Color.White;
-            btnValidaciones.Location = new Point(0, 422);
+            btnValidaciones.Location = new Point(0, 253);
+            btnValidaciones.Margin = new Padding(2);
             btnValidaciones.Name = "btnValidaciones";
-            btnValidaciones.Size = new Size(268, 60);
+            btnValidaciones.Size = new Size(188, 36);
             btnValidaciones.TabIndex = 4;
             btnValidaciones.Text = "Validaciones";
             btnValidaciones.TextAlign = ContentAlignment.MiddleLeft;
@@ -200,9 +205,10 @@
             btnConfiguración.FlatStyle = FlatStyle.Flat;
             btnConfiguración.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             btnConfiguración.ForeColor = Color.White;
-            btnConfiguración.Location = new Point(0, 272);
+            btnConfiguración.Location = new Point(0, 163);
+            btnConfiguración.Margin = new Padding(2);
             btnConfiguración.Name = "btnConfiguración";
-            btnConfiguración.Size = new Size(268, 60);
+            btnConfiguración.Size = new Size(188, 36);
             btnConfiguración.TabIndex = 3;
             btnConfiguración.Text = "Configuración";
             btnConfiguración.TextAlign = ContentAlignment.MiddleLeft;
@@ -216,9 +222,10 @@
             btnGestiónDeUsuarios.FlatStyle = FlatStyle.Flat;
             btnGestiónDeUsuarios.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             btnGestiónDeUsuarios.ForeColor = Color.White;
-            btnGestiónDeUsuarios.Location = new Point(0, 347);
+            btnGestiónDeUsuarios.Location = new Point(0, 208);
+            btnGestiónDeUsuarios.Margin = new Padding(2);
             btnGestiónDeUsuarios.Name = "btnGestiónDeUsuarios";
-            btnGestiónDeUsuarios.Size = new Size(268, 60);
+            btnGestiónDeUsuarios.Size = new Size(188, 36);
             btnGestiónDeUsuarios.TabIndex = 2;
             btnGestiónDeUsuarios.Text = "Gestión de Usuarios";
             btnGestiónDeUsuarios.TextAlign = ContentAlignment.MiddleLeft;
@@ -232,9 +239,10 @@
             btnInicio.FlatStyle = FlatStyle.Flat;
             btnInicio.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             btnInicio.ForeColor = Color.White;
-            btnInicio.Location = new Point(0, 122);
+            btnInicio.Location = new Point(0, 73);
+            btnInicio.Margin = new Padding(2);
             btnInicio.Name = "btnInicio";
-            btnInicio.Size = new Size(268, 60);
+            btnInicio.Size = new Size(188, 36);
             btnInicio.TabIndex = 1;
             btnInicio.Text = "Inicio";
             btnInicio.TextAlign = ContentAlignment.MiddleLeft;
@@ -254,9 +262,10 @@
             panelPrincipal.Controls.Add(groupBox1);
             panelPrincipal.Controls.Add(label2);
             panelPrincipal.Dock = DockStyle.Fill;
-            panelPrincipal.Location = new Point(251, 80);
+            panelPrincipal.Location = new Point(176, 48);
+            panelPrincipal.Margin = new Padding(2);
             panelPrincipal.Name = "panelPrincipal";
-            panelPrincipal.Size = new Size(1087, 970);
+            panelPrincipal.Size = new Size(761, 481);
             panelPrincipal.TabIndex = 2;
             // 
             // statusStrip
@@ -264,17 +273,17 @@
             statusStrip.BackColor = Color.FromArgb(0, 51, 102);
             statusStrip.ImageScalingSize = new Size(24, 24);
             statusStrip.Items.AddRange(new ToolStripItem[] { lblStatus });
-            statusStrip.Location = new Point(0, 938);
+            statusStrip.Location = new Point(0, 459);
             statusStrip.Name = "statusStrip";
-            statusStrip.Padding = new Padding(1, 0, 23, 0);
-            statusStrip.Size = new Size(1087, 32);
+            statusStrip.Padding = new Padding(1, 0, 16, 0);
+            statusStrip.Size = new Size(761, 22);
             statusStrip.TabIndex = 10;
             // 
             // lblStatus
             // 
             lblStatus.ForeColor = Color.MediumSpringGreen;
             lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(297, 25);
+            lblStatus.Size = new Size(197, 17);
             lblStatus.Text = "● Sistema Online - Conexión Segura";
             // 
             // groupBox2
@@ -283,9 +292,11 @@
             groupBox2.Controls.Add(lblFecha);
             groupBox2.Controls.Add(lblRol);
             groupBox2.Controls.Add(lblUsuario);
-            groupBox2.Location = new Point(507, 81);
+            groupBox2.Location = new Point(355, 49);
+            groupBox2.Margin = new Padding(2);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(581, 348);
+            groupBox2.Padding = new Padding(2);
+            groupBox2.Size = new Size(407, 209);
             groupBox2.TabIndex = 8;
             groupBox2.TabStop = false;
             groupBox2.Text = "Información de Sesión";
@@ -294,9 +305,10 @@
             // 
             lblEstado.AutoSize = true;
             lblEstado.Font = new Font("Segoe UI", 10F);
-            lblEstado.Location = new Point(8, 156);
+            lblEstado.Location = new Point(6, 94);
+            lblEstado.Margin = new Padding(2, 0, 2, 0);
             lblEstado.Name = "lblEstado";
-            lblEstado.Size = new Size(75, 28);
+            lblEstado.Size = new Size(53, 19);
             lblEstado.TabIndex = 3;
             lblEstado.Text = "Estado:";
             // 
@@ -304,9 +316,10 @@
             // 
             lblFecha.AutoSize = true;
             lblFecha.Font = new Font("Segoe UI", 10F);
-            lblFecha.Location = new Point(8, 114);
+            lblFecha.Location = new Point(6, 68);
+            lblFecha.Margin = new Padding(2, 0, 2, 0);
             lblFecha.Name = "lblFecha";
-            lblFecha.Size = new Size(66, 28);
+            lblFecha.Size = new Size(47, 19);
             lblFecha.TabIndex = 2;
             lblFecha.Text = "Fecha:";
             // 
@@ -314,9 +327,10 @@
             // 
             lblRol.AutoSize = true;
             lblRol.Font = new Font("Segoe UI", 10F);
-            lblRol.Location = new Point(8, 72);
+            lblRol.Location = new Point(6, 43);
+            lblRol.Margin = new Padding(2, 0, 2, 0);
             lblRol.Name = "lblRol";
-            lblRol.Size = new Size(44, 28);
+            lblRol.Size = new Size(31, 19);
             lblRol.TabIndex = 1;
             lblRol.Text = "Rol:";
             // 
@@ -324,9 +338,10 @@
             // 
             lblUsuario.AutoSize = true;
             lblUsuario.Font = new Font("Segoe UI", 10F);
-            lblUsuario.Location = new Point(8, 30);
+            lblUsuario.Location = new Point(6, 18);
+            lblUsuario.Margin = new Padding(2, 0, 2, 0);
             lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(83, 28);
+            lblUsuario.Size = new Size(59, 19);
             lblUsuario.TabIndex = 0;
             lblUsuario.Text = "Usuario:";
             // 
@@ -335,9 +350,10 @@
             btnEmitirCredencial.BackColor = Color.DarkSeaGreen;
             btnEmitirCredencial.FlatStyle = FlatStyle.Flat;
             btnEmitirCredencial.Font = new Font("Segoe UI", 11F);
-            btnEmitirCredencial.Location = new Point(300, 802);
+            btnEmitirCredencial.Location = new Point(210, 481);
+            btnEmitirCredencial.Margin = new Padding(2);
             btnEmitirCredencial.Name = "btnEmitirCredencial";
-            btnEmitirCredencial.Size = new Size(210, 55);
+            btnEmitirCredencial.Size = new Size(147, 33);
             btnEmitirCredencial.TabIndex = 7;
             btnEmitirCredencial.Text = "Emitir Credencial";
             btnEmitirCredencial.UseVisualStyleBackColor = false;
@@ -348,9 +364,10 @@
             btnVerSolicitudes.BackColor = Color.Lavender;
             btnVerSolicitudes.FlatStyle = FlatStyle.Flat;
             btnVerSolicitudes.Font = new Font("Segoe UI", 11F);
-            btnVerSolicitudes.Location = new Point(41, 802);
+            btnVerSolicitudes.Location = new Point(29, 481);
+            btnVerSolicitudes.Margin = new Padding(2);
             btnVerSolicitudes.Name = "btnVerSolicitudes";
-            btnVerSolicitudes.Size = new Size(210, 55);
+            btnVerSolicitudes.Size = new Size(147, 33);
             btnVerSolicitudes.TabIndex = 6;
             btnVerSolicitudes.Text = "Ver Solicitudes";
             btnVerSolicitudes.UseVisualStyleBackColor = false;
@@ -361,9 +378,10 @@
             btnNuevoUsuario.BackColor = Color.LightSteelBlue;
             btnNuevoUsuario.FlatStyle = FlatStyle.Flat;
             btnNuevoUsuario.Font = new Font("Segoe UI", 11F);
-            btnNuevoUsuario.Location = new Point(559, 802);
+            btnNuevoUsuario.Location = new Point(391, 481);
+            btnNuevoUsuario.Margin = new Padding(2);
             btnNuevoUsuario.Name = "btnNuevoUsuario";
-            btnNuevoUsuario.Size = new Size(210, 55);
+            btnNuevoUsuario.Size = new Size(147, 33);
             btnNuevoUsuario.TabIndex = 5;
             btnNuevoUsuario.Text = "Nuevo Usuario";
             btnNuevoUsuario.UseVisualStyleBackColor = false;
@@ -374,9 +392,10 @@
             lblAccionesRápidas.AutoSize = true;
             lblAccionesRápidas.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
             lblAccionesRápidas.ForeColor = Color.MidnightBlue;
-            lblAccionesRápidas.Location = new Point(28, 741);
+            lblAccionesRápidas.Location = new Point(20, 445);
+            lblAccionesRápidas.Margin = new Padding(2, 0, 2, 0);
             lblAccionesRápidas.Name = "lblAccionesRápidas";
-            lblAccionesRápidas.Size = new Size(279, 45);
+            lblAccionesRápidas.Size = new Size(192, 30);
             lblAccionesRápidas.TabIndex = 4;
             lblAccionesRápidas.Text = "Acciones Rápidas";
             // 
@@ -388,17 +407,18 @@
             dgvSolicitudes.BackgroundColor = Color.White;
             dgvSolicitudes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSolicitudes.Columns.AddRange(new DataGridViewColumn[] { colID, colEstado, colFecha, colTipo });
-            dgvSolicitudes.Location = new Point(25, 542);
+            dgvSolicitudes.Location = new Point(18, 325);
+            dgvSolicitudes.Margin = new Padding(2);
             dgvSolicitudes.Name = "dgvSolicitudes";
             dgvSolicitudes.ReadOnly = true;
             dgvSolicitudes.RowHeadersVisible = false;
             dgvSolicitudes.RowHeadersWidth = 62;
-            dgvSolicitudes.Size = new Size(1063, 157);
+            dgvSolicitudes.Size = new Size(744, 94);
             dgvSolicitudes.TabIndex = 3;
             // 
             // colID
             // 
-            colID.HeaderText = "ID";
+            colID.HeaderText = "Código de Solicitud";
             colID.MinimumWidth = 8;
             colID.Name = "colID";
             colID.ReadOnly = true;
@@ -429,9 +449,10 @@
             lblÚltimasSolicitudes.AutoSize = true;
             lblÚltimasSolicitudes.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
             lblÚltimasSolicitudes.ForeColor = Color.MidnightBlue;
-            lblÚltimasSolicitudes.Location = new Point(25, 478);
+            lblÚltimasSolicitudes.Location = new Point(18, 287);
+            lblÚltimasSolicitudes.Margin = new Padding(2, 0, 2, 0);
             lblÚltimasSolicitudes.Name = "lblÚltimasSolicitudes";
-            lblÚltimasSolicitudes.Size = new Size(304, 45);
+            lblÚltimasSolicitudes.Size = new Size(210, 30);
             lblÚltimasSolicitudes.TabIndex = 2;
             lblÚltimasSolicitudes.Text = "Últimas Solicitudes";
             lblÚltimasSolicitudes.Click += lblÚltimasSolicitudes_Click;
@@ -443,9 +464,11 @@
             groupBox1.Controls.Add(lblSolicitudesPendientes);
             groupBox1.Controls.Add(lblUsuariosActivos);
             groupBox1.Font = new Font("Segoe UI", 10F);
-            groupBox1.Location = new Point(30, 80);
+            groupBox1.Location = new Point(21, 48);
+            groupBox1.Margin = new Padding(2);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(402, 348);
+            groupBox1.Padding = new Padding(2);
+            groupBox1.Size = new Size(281, 209);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Estado General";
@@ -453,36 +476,40 @@
             // lblAccesosRegistradosHoy
             // 
             lblAccesosRegistradosHoy.AutoSize = true;
-            lblAccesosRegistradosHoy.Location = new Point(6, 146);
+            lblAccesosRegistradosHoy.Location = new Point(4, 88);
+            lblAccesosRegistradosHoy.Margin = new Padding(2, 0, 2, 0);
             lblAccesosRegistradosHoy.Name = "lblAccesosRegistradosHoy";
-            lblAccesosRegistradosHoy.Size = new Size(233, 28);
+            lblAccesosRegistradosHoy.Size = new Size(164, 19);
             lblAccesosRegistradosHoy.TabIndex = 3;
             lblAccesosRegistradosHoy.Text = "Accesos Registrados Hoy:";
             // 
             // lblCredencialesEmitidas
             // 
             lblCredencialesEmitidas.AutoSize = true;
-            lblCredencialesEmitidas.Location = new Point(6, 109);
+            lblCredencialesEmitidas.Location = new Point(4, 65);
+            lblCredencialesEmitidas.Margin = new Padding(2, 0, 2, 0);
             lblCredencialesEmitidas.Name = "lblCredencialesEmitidas";
-            lblCredencialesEmitidas.Size = new Size(204, 28);
+            lblCredencialesEmitidas.Size = new Size(143, 19);
             lblCredencialesEmitidas.TabIndex = 2;
             lblCredencialesEmitidas.Text = "Credenciales Emitidas:";
             // 
             // lblSolicitudesPendientes
             // 
             lblSolicitudesPendientes.AutoSize = true;
-            lblSolicitudesPendientes.Location = new Point(6, 72);
+            lblSolicitudesPendientes.Location = new Point(4, 43);
+            lblSolicitudesPendientes.Margin = new Padding(2, 0, 2, 0);
             lblSolicitudesPendientes.Name = "lblSolicitudesPendientes";
-            lblSolicitudesPendientes.Size = new Size(210, 28);
+            lblSolicitudesPendientes.Size = new Size(146, 19);
             lblSolicitudesPendientes.TabIndex = 1;
             lblSolicitudesPendientes.Text = "Solicitudes Pendientes:";
             // 
             // lblUsuariosActivos
             // 
             lblUsuariosActivos.AutoSize = true;
-            lblUsuariosActivos.Location = new Point(6, 35);
+            lblUsuariosActivos.Location = new Point(4, 21);
+            lblUsuariosActivos.Margin = new Padding(2, 0, 2, 0);
             lblUsuariosActivos.Name = "lblUsuariosActivos";
-            lblUsuariosActivos.Size = new Size(160, 28);
+            lblUsuariosActivos.Size = new Size(113, 19);
             lblUsuariosActivos.TabIndex = 0;
             lblUsuariosActivos.Text = "Usuarios Activos:";
             // 
@@ -491,23 +518,25 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
             label2.ForeColor = Color.MidnightBlue;
-            label2.Location = new Point(25, 3);
+            label2.Location = new Point(18, 2);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(459, 45);
+            label2.Size = new Size(317, 30);
             label2.TabIndex = 0;
             label2.Text = "Resumen General del Sistema";
             label2.Click += label2_Click;
             // 
             // FrmDashboardAdmin
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1338, 1050);
+            ClientSize = new Size(937, 529);
             Controls.Add(panelPrincipal);
             Controls.Add(panelSuperior);
             Controls.Add(panelMenu);
+            Margin = new Padding(2);
             Name = "FrmDashboardAdmin";
-            Text = "FrmDashboardAdmin";
+            Text = "Panel Administrador Central";
             WindowState = FormWindowState.Maximized;
             Load += FrmDashboardAdmin_Load;
             panelSuperior.ResumeLayout(false);
@@ -544,10 +573,6 @@
         private DataGridView dataGridView1;
         private Label lblÚltimasSolicitudes;
         private DataGridView dgvSolicitudes;
-        private DataGridViewTextBoxColumn colID;
-        private DataGridViewTextBoxColumn colEstado;
-        private DataGridViewTextBoxColumn colFecha;
-        private DataGridViewTextBoxColumn colTipo;
         private Label lblAccionesRápidas;
         private Button btnEmitirCredencial;
         private Button btnVerSolicitudes;
@@ -564,5 +589,9 @@
         private ToolStripStatusLabel lblStatus;
         private Label lblInfoUsuario;
         private Button btnPerfil;
+        private DataGridViewTextBoxColumn colID;
+        private DataGridViewTextBoxColumn colEstado;
+        private DataGridViewTextBoxColumn colFecha;
+        private DataGridViewTextBoxColumn colTipo;
     }
 }

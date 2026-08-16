@@ -18,5 +18,10 @@ namespace CredenSoftUInuevo.Forms
             FrmAltaCredencial frm = new FrmAltaCredencial();
             frm.ShowDialog();
         }
+
+        private void btnVer_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

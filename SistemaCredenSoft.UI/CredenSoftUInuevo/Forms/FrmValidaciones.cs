@@ -45,7 +45,7 @@ namespace CredenSoftUInuevo.Forms
             }
         }
 
-        
+
         // =====================================================
         // APROBAR SOLICITUD
         // PASO 3.6 - Validaciones Simuladas
@@ -108,6 +108,11 @@ namespace CredenSoftUInuevo.Forms
             }
 
             this.Close();
+        }
+
+        private void dgvValidaciones_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -149,5 +149,15 @@ namespace CredenSoftUInuevo.Forms
         private void panelMenu_Paint(object sender, PaintEventArgs e)
         {
         }
+
+        private void FrmDashboardLocal_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvSolicitudes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

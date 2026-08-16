@@ -194,5 +194,10 @@ namespace CredenSoftUInuevo.Forms
         {
 
         }
+
+        private void FrmDashboardAgente_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

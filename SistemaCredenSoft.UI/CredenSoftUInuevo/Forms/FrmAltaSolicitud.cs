@@ -139,5 +139,15 @@ namespace CredenSoftUInuevo.Forms
         {
 
         }
+
+        private void cmbUsuario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDescripcion_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

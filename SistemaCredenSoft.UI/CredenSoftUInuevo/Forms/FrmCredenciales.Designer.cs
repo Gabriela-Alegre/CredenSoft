@@ -46,20 +46,20 @@
             lblGestionDeCredenciales.AutoSize = true;
             lblGestionDeCredenciales.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblGestionDeCredenciales.ForeColor = Color.FromArgb(28, 78, 128);
-            lblGestionDeCredenciales.Location = new Point(51, 26);
-            lblGestionDeCredenciales.Margin = new Padding(6, 0, 6, 0);
+            lblGestionDeCredenciales.Location = new Point(36, 16);
+            lblGestionDeCredenciales.Margin = new Padding(4, 0, 4, 0);
             lblGestionDeCredenciales.Name = "lblGestionDeCredenciales";
-            lblGestionDeCredenciales.Size = new Size(287, 32);
+            lblGestionDeCredenciales.Size = new Size(192, 21);
             lblGestionDeCredenciales.TabIndex = 0;
             lblGestionDeCredenciales.Text = "Gestion de Credenciales";
             // 
             // btnNueva
             // 
             btnNueva.BackColor = SystemColors.ActiveCaption;
-            btnNueva.Location = new Point(51, 785);
-            btnNueva.Margin = new Padding(6, 5, 6, 5);
+            btnNueva.Location = new Point(36, 471);
+            btnNueva.Margin = new Padding(4, 3, 4, 3);
             btnNueva.Name = "btnNueva";
-            btnNueva.Size = new Size(210, 55);
+            btnNueva.Size = new Size(147, 33);
             btnNueva.TabIndex = 1;
             btnNueva.Text = "Nueva";
             btnNueva.UseVisualStyleBackColor = false;
@@ -68,21 +68,22 @@
             // btnVer
             // 
             btnVer.BackColor = Color.Lavender;
-            btnVer.Location = new Point(277, 785);
-            btnVer.Margin = new Padding(6, 5, 6, 5);
+            btnVer.Location = new Point(194, 471);
+            btnVer.Margin = new Padding(4, 3, 4, 3);
             btnVer.Name = "btnVer";
-            btnVer.Size = new Size(210, 55);
+            btnVer.Size = new Size(147, 33);
             btnVer.TabIndex = 2;
             btnVer.Text = "Ver";
             btnVer.UseVisualStyleBackColor = false;
+            btnVer.Click += btnVer_Click;
             // 
             // btnEliminar
             // 
             btnEliminar.BackColor = Color.IndianRed;
-            btnEliminar.Location = new Point(499, 785);
-            btnEliminar.Margin = new Padding(6, 5, 6, 5);
+            btnEliminar.Location = new Point(349, 471);
+            btnEliminar.Margin = new Padding(4, 3, 4, 3);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(210, 55);
+            btnEliminar.Size = new Size(147, 33);
             btnEliminar.TabIndex = 3;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = false;
@@ -93,17 +94,17 @@
             dgvCredenciales.BackgroundColor = Color.WhiteSmoke;
             dgvCredenciales.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvCredenciales.Columns.AddRange(new DataGridViewColumn[] { colcredencial, colUsuario, colFechaDeEmision, colFechaDeVencimiento, colEstado });
-            dgvCredenciales.Location = new Point(51, 100);
-            dgvCredenciales.Margin = new Padding(6, 5, 6, 5);
+            dgvCredenciales.Location = new Point(36, 60);
+            dgvCredenciales.Margin = new Padding(4, 3, 4, 3);
             dgvCredenciales.Name = "dgvCredenciales";
             dgvCredenciales.RowHeadersWidth = 62;
-            dgvCredenciales.Size = new Size(1047, 623);
+            dgvCredenciales.Size = new Size(733, 374);
             dgvCredenciales.TabIndex = 4;
             // 
             // colcredencial
             // 
             colcredencial.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colcredencial.HeaderText = "ID Credencial";
+            colcredencial.HeaderText = "Código de Credencial";
             colcredencial.MinimumWidth = 8;
             colcredencial.Name = "colcredencial";
             // 
@@ -137,21 +138,21 @@
             // 
             // FrmCredenciales
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1333, 865);
+            ClientSize = new Size(933, 519);
             Controls.Add(btnVer);
             Controls.Add(btnNueva);
             Controls.Add(dgvCredenciales);
             Controls.Add(btnEliminar);
             Controls.Add(lblGestionDeCredenciales);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Margin = new Padding(6, 5, 6, 5);
+            Margin = new Padding(4, 3, 4, 3);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "FrmCredenciales";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "FrmCredenciales";
+            Text = "Gestión de Credenciales - CredenSoft";
             ((System.ComponentModel.ISupportInitialize)dgvCredenciales).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -165,10 +166,10 @@
         private System.Windows.Forms.Button btnVer;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.DataGridView dgvCredenciales;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colcredencial;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colUsuario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colFechaDeEmision;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colFechaDeVencimiento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colEstado;
+        private DataGridViewTextBoxColumn colcredencial;
+        private DataGridViewTextBoxColumn colUsuario;
+        private DataGridViewTextBoxColumn colFechaDeEmision;
+        private DataGridViewTextBoxColumn colFechaDeVencimiento;
+        private DataGridViewTextBoxColumn colEstado;
     }
 }

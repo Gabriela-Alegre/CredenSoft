@@ -40,7 +40,10 @@ namespace CredenSoftUInuevo.Forms
 
         private void FrmSolicitud_Load(object sender, EventArgs e)
         {
+            dgvSolicitudes.CellFormatting += dgvSolicitudes_CellFormatting;
+
             CargarGrilla();
+
         }
 
         // =====================================================
@@ -53,6 +56,12 @@ namespace CredenSoftUInuevo.Forms
             {
                 dgvSolicitudes.DataSource = null;
                 dgvSolicitudes.DataSource = _solicitudService.ObtenerTodas();
+                // Gaby agregue estas líneas aca abajo para cambiar los nombres de las columnas como las queria la profe "de id a codigo de..":
+                if (dgvSolicitudes.Columns["IdSolicitud"] != null)
+                    dgvSolicitudes.Columns["IdSolicitud"].HeaderText = "Código de Solicitud";
+
+                if (dgvSolicitudes.Columns["IdUsuario"] != null)
+                    dgvSolicitudes.Columns["IdUsuario"].HeaderText = "Código de Usuario";
             }
             catch (Exception ex)
             {
@@ -64,6 +73,22 @@ namespace CredenSoftUInuevo.Forms
             }
         }
 
+        private void dgvSolicitudes_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // Verificamos si estamos en la columna "Usuario" y si la celda tiene datos
+            if (dgvSolicitudes.Columns[e.ColumnIndex].Name == "Usuario" && e.Value != null)
+            {
+                // Convertimos el objeto al tipo de tu entidad de usuario
+                var usuarioObj = e.Value as ModelsEntidades.Usuario;
+
+                if (usuarioObj != null)
+                {
+                    // Mostramos el Nombre y el Apellido concatenados
+                    e.Value = usuarioObj.Nombre + " " + usuarioObj.Apellido;
+                    e.FormattingApplied = true;
+                }
+            }
+        }
         // =====================================================
         // NUEVA SOLICITUD
         // =====================================================
@@ -99,7 +124,27 @@ namespace CredenSoftUInuevo.Forms
 
             foreach (DataGridViewCell celda in dgvSolicitudes.CurrentRow.Cells)
             {
-                datos += celda.Value?.ToString() + " | ";
+                string valorCelda = "";
+
+                // Si es la columna "Usuario", extraemos el nombre y apellido del objeto
+                if (dgvSolicitudes.Columns[celda.ColumnIndex].Name == "Usuario" && celda.Value != null)
+                {
+                    var usuarioObj = celda.Value as ModelsEntidades.Usuario;
+                    if (usuarioObj != null)
+                    {
+                        valorCelda = usuarioObj.Nombre + " " + usuarioObj.Apellido;
+                    }
+                    else
+                    {
+                        valorCelda = celda.Value.ToString();
+                    }
+                }
+                else
+                {
+                    valorCelda = celda.Value?.ToString() ?? "";
+                }
+
+                datos += valorCelda + " | ";
             }
 
             MessageBox.Show(
