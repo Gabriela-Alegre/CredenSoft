@@ -341,9 +341,9 @@
             lblUsuario.Location = new Point(6, 18);
             lblUsuario.Margin = new Padding(2, 0, 2, 0);
             lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(59, 19);
+            lblUsuario.Size = new Size(62, 19);
             lblUsuario.TabIndex = 0;
-            lblUsuario.Text = "Usuario:";
+            lblUsuario.Text = "Nombre:";
             // 
             // btnEmitirCredencial
             // 
@@ -509,9 +509,9 @@
             lblUsuariosActivos.Location = new Point(4, 21);
             lblUsuariosActivos.Margin = new Padding(2, 0, 2, 0);
             lblUsuariosActivos.Name = "lblUsuariosActivos";
-            lblUsuariosActivos.Size = new Size(113, 19);
+            lblUsuariosActivos.Size = new Size(109, 19);
             lblUsuariosActivos.TabIndex = 0;
-            lblUsuariosActivos.Text = "Usuarios Activos:";
+            lblUsuariosActivos.Text = "Cuentas Activas:";
             // 
             // label2
             // 

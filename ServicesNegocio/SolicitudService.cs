@@ -1,21 +1,19 @@
 ﻿using DataEF;
 using ModelsEntidades;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ServicesNegocio
 {
     public class SolicitudService
     {
-        private readonly CredenSoftContext _context;
-
-        public SolicitudService(CredenSoftContext context)
-        {
-            _context = context;
-        }
+        // Ya no necesitamos el _context global porque cada método abrirá su propio contexto fresco
+        // (Podés borrar el campo privado y el constructor si ningún otro lado lo usa de forma externa)
 
         public void CrearSolicitud(Solicitud nuevaSolicitud)
         {
-            // 1. Validaciones iniciales (siempre al principio)
             if (nuevaSolicitud == null)
             {
                 throw new ArgumentNullException(nameof(nuevaSolicitud));
@@ -24,32 +22,38 @@ namespace ServicesNegocio
             if (string.IsNullOrEmpty(nuevaSolicitud.TipoSolicitud))
             {
                 throw new Exception("El tipo de solicitud es requerido.");
-                // Nota: Es mejor usar excepciones personalizadas que 'Exception' genérica
             }
 
-            // 2. Asignación de valores por defecto
             nuevaSolicitud.FechaSolicitud = DateTime.Now;
-            // nuevaSolicitud.EstadoId = 1; // Descomentalo si lo necesitás
 
-            // 3. Persistencia en la base de datos
-            _context.Solicitudes.Add(nuevaSolicitud);
-            _context.SaveChanges();
+            using (var context = new CredenSoftContext())
+            {
+                context.Solicitudes.Add(nuevaSolicitud);
+                context.SaveChanges();
+            }
         }
 
         public List<Solicitud> ObtenerTodas()
         {
-            return _context.Solicitudes
-                .Include(s => s.Usuario) // Quién la pidió
-                .ToList();
+            using (var context = new CredenSoftContext())
+            {
+                return context.Solicitudes
+                    .Include(s => s.Usuario)
+                    .ToList();
+            }
         }
+
         /// <summary>
         /// Obtiene una solicitud específica por su ID incluyendo los datos de su Usuario.
         /// </summary>
         public Solicitud ObtenerPorId(int idSolicitud)
         {
-            return _context.Solicitudes
-                .Include(s => s.Usuario)
-                .FirstOrDefault(s => s.IdSolicitud == idSolicitud);
+            using (var context = new CredenSoftContext())
+            {
+                return context.Solicitudes
+                    .Include(s => s.Usuario)
+                    .FirstOrDefault(s => s.IdSolicitud == idSolicitud);
+            }
         }
 
         /// <summary>
@@ -57,56 +61,77 @@ namespace ServicesNegocio
         /// </summary>
         public void ActualizarEstadoSolicitud(int idSolicitud, string nuevoEstado)
         {
-            var solicitud = _context.Solicitudes.FirstOrDefault(s => s.IdSolicitud == idSolicitud);
-            if (solicitud == null)
+            using (var context = new CredenSoftContext())
             {
-                throw new Exception("La solicitud especificada no existe.");
+                var solicitud = context.Solicitudes.FirstOrDefault(s => s.IdSolicitud == idSolicitud);
+                if (solicitud == null)
+                {
+                    throw new Exception("La solicitud especificada no existe.");
+                }
+
+                solicitud.Descripcion = $"Solicitud {nuevoEstado} el {DateTime.Now:dd/MM/yyyy}";
+                context.SaveChanges();
             }
-
-            // Aquí podrías cambiar el estado o la descripción según tu lógica de negocio
-            solicitud.Descripcion = $"Solicitud {nuevoEstado} el {DateTime.Now:dd/MM/yyyy}";
-
-            _context.SaveChanges();
         }
 
         /// <summary>
-        /// Elimina físicamente una solicitud del listado (si aplica según tu HU).
+        /// Elimina físicamente una solicitud del listado.
         /// </summary>
         public void EliminarSolicitud(int idSolicitud)
         {
-            var solicitud = _context.Solicitudes.FirstOrDefault(s => s.IdSolicitud == idSolicitud);
-            if (solicitud == null)
+            using (var context = new CredenSoftContext())
             {
-                throw new Exception("La solicitud que intenta eliminar no existe.");
-            }
+                var solicitud = context.Solicitudes.FirstOrDefault(s => s.IdSolicitud == idSolicitud);
+                if (solicitud == null)
+                {
+                    throw new Exception("La solicitud que intenta eliminar no existe.");
+                }
 
-            _context.Solicitudes.Remove(solicitud);
-            _context.SaveChanges();
+                context.Solicitudes.Remove(solicitud);
+                context.SaveChanges();
+            }
         }
-        /// <summary>
-        /// Inserta una nueva solicitud de credencial en la Base de Datos.
-        /// </summary>
-        
-        
 
         /// <summary>
         /// Consulta general: Trae todas las solicitudes con los datos del usuario que la pidió.
         /// </summary>
         public List<Solicitud> ObtenerTodasLasSolicitudes()
         {
-            return _context.Solicitudes
-                .Include(s => s.Usuario) // Para saber qué agente hizo la solicitud
-                .ToList();
+            using (var context = new CredenSoftContext())
+            {
+                return context.Solicitudes
+                    .Include(s => s.Usuario)
+                    .ToList();
+            }
         }
+
+        public void Inactivar(int idSolicitud)
+        {
+            using (var context = new CredenSoftContext())
+            {
+                var solicitud = context.Solicitudes.FirstOrDefault(s => s.IdSolicitud == idSolicitud);
+                if (solicitud == null)
+                {
+                    throw new Exception("Solicitud no encontrada.");
+                }
+
+                solicitud.Estado = "Inactivo";
+                context.SaveChanges();
+            }
+        }
+
         /// <summary>
         /// Consulta específica: Trae únicamente las solicitudes creadas por un agente en particular.
         /// </summary>
         public List<Solicitud> ObtenerSolicitudesPorUsuario(int idUsuario)
         {
-            return _context.Solicitudes
-                .Include(s => s.Usuario)
-                .Where(s => s.IdUsuario == idUsuario)
-                .ToList();
+            using (var context = new CredenSoftContext())
+            {
+                return context.Solicitudes
+                    .Include(s => s.Usuario)
+                    .Where(s => s.IdUsuario == idUsuario)
+                    .ToList();
+            }
         }
     }
 }

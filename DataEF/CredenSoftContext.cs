@@ -14,8 +14,10 @@ namespace DataEF // Esto le dice a Visual Studio que este archivo vive en la car
         public DbSet<Rol> Roles { get; set; }
         public DbSet<Solicitud> Solicitudes { get; set; }
         public DbSet<Credencial> Credenciales { get; set; }
-    
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public DbSet<DetalleAnexoC> DetallesAnexoC { get; set; }
+        public DbSet<DetalleAnexoE> DetallesAnexoE { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
@@ -31,6 +33,8 @@ namespace DataEF // Esto le dice a Visual Studio que este archivo vive en la car
             modelBuilder.Entity<Rol>().ToTable("roles");
             modelBuilder.Entity<Solicitud>().ToTable("solicitudes");
             modelBuilder.Entity<Credencial>().ToTable("credenciales");
+            modelBuilder.Entity<DetalleAnexoC>().ToTable("detalles_anexo_c");
+            modelBuilder.Entity<DetalleAnexoE>().ToTable("detalles_anexo_e");
         }
     }
 }

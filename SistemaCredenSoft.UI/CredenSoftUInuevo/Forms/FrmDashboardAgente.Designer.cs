@@ -47,6 +47,10 @@
             btnVerCredencial = new Button();
             lblAccionesRápidas = new Label();
             dgvSolicitudes = new DataGridView();
+            colID = new DataGridViewTextBoxColumn();
+            colTipo = new DataGridViewTextBoxColumn();
+            colEstado = new DataGridViewTextBoxColumn();
+            colFecha = new DataGridViewTextBoxColumn();
             lblÚltimasSolicitudes = new Label();
             groupCredencial = new GroupBox();
             lblEstadoDeCredencial = new Label();
@@ -61,10 +65,6 @@
             lblApellido = new Label();
             lblNombre = new Label();
             lblMiPaneldeUsuario = new Label();
-            colID = new DataGridViewTextBoxColumn();
-            colTipo = new DataGridViewTextBoxColumn();
-            colEstado = new DataGridViewTextBoxColumn();
-            colFecha = new DataGridViewTextBoxColumn();
             panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelMenu.SuspendLayout();
@@ -82,7 +82,7 @@
             panelTop.Controls.Add(pictureBox1);
             panelTop.Dock = DockStyle.Top;
             panelTop.Location = new Point(0, 0);
-            panelTop.Margin = new Padding(2, 2, 2, 2);
+            panelTop.Margin = new Padding(2);
             panelTop.MinimumSize = new Size(0, 48);
             panelTop.Name = "panelTop";
             panelTop.Size = new Size(1026, 48);
@@ -121,7 +121,7 @@
             panelMenu.Dock = DockStyle.Left;
             panelMenu.ForeColor = Color.White;
             panelMenu.Location = new Point(0, 48);
-            panelMenu.Margin = new Padding(2, 2, 2, 2);
+            panelMenu.Margin = new Padding(2);
             panelMenu.Name = "panelMenu";
             panelMenu.Size = new Size(183, 481);
             panelMenu.TabIndex = 1;
@@ -151,7 +151,7 @@
             btnPerfil.FlatStyle = FlatStyle.Flat;
             btnPerfil.Font = new Font("Segoe UI", 13F);
             btnPerfil.Location = new Point(4, 128);
-            btnPerfil.Margin = new Padding(2, 2, 2, 2);
+            btnPerfil.Margin = new Padding(2);
             btnPerfil.Name = "btnPerfil";
             btnPerfil.Size = new Size(179, 33);
             btnPerfil.TabIndex = 4;
@@ -167,7 +167,7 @@
             btnConfiguracion.FlatStyle = FlatStyle.Flat;
             btnConfiguracion.Font = new Font("Segoe UI", 13F);
             btnConfiguracion.Location = new Point(4, 169);
-            btnConfiguracion.Margin = new Padding(2, 2, 2, 2);
+            btnConfiguracion.Margin = new Padding(2);
             btnConfiguracion.Name = "btnConfiguracion";
             btnConfiguracion.Size = new Size(179, 33);
             btnConfiguracion.TabIndex = 3;
@@ -183,7 +183,7 @@
             btnSolicitudes.FlatStyle = FlatStyle.Flat;
             btnSolicitudes.Font = new Font("Segoe UI", 13F);
             btnSolicitudes.Location = new Point(4, 86);
-            btnSolicitudes.Margin = new Padding(2, 2, 2, 2);
+            btnSolicitudes.Margin = new Padding(2);
             btnSolicitudes.Name = "btnSolicitudes";
             btnSolicitudes.Size = new Size(179, 33);
             btnSolicitudes.TabIndex = 2;
@@ -199,7 +199,7 @@
             btnMiCredencial.FlatStyle = FlatStyle.Flat;
             btnMiCredencial.Font = new Font("Segoe UI", 13F);
             btnMiCredencial.Location = new Point(4, 45);
-            btnMiCredencial.Margin = new Padding(2, 2, 2, 2);
+            btnMiCredencial.Margin = new Padding(2);
             btnMiCredencial.Name = "btnMiCredencial";
             btnMiCredencial.Size = new Size(179, 33);
             btnMiCredencial.TabIndex = 1;
@@ -215,7 +215,7 @@
             btnInicio.FlatStyle = FlatStyle.Flat;
             btnInicio.Font = new Font("Segoe UI", 13F);
             btnInicio.Location = new Point(4, 4);
-            btnInicio.Margin = new Padding(2, 2, 2, 2);
+            btnInicio.Margin = new Padding(2);
             btnInicio.Name = "btnInicio";
             btnInicio.Size = new Size(179, 33);
             btnInicio.TabIndex = 0;
@@ -237,7 +237,7 @@
             panelContenido.Controls.Add(lblMiPaneldeUsuario);
             panelContenido.Dock = DockStyle.Fill;
             panelContenido.Location = new Point(183, 48);
-            panelContenido.Margin = new Padding(2, 2, 2, 2);
+            panelContenido.Margin = new Padding(2);
             panelContenido.Name = "panelContenido";
             panelContenido.Size = new Size(843, 481);
             panelContenido.TabIndex = 2;
@@ -267,7 +267,7 @@
             btnActualizarPerfil.FlatStyle = FlatStyle.Flat;
             btnActualizarPerfil.Font = new Font("Segoe UI", 11F);
             btnActualizarPerfil.Location = new Point(190, 513);
-            btnActualizarPerfil.Margin = new Padding(2, 2, 2, 2);
+            btnActualizarPerfil.Margin = new Padding(2);
             btnActualizarPerfil.Name = "btnActualizarPerfil";
             btnActualizarPerfil.Size = new Size(156, 33);
             btnActualizarPerfil.TabIndex = 8;
@@ -282,7 +282,7 @@
             btnNuevaSolicitud.FlatStyle = FlatStyle.Flat;
             btnNuevaSolicitud.Font = new Font("Segoe UI", 11F);
             btnNuevaSolicitud.Location = new Point(363, 513);
-            btnNuevaSolicitud.Margin = new Padding(2, 2, 2, 2);
+            btnNuevaSolicitud.Margin = new Padding(2);
             btnNuevaSolicitud.Name = "btnNuevaSolicitud";
             btnNuevaSolicitud.Size = new Size(156, 33);
             btnNuevaSolicitud.TabIndex = 7;
@@ -297,7 +297,7 @@
             btnVerCredencial.FlatStyle = FlatStyle.Flat;
             btnVerCredencial.Font = new Font("Segoe UI", 11F);
             btnVerCredencial.Location = new Point(10, 513);
-            btnVerCredencial.Margin = new Padding(2, 2, 2, 2);
+            btnVerCredencial.Margin = new Padding(2);
             btnVerCredencial.Name = "btnVerCredencial";
             btnVerCredencial.Size = new Size(156, 33);
             btnVerCredencial.TabIndex = 6;
@@ -326,7 +326,7 @@
             dgvSolicitudes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSolicitudes.Columns.AddRange(new DataGridViewColumn[] { colID, colTipo, colEstado, colFecha });
             dgvSolicitudes.Location = new Point(14, 328);
-            dgvSolicitudes.Margin = new Padding(2, 2, 2, 2);
+            dgvSolicitudes.Margin = new Padding(2);
             dgvSolicitudes.Name = "dgvSolicitudes";
             dgvSolicitudes.ReadOnly = true;
             dgvSolicitudes.RowHeadersVisible = false;
@@ -334,6 +334,34 @@
             dgvSolicitudes.Size = new Size(839, 135);
             dgvSolicitudes.TabIndex = 4;
             dgvSolicitudes.CellContentClick += dgvSolicitudes_CellContentClick;
+            // 
+            // colID
+            // 
+            colID.HeaderText = "Código de Solicitud";
+            colID.MinimumWidth = 8;
+            colID.Name = "colID";
+            colID.ReadOnly = true;
+            // 
+            // colTipo
+            // 
+            colTipo.HeaderText = "Tipo";
+            colTipo.MinimumWidth = 8;
+            colTipo.Name = "colTipo";
+            colTipo.ReadOnly = true;
+            // 
+            // colEstado
+            // 
+            colEstado.HeaderText = "Estado";
+            colEstado.MinimumWidth = 8;
+            colEstado.Name = "colEstado";
+            colEstado.ReadOnly = true;
+            // 
+            // colFecha
+            // 
+            colFecha.HeaderText = "Fecha";
+            colFecha.MinimumWidth = 8;
+            colFecha.Name = "colFecha";
+            colFecha.ReadOnly = true;
             // 
             // lblÚltimasSolicitudes
             // 
@@ -354,9 +382,9 @@
             groupCredencial.Controls.Add(lblFechaEmisión);
             groupCredencial.Controls.Add(lblCredencial);
             groupCredencial.Location = new Point(361, 48);
-            groupCredencial.Margin = new Padding(2, 2, 2, 2);
+            groupCredencial.Margin = new Padding(2);
             groupCredencial.Name = "groupCredencial";
-            groupCredencial.Padding = new Padding(2, 2, 2, 2);
+            groupCredencial.Padding = new Padding(2);
             groupCredencial.Size = new Size(407, 209);
             groupCredencial.TabIndex = 2;
             groupCredencial.TabStop = false;
@@ -417,13 +445,13 @@
             groupDatosUsuario.Controls.Add(lblApellido);
             groupDatosUsuario.Controls.Add(lblNombre);
             groupDatosUsuario.Location = new Point(21, 48);
-            groupDatosUsuario.Margin = new Padding(2, 2, 2, 2);
+            groupDatosUsuario.Margin = new Padding(2);
             groupDatosUsuario.Name = "groupDatosUsuario";
-            groupDatosUsuario.Padding = new Padding(2, 2, 2, 2);
+            groupDatosUsuario.Padding = new Padding(2);
             groupDatosUsuario.Size = new Size(281, 209);
             groupDatosUsuario.TabIndex = 1;
             groupDatosUsuario.TabStop = false;
-            groupDatosUsuario.Text = "Datos del Usuario";
+            groupDatosUsuario.Text = "Datos del Agente";
             // 
             // lblEstado
             // 
@@ -504,34 +532,6 @@
             lblMiPaneldeUsuario.Text = "Mi Panel de Usuario";
             lblMiPaneldeUsuario.Click += lblMiPaneldeUsuario_Click;
             // 
-            // colID
-            // 
-            colID.HeaderText = "Código de Solicitud";
-            colID.MinimumWidth = 8;
-            colID.Name = "colID";
-            colID.ReadOnly = true;
-            // 
-            // colTipo
-            // 
-            colTipo.HeaderText = "Tipo";
-            colTipo.MinimumWidth = 8;
-            colTipo.Name = "colTipo";
-            colTipo.ReadOnly = true;
-            // 
-            // colEstado
-            // 
-            colEstado.HeaderText = "Estado";
-            colEstado.MinimumWidth = 8;
-            colEstado.Name = "colEstado";
-            colEstado.ReadOnly = true;
-            // 
-            // colFecha
-            // 
-            colFecha.HeaderText = "Fecha";
-            colFecha.MinimumWidth = 8;
-            colFecha.Name = "colFecha";
-            colFecha.ReadOnly = true;
-            // 
             // FrmDashboardAgente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -541,7 +541,7 @@
             Controls.Add(panelContenido);
             Controls.Add(panelMenu);
             Controls.Add(panelTop);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "FrmDashboardAgente";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Panel de Agente";

@@ -25,8 +25,15 @@ namespace ModelsEntidades
         [StringLength(255)]
         public string Descripcion { get; set; }
 
+        [Column("estado")]
+        [StringLength(20)]
+        public string Estado { get; set; } = "Pendiente";
+
         // Propiedad de navegación para el Backend
         [ForeignKey("IdUsuario")]
         public virtual Usuario Usuario { get; set; }
+        // Agregá estas dos líneas dentro de tu clase Solicitud:
+        public virtual DetalleAnexoC DetalleAnexoC { get; set; }
+        public virtual DetalleAnexoE DetalleAnexoE { get; set; }
     }
 }

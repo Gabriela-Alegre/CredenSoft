@@ -13,7 +13,7 @@ namespace CredenSoftUInuevo.Forms
         // =====================================================
 
         SolicitudService _solicitudService =
-            new SolicitudService(new CredenSoftContext());
+            new SolicitudService();
 
         public FrmAltaSolicitud()
         {

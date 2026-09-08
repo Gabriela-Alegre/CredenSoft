@@ -13,7 +13,8 @@ namespace CredenSoftUInuevo.Forms
         // SERVICIO DE SOLICITUDES
         // =====================================================
 
-        SolicitudService _solicitudService = new SolicitudService(new CredenSoftContext());
+        SolicitudService _solicitudService = new SolicitudService();
+       
 
         public FrmSolicitud()
         {
@@ -32,6 +33,8 @@ namespace CredenSoftUInuevo.Forms
                 DataGridViewSelectionMode.FullRowSelect;
 
             dgvSolicitudes.MultiSelect = false;
+
+            this.Activated += FrmSolicitud_Activated;
         }
 
         // =====================================================
@@ -46,6 +49,11 @@ namespace CredenSoftUInuevo.Forms
 
         }
 
+        private void FrmSolicitud_Activated(object sender, EventArgs e)
+        {
+            CargarGrilla();
+        }
+
         // =====================================================
         // CARGAR GRILLA
         // =====================================================
@@ -54,14 +62,66 @@ namespace CredenSoftUInuevo.Forms
         {
             try
             {
+                // 1. Limpiamos el origen de datos para evitar duplicación de columnas
                 dgvSolicitudes.DataSource = null;
                 dgvSolicitudes.DataSource = _solicitudService.ObtenerTodas();
-                // Gaby agregue estas líneas aca abajo para cambiar los nombres de las columnas como las queria la profe "de id a codigo de..":
+
+                // 2. Ocultar columnas técnicas que no deben verse
                 if (dgvSolicitudes.Columns["IdSolicitud"] != null)
-                    dgvSolicitudes.Columns["IdSolicitud"].HeaderText = "Código de Solicitud";
+                    dgvSolicitudes.Columns["IdSolicitud"].Visible = false;
 
                 if (dgvSolicitudes.Columns["IdUsuario"] != null)
-                    dgvSolicitudes.Columns["IdUsuario"].HeaderText = "Código de Usuario";
+                    dgvSolicitudes.Columns["IdUsuario"].Visible = false;
+
+                if (dgvSolicitudes.Columns["DetalleAnexoC"] != null)
+                    dgvSolicitudes.Columns["DetalleAnexoC"].Visible = false;
+
+                if (dgvSolicitudes.Columns["DetalleAnexoE"] != null)
+                    dgvSolicitudes.Columns["DetalleAnexoE"].Visible = false;
+
+                // 3. Crear la columna DNI personalizada solo si no existe previamente
+                if (!dgvSolicitudes.Columns.Contains("DniUsuario"))
+                {
+                    DataGridViewTextBoxColumn colDni = new DataGridViewTextBoxColumn();
+                    colDni.Name = "DniUsuario";
+                    colDni.HeaderText = "DNI";
+                    dgvSolicitudes.Columns.Add(colDni);
+                }
+
+                // 4. Configurar Títulos de las columnas visibles
+                if (dgvSolicitudes.Columns["Usuario"] != null)
+                    dgvSolicitudes.Columns["Usuario"].HeaderText = "Titular";
+
+                if (dgvSolicitudes.Columns["TipoSolicitud"] != null)
+                    dgvSolicitudes.Columns["TipoSolicitud"].HeaderText = "Tipo de Trámite";
+
+                if (dgvSolicitudes.Columns["FechaSolicitud"] != null)
+                    dgvSolicitudes.Columns["FechaSolicitud"].HeaderText = "Fecha de Solicitud";
+
+                if (dgvSolicitudes.Columns["Descripcion"] != null)
+                    dgvSolicitudes.Columns["Descripcion"].HeaderText = "Motivo / Descripción";
+
+                if (dgvSolicitudes.Columns["Estado"] != null)
+                    dgvSolicitudes.Columns["Estado"].HeaderText = "Estado";
+
+                // 5. Orden de las columnas (DisplayIndex) para que se vea profesional y prolijo
+                if (dgvSolicitudes.Columns["Usuario"] != null)
+                    dgvSolicitudes.Columns["Usuario"].DisplayIndex = 0;
+
+                if (dgvSolicitudes.Columns["DniUsuario"] != null)
+                    dgvSolicitudes.Columns["DniUsuario"].DisplayIndex = 1;
+
+                if (dgvSolicitudes.Columns["TipoSolicitud"] != null)
+                    dgvSolicitudes.Columns["TipoSolicitud"].DisplayIndex = 2;
+
+                if (dgvSolicitudes.Columns["FechaSolicitud"] != null)
+                    dgvSolicitudes.Columns["FechaSolicitud"].DisplayIndex = 3;
+
+                if (dgvSolicitudes.Columns["Descripcion"] != null)
+                    dgvSolicitudes.Columns["Descripcion"].DisplayIndex = 4;
+
+                if (dgvSolicitudes.Columns["Estado"] != null)
+                    dgvSolicitudes.Columns["Estado"].DisplayIndex = 5;
             }
             catch (Exception ex)
             {
@@ -75,16 +135,25 @@ namespace CredenSoftUInuevo.Forms
 
         private void dgvSolicitudes_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            // Verificamos si estamos en la columna "Usuario" y si la celda tiene datos
-            if (dgvSolicitudes.Columns[e.ColumnIndex].Name == "Usuario" && e.Value != null)
-            {
-                // Convertimos el objeto al tipo de tu entidad de usuario
-                var usuarioObj = e.Value as ModelsEntidades.Usuario;
+            if (e.RowIndex < 0) return;
 
-                if (usuarioObj != null)
+            var solicitud = dgvSolicitudes.Rows[e.RowIndex].DataBoundItem as ModelsEntidades.Solicitud;
+
+            if (solicitud != null && solicitud.Usuario != null)
+            {
+                string nombreColumna = dgvSolicitudes.Columns[e.ColumnIndex].Name;
+
+                // Muestra Nombre y Apellido en la columna Titular
+                if (nombreColumna == "Usuario")
                 {
-                    // Mostramos el Nombre y el Apellido concatenados
-                    e.Value = usuarioObj.Nombre + " " + usuarioObj.Apellido;
+                    e.Value = solicitud.Usuario.Nombre + " " + solicitud.Usuario.Apellido;
+                    e.FormattingApplied = true;
+                }
+
+                // Muestra el DNI de la base de datos en la columna creada
+                if (nombreColumna == "DniUsuario")
+                {
+                    e.Value = solicitud.Usuario.Dni?.ToString();
                     e.FormattingApplied = true;
                 }
             }
@@ -160,33 +229,57 @@ namespace CredenSoftUInuevo.Forms
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (dgvSolicitudes.CurrentRow == null)
+            try
             {
-                MessageBox.Show(
-                    "Seleccione una solicitud.",
-                    "CredenSoft",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                if (dgvSolicitudes.SelectedRows.Count == 0 && dgvSolicitudes.CurrentRow == null)
+                {
+                    MessageBox.Show("Seleccione una solicitud.", "Atención",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-                return;
+                var filaActual = dgvSolicitudes.SelectedRows.Count > 0 ? dgvSolicitudes.SelectedRows[0] : dgvSolicitudes.CurrentRow;
+                var solicitudSeleccionada = filaActual.DataBoundItem as ModelsEntidades.Solicitud;
+
+                if (solicitudSeleccionada == null)
+                {
+                    MessageBox.Show("No se pudo obtener la solicitud seleccionada.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                DialogResult respuesta = MessageBox.Show(
+                    "¿Desea INACTIVAR la solicitud seleccionada?",
+                    "Confirmar",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    // Llamamos al servicio igual que en los usuarios
+                    _solicitudService.Inactivar(solicitudSeleccionada.IdSolicitud);
+
+                    MessageBox.Show("La solicitud fue inactivada correctamente.", "CredenSoft",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Refrescamos la grilla al instante
+                    CargarGrilla();
+                }
             }
-
-            DialogResult resultado = MessageBox.Show(
-                "¿Desea eliminar la solicitud seleccionada?",
-                "Confirmar",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
-
-            if (resultado == DialogResult.Yes)
+            catch (Exception ex)
             {
-                MessageBox.Show(
-                    "Funcionalidad pendiente de integración con Backend.\n\nLa solicitud sería eliminada correctamente.",
-                    "CredenSoft",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-
-                CargarGrilla();
+                MessageBox.Show("Error: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+
+        // =====================================================
+        // EDITAR SOLICITUD
+        // =====================================================
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+
         }
 
         // =====================================================
@@ -197,5 +290,7 @@ namespace CredenSoftUInuevo.Forms
         {
             this.Close();
         }
+
+        
     }
 }
