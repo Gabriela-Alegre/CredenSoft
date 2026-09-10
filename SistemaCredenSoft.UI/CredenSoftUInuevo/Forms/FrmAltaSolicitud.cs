@@ -130,8 +130,6 @@ namespace CredenSoftUInuevo.Forms
             this.Close();
         }
 
-        private void lblUsuario_Click(object sender, EventArgs e)
-        {
 
         }
 
