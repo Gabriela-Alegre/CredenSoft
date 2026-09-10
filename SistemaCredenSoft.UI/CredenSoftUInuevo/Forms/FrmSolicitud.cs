@@ -14,7 +14,7 @@ namespace CredenSoftUInuevo.Forms
         // =====================================================
 
         SolicitudService _solicitudService = new SolicitudService();
-       
+
 
         public FrmSolicitud()
         {
@@ -45,7 +45,16 @@ namespace CredenSoftUInuevo.Forms
         {
             dgvSolicitudes.CellFormatting += dgvSolicitudes_CellFormatting;
 
+            // Seleccionamos "Todos" por defecto en el ComboBox (si cargaste los items en orden: 0=Todos)
+            if (cmbEstado.Items.Count > 0)
+            {
+                cmbEstado.SelectedIndex = 0;
+            }
+
             CargarGrilla();
+            // Conectamos el evento TextChanged por código para asegurarnos de que funcione al instante
+            txtBuscarDni.TextChanged += txtBuscarDni_TextChanged;
+            cmbEstado.SelectedIndexChanged += cmbEstado_SelectedIndexChanged; // <--- ¡Acá lo conectás!
 
         }
 
@@ -78,6 +87,8 @@ namespace CredenSoftUInuevo.Forms
 
                 if (dgvSolicitudes.Columns["DetalleAnexoE"] != null)
                     dgvSolicitudes.Columns["DetalleAnexoE"].Visible = false;
+                if (dgvSolicitudes.Columns["ArchivosAdjuntos"] != null)
+                    dgvSolicitudes.Columns["ArchivosAdjuntos"].Visible = false;
 
                 // 3. Crear la columna DNI personalizada solo si no existe previamente
                 if (!dgvSolicitudes.Columns.Contains("DniUsuario"))
@@ -273,6 +284,89 @@ namespace CredenSoftUInuevo.Forms
             }
         }
 
+        // =====================================================
+        // BUSCAR DNI
+        // =====================================================
+        private void btnBuscarDni_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string dniBuscado = txtBuscarDni.Text.Trim();
+
+                // Si la caja de texto está vacía, recargamos la grilla completa por defecto
+                if (string.IsNullOrEmpty(dniBuscado))
+                {
+                    CargarGrilla();
+                    return;
+                }
+
+                // Llamamos al nuevo método del servicio que busca por DNI
+                var listaFiltrada = _solicitudService.ObtenerPorDni(dniBuscado);
+
+                if (listaFiltrada == null || listaFiltrada.Count == 0)
+                {
+                    MessageBox.Show("No se encontraron solicitudes asociadas a ese DNI.", "Sin resultados",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Opcional: si no encuentra nada, podés limpiar la grilla o dejar la anterior
+                    dgvSolicitudes.DataSource = null;
+                    return;
+                }
+
+                // Mostramos el resultado filtrado en la grilla
+                dgvSolicitudes.DataSource = listaFiltrada;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al realizar la búsqueda: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void txtBuscarDni_TextChanged(object sender, EventArgs e)
+        {
+            // Si el usuario borró todo y el textbox quedó vacío, recargamos la grilla completa al instante
+            if (string.IsNullOrWhiteSpace(txtBuscarDni.Text))
+            {
+                CargarGrilla();
+            }
+        }
+        // =====================================================
+        // BUSCAR POR ESTADO
+        // =====================================================
+
+        private void cmbEstado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                // Obtenemos el texto seleccionado en el ComboBox (ej: "Pendiente", "Aprobado", etc.)
+                string estadoSeleccionado = cmbEstado.SelectedItem?.ToString();
+
+                // Llamamos al método exclusivo del servicio para buscar por estado
+                var listaFiltrada = _solicitudService.ObtenerPorEstado(estadoSeleccionado);
+
+                // Actualizamos la grilla
+                dgvSolicitudes.DataSource = listaFiltrada;
+
+                // Limpiamos las columnas técnicas para que no se ensucie la vista
+                OcultarColumnasTecnicas();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al filtrar por estado: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void OcultarColumnasTecnicas()
+        {
+            if (dgvSolicitudes.Columns["IdSolicitud"] != null)
+                dgvSolicitudes.Columns["IdSolicitud"].Visible = false;
+
+            if (dgvSolicitudes.Columns["IdUsuario"] != null)
+                dgvSolicitudes.Columns["IdUsuario"].Visible = false;
+
+            if (dgvSolicitudes.Columns["ArchivosAdjuntos"] != null)
+                dgvSolicitudes.Columns["ArchivosAdjuntos"].Visible = false;
+        }
 
         // =====================================================
         // EDITAR SOLICITUD

@@ -35,5 +35,8 @@ namespace ModelsEntidades
         // Agregá estas dos líneas dentro de tu clase Solicitud:
         public virtual DetalleAnexoC DetalleAnexoC { get; set; }
         public virtual DetalleAnexoE DetalleAnexoE { get; set; }
+        // Relación: Una Solicitud puede tener una lista de documentos adjuntos
+        public virtual ICollection<DocumentoAdjunto> ArchivosAdjuntos { get; set; } = new List<DocumentoAdjunto>();
+
     }
 }

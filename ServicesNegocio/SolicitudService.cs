@@ -133,5 +133,37 @@ namespace ServicesNegocio
                     .ToList();
             }
         }
+        /// <summary>
+        /// Filtra las solicitudes según el DNI del usuario titular.
+        /// </summary>
+        public List<Solicitud> ObtenerPorDni(string dni)
+        {
+            using (var context = new CredenSoftContext())
+            {
+                return context.Solicitudes
+                    .Include(s => s.Usuario)
+                    .Where(s => s.Usuario.Dni.Contains(dni))
+                    .ToList();
+            }
+        }
+
+        /// <summary>
+        /// Filtra las solicitudes por su estado.
+        /// </summary>
+        public List<Solicitud> ObtenerPorEstado(string estado)
+        {
+            using (var context = new CredenSoftContext())
+            {
+                if (string.IsNullOrEmpty(estado) || estado.Equals("Todos", StringComparison.OrdinalIgnoreCase))
+                {
+                    return ObtenerTodas();
+                }
+
+                return context.Solicitudes
+                    .Include(s => s.Usuario)
+                    .Where(s => s.Estado != null && s.Estado.ToLower() == estado.ToLower())
+                    .ToList();
+            }
+        }
     }
 }

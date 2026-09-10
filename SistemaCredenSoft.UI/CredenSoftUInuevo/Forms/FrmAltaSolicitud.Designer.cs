@@ -1,4 +1,5 @@
-﻿namespace CredenSoftUInuevo.Forms
+﻿
+namespace CredenSoftUInuevo.Forms
 {
     partial class FrmAltaSolicitud
     {
@@ -32,25 +33,32 @@
             label2 = new Label();
             label3 = new Label();
             label5 = new Label();
+            Label4 = new Label();
+            label6 = new Label();
+            txtDni = new TextBox();
+            label7 = new Label();
+            txtRutaArchivo = new TextBox();
+            btnExaminar = new Button();
+            lblArchivoSeleccionado = new Label();
             SuspendLayout();
             // 
             // lblUsuario
             // 
             lblUsuario.AutoSize = true;
             lblUsuario.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblUsuario.Location = new Point(4, 47);
+            lblUsuario.Location = new Point(3, 47);
             lblUsuario.Margin = new Padding(2, 0, 2, 0);
             lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(60, 19);
+            lblUsuario.Size = new Size(142, 19);
             lblUsuario.TabIndex = 0;
-            lblUsuario.Text = "Usuario";
+            lblUsuario.Text = "Nombre y Apellido:";
             lblUsuario.Click += lblUsuario_Click;
             // 
             // cmbUsuario
             // 
             cmbUsuario.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbUsuario.FormattingEnabled = true;
-            cmbUsuario.Location = new Point(139, 47);
+            cmbUsuario.Location = new Point(167, 43);
             cmbUsuario.Margin = new Padding(2);
             cmbUsuario.Name = "cmbUsuario";
             cmbUsuario.Size = new Size(251, 23);
@@ -64,38 +72,39 @@
             lblTipoDeSolicitud.Location = new Point(4, 92);
             lblTipoDeSolicitud.Margin = new Padding(2, 0, 2, 0);
             lblTipoDeSolicitud.Name = "lblTipoDeSolicitud";
-            lblTipoDeSolicitud.Size = new Size(122, 19);
+            lblTipoDeSolicitud.Size = new Size(126, 19);
             lblTipoDeSolicitud.TabIndex = 2;
-            lblTipoDeSolicitud.Text = "Tipo de Solicitud";
+            lblTipoDeSolicitud.Text = "Tipo de Solicitud:";
             // 
             // cmbTipoDeSolicitud
             // 
             cmbTipoDeSolicitud.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbTipoDeSolicitud.FormattingEnabled = true;
-            cmbTipoDeSolicitud.Location = new Point(139, 92);
+            cmbTipoDeSolicitud.Location = new Point(167, 88);
             cmbTipoDeSolicitud.Margin = new Padding(2);
             cmbTipoDeSolicitud.Name = "cmbTipoDeSolicitud";
             cmbTipoDeSolicitud.Size = new Size(251, 23);
             cmbTipoDeSolicitud.TabIndex = 3;
+            cmbTipoDeSolicitud.SelectedIndexChanged += cmbTipoDeSolicitud_SelectedIndexChanged;
             // 
             // lblDescripcion
             // 
             lblDescripcion.AutoSize = true;
             lblDescripcion.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblDescripcion.Location = new Point(4, 129);
+            lblDescripcion.Location = new Point(4, 189);
             lblDescripcion.Margin = new Padding(2, 0, 2, 0);
             lblDescripcion.Name = "lblDescripcion";
-            lblDescripcion.Size = new Size(87, 19);
+            lblDescripcion.Size = new Size(141, 19);
             lblDescripcion.TabIndex = 4;
-            lblDescripcion.Text = "Descripción";
+            lblDescripcion.Text = "Motivo del Tramite:";
             // 
             // txtDescripcion
             // 
-            txtDescripcion.Location = new Point(139, 128);
+            txtDescripcion.Location = new Point(167, 188);
             txtDescripcion.Margin = new Padding(2);
             txtDescripcion.Multiline = true;
             txtDescripcion.Name = "txtDescripcion";
-            txtDescripcion.Size = new Size(251, 106);
+            txtDescripcion.Size = new Size(251, 54);
             txtDescripcion.TabIndex = 5;
             txtDescripcion.TextChanged += txtDescripcion_TextChanged;
             // 
@@ -103,17 +112,17 @@
             // 
             lblFecha.AutoSize = true;
             lblFecha.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblFecha.Location = new Point(4, 257);
+            lblFecha.Location = new Point(11, 353);
             lblFecha.Margin = new Padding(2, 0, 2, 0);
             lblFecha.Name = "lblFecha";
-            lblFecha.Size = new Size(47, 19);
+            lblFecha.Size = new Size(51, 19);
             lblFecha.TabIndex = 6;
-            lblFecha.Text = "Fecha";
+            lblFecha.Text = "Fecha:";
             // 
             // dateTimeFecha
             // 
             dateTimeFecha.Format = DateTimePickerFormat.Short;
-            dateTimeFecha.Location = new Point(139, 256);
+            dateTimeFecha.Location = new Point(167, 349);
             dateTimeFecha.Margin = new Padding(2);
             dateTimeFecha.Name = "dateTimeFecha";
             dateTimeFecha.Size = new Size(251, 23);
@@ -122,7 +131,7 @@
             // btnGuardar
             // 
             btnGuardar.BackColor = SystemColors.ActiveCaption;
-            btnGuardar.Location = new Point(57, 350);
+            btnGuardar.Location = new Point(60, 448);
             btnGuardar.Margin = new Padding(2);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(74, 31);
@@ -134,7 +143,7 @@
             // btnCancelar
             // 
             btnCancelar.BackColor = Color.IndianRed;
-            btnCancelar.Location = new Point(318, 350);
+            btnCancelar.Location = new Point(316, 448);
             btnCancelar.Margin = new Padding(2);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(74, 31);
@@ -160,7 +169,7 @@
             // 
             label2.AutoSize = true;
             label2.ForeColor = Color.Red;
-            label2.Location = new Point(69, 49);
+            label2.Location = new Point(141, 51);
             label2.Name = "label2";
             label2.Size = new Size(12, 15);
             label2.TabIndex = 11;
@@ -170,7 +179,7 @@
             // 
             label3.AutoSize = true;
             label3.ForeColor = Color.Red;
-            label3.Location = new Point(122, 92);
+            label3.Location = new Point(133, 92);
             label3.Name = "label3";
             label3.Size = new Size(12, 15);
             label3.TabIndex = 12;
@@ -180,17 +189,93 @@
             // 
             label5.AutoSize = true;
             label5.ForeColor = Color.Red;
-            label5.Location = new Point(52, 261);
+            label5.Location = new Point(67, 355);
             label5.Name = "label5";
             label5.Size = new Size(12, 15);
             label5.TabIndex = 14;
             label5.Text = "*";
             // 
+            // Label4
+            // 
+            Label4.AutoSize = true;
+            Label4.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            Label4.Location = new Point(9, 137);
+            Label4.Name = "Label4";
+            Label4.Size = new Size(38, 19);
+            Label4.TabIndex = 15;
+            Label4.Text = "DNI:";
+            Label4.Click += label4_Click;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.ForeColor = Color.Red;
+            label6.Location = new Point(44, 140);
+            label6.Name = "label6";
+            label6.Size = new Size(12, 15);
+            label6.TabIndex = 16;
+            label6.Text = "*";
+            // 
+            // txtDni
+            // 
+            txtDni.Location = new Point(167, 137);
+            txtDni.Name = "txtDni";
+            txtDni.Size = new Size(251, 23);
+            txtDni.TabIndex = 17;
+            txtDni.TextChanged += textBox1_TextChanged;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            label7.Location = new Point(4, 274);
+            label7.Name = "label7";
+            label7.Size = new Size(147, 19);
+            label7.TabIndex = 18;
+            label7.Text = "Documento Adjunto:";
+            label7.Click += label7_Click;
+            // 
+            // txtRutaArchivo
+            // 
+            txtRutaArchivo.Location = new Point(167, 270);
+            txtRutaArchivo.Multiline = true;
+            txtRutaArchivo.Name = "txtRutaArchivo";
+            txtRutaArchivo.ReadOnly = true;
+            txtRutaArchivo.Size = new Size(242, 44);
+            txtRutaArchivo.TabIndex = 19;
+            // 
+            // btnExaminar
+            // 
+            btnExaminar.Location = new Point(167, 310);
+            btnExaminar.Name = "btnExaminar";
+            btnExaminar.Size = new Size(147, 23);
+            btnExaminar.TabIndex = 20;
+            btnExaminar.Text = "Seleccionar Archivo";
+            btnExaminar.UseVisualStyleBackColor = true;
+            btnExaminar.Click += btnExaminar_Click;
+            // 
+            // lblArchivoSeleccionado
+            // 
+            lblArchivoSeleccionado.AutoSize = true;
+            lblArchivoSeleccionado.Location = new Point(316, 314);
+            lblArchivoSeleccionado.Name = "lblArchivoSeleccionado";
+            lblArchivoSeleccionado.Size = new Size(161, 15);
+            lblArchivoSeleccionado.TabIndex = 21;
+            lblArchivoSeleccionado.Text = "Ningún archivo seleccionado";
+            lblArchivoSeleccionado.Click += lblArchivoSeleccionado_Click;
+            // 
             // FrmAltaSolicitud
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(748, 405);
+            ClientSize = new Size(752, 490);
+            Controls.Add(lblArchivoSeleccionado);
+            Controls.Add(btnExaminar);
+            Controls.Add(txtRutaArchivo);
+            Controls.Add(label7);
+            Controls.Add(txtDni);
+            Controls.Add(label6);
+            Controls.Add(Label4);
             Controls.Add(label5);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -217,6 +302,8 @@
             PerformLayout();
         }
 
+
+
         #endregion
 
         private Label lblUsuario;
@@ -233,5 +320,12 @@
         private Label label2;
         private Label label3;
         private Label label5;
+        private Label Label4;
+        private Label label6;
+        private TextBox txtDni;
+        private Label label7;
+        private TextBox txtRutaArchivo;
+        private Button btnExaminar;
+        private Label lblArchivoSeleccionado;
     }
 }
