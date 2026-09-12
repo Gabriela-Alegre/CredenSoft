@@ -50,12 +50,15 @@
             btnNueva.Anchor = AnchorStyles.Bottom;
             btnNueva.BackColor = Color.MediumSeaGreen;
             btnNueva.Font = new Font("Segoe UI", 13F);
+            btnNueva.Image = (Image)resources.GetObject("btnNueva.Image");
+            btnNueva.ImageAlign = ContentAlignment.MiddleRight;
             btnNueva.Location = new Point(57, 393);
             btnNueva.Margin = new Padding(4, 3, 4, 3);
             btnNueva.Name = "btnNueva";
             btnNueva.Size = new Size(155, 49);
             btnNueva.TabIndex = 1;
             btnNueva.Text = "Nueva";
+            btnNueva.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnNueva.UseVisualStyleBackColor = false;
             btnNueva.Click += btnNueva_Click;
             // 
@@ -64,12 +67,15 @@
             btnEliminar.Anchor = AnchorStyles.Bottom;
             btnEliminar.BackColor = Color.IndianRed;
             btnEliminar.Font = new Font("Segoe UI", 13F);
+            btnEliminar.Image = (Image)resources.GetObject("btnEliminar.Image");
             btnEliminar.Location = new Point(577, 393);
             btnEliminar.Margin = new Padding(4, 3, 4, 3);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(162, 49);
             btnEliminar.TabIndex = 2;
             btnEliminar.Text = "Inactivar";
+            btnEliminar.TextAlign = ContentAlignment.MiddleRight;
+            btnEliminar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEliminar.UseVisualStyleBackColor = false;
             btnEliminar.Click += btnEliminar_Click;
             // 
@@ -78,12 +84,15 @@
             btnVer.Anchor = AnchorStyles.Bottom;
             btnVer.BackColor = Color.Lavender;
             btnVer.Font = new Font("Segoe UI", 13F);
+            btnVer.Image = (Image)resources.GetObject("btnVer.Image");
+            btnVer.ImageAlign = ContentAlignment.MiddleRight;
             btnVer.Location = new Point(235, 393);
             btnVer.Margin = new Padding(4, 3, 4, 3);
             btnVer.Name = "btnVer";
             btnVer.Size = new Size(149, 49);
             btnVer.TabIndex = 3;
             btnVer.Text = "Ver";
+            btnVer.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnVer.UseVisualStyleBackColor = false;
             btnVer.Click += btnVer_Click;
             // 
@@ -104,12 +113,15 @@
             btnEditar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnEditar.BackColor = SystemColors.ActiveCaption;
             btnEditar.Font = new Font("Segoe UI", 13F);
-            btnEditar.Location = new Point(395, 393);
+            btnEditar.Image = (Image)resources.GetObject("btnEditar.Image");
+            btnEditar.ImageAlign = ContentAlignment.MiddleRight;
+            btnEditar.Location = new Point(408, 393);
             btnEditar.Margin = new Padding(4, 3, 4, 3);
             btnEditar.Name = "btnEditar";
-            btnEditar.Size = new Size(155, 49);
+            btnEditar.Size = new Size(140, 49);
             btnEditar.TabIndex = 5;
             btnEditar.Text = "Editar";
+            btnEditar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnEditar.UseVisualStyleBackColor = false;
             btnEditar.Click += btnEditar_Click;
             // 

@@ -46,5 +46,8 @@ namespace ModelsEntidades
         // Relación para navegación en el Backend
         [ForeignKey("IdRol")]
         public virtual Rol Rol { get; set; }
+
+        [NotMapped]
+        public string NombreCompleto => $"{Nombre} {Apellido}";
     }
 }

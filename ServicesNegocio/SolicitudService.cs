@@ -52,6 +52,9 @@ namespace ServicesNegocio
             {
                 return context.Solicitudes
                     .Include(s => s.Usuario)
+                    .Include(s => s.DetalleAnexoC)
+                    .Include(s => s.DetalleAnexoE)
+                    .Include(s => s.ArchivosAdjuntos)
                     .FirstOrDefault(s => s.IdSolicitud == idSolicitud);
             }
         }
@@ -163,6 +166,64 @@ namespace ServicesNegocio
                     .Include(s => s.Usuario)
                     .Where(s => s.Estado != null && s.Estado.ToLower() == estado.ToLower())
                     .ToList();
+            }
+        }
+        /// <summary>
+        /// Actualiza todos los datos de una solicitud existente.
+        /// </summary>
+       // 2. UBICÁ TU MÉTODO ACTUALIZAR Y REEMPLAZALO POR ESTE COMPLETO
+        public void Actualizar(Solicitud solicitudModificada)
+        {
+            if (solicitudModificada == null)
+            {
+                throw new ArgumentNullException(nameof(solicitudModificada));
+            }
+
+            using (var context = new CredenSoftContext())
+            {
+                // Buscamos la entidad existente incluyendo sus archivos adjuntos
+                var solicitudExistente = context.Solicitudes
+                    .Include(s => s.ArchivosAdjuntos)
+                    .FirstOrDefault(s => s.IdSolicitud == solicitudModificada.IdSolicitud);
+
+                if (solicitudExistente == null)
+                {
+                    throw new Exception("No se encontró la solicitud a actualizar.");
+                }
+
+                // Actualizamos las propiedades básicas
+                solicitudExistente.IdUsuario = solicitudModificada.IdUsuario;
+                solicitudExistente.TipoSolicitud = solicitudModificada.TipoSolicitud;
+                solicitudExistente.Descripcion = solicitudModificada.Descripcion;
+                solicitudExistente.Estado = solicitudModificada.Estado;
+
+                // Gestionamos los archivos adjuntos
+                if (solicitudModificada.ArchivosAdjuntos != null && solicitudModificada.ArchivosAdjuntos.Any())
+                {
+                    var archivoModificado = solicitudModificada.ArchivosAdjuntos.First();
+                    var archivoExistente = solicitudExistente.ArchivosAdjuntos.FirstOrDefault();
+
+                    if (archivoExistente != null)
+                    {
+                        // Actualiza el archivo que ya estaba
+                        archivoExistente.RutaArchivo = archivoModificado.RutaArchivo;
+                        archivoExistente.NombreArchivo = archivoModificado.NombreArchivo;
+                        archivoExistente.TipoDocumento = archivoModificado.TipoDocumento;
+                    }
+                    else
+                    {
+                        // Agrega uno nuevo si antes no tenía
+                        solicitudExistente.ArchivosAdjuntos.Add(new DocumentoAdjunto
+                        {
+                            IdSolicitud = solicitudExistente.IdSolicitud,
+                            RutaArchivo = archivoModificado.RutaArchivo,
+                            NombreArchivo = archivoModificado.NombreArchivo,
+                            TipoDocumento = archivoModificado.TipoDocumento
+                        });
+                    }
+                }
+
+                context.SaveChanges();
             }
         }
     }
