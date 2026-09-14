@@ -133,7 +133,10 @@ namespace CredenSoftUInuevo.Forms
         // =====================================================
         private void btnSolicitudes_Click(object sender, EventArgs e)
         {
-            FrmSolicitud frm = new FrmSolicitud();
+            FrmSolicitud frm = new FrmSolicitud(
+                SesionActual.UsuarioLogueado.Rol.NombreRol,
+        SesionActual.UsuarioLogueado.IdUsuario
+                );
             frm.ShowDialog();
         }
 

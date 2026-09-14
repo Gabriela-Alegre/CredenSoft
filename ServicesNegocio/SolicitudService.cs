@@ -176,7 +176,7 @@ namespace ServicesNegocio
         {
             if (solicitudModificada == null)
             {
-                throw new ArgumentNullException(nameof(solicitudModificada));
+                throw new ArgumentNullException(nameof(solicitudModificada),"La solicitud no puede ser nula.");
             }
 
             using (var context = new CredenSoftContext())
@@ -185,6 +185,23 @@ namespace ServicesNegocio
                 var solicitudExistente = context.Solicitudes
                     .Include(s => s.ArchivosAdjuntos)
                     .FirstOrDefault(s => s.IdSolicitud == solicitudModificada.IdSolicitud);
+
+
+                // 2. Validación de campos obligatorios principales
+                if (solicitudModificada.IdSolicitud <= 0)
+                {
+                    throw new ArgumentException("El ID de la solicitud no es válido.", nameof(solicitudModificada.IdSolicitud));
+                }
+
+                if (string.IsNullOrWhiteSpace(solicitudModificada.Descripcion))
+                {
+                    throw new ArgumentException("La descripción de la solicitud no puede estar vacía.", nameof(solicitudModificada.Descripcion));
+                }
+
+                if (string.IsNullOrWhiteSpace(solicitudModificada.Estado))
+                {
+                    throw new ArgumentException("El estado de la solicitud es obligatorio.", nameof(solicitudModificada.Estado));
+                }
 
                 if (solicitudExistente == null)
                 {

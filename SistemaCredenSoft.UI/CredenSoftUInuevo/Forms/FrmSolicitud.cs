@@ -14,11 +14,18 @@ namespace CredenSoftUInuevo.Forms
         // =====================================================
 
         SolicitudService _solicitudService = new SolicitudService();
+        // NUEVAS VARIABLES DE SESIÓN
+        private string _rolUsuario;
+        private int _idUsuarioLogueado;
 
 
-        public FrmSolicitud()
+        public FrmSolicitud(string rolUsuario, int idUsuarioLogueado)
         {
             InitializeComponent();
+            _rolUsuario = rolUsuario;
+            _idUsuarioLogueado = idUsuarioLogueado;
+
+            ConfigurarPropiedadesIniciales();
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Size = new Size(800, 500);   // tamaño inicial
             this.MinimumSize = new Size(900, 650); // tamaño mínimo
@@ -36,7 +43,25 @@ namespace CredenSoftUInuevo.Forms
 
             this.Activated += FrmSolicitud_Activated;
         }
+        // (Opcional) Constructor vacio por si en alguna parte vieja se llama sin parámetros
+        public FrmSolicitud() : this("Agente", 1) { }
 
+
+        private void ConfigurarPropiedadesIniciales()
+        {
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Size = new Size(800, 500);
+            this.MinimumSize = new Size(900, 650);
+
+            dgvSolicitudes.ReadOnly = true;
+            dgvSolicitudes.AllowUserToAddRows = false;
+            dgvSolicitudes.AllowUserToDeleteRows = false;
+            dgvSolicitudes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvSolicitudes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvSolicitudes.MultiSelect = false;
+
+            this.Activated += FrmSolicitud_Activated;
+        }
         // =====================================================
         // CARGA DEL FORMULARIO
         // =====================================================
@@ -51,11 +76,51 @@ namespace CredenSoftUInuevo.Forms
                 cmbEstado.SelectedIndex = 0;
             }
 
+            // APLICAR RESTRICCIONES VISUALES SEGÚN EL ROL
+            ConfigurarInterfazSegunRol();
+
+            if (cmbEstado.Items.Count > 0)
+            {
+                cmbEstado.SelectedIndex = 0;
+            }
+
             CargarGrilla();
             // Conectamos el evento TextChanged por código para asegurarnos de que funcione al instante
             txtBuscarDni.TextChanged += txtBuscarDni_TextChanged;
             cmbEstado.SelectedIndexChanged += cmbEstado_SelectedIndexChanged; // <--- ¡Acá lo conectás!
 
+        }
+
+        // =====================================================
+        // CONFIGURAR INTERFAZ SEGUN ROL
+        // =====================================================
+        private void ConfigurarInterfazSegunRol()
+        {
+            if (_rolUsuario == "Agente")
+            {
+                // El agente crea, edita y ve, pero NO inactiva registros
+                btnEliminar.Visible = false;
+                // Ocultar controles de búsqueda por DNI si el agente no debe usarlos
+                txtBuscarDni.Visible = false;      // Etiqueta "DNI" (si existe)
+                lblBuscarDni.Visible = false;      // Caja de texto del DNI (si existe)
+                btnBuscarDni.Visible = false; // Botón de buscar por DNI (si existe)
+            }
+            else if (_rolUsuario == "Administrador Central")
+            {
+                // El Administrador Central solo audita y consulta histórico (No crea, ni edita, ni inactiva aquí)
+                btnNueva.Visible = false;
+                btnEditar.Visible = false;
+                btnEliminar.Visible = false;
+                // Ocultar controles de búsqueda por DNI si el agente no debe usarlos
+                
+            }
+            else if (_rolUsuario == "Administrador Local")
+            {
+                // El Administrador Local tiene control total en esta pantalla
+                btnNueva.Visible = true;
+                btnEditar.Visible = true;
+                btnEliminar.Visible = true;
+            }
         }
 
         private void FrmSolicitud_Activated(object sender, EventArgs e)
@@ -73,7 +138,25 @@ namespace CredenSoftUInuevo.Forms
             {
                 // 1. Limpiamos el origen de datos para evitar duplicación de columnas
                 dgvSolicitudes.DataSource = null;
-                dgvSolicitudes.DataSource = _solicitudService.ObtenerTodas();
+                // FILTRO SEGÚN EL ROL:
+                if (_rolUsuario == "Agente")
+                {
+                    // El agente solo ve sus propias solicitudes
+                    dgvSolicitudes.DataSource = _solicitudService.ObtenerSolicitudesPorUsuario(_idUsuarioLogueado);
+                }
+                else
+                {
+                    // Los administradores ven el listado completo
+                    dgvSolicitudes.DataSource = _solicitudService.ObtenerTodas();
+                }
+
+                // APLICAR RESTRICCIONES VISUALES SEGÚN EL ROL
+                ConfigurarInterfazSegunRol();
+
+                if (cmbEstado.Items.Count > 0)
+                {
+                    cmbEstado.SelectedIndex = 0;
+                }
 
                 // 2. Ocultar columnas técnicas que no deben verse
                 if (dgvSolicitudes.Columns["IdSolicitud"] != null)
@@ -334,6 +417,10 @@ namespace CredenSoftUInuevo.Forms
         // BUSCAR POR ESTADO
         // =====================================================
 
+        // =====================================================
+        // BUSCAR POR ESTADO
+        // =====================================================
+
         private void cmbEstado_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -341,11 +428,31 @@ namespace CredenSoftUInuevo.Forms
                 // Obtenemos el texto seleccionado en el ComboBox (ej: "Pendiente", "Aprobado", etc.)
                 string estadoSeleccionado = cmbEstado.SelectedItem?.ToString();
 
-                // Llamamos al método exclusivo del servicio para buscar por estado
-                var listaFiltrada = _solicitudService.ObtenerPorEstado(estadoSeleccionado);
+                // RESTRICCIÓN SEGÚN EL ROL:
+                if (_rolUsuario == "Agente")
+                {
+                    // 1. Obtenemos únicamente las solicitudes que le pertenecen al agente logueado
+                    var misSolicitudes = _solicitudService.ObtenerSolicitudesPorUsuario(_idUsuarioLogueado);
 
-                // Actualizamos la grilla
-                dgvSolicitudes.DataSource = listaFiltrada;
+                    // 2. Si selecciona "Todos" (o viene vacío), mostramos todo lo del agente
+                    if (string.IsNullOrEmpty(estadoSeleccionado) || estadoSeleccionado.Equals("Todos", StringComparison.OrdinalIgnoreCase))
+                    {
+                        dgvSolicitudes.DataSource = misSolicitudes;
+                    }
+                    else
+                    {
+                        // 3. Si selecciona un estado específico, filtramos solo dentro de las del agente
+                        dgvSolicitudes.DataSource = misSolicitudes
+                            .Where(s => s.Estado != null && s.Estado.Equals(estadoSeleccionado, StringComparison.OrdinalIgnoreCase))
+                            .ToList();
+                    }
+                }
+                else
+                {
+                    // Lógica normal para administradores: busca en todo el sistema
+                    var listaFiltrada = _solicitudService.ObtenerPorEstado(estadoSeleccionado);
+                    dgvSolicitudes.DataSource = listaFiltrada;
+                }
 
                 // Limpiamos las columnas técnicas para que no se ensucie la vista
                 OcultarColumnasTecnicas();

@@ -35,6 +35,10 @@
             lblRol = new Label();
             lblAccionesRápidas = new Label();
             dgvSolicitudes = new DataGridView();
+            colID = new DataGridViewTextBoxColumn();
+            colAgente = new DataGridViewTextBoxColumn();
+            colEstado = new DataGridViewTextBoxColumn();
+            colFecha = new DataGridViewTextBoxColumn();
             btnValidarSolicitud = new Button();
             lblÚltimasSolicitudes = new Label();
             groupBox1 = new GroupBox();
@@ -60,10 +64,6 @@
             pictureBox1 = new PictureBox();
             btnGestiónDeUsuarios = new Button();
             btnConfiguración = new Button();
-            colID = new DataGridViewTextBoxColumn();
-            colAgente = new DataGridViewTextBoxColumn();
-            colEstado = new DataGridViewTextBoxColumn();
-            colFecha = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgvSolicitudes).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -149,6 +149,34 @@
             dgvSolicitudes.Size = new Size(727, 94);
             dgvSolicitudes.TabIndex = 3;
             dgvSolicitudes.CellContentClick += dgvSolicitudes_CellContentClick;
+            // 
+            // colID
+            // 
+            colID.HeaderText = "Código de Solicitud";
+            colID.MinimumWidth = 8;
+            colID.Name = "colID";
+            colID.ReadOnly = true;
+            // 
+            // colAgente
+            // 
+            colAgente.HeaderText = "Agente";
+            colAgente.MinimumWidth = 8;
+            colAgente.Name = "colAgente";
+            colAgente.ReadOnly = true;
+            // 
+            // colEstado
+            // 
+            colEstado.HeaderText = "Estado";
+            colEstado.MinimumWidth = 8;
+            colEstado.Name = "colEstado";
+            colEstado.ReadOnly = true;
+            // 
+            // colFecha
+            // 
+            colFecha.HeaderText = "Fecha";
+            colFecha.MinimumWidth = 8;
+            colFecha.Name = "colFecha";
+            colFecha.ReadOnly = true;
             // 
             // btnValidarSolicitud
             // 
@@ -279,7 +307,7 @@
             AdmininLocal.Location = new Point(175, 39);
             AdmininLocal.Margin = new Padding(2);
             AdmininLocal.Name = "AdmininLocal";
-            AdmininLocal.Size = new Size(866, 490);
+            AdmininLocal.Size = new Size(866, 530);
             AdmininLocal.TabIndex = 5;
             // 
             // statusStrip
@@ -287,7 +315,7 @@
             statusStrip.BackColor = Color.FromArgb(0, 105, 92);
             statusStrip.ImageScalingSize = new Size(24, 24);
             statusStrip.Items.AddRange(new ToolStripItem[] { lblStatus });
-            statusStrip.Location = new Point(0, 468);
+            statusStrip.Location = new Point(0, 508);
             statusStrip.Name = "statusStrip";
             statusStrip.Padding = new Padding(1, 0, 16, 0);
             statusStrip.Size = new Size(866, 22);
@@ -418,7 +446,7 @@
             panelMenu.Location = new Point(0, 0);
             panelMenu.Margin = new Padding(2);
             panelMenu.Name = "panelMenu";
-            panelMenu.Size = new Size(175, 529);
+            panelMenu.Size = new Size(175, 569);
             panelMenu.TabIndex = 4;
             panelMenu.Paint += panelMenu_Paint;
             // 
@@ -448,7 +476,7 @@
             btnCerrarSesion.FlatStyle = FlatStyle.Flat;
             btnCerrarSesion.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             btnCerrarSesion.ForeColor = Color.White;
-            btnCerrarSesion.Location = new Point(0, 471);
+            btnCerrarSesion.Location = new Point(0, 511);
             btnCerrarSesion.Margin = new Padding(4, 3, 4, 3);
             btnCerrarSesion.Name = "btnCerrarSesion";
             btnCerrarSesion.Size = new Size(175, 58);
@@ -500,39 +528,11 @@
             btnConfiguración.UseVisualStyleBackColor = false;
             btnConfiguración.Click += btnConfiguración_Click;
             // 
-            // colID
-            // 
-            colID.HeaderText = "Código de Solicitud";
-            colID.MinimumWidth = 8;
-            colID.Name = "colID";
-            colID.ReadOnly = true;
-            // 
-            // colAgente
-            // 
-            colAgente.HeaderText = "Agente";
-            colAgente.MinimumWidth = 8;
-            colAgente.Name = "colAgente";
-            colAgente.ReadOnly = true;
-            // 
-            // colEstado
-            // 
-            colEstado.HeaderText = "Estado";
-            colEstado.MinimumWidth = 8;
-            colEstado.Name = "colEstado";
-            colEstado.ReadOnly = true;
-            // 
-            // colFecha
-            // 
-            colFecha.HeaderText = "Fecha";
-            colFecha.MinimumWidth = 8;
-            colFecha.Name = "colFecha";
-            colFecha.ReadOnly = true;
-            // 
             // FrmDashboardLocal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1041, 529);
+            ClientSize = new Size(1041, 569);
             Controls.Add(AdmininLocal);
             Controls.Add(panelSuperior);
             Controls.Add(panelMenu);

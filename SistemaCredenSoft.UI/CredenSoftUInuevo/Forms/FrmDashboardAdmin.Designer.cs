@@ -114,7 +114,7 @@
             panelMenu.Location = new Point(0, 0);
             panelMenu.Margin = new Padding(2);
             panelMenu.Name = "panelMenu";
-            panelMenu.Size = new Size(176, 529);
+            panelMenu.Size = new Size(176, 576);
             panelMenu.TabIndex = 1;
             panelMenu.Paint += panelMenu_Paint;
             // 
@@ -155,7 +155,7 @@
             btnCerrarSesion.FlatStyle = FlatStyle.Flat;
             btnCerrarSesion.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             btnCerrarSesion.ForeColor = Color.White;
-            btnCerrarSesion.Location = new Point(0, 471);
+            btnCerrarSesion.Location = new Point(0, 518);
             btnCerrarSesion.Margin = new Padding(4, 3, 4, 3);
             btnCerrarSesion.Name = "btnCerrarSesion";
             btnCerrarSesion.Size = new Size(176, 58);
@@ -265,7 +265,7 @@
             panelPrincipal.Location = new Point(176, 48);
             panelPrincipal.Margin = new Padding(2);
             panelPrincipal.Name = "panelPrincipal";
-            panelPrincipal.Size = new Size(761, 481);
+            panelPrincipal.Size = new Size(761, 528);
             panelPrincipal.TabIndex = 2;
             // 
             // statusStrip
@@ -273,7 +273,7 @@
             statusStrip.BackColor = Color.FromArgb(0, 51, 102);
             statusStrip.ImageScalingSize = new Size(24, 24);
             statusStrip.Items.AddRange(new ToolStripItem[] { lblStatus });
-            statusStrip.Location = new Point(0, 459);
+            statusStrip.Location = new Point(0, 506);
             statusStrip.Name = "statusStrip";
             statusStrip.Padding = new Padding(1, 0, 16, 0);
             statusStrip.Size = new Size(761, 22);
@@ -530,7 +530,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(937, 529);
+            ClientSize = new Size(937, 576);
             Controls.Add(panelPrincipal);
             Controls.Add(panelSuperior);
             Controls.Add(panelMenu);

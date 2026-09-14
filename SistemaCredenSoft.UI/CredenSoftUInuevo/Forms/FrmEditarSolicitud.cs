@@ -183,7 +183,39 @@ namespace CredenSoftUInuevo.Forms
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            // Obtenemos el ID del usuario seleccionado en el ComboBox mediante el ValueMember
+            // 1. Validar ComboBox de Usuario
+            if (cmbNombreApellido.SelectedValue == null)
+            {
+                MessageBox.Show("Debe seleccionar un nombre y apellido.", "Campo requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmbNombreApellido.Focus();
+                return; // Detiene la ejecución para que no guarde
+            }
+
+            // 2. Validar Tipo de Solicitud
+            if (string.IsNullOrWhiteSpace(cmbTipoSolicitud.Text))
+            {
+                MessageBox.Show("El tipo de solicitud no puede estar vacío.", "Campo requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmbTipoSolicitud.Focus();
+                return;
+            }
+
+            // 3. Validar Estado
+            if (string.IsNullOrWhiteSpace(cmbEstado.Text))
+            {
+                MessageBox.Show("El estado no puede estar vacío.", "Campo requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmbEstado.Focus();
+                return;
+            }
+
+            // 4. Validar Descripción
+            if (string.IsNullOrWhiteSpace(txtDescripcion.Text))
+            {
+                MessageBox.Show("La descripción no puede estar vacía.", "Campo requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDescripcion.Focus();
+                return;
+            }
+
+            // --- TODO TU CÓDIGO ORIGINAL QUEDA EXACTAMENTE IGUAL AQUÍ ABAJO ---
             if (cmbNombreApellido.SelectedValue != null)
             {
                 _solicitud.IdUsuario = Convert.ToInt32(cmbNombreApellido.SelectedValue);

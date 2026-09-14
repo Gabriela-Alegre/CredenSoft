@@ -157,7 +157,10 @@ namespace CredenSoftUInuevo.Forms
 
         private void btnVerSolicitudes_Click(object sender, EventArgs e)
         {
-            FrmSolicitud frm = new FrmSolicitud();
+            FrmSolicitud frm = new FrmSolicitud(
+                SesionActual.UsuarioLogueado.Rol.NombreRol,
+        SesionActual.UsuarioLogueado.IdUsuario
+                );
             frm.ShowDialog();
         }
 
