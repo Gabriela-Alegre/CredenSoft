@@ -226,7 +226,27 @@ namespace CredenSoftUInuevo.Forms
 
         private void lblArchivoSeleccionado_Click(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label59_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
