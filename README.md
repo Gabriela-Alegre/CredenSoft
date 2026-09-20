@@ -58,3 +58,22 @@ cambios en la rama `main`.
 Proyecto académico que estamos realizando para la Tecnicatura Superior en Desarrollo de Software.
 
 El repositorio corresponde a una versión con fines educativos y de portfolio.
+
+
+## Capturas de la aplicación
+
+### Inicio de sesión
+
+![Login de CredenSoft](Login.png)
+
+### Dashboard de Agente
+
+![Dashboard de Agente](FrmDashboardAgente.png)
+
+### Gestión de usuarios
+
+![Gestión de usuarios](FrmDashboardLocal.png)
+
+### Dashboard / Administración
+
+![Administración de CredenSoft](FrmDasboardAdmin.png)
