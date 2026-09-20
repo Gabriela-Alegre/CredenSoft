@@ -12,7 +12,7 @@ El sistema permite gestionar usuarios, roles, credenciales, solicitudes y el seg
 - C#
 - .NET 8
 - Windows Forms
-- Entity Framework Core
+- Entity Framework
 - SQL Server
 - Git y GitHub
 - Jira
