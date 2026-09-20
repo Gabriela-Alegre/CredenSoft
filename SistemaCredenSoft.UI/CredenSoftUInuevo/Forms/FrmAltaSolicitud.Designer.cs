@@ -41,6 +41,38 @@ namespace CredenSoftUInuevo.Forms
             btnExaminar = new Button();
             lblArchivoSeleccionado = new Label();
             panelAnexoC = new Panel();
+            btnGuardarAnexoC = new Button();
+            txtAnexoCJustifSna = new TextBox();
+            label65 = new Label();
+            txtSector7CJustif = new TextBox();
+            txtSector6CJustif = new TextBox();
+            txtSector5CJustif = new TextBox();
+            txtSector4CJustif = new TextBox();
+            txtSector2CJustif = new TextBox();
+            txtSector3CJustif = new TextBox();
+            txtSector1CJustif = new TextBox();
+            chkSectorC7 = new CheckBox();
+            chkSectorC6 = new CheckBox();
+            chkSectorC5 = new CheckBox();
+            chkSectorC4 = new CheckBox();
+            chkSectorC3 = new CheckBox();
+            chkSectorC2 = new CheckBox();
+            chkSectorC1 = new CheckBox();
+            label64 = new Label();
+            label63 = new Label();
+            txtAnexoCCargo = new TextBox();
+            label62 = new Label();
+            label61 = new Label();
+            dtpAnexoCFechaNac = new DateTimePicker();
+            label20 = new Label();
+            txtAnexoCLugarNac = new TextBox();
+            label18 = new Label();
+            label16 = new Label();
+            label14 = new Label();
+            label13 = new Label();
+            label10 = new Label();
+            label8 = new Label();
+            label60 = new Label();
             rbtnConductorNo = new RadioButton();
             rbtnConductorSi = new RadioButton();
             rbtnSocorristaNo = new RadioButton();
@@ -49,8 +81,8 @@ namespace CredenSoftUInuevo.Forms
             label27 = new Label();
             txtAnexoCEnfermedades = new TextBox();
             label26 = new Label();
-            radioButton2 = new RadioButton();
-            radioButton1 = new RadioButton();
+            rbtnFactorNegativo = new RadioButton();
+            rbtnFactorPositivo = new RadioButton();
             label25 = new Label();
             rbtnGrupoO = new RadioButton();
             rbtnGrupoAB = new RadioButton();
@@ -77,10 +109,32 @@ namespace CredenSoftUInuevo.Forms
             label12 = new Label();
             txtAnexoCApellidos = new TextBox();
             label11 = new Label();
+            label9 = new Label();
             lblAnexoCAeropuerto = new Label();
             txtAnexoCNotaPermiso = new TextBox();
             txtAnexoCAeropuerto = new TextBox();
             panelAnexoE = new Panel();
+            btnGuardarAnexoE = new Button();
+            label66 = new Label();
+            txtAnexoEResp2Cargo = new TextBox();
+            txtAnexoEResp2Permiso = new TextBox();
+            txtAnexoEResp2ApeNom = new TextBox();
+            txtAnexoEResp1Permiso = new TextBox();
+            txtAnexoEResp1Cargo = new TextBox();
+            txtAnexoEResp1ApeNom = new TextBox();
+            label59 = new Label();
+            label58 = new Label();
+            label57 = new Label();
+            label56 = new Label();
+            label55 = new Label();
+            label53 = new Label();
+            txtSector7Justif = new TextBox();
+            txtSector6Justif = new TextBox();
+            txtSector5Justif = new TextBox();
+            txtSector4Justif = new TextBox();
+            txtSector3Justif = new TextBox();
+            txtSector2Justif = new TextBox();
+            txtSector1Justif = new TextBox();
             chkSector7 = new CheckBox();
             chkSector6 = new CheckBox();
             chkSector5 = new CheckBox();
@@ -138,58 +192,6 @@ namespace CredenSoftUInuevo.Forms
             label30 = new Label();
             label29 = new Label();
             titulo = new Label();
-            txtSector1Justif = new TextBox();
-            txtSector2Justif = new TextBox();
-            txtSector3Justif = new TextBox();
-            txtSector4Justif = new TextBox();
-            txtSector5Justif = new TextBox();
-            txtSector6Justif = new TextBox();
-            txtSector7Justif = new TextBox();
-            label53 = new Label();
-            label55 = new Label();
-            label56 = new Label();
-            label57 = new Label();
-            label58 = new Label();
-            label59 = new Label();
-            txtAnexoEResp1ApeNom = new TextBox();
-            txtAnexoEResp1Cargo = new TextBox();
-            txtAnexoEResp1Permiso = new TextBox();
-            txtAnexoEResp2ApeNom = new TextBox();
-            txtAnexoEResp2Permiso = new TextBox();
-            txtAnexoEResp2Cargo = new TextBox();
-            label60 = new Label();
-            label9 = new Label();
-            label8 = new Label();
-            label10 = new Label();
-            label13 = new Label();
-            label14 = new Label();
-            label16 = new Label();
-            label18 = new Label();
-            txtAnexoCLugarNac = new TextBox();
-            label20 = new Label();
-            dtpAnexoCFechaNac = new DateTimePicker();
-            label61 = new Label();
-            label62 = new Label();
-            txtAnexoCCargo = new TextBox();
-            label63 = new Label();
-            label64 = new Label();
-            checkBoxC1 = new CheckBox();
-            chkSectorC2 = new CheckBox();
-            chkSectorC3 = new CheckBox();
-            chkSectorC4 = new CheckBox();
-            chkSectorC5 = new CheckBox();
-            chkSectorC6 = new CheckBox();
-            chkSectorC7 = new CheckBox();
-            txtSector1CJustif = new TextBox();
-            txtSector3CJustif = new TextBox();
-            txtSector2CJustif = new TextBox();
-            txtSector4CJustif = new TextBox();
-            txtSector5CJustif = new TextBox();
-            txtSector6CJustif = new TextBox();
-            txtSector7CJustif = new TextBox();
-            label65 = new Label();
-            txtAnexoCJustifSna = new TextBox();
-            label66 = new Label();
             panelAnexoC.SuspendLayout();
             panelAnexoE.SuspendLayout();
             SuspendLayout();
@@ -419,6 +421,7 @@ namespace CredenSoftUInuevo.Forms
             // panelAnexoC
             // 
             panelAnexoC.AutoScroll = true;
+            panelAnexoC.Controls.Add(btnGuardarAnexoC);
             panelAnexoC.Controls.Add(txtAnexoCJustifSna);
             panelAnexoC.Controls.Add(label65);
             panelAnexoC.Controls.Add(txtSector7CJustif);
@@ -434,7 +437,7 @@ namespace CredenSoftUInuevo.Forms
             panelAnexoC.Controls.Add(chkSectorC4);
             panelAnexoC.Controls.Add(chkSectorC3);
             panelAnexoC.Controls.Add(chkSectorC2);
-            panelAnexoC.Controls.Add(checkBoxC1);
+            panelAnexoC.Controls.Add(chkSectorC1);
             panelAnexoC.Controls.Add(label64);
             panelAnexoC.Controls.Add(label63);
             panelAnexoC.Controls.Add(txtAnexoCCargo);
@@ -458,8 +461,8 @@ namespace CredenSoftUInuevo.Forms
             panelAnexoC.Controls.Add(label27);
             panelAnexoC.Controls.Add(txtAnexoCEnfermedades);
             panelAnexoC.Controls.Add(label26);
-            panelAnexoC.Controls.Add(radioButton2);
-            panelAnexoC.Controls.Add(radioButton1);
+            panelAnexoC.Controls.Add(rbtnFactorNegativo);
+            panelAnexoC.Controls.Add(rbtnFactorPositivo);
             panelAnexoC.Controls.Add(label25);
             panelAnexoC.Controls.Add(rbtnGrupoO);
             panelAnexoC.Controls.Add(rbtnGrupoAB);
@@ -490,11 +493,303 @@ namespace CredenSoftUInuevo.Forms
             panelAnexoC.Controls.Add(lblAnexoCAeropuerto);
             panelAnexoC.Controls.Add(txtAnexoCNotaPermiso);
             panelAnexoC.Controls.Add(txtAnexoCAeropuerto);
-            panelAnexoC.Location = new Point(5, 130);
+            panelAnexoC.Location = new Point(12, 130);
             panelAnexoC.Name = "panelAnexoC";
-            panelAnexoC.Size = new Size(796, 911);
+            panelAnexoC.Size = new Size(604, 725);
             panelAnexoC.TabIndex = 22;
             panelAnexoC.Paint += panel1_Paint;
+            // 
+            // btnGuardarAnexoC
+            // 
+            btnGuardarAnexoC.Location = new Point(37, 900);
+            btnGuardarAnexoC.Name = "btnGuardarAnexoC";
+            btnGuardarAnexoC.Size = new Size(198, 23);
+            btnGuardarAnexoC.TabIndex = 78;
+            btnGuardarAnexoC.Text = "Guardar y Generar PDF ";
+            btnGuardarAnexoC.UseVisualStyleBackColor = true;
+            // 
+            // txtAnexoCJustifSna
+            // 
+            txtAnexoCJustifSna.Location = new Point(357, 825);
+            txtAnexoCJustifSna.Multiline = true;
+            txtAnexoCJustifSna.Name = "txtAnexoCJustifSna";
+            txtAnexoCJustifSna.ScrollBars = ScrollBars.Vertical;
+            txtAnexoCJustifSna.Size = new Size(401, 41);
+            txtAnexoCJustifSna.TabIndex = 77;
+            // 
+            // label65
+            // 
+            label65.AutoSize = true;
+            label65.Location = new Point(5, 825);
+            label65.Name = "label65";
+            label65.Size = new Size(358, 17);
+            label65.TabIndex = 76;
+            label65.Text = "Justificación acceso SNA / Regionales (de corresponder):";
+            // 
+            // txtSector7CJustif
+            // 
+            txtSector7CJustif.Location = new Point(130, 797);
+            txtSector7CJustif.Name = "txtSector7CJustif";
+            txtSector7CJustif.PlaceholderText = "Justificación obligatoria si tilda el sector";
+            txtSector7CJustif.Size = new Size(282, 25);
+            txtSector7CJustif.TabIndex = 75;
+            // 
+            // txtSector6CJustif
+            // 
+            txtSector6CJustif.Location = new Point(130, 766);
+            txtSector6CJustif.Name = "txtSector6CJustif";
+            txtSector6CJustif.PlaceholderText = "Justificación obligatoria si tilda el sector";
+            txtSector6CJustif.Size = new Size(282, 25);
+            txtSector6CJustif.TabIndex = 74;
+            // 
+            // txtSector5CJustif
+            // 
+            txtSector5CJustif.Location = new Point(130, 735);
+            txtSector5CJustif.Name = "txtSector5CJustif";
+            txtSector5CJustif.PlaceholderText = "Justificación obligatoria si tilda el sector";
+            txtSector5CJustif.Size = new Size(282, 25);
+            txtSector5CJustif.TabIndex = 73;
+            // 
+            // txtSector4CJustif
+            // 
+            txtSector4CJustif.Location = new Point(130, 704);
+            txtSector4CJustif.Name = "txtSector4CJustif";
+            txtSector4CJustif.PlaceholderText = "Justificación obligatoria si tilda el sector";
+            txtSector4CJustif.Size = new Size(282, 25);
+            txtSector4CJustif.TabIndex = 72;
+            // 
+            // txtSector2CJustif
+            // 
+            txtSector2CJustif.Location = new Point(130, 642);
+            txtSector2CJustif.Name = "txtSector2CJustif";
+            txtSector2CJustif.PlaceholderText = "Justificación obligatoria si tilda el sector";
+            txtSector2CJustif.Size = new Size(282, 25);
+            txtSector2CJustif.TabIndex = 71;
+            // 
+            // txtSector3CJustif
+            // 
+            txtSector3CJustif.Location = new Point(130, 673);
+            txtSector3CJustif.Name = "txtSector3CJustif";
+            txtSector3CJustif.PlaceholderText = "Justificación obligatoria si tilda el sector";
+            txtSector3CJustif.Size = new Size(282, 25);
+            txtSector3CJustif.TabIndex = 70;
+            // 
+            // txtSector1CJustif
+            // 
+            txtSector1CJustif.Location = new Point(129, 611);
+            txtSector1CJustif.Name = "txtSector1CJustif";
+            txtSector1CJustif.PlaceholderText = "Justificación obligatoria si tilda el sector";
+            txtSector1CJustif.Size = new Size(283, 25);
+            txtSector1CJustif.TabIndex = 69;
+            // 
+            // chkSectorC7
+            // 
+            chkSectorC7.AutoSize = true;
+            chkSectorC7.Location = new Point(13, 797);
+            chkSectorC7.Name = "chkSectorC7";
+            chkSectorC7.Size = new Size(76, 21);
+            chkSectorC7.TabIndex = 68;
+            chkSectorC7.Text = "Sector 7";
+            chkSectorC7.UseVisualStyleBackColor = true;
+            // 
+            // chkSectorC6
+            // 
+            chkSectorC6.AutoSize = true;
+            chkSectorC6.Location = new Point(13, 766);
+            chkSectorC6.Name = "chkSectorC6";
+            chkSectorC6.Size = new Size(76, 21);
+            chkSectorC6.TabIndex = 67;
+            chkSectorC6.Text = "Sector 6";
+            chkSectorC6.UseVisualStyleBackColor = true;
+            // 
+            // chkSectorC5
+            // 
+            chkSectorC5.AutoSize = true;
+            chkSectorC5.Location = new Point(13, 735);
+            chkSectorC5.Name = "chkSectorC5";
+            chkSectorC5.Size = new Size(76, 21);
+            chkSectorC5.TabIndex = 66;
+            chkSectorC5.Text = "Sector 5";
+            chkSectorC5.UseVisualStyleBackColor = true;
+            // 
+            // chkSectorC4
+            // 
+            chkSectorC4.AutoSize = true;
+            chkSectorC4.Location = new Point(13, 704);
+            chkSectorC4.Name = "chkSectorC4";
+            chkSectorC4.Size = new Size(76, 21);
+            chkSectorC4.TabIndex = 65;
+            chkSectorC4.Text = "Sector 4";
+            chkSectorC4.UseVisualStyleBackColor = true;
+            chkSectorC4.CheckedChanged += checkBox4_CheckedChanged;
+            // 
+            // chkSectorC3
+            // 
+            chkSectorC3.AutoSize = true;
+            chkSectorC3.Location = new Point(13, 673);
+            chkSectorC3.Name = "chkSectorC3";
+            chkSectorC3.Size = new Size(76, 21);
+            chkSectorC3.TabIndex = 64;
+            chkSectorC3.Text = "Sector 3";
+            chkSectorC3.UseVisualStyleBackColor = true;
+            // 
+            // chkSectorC2
+            // 
+            chkSectorC2.AutoSize = true;
+            chkSectorC2.Location = new Point(13, 642);
+            chkSectorC2.Name = "chkSectorC2";
+            chkSectorC2.Size = new Size(76, 21);
+            chkSectorC2.TabIndex = 63;
+            chkSectorC2.Text = "Sector 2";
+            chkSectorC2.UseVisualStyleBackColor = true;
+            // 
+            // chkSectorC1
+            // 
+            chkSectorC1.AutoSize = true;
+            chkSectorC1.Location = new Point(13, 611);
+            chkSectorC1.Name = "chkSectorC1";
+            chkSectorC1.Size = new Size(76, 21);
+            chkSectorC1.TabIndex = 62;
+            chkSectorC1.Text = "Sector 1";
+            chkSectorC1.UseVisualStyleBackColor = true;
+            // 
+            // label64
+            // 
+            label64.AutoSize = true;
+            label64.Location = new Point(4, 619);
+            label64.Name = "label64";
+            label64.Size = new Size(0, 17);
+            label64.TabIndex = 61;
+            // 
+            // label63
+            // 
+            label63.AutoSize = true;
+            label63.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label63.Location = new Point(29, 591);
+            label63.Name = "label63";
+            label63.Size = new Size(560, 13);
+            label63.TabIndex = 60;
+            label63.Text = "Para cada uno de los 7 sectores del aeropuerto, colocas una casilla de selección y su respectiva justificación:";
+            // 
+            // txtAnexoCCargo
+            // 
+            txtAnexoCCargo.Location = new Point(135, 555);
+            txtAnexoCCargo.Name = "txtAnexoCCargo";
+            txtAnexoCCargo.Size = new Size(228, 25);
+            txtAnexoCCargo.TabIndex = 59;
+            // 
+            // label62
+            // 
+            label62.AutoSize = true;
+            label62.Location = new Point(4, 563);
+            label62.Name = "label62";
+            label62.Size = new Size(121, 17);
+            label62.TabIndex = 58;
+            label62.Text = "Cargo / Función: *";
+            // 
+            // label61
+            // 
+            label61.AutoSize = true;
+            label61.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label61.ForeColor = Color.FromArgb(0, 0, 192);
+            label61.Location = new Point(4, 524);
+            label61.Name = "label61";
+            label61.Size = new Size(768, 15);
+            label61.TabIndex = 57;
+            label61.Text = "Se solicita acceso a los siguientes sectores, de acuerdo con las siguientes funciones a desempeñar por la persona detallada anteriormente: ";
+            // 
+            // dtpAnexoCFechaNac
+            // 
+            dtpAnexoCFechaNac.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtpAnexoCFechaNac.Location = new Point(430, 246);
+            dtpAnexoCFechaNac.Name = "dtpAnexoCFechaNac";
+            dtpAnexoCFechaNac.Size = new Size(261, 25);
+            dtpAnexoCFechaNac.TabIndex = 56;
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Location = new Point(273, 250);
+            label20.Name = "label20";
+            label20.Size = new Size(151, 17);
+            label20.TabIndex = 55;
+            label20.Text = "Fecha de Nacimiento: *";
+            // 
+            // txtAnexoCLugarNac
+            // 
+            txtAnexoCLugarNac.Location = new Point(145, 246);
+            txtAnexoCLugarNac.Name = "txtAnexoCLugarNac";
+            txtAnexoCLugarNac.Size = new Size(100, 25);
+            txtAnexoCLugarNac.TabIndex = 54;
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new Point(-2, 249);
+            label18.Name = "label18";
+            label18.Size = new Size(141, 17);
+            label18.TabIndex = 53;
+            label18.Text = "Lugar de Nacimiento:";
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.ForeColor = Color.FromArgb(0, 0, 192);
+            label16.Location = new Point(151, 292);
+            label16.Name = "label16";
+            label16.Size = new Size(458, 17);
+            label16.TabIndex = 52;
+            label16.Text = "DATOS PARA UTILIZAR EN CASO DE ACCIDENTE GRAVE (OACI Doc. 8973)";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.ForeColor = Color.FromArgb(0, 0, 192);
+            label14.Location = new Point(227, 8);
+            label14.Name = "label14";
+            label14.Size = new Size(515, 17);
+            label14.TabIndex = 51;
+            label14.Text = "CARTA DE PRESENTACIÓN Y SOLICITUD DE PERMISO PERSONAL AEROPORTUARIO";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label13.Location = new Point(171, 349);
+            label13.Name = "label13";
+            label13.Size = new Size(130, 12);
+            label13.TabIndex = 50;
+            label13.Text = "(Tachar la que NO corresponda)";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label10.Location = new Point(442, 349);
+            label10.Name = "label10";
+            label10.Size = new Size(130, 12);
+            label10.TabIndex = 49;
+            label10.Text = "(Tachar la que NO corresponda)";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.Location = new Point(168, 485);
+            label8.Name = "label8";
+            label8.Size = new Size(130, 12);
+            label8.TabIndex = 48;
+            label8.Text = "(Tachar la que NO corresponda)";
+            // 
+            // label60
+            // 
+            label60.AutoSize = true;
+            label60.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label60.Location = new Point(168, 453);
+            label60.Name = "label60";
+            label60.Size = new Size(130, 12);
+            label60.TabIndex = 47;
+            label60.Text = "(Tachar la que NO corresponda)";
             // 
             // rbtnConductorNo
             // 
@@ -576,27 +871,27 @@ namespace CredenSoftUInuevo.Forms
             label26.TabIndex = 39;
             label26.Text = "Enfermedades / Alergias:";
             // 
-            // radioButton2
+            // rbtnFactorNegativo
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(500, 328);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(82, 21);
-            radioButton2.TabIndex = 38;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "Negativo";
-            radioButton2.UseVisualStyleBackColor = true;
+            rbtnFactorNegativo.AutoSize = true;
+            rbtnFactorNegativo.Location = new Point(500, 328);
+            rbtnFactorNegativo.Name = "rbtnFactorNegativo";
+            rbtnFactorNegativo.Size = new Size(82, 21);
+            rbtnFactorNegativo.TabIndex = 38;
+            rbtnFactorNegativo.TabStop = true;
+            rbtnFactorNegativo.Text = "Negativo";
+            rbtnFactorNegativo.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // rbtnFactorPositivo
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(418, 328);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(76, 21);
-            radioButton1.TabIndex = 37;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Positivo";
-            radioButton1.UseVisualStyleBackColor = true;
+            rbtnFactorPositivo.AutoSize = true;
+            rbtnFactorPositivo.Location = new Point(418, 328);
+            rbtnFactorPositivo.Name = "rbtnFactorPositivo";
+            rbtnFactorPositivo.Size = new Size(76, 21);
+            rbtnFactorPositivo.TabIndex = 37;
+            rbtnFactorPositivo.TabStop = true;
+            rbtnFactorPositivo.Text = "Positivo";
+            rbtnFactorPositivo.UseVisualStyleBackColor = true;
             // 
             // label25
             // 
@@ -823,6 +1118,15 @@ namespace CredenSoftUInuevo.Forms
             label11.TabIndex = 6;
             label11.Text = "Apellido:*";
             // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(257, 47);
+            label9.Name = "label9";
+            label9.Size = new Size(200, 17);
+            label9.TabIndex = 4;
+            label9.Text = "Anual / N° Nota / N° Permiso:*";
+            // 
             // lblAnexoCAeropuerto
             // 
             lblAnexoCAeropuerto.AutoSize = true;
@@ -849,6 +1153,7 @@ namespace CredenSoftUInuevo.Forms
             // panelAnexoE
             // 
             panelAnexoE.AutoScroll = true;
+            panelAnexoE.Controls.Add(btnGuardarAnexoE);
             panelAnexoE.Controls.Add(label66);
             panelAnexoE.Controls.Add(txtAnexoEResp2Cargo);
             panelAnexoE.Controls.Add(txtAnexoEResp2Permiso);
@@ -926,10 +1231,183 @@ namespace CredenSoftUInuevo.Forms
             panelAnexoE.Controls.Add(label30);
             panelAnexoE.Controls.Add(label29);
             panelAnexoE.Controls.Add(titulo);
-            panelAnexoE.Location = new Point(807, -1);
+            panelAnexoE.Location = new Point(635, 8);
             panelAnexoE.Name = "panelAnexoE";
-            panelAnexoE.Size = new Size(730, 1484);
+            panelAnexoE.Size = new Size(570, 467);
             panelAnexoE.TabIndex = 23;
+            // 
+            // btnGuardarAnexoE
+            // 
+            btnGuardarAnexoE.Location = new Point(81, 1407);
+            btnGuardarAnexoE.Name = "btnGuardarAnexoE";
+            btnGuardarAnexoE.Size = new Size(165, 23);
+            btnGuardarAnexoE.TabIndex = 85;
+            btnGuardarAnexoE.Text = "Guardar y Generar PDF";
+            btnGuardarAnexoE.UseVisualStyleBackColor = true;
+            btnGuardarAnexoE.Click += btnGuardarAnexoE_Click;
+            // 
+            // label66
+            // 
+            label66.AutoSize = true;
+            label66.Location = new Point(16, 1167);
+            label66.Name = "label66";
+            label66.Size = new Size(118, 17);
+            label66.TabIndex = 84;
+            label66.Text = "ACOMPAÑANTES:";
+            // 
+            // txtAnexoEResp2Cargo
+            // 
+            txtAnexoEResp2Cargo.Location = new Point(173, 1362);
+            txtAnexoEResp2Cargo.Name = "txtAnexoEResp2Cargo";
+            txtAnexoEResp2Cargo.Size = new Size(532, 25);
+            txtAnexoEResp2Cargo.TabIndex = 83;
+            // 
+            // txtAnexoEResp2Permiso
+            // 
+            txtAnexoEResp2Permiso.Location = new Point(173, 1331);
+            txtAnexoEResp2Permiso.Name = "txtAnexoEResp2Permiso";
+            txtAnexoEResp2Permiso.Size = new Size(532, 25);
+            txtAnexoEResp2Permiso.TabIndex = 82;
+            // 
+            // txtAnexoEResp2ApeNom
+            // 
+            txtAnexoEResp2ApeNom.Location = new Point(213, 1300);
+            txtAnexoEResp2ApeNom.Name = "txtAnexoEResp2ApeNom";
+            txtAnexoEResp2ApeNom.Size = new Size(492, 25);
+            txtAnexoEResp2ApeNom.TabIndex = 81;
+            // 
+            // txtAnexoEResp1Permiso
+            // 
+            txtAnexoEResp1Permiso.Location = new Point(173, 1238);
+            txtAnexoEResp1Permiso.Name = "txtAnexoEResp1Permiso";
+            txtAnexoEResp1Permiso.Size = new Size(539, 25);
+            txtAnexoEResp1Permiso.TabIndex = 80;
+            // 
+            // txtAnexoEResp1Cargo
+            // 
+            txtAnexoEResp1Cargo.Location = new Point(173, 1269);
+            txtAnexoEResp1Cargo.Name = "txtAnexoEResp1Cargo";
+            txtAnexoEResp1Cargo.Size = new Size(538, 25);
+            txtAnexoEResp1Cargo.TabIndex = 79;
+            // 
+            // txtAnexoEResp1ApeNom
+            // 
+            txtAnexoEResp1ApeNom.Location = new Point(212, 1207);
+            txtAnexoEResp1ApeNom.Name = "txtAnexoEResp1ApeNom";
+            txtAnexoEResp1ApeNom.Size = new Size(493, 25);
+            txtAnexoEResp1ApeNom.TabIndex = 78;
+            // 
+            // label59
+            // 
+            label59.AutoSize = true;
+            label59.Location = new Point(45, 1360);
+            label59.Name = "label59";
+            label59.Size = new Size(117, 17);
+            label59.TabIndex = 77;
+            label59.Text = "Cargo / Función:*";
+            label59.Click += label59_Click;
+            // 
+            // label58
+            // 
+            label58.AutoSize = true;
+            label58.Location = new Point(50, 1335);
+            label58.Name = "label58";
+            label58.Size = new Size(106, 17);
+            label58.TabIndex = 76;
+            label58.Text = "N° de Permiso:*";
+            // 
+            // label57
+            // 
+            label57.AutoSize = true;
+            label57.Location = new Point(16, 1297);
+            label57.Name = "label57";
+            label57.Size = new Size(196, 17);
+            label57.TabIndex = 75;
+            label57.Text = "Resp. 2 - Apellido y Nombre: *";
+            // 
+            // label56
+            // 
+            label56.AutoSize = true;
+            label56.Location = new Point(45, 1269);
+            label56.Name = "label56";
+            label56.Size = new Size(117, 17);
+            label56.TabIndex = 74;
+            label56.Text = "Cargo / Función:*";
+            // 
+            // label55
+            // 
+            label55.AutoSize = true;
+            label55.Location = new Point(50, 1238);
+            label55.Name = "label55";
+            label55.Size = new Size(106, 17);
+            label55.TabIndex = 73;
+            label55.Text = "N° de Permiso:*";
+            // 
+            // label53
+            // 
+            label53.AutoSize = true;
+            label53.Location = new Point(16, 1206);
+            label53.Name = "label53";
+            label53.Size = new Size(196, 17);
+            label53.TabIndex = 72;
+            label53.Text = "Resp. 1 - Apellido y Nombre: *";
+            // 
+            // txtSector7Justif
+            // 
+            txtSector7Justif.Location = new Point(108, 1120);
+            txtSector7Justif.Name = "txtSector7Justif";
+            txtSector7Justif.PlaceholderText = "Justificación obligatoria si tilda el sector";
+            txtSector7Justif.Size = new Size(586, 25);
+            txtSector7Justif.TabIndex = 71;
+            // 
+            // txtSector6Justif
+            // 
+            txtSector6Justif.Location = new Point(109, 1090);
+            txtSector6Justif.Name = "txtSector6Justif";
+            txtSector6Justif.PlaceholderText = "Justificación obligatoria si tilda el sector";
+            txtSector6Justif.Size = new Size(582, 25);
+            txtSector6Justif.TabIndex = 70;
+            // 
+            // txtSector5Justif
+            // 
+            txtSector5Justif.Location = new Point(108, 1061);
+            txtSector5Justif.Name = "txtSector5Justif";
+            txtSector5Justif.PlaceholderText = "Justificación obligatoria si tilda el sector";
+            txtSector5Justif.Size = new Size(582, 25);
+            txtSector5Justif.TabIndex = 69;
+            txtSector5Justif.TextChanged += textBox5_TextChanged;
+            // 
+            // txtSector4Justif
+            // 
+            txtSector4Justif.Location = new Point(108, 1032);
+            txtSector4Justif.Name = "txtSector4Justif";
+            txtSector4Justif.PlaceholderText = "Justificación obligatoria si tilda el sector";
+            txtSector4Justif.Size = new Size(583, 25);
+            txtSector4Justif.TabIndex = 68;
+            // 
+            // txtSector3Justif
+            // 
+            txtSector3Justif.Location = new Point(108, 1004);
+            txtSector3Justif.Name = "txtSector3Justif";
+            txtSector3Justif.PlaceholderText = "Justificación obligatoria si tilda el sector";
+            txtSector3Justif.Size = new Size(582, 25);
+            txtSector3Justif.TabIndex = 67;
+            // 
+            // txtSector2Justif
+            // 
+            txtSector2Justif.Location = new Point(108, 976);
+            txtSector2Justif.Name = "txtSector2Justif";
+            txtSector2Justif.PlaceholderText = "Justificación obligatoria si tilda el sector";
+            txtSector2Justif.Size = new Size(581, 25);
+            txtSector2Justif.TabIndex = 66;
+            // 
+            // txtSector1Justif
+            // 
+            txtSector1Justif.Location = new Point(108, 947);
+            txtSector1Justif.Name = "txtSector1Justif";
+            txtSector1Justif.PlaceholderText = "Justificación obligatoria si tilda el sector";
+            txtSector1Justif.Size = new Size(581, 25);
+            txtSector1Justif.TabIndex = 65;
             // 
             // chkSector7
             // 
@@ -1417,467 +1895,12 @@ namespace CredenSoftUInuevo.Forms
             titulo.TabIndex = 0;
             titulo.Text = "SOLICITUD DE PERMISO PERSONAL AEROPORTUARIO DE SEGURIDAD";
             // 
-            // txtSector1Justif
-            // 
-            txtSector1Justif.Location = new Point(108, 947);
-            txtSector1Justif.Name = "txtSector1Justif";
-            txtSector1Justif.PlaceholderText = "Justificación obligatoria si tilda el sector";
-            txtSector1Justif.Size = new Size(581, 25);
-            txtSector1Justif.TabIndex = 65;
-            // 
-            // txtSector2Justif
-            // 
-            txtSector2Justif.Location = new Point(108, 976);
-            txtSector2Justif.Name = "txtSector2Justif";
-            txtSector2Justif.PlaceholderText = "Justificación obligatoria si tilda el sector";
-            txtSector2Justif.Size = new Size(581, 25);
-            txtSector2Justif.TabIndex = 66;
-            // 
-            // txtSector3Justif
-            // 
-            txtSector3Justif.Location = new Point(108, 1004);
-            txtSector3Justif.Name = "txtSector3Justif";
-            txtSector3Justif.PlaceholderText = "Justificación obligatoria si tilda el sector";
-            txtSector3Justif.Size = new Size(582, 25);
-            txtSector3Justif.TabIndex = 67;
-            // 
-            // txtSector4Justif
-            // 
-            txtSector4Justif.Location = new Point(108, 1032);
-            txtSector4Justif.Name = "txtSector4Justif";
-            txtSector4Justif.PlaceholderText = "Justificación obligatoria si tilda el sector";
-            txtSector4Justif.Size = new Size(583, 25);
-            txtSector4Justif.TabIndex = 68;
-            // 
-            // txtSector5Justif
-            // 
-            txtSector5Justif.Location = new Point(108, 1061);
-            txtSector5Justif.Name = "txtSector5Justif";
-            txtSector5Justif.PlaceholderText = "Justificación obligatoria si tilda el sector";
-            txtSector5Justif.Size = new Size(582, 25);
-            txtSector5Justif.TabIndex = 69;
-            txtSector5Justif.TextChanged += textBox5_TextChanged;
-            // 
-            // txtSector6Justif
-            // 
-            txtSector6Justif.Location = new Point(109, 1090);
-            txtSector6Justif.Name = "txtSector6Justif";
-            txtSector6Justif.PlaceholderText = "Justificación obligatoria si tilda el sector";
-            txtSector6Justif.Size = new Size(582, 25);
-            txtSector6Justif.TabIndex = 70;
-            // 
-            // txtSector7Justif
-            // 
-            txtSector7Justif.Location = new Point(108, 1120);
-            txtSector7Justif.Name = "txtSector7Justif";
-            txtSector7Justif.PlaceholderText = "Justificación obligatoria si tilda el sector";
-            txtSector7Justif.Size = new Size(586, 25);
-            txtSector7Justif.TabIndex = 71;
-            // 
-            // label53
-            // 
-            label53.AutoSize = true;
-            label53.Location = new Point(16, 1206);
-            label53.Name = "label53";
-            label53.Size = new Size(196, 17);
-            label53.TabIndex = 72;
-            label53.Text = "Resp. 1 - Apellido y Nombre: *";
-            // 
-            // label55
-            // 
-            label55.AutoSize = true;
-            label55.Location = new Point(42, 1247);
-            label55.Name = "label55";
-            label55.Size = new Size(106, 17);
-            label55.TabIndex = 73;
-            label55.Text = "N° de Permiso:*";
-            // 
-            // label56
-            // 
-            label56.AutoSize = true;
-            label56.Location = new Point(42, 1288);
-            label56.Name = "label56";
-            label56.Size = new Size(117, 17);
-            label56.TabIndex = 74;
-            label56.Text = "Cargo / Función:*";
-            // 
-            // label57
-            // 
-            label57.AutoSize = true;
-            label57.Location = new Point(16, 1325);
-            label57.Name = "label57";
-            label57.Size = new Size(196, 17);
-            label57.TabIndex = 75;
-            label57.Text = "Resp. 2 - Apellido y Nombre: *";
-            // 
-            // label58
-            // 
-            label58.AutoSize = true;
-            label58.Location = new Point(42, 1366);
-            label58.Name = "label58";
-            label58.Size = new Size(106, 17);
-            label58.TabIndex = 76;
-            label58.Text = "N° de Permiso:*";
-            // 
-            // label59
-            // 
-            label59.AutoSize = true;
-            label59.Location = new Point(42, 1404);
-            label59.Name = "label59";
-            label59.Size = new Size(117, 17);
-            label59.TabIndex = 77;
-            label59.Text = "Cargo / Función:*";
-            label59.Click += label59_Click;
-            // 
-            // txtAnexoEResp1ApeNom
-            // 
-            txtAnexoEResp1ApeNom.Location = new Point(212, 1207);
-            txtAnexoEResp1ApeNom.Name = "txtAnexoEResp1ApeNom";
-            txtAnexoEResp1ApeNom.Size = new Size(493, 25);
-            txtAnexoEResp1ApeNom.TabIndex = 78;
-            // 
-            // txtAnexoEResp1Cargo
-            // 
-            txtAnexoEResp1Cargo.Location = new Point(167, 1282);
-            txtAnexoEResp1Cargo.Name = "txtAnexoEResp1Cargo";
-            txtAnexoEResp1Cargo.Size = new Size(538, 25);
-            txtAnexoEResp1Cargo.TabIndex = 79;
-            // 
-            // txtAnexoEResp1Permiso
-            // 
-            txtAnexoEResp1Permiso.Location = new Point(166, 1246);
-            txtAnexoEResp1Permiso.Name = "txtAnexoEResp1Permiso";
-            txtAnexoEResp1Permiso.Size = new Size(539, 25);
-            txtAnexoEResp1Permiso.TabIndex = 80;
-            // 
-            // txtAnexoEResp2ApeNom
-            // 
-            txtAnexoEResp2ApeNom.Location = new Point(213, 1328);
-            txtAnexoEResp2ApeNom.Name = "txtAnexoEResp2ApeNom";
-            txtAnexoEResp2ApeNom.Size = new Size(492, 25);
-            txtAnexoEResp2ApeNom.TabIndex = 81;
-            // 
-            // txtAnexoEResp2Permiso
-            // 
-            txtAnexoEResp2Permiso.Location = new Point(173, 1363);
-            txtAnexoEResp2Permiso.Name = "txtAnexoEResp2Permiso";
-            txtAnexoEResp2Permiso.Size = new Size(532, 25);
-            txtAnexoEResp2Permiso.TabIndex = 82;
-            // 
-            // txtAnexoEResp2Cargo
-            // 
-            txtAnexoEResp2Cargo.Location = new Point(173, 1400);
-            txtAnexoEResp2Cargo.Name = "txtAnexoEResp2Cargo";
-            txtAnexoEResp2Cargo.Size = new Size(532, 25);
-            txtAnexoEResp2Cargo.TabIndex = 83;
-            // 
-            // label60
-            // 
-            label60.AutoSize = true;
-            label60.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label60.Location = new Point(168, 453);
-            label60.Name = "label60";
-            label60.Size = new Size(130, 12);
-            label60.TabIndex = 47;
-            label60.Text = "(Tachar la que NO corresponda)";
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(257, 47);
-            label9.Name = "label9";
-            label9.Size = new Size(200, 17);
-            label9.TabIndex = 4;
-            label9.Text = "Anual / N° Nota / N° Permiso:*";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label8.Location = new Point(168, 485);
-            label8.Name = "label8";
-            label8.Size = new Size(130, 12);
-            label8.TabIndex = 48;
-            label8.Text = "(Tachar la que NO corresponda)";
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label10.Location = new Point(442, 349);
-            label10.Name = "label10";
-            label10.Size = new Size(130, 12);
-            label10.TabIndex = 49;
-            label10.Text = "(Tachar la que NO corresponda)";
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label13.Location = new Point(171, 349);
-            label13.Name = "label13";
-            label13.Size = new Size(130, 12);
-            label13.TabIndex = 50;
-            label13.Text = "(Tachar la que NO corresponda)";
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.ForeColor = Color.FromArgb(0, 0, 192);
-            label14.Location = new Point(151, 7);
-            label14.Name = "label14";
-            label14.Size = new Size(515, 17);
-            label14.TabIndex = 51;
-            label14.Text = "CARTA DE PRESENTACIÓN Y SOLICITUD DE PERMISO PERSONAL AEROPORTUARIO";
-            // 
-            // label16
-            // 
-            label16.AutoSize = true;
-            label16.ForeColor = Color.FromArgb(0, 0, 192);
-            label16.Location = new Point(151, 292);
-            label16.Name = "label16";
-            label16.Size = new Size(458, 17);
-            label16.TabIndex = 52;
-            label16.Text = "DATOS PARA UTILIZAR EN CASO DE ACCIDENTE GRAVE (OACI Doc. 8973)";
-            // 
-            // label18
-            // 
-            label18.AutoSize = true;
-            label18.Location = new Point(-2, 249);
-            label18.Name = "label18";
-            label18.Size = new Size(141, 17);
-            label18.TabIndex = 53;
-            label18.Text = "Lugar de Nacimiento:";
-            // 
-            // txtAnexoCLugarNac
-            // 
-            txtAnexoCLugarNac.Location = new Point(145, 246);
-            txtAnexoCLugarNac.Name = "txtAnexoCLugarNac";
-            txtAnexoCLugarNac.Size = new Size(100, 25);
-            txtAnexoCLugarNac.TabIndex = 54;
-            // 
-            // label20
-            // 
-            label20.AutoSize = true;
-            label20.Location = new Point(273, 250);
-            label20.Name = "label20";
-            label20.Size = new Size(151, 17);
-            label20.TabIndex = 55;
-            label20.Text = "Fecha de Nacimiento: *";
-            // 
-            // dtpAnexoCFechaNac
-            // 
-            dtpAnexoCFechaNac.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtpAnexoCFechaNac.Location = new Point(430, 246);
-            dtpAnexoCFechaNac.Name = "dtpAnexoCFechaNac";
-            dtpAnexoCFechaNac.Size = new Size(261, 25);
-            dtpAnexoCFechaNac.TabIndex = 56;
-            // 
-            // label61
-            // 
-            label61.AutoSize = true;
-            label61.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label61.ForeColor = Color.FromArgb(0, 0, 192);
-            label61.Location = new Point(4, 524);
-            label61.Name = "label61";
-            label61.Size = new Size(768, 15);
-            label61.TabIndex = 57;
-            label61.Text = "Se solicita acceso a los siguientes sectores, de acuerdo con las siguientes funciones a desempeñar por la persona detallada anteriormente: ";
-            // 
-            // label62
-            // 
-            label62.AutoSize = true;
-            label62.Location = new Point(4, 563);
-            label62.Name = "label62";
-            label62.Size = new Size(121, 17);
-            label62.TabIndex = 58;
-            label62.Text = "Cargo / Función: *";
-            // 
-            // txtAnexoCCargo
-            // 
-            txtAnexoCCargo.Location = new Point(135, 555);
-            txtAnexoCCargo.Name = "txtAnexoCCargo";
-            txtAnexoCCargo.Size = new Size(228, 25);
-            txtAnexoCCargo.TabIndex = 59;
-            // 
-            // label63
-            // 
-            label63.AutoSize = true;
-            label63.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label63.Location = new Point(29, 591);
-            label63.Name = "label63";
-            label63.Size = new Size(560, 13);
-            label63.TabIndex = 60;
-            label63.Text = "Para cada uno de los 7 sectores del aeropuerto, colocas una casilla de selección y su respectiva justificación:";
-            // 
-            // label64
-            // 
-            label64.AutoSize = true;
-            label64.Location = new Point(4, 619);
-            label64.Name = "label64";
-            label64.Size = new Size(0, 17);
-            label64.TabIndex = 61;
-            // 
-            // checkBoxC1
-            // 
-            checkBoxC1.AutoSize = true;
-            checkBoxC1.Location = new Point(13, 611);
-            checkBoxC1.Name = "checkBoxC1";
-            checkBoxC1.Size = new Size(76, 21);
-            checkBoxC1.TabIndex = 62;
-            checkBoxC1.Text = "Sector 1";
-            checkBoxC1.UseVisualStyleBackColor = true;
-            // 
-            // chkSectorC2
-            // 
-            chkSectorC2.AutoSize = true;
-            chkSectorC2.Location = new Point(13, 642);
-            chkSectorC2.Name = "chkSectorC2";
-            chkSectorC2.Size = new Size(76, 21);
-            chkSectorC2.TabIndex = 63;
-            chkSectorC2.Text = "Sector 2";
-            chkSectorC2.UseVisualStyleBackColor = true;
-            // 
-            // chkSectorC3
-            // 
-            chkSectorC3.AutoSize = true;
-            chkSectorC3.Location = new Point(13, 673);
-            chkSectorC3.Name = "chkSectorC3";
-            chkSectorC3.Size = new Size(76, 21);
-            chkSectorC3.TabIndex = 64;
-            chkSectorC3.Text = "Sector 3";
-            chkSectorC3.UseVisualStyleBackColor = true;
-            // 
-            // chkSectorC4
-            // 
-            chkSectorC4.AutoSize = true;
-            chkSectorC4.Location = new Point(13, 704);
-            chkSectorC4.Name = "chkSectorC4";
-            chkSectorC4.Size = new Size(76, 21);
-            chkSectorC4.TabIndex = 65;
-            chkSectorC4.Text = "Sector 4";
-            chkSectorC4.UseVisualStyleBackColor = true;
-            chkSectorC4.CheckedChanged += checkBox4_CheckedChanged;
-            // 
-            // chkSectorC5
-            // 
-            chkSectorC5.AutoSize = true;
-            chkSectorC5.Location = new Point(13, 735);
-            chkSectorC5.Name = "chkSectorC5";
-            chkSectorC5.Size = new Size(76, 21);
-            chkSectorC5.TabIndex = 66;
-            chkSectorC5.Text = "Sector 5";
-            chkSectorC5.UseVisualStyleBackColor = true;
-            // 
-            // chkSectorC6
-            // 
-            chkSectorC6.AutoSize = true;
-            chkSectorC6.Location = new Point(13, 766);
-            chkSectorC6.Name = "chkSectorC6";
-            chkSectorC6.Size = new Size(76, 21);
-            chkSectorC6.TabIndex = 67;
-            chkSectorC6.Text = "Sector 6";
-            chkSectorC6.UseVisualStyleBackColor = true;
-            // 
-            // chkSectorC7
-            // 
-            chkSectorC7.AutoSize = true;
-            chkSectorC7.Location = new Point(13, 797);
-            chkSectorC7.Name = "chkSectorC7";
-            chkSectorC7.Size = new Size(76, 21);
-            chkSectorC7.TabIndex = 68;
-            chkSectorC7.Text = "Sector 7";
-            chkSectorC7.UseVisualStyleBackColor = true;
-            // 
-            // txtSector1CJustif
-            // 
-            txtSector1CJustif.Location = new Point(129, 611);
-            txtSector1CJustif.Name = "txtSector1CJustif";
-            txtSector1CJustif.PlaceholderText = "Justificación obligatoria si tilda el sector";
-            txtSector1CJustif.Size = new Size(283, 25);
-            txtSector1CJustif.TabIndex = 69;
-            // 
-            // txtSector3CJustif
-            // 
-            txtSector3CJustif.Location = new Point(130, 673);
-            txtSector3CJustif.Name = "txtSector3CJustif";
-            txtSector3CJustif.PlaceholderText = "Justificación obligatoria si tilda el sector";
-            txtSector3CJustif.Size = new Size(282, 25);
-            txtSector3CJustif.TabIndex = 70;
-            // 
-            // txtSector2CJustif
-            // 
-            txtSector2CJustif.Location = new Point(130, 642);
-            txtSector2CJustif.Name = "txtSector2CJustif";
-            txtSector2CJustif.PlaceholderText = "Justificación obligatoria si tilda el sector";
-            txtSector2CJustif.Size = new Size(282, 25);
-            txtSector2CJustif.TabIndex = 71;
-            // 
-            // txtSector4CJustif
-            // 
-            txtSector4CJustif.Location = new Point(130, 704);
-            txtSector4CJustif.Name = "txtSector4CJustif";
-            txtSector4CJustif.PlaceholderText = "Justificación obligatoria si tilda el sector";
-            txtSector4CJustif.Size = new Size(282, 25);
-            txtSector4CJustif.TabIndex = 72;
-            // 
-            // txtSector5CJustif
-            // 
-            txtSector5CJustif.Location = new Point(130, 735);
-            txtSector5CJustif.Name = "txtSector5CJustif";
-            txtSector5CJustif.PlaceholderText = "Justificación obligatoria si tilda el sector";
-            txtSector5CJustif.Size = new Size(282, 25);
-            txtSector5CJustif.TabIndex = 73;
-            // 
-            // txtSector6CJustif
-            // 
-            txtSector6CJustif.Location = new Point(130, 766);
-            txtSector6CJustif.Name = "txtSector6CJustif";
-            txtSector6CJustif.PlaceholderText = "Justificación obligatoria si tilda el sector";
-            txtSector6CJustif.Size = new Size(282, 25);
-            txtSector6CJustif.TabIndex = 74;
-            // 
-            // txtSector7CJustif
-            // 
-            txtSector7CJustif.Location = new Point(130, 797);
-            txtSector7CJustif.Name = "txtSector7CJustif";
-            txtSector7CJustif.PlaceholderText = "Justificación obligatoria si tilda el sector";
-            txtSector7CJustif.Size = new Size(282, 25);
-            txtSector7CJustif.TabIndex = 75;
-            // 
-            // label65
-            // 
-            label65.AutoSize = true;
-            label65.Location = new Point(7, 848);
-            label65.Name = "label65";
-            label65.Size = new Size(358, 17);
-            label65.TabIndex = 76;
-            label65.Text = "Justificación acceso SNA / Regionales (de corresponder):";
-            // 
-            // txtAnexoCJustifSna
-            // 
-            txtAnexoCJustifSna.Location = new Point(371, 845);
-            txtAnexoCJustifSna.Multiline = true;
-            txtAnexoCJustifSna.Name = "txtAnexoCJustifSna";
-            txtAnexoCJustifSna.ScrollBars = ScrollBars.Vertical;
-            txtAnexoCJustifSna.Size = new Size(401, 41);
-            txtAnexoCJustifSna.TabIndex = 77;
-            // 
-            // label66
-            // 
-            label66.AutoSize = true;
-            label66.Location = new Point(16, 1167);
-            label66.Name = "label66";
-            label66.Size = new Size(118, 17);
-            label66.TabIndex = 84;
-            label66.Text = "ACOMPAÑANTES:";
-            // 
             // FrmAltaSolicitud
             // 
             AutoScaleDimensions = new SizeF(8F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            ClientSize = new Size(1537, 881);
+            ClientSize = new Size(1245, 881);
             Controls.Add(panelAnexoE);
             Controls.Add(panelAnexoC);
             Controls.Add(lblArchivoSeleccionado);
@@ -1972,8 +1995,8 @@ namespace CredenSoftUInuevo.Forms
         private RadioButton rbtnGrupoAB;
         private RadioButton rbtnGrupoB;
         private RadioButton rbtnGrupoA;
-        private RadioButton radioButton2;
-        private RadioButton radioButton1;
+        private RadioButton rbtnFactorNegativo;
+        private RadioButton rbtnFactorPositivo;
         private Label label25;
         private TextBox txtAnexoCEnfermedades;
         private Label label26;
@@ -2082,7 +2105,7 @@ namespace CredenSoftUInuevo.Forms
         private CheckBox chkSectorC4;
         private CheckBox chkSectorC3;
         private CheckBox chkSectorC2;
-        private CheckBox checkBoxC1;
+        private CheckBox chkSectorC1;
         private TextBox txtSector7CJustif;
         private TextBox txtSector6CJustif;
         private TextBox txtSector5CJustif;
@@ -2093,5 +2116,7 @@ namespace CredenSoftUInuevo.Forms
         private TextBox txtAnexoCJustifSna;
         private Label label65;
         private Label label66;
+        private Button btnGuardarAnexoC;
+        private Button btnGuardarAnexoE;
     }
 }

@@ -4,6 +4,7 @@ using DataEF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataEF.Migrations
 {
     [DbContext(typeof(CredenSoftContext))]
-    partial class CredenSoftContextModelSnapshot : ModelSnapshot
+    [Migration("20260920001822_ActualizarEstructuraAnexoC")]
+    partial class ActualizarEstructuraAnexoC
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -349,24 +352,6 @@ namespace DataEF.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("justificacion_sector_7");
 
-                    b.Property<string>("Resp2ApeNom")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)")
-                        .HasColumnName("resp2_apenom");
-
-                    b.Property<string>("Resp2Cargo")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)")
-                        .HasColumnName("resp2_cargo");
-
-                    b.Property<string>("Resp2NroPermiso")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("resp2_nro_permiso");
-
                     b.Property<string>("ResponsableApNombre")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -412,131 +397,6 @@ namespace DataEF.Migrations
                     b.Property<bool>("Sector7")
                         .HasColumnType("bit")
                         .HasColumnName("sector_7");
-
-                    b.Property<string>("Sol1ApeNom")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)")
-                        .HasColumnName("sol1_apenom");
-
-                    b.Property<string>("Sol1Cargo")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)")
-                        .HasColumnName("sol1_cargo");
-
-                    b.Property<string>("Sol1DocNro")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("sol1_docnro");
-
-                    b.Property<string>("Sol1TipoDoc")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("sol1_tipodoc");
-
-                    b.Property<string>("Sol2ApeNom")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)")
-                        .HasColumnName("sol2_apenom");
-
-                    b.Property<string>("Sol2Cargo")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)")
-                        .HasColumnName("sol2_cargo");
-
-                    b.Property<string>("Sol2DocNro")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("sol2_docnro");
-
-                    b.Property<string>("Sol2TipoDoc")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("sol2_tipodoc");
-
-                    b.Property<string>("Sol3ApeNom")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)")
-                        .HasColumnName("sol3_apenom");
-
-                    b.Property<string>("Sol3Cargo")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)")
-                        .HasColumnName("sol3_cargo");
-
-                    b.Property<string>("Sol3DocNro")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("sol3_docnro");
-
-                    b.Property<string>("Sol3TipoDoc")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("sol3_tipodoc");
-
-                    b.Property<string>("Sol4ApeNom")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)")
-                        .HasColumnName("sol4_apenom");
-
-                    b.Property<string>("Sol4Cargo")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)")
-                        .HasColumnName("sol4_cargo");
-
-                    b.Property<string>("Sol4DocNro")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("sol4_docnro");
-
-                    b.Property<string>("Sol4TipoDoc")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("sol4_tipodoc");
-
-                    b.Property<string>("Sol5ApeNom")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)")
-                        .HasColumnName("sol5_apenom");
-
-                    b.Property<string>("Sol5Cargo")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)")
-                        .HasColumnName("sol5_cargo");
-
-                    b.Property<string>("Sol5DocNro")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("sol5_docnro");
-
-                    b.Property<string>("Sol5TipoDoc")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("sol5_tipodoc");
-
-                    b.Property<string>("Tareas")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("tareas");
 
                     b.HasKey("IdDetalleE");
 
