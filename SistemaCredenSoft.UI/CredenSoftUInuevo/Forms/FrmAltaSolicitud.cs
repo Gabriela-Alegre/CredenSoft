@@ -14,13 +14,25 @@ namespace CredenSoftUInuevo.Forms
         // =====================================================
         // SERVICIO
         // =====================================================
+        private SolicitudService _solicitudService = new SolicitudService();
 
-        SolicitudService _solicitudService =
-            new SolicitudService();
+        private int idSolicitudEditando = 0; // Si es 0, es nuevo. Si tiene valor, es edición.
 
+        // 1. Constructor normal (para cuando das de alta desde cero)
         public FrmAltaSolicitud()
         {
             InitializeComponent();
+        }
+
+        // 2. Constructor para cuando quieres EDITAR (recibe el ID)
+        public FrmAltaSolicitud(int idSolicitud)
+        {
+            InitializeComponent();
+            idSolicitudEditando = idSolicitud;
+
+            // Cambiar el título del formulario para que el usuario sepa que está editando
+            this.Text = "Modificar Solicitud y Anexo C";
+            btnGuardar.Text = "Actualizar Cambios"; // Cambias el texto del botón si quieres
         }
 
         // =====================================================
@@ -65,7 +77,104 @@ namespace CredenSoftUInuevo.Forms
 
             // Llamamos también al método de los sectores que armamos antes
             ConfigurarEventosSectores();
+
+
+            // ==========================================
+            // AQUÍ AGREGAS LA LÓGICA DE EDICIÓN
+            // ==========================================
+            if (idSolicitudEditando > 0)
+            {
+                using (var context = new CredenSoftContext())
+                {
+                    // Buscamos la solicitud y su detalle de Anexo C asociado
+                    var solicitud = context.Solicitudes
+                        .Include(s => s.DetalleAnexoC) // Asegúrate de tener la relación mapeada
+                        .FirstOrDefault(s => s.IdSolicitud == idSolicitudEditando);
+
+                    if (solicitud != null)
+                    {
+                        // 1. Datos generales de la solicitud
+                        txtDescripcion.Text = solicitud.Descripcion;
+                        dateTimeFecha.Value = solicitud.FechaSolicitud;
+                        cmbTipoDeSolicitud.Text = solicitud.TipoSolicitud;
+
+                        // 2. Si es Anexo C, mostramos el panel y rellenamos cada control
+                        if (solicitud.TipoSolicitud.Contains("Anexo C") && solicitud.DetalleAnexoC != null)
+                        {
+                            panelAnexoC.Visible = true;
+
+                            // Datos principales del Anexo C
+                            txtAnexoCAeropuerto.Text = solicitud.DetalleAnexoC.Aeropuerto;
+                            txtAnexoCNotaPermiso.Text = solicitud.DetalleAnexoC.NumeroNotaPermiso;
+                            txtAnexoCApellidos.Text = solicitud.DetalleAnexoC.Apellido;
+                            txtAnexoCNombres.Text = solicitud.DetalleAnexoC.Nombres;
+                            txtAnexoCDniPasaporte.Text = solicitud.DetalleAnexoC.DniPasaporte;
+                            cmbAnexoCEstadoCivil.Text = solicitud.DetalleAnexoC.EstadoCivil;
+                            txtAnexoCLugarNac.Text = solicitud.DetalleAnexoC.LugarNacimiento;
+                            dtpAnexoCFechaNac.Value = solicitud.DetalleAnexoC.FechaNacimiento;
+                            txtAnexoCCargo.Text = solicitud.DetalleAnexoC.CargoFuncion;
+
+                            // Domicilio
+                            txtAnexoCCalle.Text = solicitud.DetalleAnexoC.Calle;
+                            txtAnexoCNro.Text = solicitud.DetalleAnexoC.Nro;
+                            txtAnexoCDepto.Text = solicitud.DetalleAnexoC.Depto;
+                            txtAnexoCCP.Text = solicitud.DetalleAnexoC.Cp;
+                            txtAnexoCLocalidad.Text = solicitud.DetalleAnexoC.Localidad;
+
+                            // Contacto
+                            txtAnexoCTelPart.Text = solicitud.DetalleAnexoC.TelParticular;
+                            txtAnexoCTelLab.Text = solicitud.DetalleAnexoC.TelLaboral;
+                            txtAnexoCMail.Text = solicitud.DetalleAnexoC.Mail;
+
+                            // Grupo Sanguíneo
+                            if (solicitud.DetalleAnexoC.GrupoSanguineo == "A") rbtnGrupoA.Checked = true;
+                            else if (solicitud.DetalleAnexoC.GrupoSanguineo == "B") rbtnGrupoB.Checked = true;
+                            else if (solicitud.DetalleAnexoC.GrupoSanguineo == "AB") rbtnGrupoAB.Checked = true;
+                            else if (solicitud.DetalleAnexoC.GrupoSanguineo == "O") rbtnGrupoO.Checked = true;
+
+                            // Factor RH
+                            if (solicitud.DetalleAnexoC.FactorRh == "Positivo") rbtnFactorPositivo.Checked = true;
+                            else if (solicitud.DetalleAnexoC.FactorRh == "Negativo") rbtnFactorNegativo.Checked = true;
+
+                            // Enfermedades y Alergias
+                            txtAnexoCEnfermedades.Text = solicitud.DetalleAnexoC.EnfermedadesAlergias;
+
+                            // Roles (Conductor / Socorrista)
+                            rbtnConductorSi.Checked = solicitud.DetalleAnexoC.Conductor;
+                            rbtnConductorNo.Checked = !solicitud.DetalleAnexoC.Conductor;
+                            rbtnSocorristaSi.Checked = solicitud.DetalleAnexoC.Socorrista;
+                            rbtnSocorristaNo.Checked = !solicitud.DetalleAnexoC.Socorrista;
+
+                            // Sectores (1 al 7) y sus justificaciones
+                            chkSectorC1.Checked = solicitud.DetalleAnexoC.Sector1;
+                            txtSector1CJustif.Text = solicitud.DetalleAnexoC.Sector1Justif;
+
+                            chkSector2.Checked = solicitud.DetalleAnexoC.Sector2;
+                            txtSector2CJustif.Text = solicitud.DetalleAnexoC.Sector2Justif;
+
+                            chkSector3.Checked = solicitud.DetalleAnexoC.Sector3;
+                            txtSector3CJustif.Text = solicitud.DetalleAnexoC.Sector3Justif;
+
+                            chkSector4.Checked = solicitud.DetalleAnexoC.Sector4;
+                            txtSector4CJustif.Text = solicitud.DetalleAnexoC.Sector4Justif;
+
+                            chkSector5.Checked = solicitud.DetalleAnexoC.Sector5;
+                            txtSector5CJustif.Text = solicitud.DetalleAnexoC.Sector5Justif;
+
+                            chkSector6.Checked = solicitud.DetalleAnexoC.Sector6;
+                            txtSector6CJustif.Text = solicitud.DetalleAnexoC.Sector6Justif;
+
+                            chkSector7.Checked = solicitud.DetalleAnexoC.Sector7;
+                            txtSector7CJustif.Text = solicitud.DetalleAnexoC.Sector7Justif;
+
+                            txtAnexoCJustifSna.Text = solicitud.DetalleAnexoC.JustifSnaRegionales;
+                        }
+                    }
+                }
+            }
         }
+
+
 
         // =====================================================
         // TIPOS DE SOLICITUD
@@ -115,327 +224,212 @@ namespace CredenSoftUInuevo.Forms
         {
             try
             {
-                // 1. Validación de campos obligatorios
+                // 1. Validación inicial del tipo de solicitud
                 if (cmbTipoDeSolicitud.SelectedIndex == -1)
                 {
-                    MessageBox.Show(
-                        "Seleccione un tipo de solicitud.",
-                        "Atención",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning
-                    );
+                    MessageBox.Show("Seleccione un tipo de solicitud.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning); 
                     return;
                 }
 
-                // 2. Armamos el objeto Solicitud con sus datos principales
-                Solicitud nueva = new Solicitud
-                {
-                    IdUsuario = SesionActual.UsuarioLogueado.IdUsuario,
-                    TipoSolicitud = cmbTipoDeSolicitud.Text,
-                    Descripcion = txtDescripcion.Text,
-                    FechaSolicitud = dateTimeFecha.Value,
-                    ArchivosAdjuntos = new List<DocumentoAdjunto>() // Inicializamos la lista vacía
-                };
-
-                // 3. AQUÍ VA EL CÓDIGO: Si el usuario seleccionó un archivo, lo agregamos a la lista
-                if (!string.IsNullOrEmpty(rutaArchivoSeleccionado))
-                {
-                    var adjunto = new DocumentoAdjunto
-                    {
-                        NombreArchivo = System.IO.Path.GetFileName(rutaArchivoSeleccionado),
-                        RutaArchivo = rutaArchivoSeleccionado, // Guardamos la ruta en la propiedad correspondiente
-                        TipoDocumento = "Respaldo" // O el tipo que corresponda
-                    };
-
-                    nueva.ArchivosAdjuntos.Add(adjunto);
-                }
-
-                // 4. Llamada al servicio para persistir todo (Solicitud y su archivo relacionado por FK)
-                _solicitudService.CrearSolicitud(nueva);
-
-                MessageBox.Show(
-                    "Solicitud enviada correctamente.",
-                    "CredenSoft",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
-
-                this.DialogResult = DialogResult.OK;
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                string errorReal = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
-                MessageBox.Show(
-                   // ex.Message,
-                   errorReal,
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
-            }
-            try
-            {
-                // 1. Validación rápida de campos obligatorios
-                if (string.IsNullOrWhiteSpace(txtAnexoCAeropuerto.Text) ||
-                    string.IsNullOrWhiteSpace(txtAnexoCApellidos.Text) ||
-                    string.IsNullOrWhiteSpace(txtAnexoCDniPasaporte.Text))
-                {
-                    MessageBox.Show("Por favor, completa los campos obligatorios (*).", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // 1. Validar y extraer el Grupo Sanguíneo de forma segura
-                string grupoSanguineoSeleccionado = "";
-                if (rbtnGrupoA.Checked) grupoSanguineoSeleccionado = "A";
-                else if (rbtnGrupoB.Checked) grupoSanguineoSeleccionado = "B";
-                else if (rbtnGrupoAB.Checked) grupoSanguineoSeleccionado = "AB";
-                else if (rbtnGrupoO.Checked) grupoSanguineoSeleccionado = "O"; // (Asegúrate de que el radio de la O se llame así)
-
-                // 2. Validar y extraer el Factor RH de forma segura
-                string factorRhSeleccionado = "";
-                if (rbtnFactorPositivo.Checked) factorRhSeleccionado = "Positivo";
-                else if (rbtnFactorNegativo.Checked) factorRhSeleccionado = "Negativo"; // (Asegúrate de que el radio negativo se llame así)
- 
-
-                // =====================================================
-                // OBJETO NUEVO DETALLE ANEXO C
-                // =====================================================
-
-
-                // 2. Mapeo con los nombres exactos de tu clase DetalleAnexoC
-                DetalleAnexoC nuevoDetalle = new DetalleAnexoC()
-                {
-                    IdSolicitud = 1, // Reemplaza esto con el ID de la solicitud activa de tu cabecera
-                    Aeropuerto = txtAnexoCAeropuerto.Text.Trim(),
-                    NumeroNotaPermiso = txtAnexoCNotaPermiso.Text.Trim(),
-                    Apellido = txtAnexoCApellidos.Text.Trim(),
-                    Nombres = txtAnexoCNombres.Text.Trim(),
-                    DniPasaporte = txtAnexoCDniPasaporte.Text.Trim(),
-                    EstadoCivil = cmbAnexoCEstadoCivil.SelectedItem?.ToString() ?? "",
-                    LugarNacimiento = txtAnexoCLugarNac.Text.Trim(),
-                    FechaNacimiento = dtpAnexoCFechaNac.Value,
-                    CargoFuncion = txtAnexoCCargo.Text.Trim(),
-
-                    // Domicilio
-                    Calle = txtAnexoCCalle.Text.Trim(),
-                    Nro = txtAnexoCNro.Text.Trim(),
-                    Depto = txtAnexoCDepto.Text.Trim(),
-                    Cp = txtAnexoCCP.Text.Trim(),
-                    Localidad = txtAnexoCLocalidad.Text.Trim(),
-
-                    // Contacto
-                    TelParticular = txtAnexoCTelPart.Text.Trim(),
-                    TelLaboral = txtAnexoCTelLab.Text.Trim(),
-                    Mail = txtAnexoCMail.Text.Trim(),
-
-                    // Emergencia (OACI Doc. 8973)
-
-                    GrupoSanguineo = grupoSanguineoSeleccionado,
-                    FactorRh = factorRhSeleccionado,
-                    EnfermedadesAlergias = txtAnexoCEnfermedades.Text.Trim(),
-
-
-                    // Roles
-                    Socorrista = rbtnSocorristaSi.Checked,
-                    Conductor = rbtnConductorSi.Checked,
-
-                    // Sectores
-                    Sector1 = chkSectorC1.Checked,
-                    Sector1Justif = txtSector1CJustif.Text.Trim(),
-                    Sector2 = chkSectorC2.Checked,
-                    Sector2Justif = txtSector2CJustif.Text.Trim(),
-                    Sector3 = chkSectorC3.Checked,
-                    Sector3Justif = txtSector3CJustif.Text.Trim(),
-                    Sector4 = chkSectorC4.Checked,
-                    Sector4Justif = txtSector4CJustif.Text.Trim(),
-                    Sector5 = chkSectorC5.Checked,
-                    Sector5Justif = txtSector5CJustif.Text.Trim(),
-                    Sector6 = chkSectorC6.Checked,
-                    Sector6Justif = txtSector6CJustif.Text.Trim(),
-                    Sector7 = chkSectorC7.Checked,
-                    Sector7Justif = txtSector7CJustif.Text.Trim(),
-                    JustifSnaRegionales = txtAnexoCJustifSna.Text.Trim()
-                };
-
-                // 3. Persistencia con Entity Framework Core
-                using (var context = new CredenSoftContext()) // Reemplaza "TuDbContext" por el nombre de tu contexto de BD
-                {
-                    context.Set<DetalleAnexoC>().Add(nuevoDetalle);
-                    context.SaveChanges();
-                }
-
-                MessageBox.Show("¡Los datos del Anexo C se guardaron con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ocurrió un error al guardar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            //GUARDAR ANEXO E
-            try
-            {
-                // 1. Validación de campos obligatorios generales
-                if (cmbTipoDeSolicitud.SelectedIndex == -1)
-                {
-                    MessageBox.Show(
-                        "Seleccione un tipo de solicitud.",
-                        "Atención",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning
-                    );
-                    return;
-                }
-
-                // 2. Armamos el objeto Solicitud con sus datos principales
-                Solicitud nueva = new Solicitud
-                {
-                    IdUsuario = SesionActual.UsuarioLogueado.IdUsuario,
-                    TipoSolicitud = cmbTipoDeSolicitud.Text,
-                    Descripcion = txtDescripcion.Text,
-                    FechaSolicitud = dateTimeFecha.Value,
-                    ArchivosAdjuntos = new List<DocumentoAdjunto>() // Inicializamos la lista vacía
-                };
-
-                // 3. Si el usuario seleccionó un archivo, lo agregamos a la lista
-                if (!string.IsNullOrEmpty(rutaArchivoSeleccionado))
-                {
-                    var adjunto = new DocumentoAdjunto
-                    {
-                        NombreArchivo = System.IO.Path.GetFileName(rutaArchivoSeleccionado),
-                        RutaArchivo = rutaArchivoSeleccionado,
-                        TipoDocumento = "Respaldo"
-                    };
-
-                    nueva.ArchivosAdjuntos.Add(adjunto);
-                }
-
-                // 4. Llamada al servicio para persistir la Solicitud principal
-                // (Al hacer esto, Entity Framework genera automáticamente el ID y se lo asigna a "nueva.IdSolicitud")
-                _solicitudService.CrearSolicitud(nueva);
-
-                // 5. Ahora guardamos el DETALLE correspondiente (Anexo C o Anexo E) usando ese ID generado
                 string tipoSeleccionado = cmbTipoDeSolicitud.Text.Trim();
 
-                using (var context = new CredenSoftContext())
+                // =========================================================
+                // MODO EDICIÓN (UPDATE)
+                // =========================================================
+                if (idSolicitudEditando > 0)
                 {
-                    if (tipoSeleccionado.Contains("Anexo C"))
+                    using (var context = new CredenSoftContext())
                     {
-                        // Validaciones previas para Anexo C si las necesitas...
+                        // Buscamos la solicitud existente con su detalle
+                        var solicitudExistente = context.Solicitudes
+                            .Include(s => s.DetalleAnexoC) // Ajusta si es DetalleAnexoC o DetalleAnexoE según corresponda
+                            .FirstOrDefault(s => s.IdSolicitud == idSolicitudEditando);
 
-                        DetalleAnexoC nuevoDetalleC = new DetalleAnexoC()
+                        if (solicitudExistente != null)
                         {
-                            IdSolicitud = nueva.IdSolicitud, // <-- ¡Acá usamos el ID real!
-                            Aeropuerto = txtAnexoCAeropuerto.Text.Trim(),
-                            NumeroNotaPermiso = txtAnexoCNotaPermiso.Text.Trim(),
-                            Apellido = txtAnexoCApellidos.Text.Trim(),
-                            Nombres = txtAnexoCNombres.Text.Trim(),
-                            DniPasaporte = txtAnexoCDniPasaporte.Text.Trim(),
-                            EstadoCivil = cmbAnexoCEstadoCivil.SelectedItem?.ToString() ?? "",
-                            LugarNacimiento = txtAnexoCLugarNac.Text.Trim(),
-                            FechaNacimiento = dtpAnexoCFechaNac.Value,
-                            CargoFuncion = txtAnexoCCargo.Text.Trim(),
-                            Calle = txtAnexoCCalle.Text.Trim(),
-                            Nro = txtAnexoCNro.Text.Trim(),
-                            Depto = txtAnexoCDepto.Text.Trim(),
-                            Cp = txtAnexoCCP.Text.Trim(),
-                            Localidad = txtAnexoCLocalidad.Text.Trim(),
-                            TelParticular = txtAnexoCTelPart.Text.Trim(),
-                            TelLaboral = txtAnexoCTelLab.Text.Trim(),
-                            Mail = txtAnexoCMail.Text.Trim(),
-                            // ... (Agrega aquí el resto de campos de tu Anexo C tal como los tenías)
-                        };
+                            // Actualizamos datos principales de la solicitud
+                            solicitudExistente.Descripcion = txtDescripcion.Text.Trim();
+                            solicitudExistente.FechaSolicitud = dateTimeFecha.Value;
 
-                        context.Set<DetalleAnexoC>().Add(nuevoDetalleC);
-                        context.SaveChanges();
-                    }
-                    else if (tipoSeleccionado.Contains("Anexo E"))
-                    {
-                        // Validación rápida para Anexo E (puedes agregar las que necesites)
-                        if (string.IsNullOrWhiteSpace(txtAnexoEDias.Text))
-                        {
-                            MessageBox.Show("Por favor, completa los días autorizados.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            return;
+                            // Si es Anexo C, actualizamos sus campos
+                            if (tipoSeleccionado.Contains("Anexo C") && solicitudExistente.DetalleAnexoC != null)
+                            {
+                                // Validaciones obligatorias
+                                if (string.IsNullOrWhiteSpace(txtAnexoCAeropuerto.Text) ||
+                                    string.IsNullOrWhiteSpace(txtAnexoCApellidos.Text) ||
+                                    string.IsNullOrWhiteSpace(txtAnexoCDniPasaporte.Text))
+                                {
+                                    MessageBox.Show("Por favor, completa los campos obligatorios del Anexo C (*).", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    return;
+                                }
+
+                                // Extracción de RadioButtons
+                                string grupoSanguineoSeleccionado = "";
+                                if (rbtnGrupoA.Checked) grupoSanguineoSeleccionado = "A";
+                                else if (rbtnGrupoB.Checked) grupoSanguineoSeleccionado = "B";
+                                else if (rbtnGrupoAB.Checked) grupoSanguineoSeleccionado = "AB";
+                                else if (rbtnGrupoO.Checked) grupoSanguineoSeleccionado = "O";
+
+                                string factorRhSeleccionado = "";
+                                if (rbtnFactorPositivo.Checked) factorRhSeleccionado = "Positivo";
+                                else if (rbtnFactorNegativo.Checked) factorRhSeleccionado = "Negativo";
+
+                                // Actualizar propiedades del detalle existente
+                                solicitudExistente.DetalleAnexoC.Aeropuerto = txtAnexoCAeropuerto.Text.Trim();
+                                solicitudExistente.DetalleAnexoC.NumeroNotaPermiso = txtAnexoCNotaPermiso.Text.Trim();
+                                solicitudExistente.DetalleAnexoC.Apellido = txtAnexoCApellidos.Text.Trim();
+                                solicitudExistente.DetalleAnexoC.Nombres = txtAnexoCNombres.Text.Trim();
+                                solicitudExistente.DetalleAnexoC.DniPasaporte = txtAnexoCDniPasaporte.Text.Trim();
+                                solicitudExistente.DetalleAnexoC.EstadoCivil = cmbAnexoCEstadoCivil.SelectedItem?.ToString() ?? "";
+                                solicitudExistente.DetalleAnexoC.LugarNacimiento = txtAnexoCLugarNac.Text.Trim();
+                                solicitudExistente.DetalleAnexoC.FechaNacimiento = dtpAnexoCFechaNac.Value;
+                                solicitudExistente.DetalleAnexoC.CargoFuncion = txtAnexoCCargo.Text.Trim();
+                                solicitudExistente.DetalleAnexoC.Calle = txtAnexoCCalle.Text.Trim();
+                                solicitudExistente.DetalleAnexoC.Nro = txtAnexoCNro.Text.Trim();
+                                solicitudExistente.DetalleAnexoC.Depto = txtAnexoCDepto.Text.Trim();
+                                solicitudExistente.DetalleAnexoC.Cp = txtAnexoCCP.Text.Trim();
+                                solicitudExistente.DetalleAnexoC.Localidad = txtAnexoCLocalidad.Text.Trim();
+                                solicitudExistente.DetalleAnexoC.TelParticular = txtAnexoCTelPart.Text.Trim();
+                                solicitudExistente.DetalleAnexoC.TelLaboral = txtAnexoCTelLab.Text.Trim();
+                                solicitudExistente.DetalleAnexoC.Mail = txtAnexoCMail.Text.Trim();
+                                solicitudExistente.DetalleAnexoC.GrupoSanguineo = grupoSanguineoSeleccionado;
+                                solicitudExistente.DetalleAnexoC.FactorRh = factorRhSeleccionado;
+                                solicitudExistente.DetalleAnexoC.EnfermedadesAlergias = txtAnexoCEnfermedades.Text.Trim();
+                                solicitudExistente.DetalleAnexoC.Socorrista = rbtnSocorristaSi.Checked;
+                                solicitudExistente.DetalleAnexoC.Conductor = rbtnConductorSi.Checked;
+                                solicitudExistente.DetalleAnexoC.Sector1 = chkSectorC1.Checked;
+                                solicitudExistente.DetalleAnexoC.Sector1Justif = txtSector1CJustif.Text.Trim();
+                                solicitudExistente.DetalleAnexoC.Sector2 = chkSector2.Checked;
+                                solicitudExistente.DetalleAnexoC.Sector2Justif = txtSector2CJustif.Text.Trim();
+                                solicitudExistente.DetalleAnexoC.Sector3 = chkSector3.Checked;
+                                solicitudExistente.DetalleAnexoC.Sector3Justif = txtSector3CJustif.Text.Trim();
+                                solicitudExistente.DetalleAnexoC.Sector4 = chkSector4.Checked;
+                                solicitudExistente.DetalleAnexoC.Sector4Justif = txtSector4CJustif.Text.Trim();
+                                solicitudExistente.DetalleAnexoC.Sector5 = chkSector5.Checked;
+                                solicitudExistente.DetalleAnexoC.Sector5Justif = txtSector5CJustif.Text.Trim();
+                                solicitudExistente.DetalleAnexoC.Sector6 = chkSector6.Checked;
+                                solicitudExistente.DetalleAnexoC.Sector6Justif = txtSector6CJustif.Text.Trim();
+                                solicitudExistente.DetalleAnexoC.Sector7 = chkSector7.Checked;
+                                solicitudExistente.DetalleAnexoC.Sector7Justif = txtSector7CJustif.Text.Trim();
+                                solicitudExistente.DetalleAnexoC.JustifSnaRegionales = txtAnexoCJustifSna.Text.Trim();
+                            }
+
+                            // Guardamos los cambios del Update en Entity Framework
+                            context.SaveChanges();
                         }
-
-                        // Extracción de datos para Anexo E
-                        DetalleAnexoE nuevoDetalleE = new DetalleAnexoE()
-                        {
-                            IdSolicitud = nueva.IdSolicitud, // <-- ¡Acá usamos el ID real de la solicitud recién creada!
-
-                            DiasAutorizados = txtAnexoEDias.Text.Trim(),
-                            HorariosDesde = txtAnexoEHoraDesde.Text.Trim(),
-                            HorariosHasta = txtAnexoEHoraHasta.Text.Trim(),
-                            Tareas = txtAnexoETareas.Text.Trim(),
-
-                            // --- SOLICITANTE 1 ---
-                            Sol1ApeNom = txtAnexoESol1ApeNom.Text.Trim(),
-                            Sol1TipoDoc = cmbAnexoESol1TipoDoc.Text.Trim(),
-                            Sol1DocNro = txtAnexoESol1DocNro.Text.Trim(),
-                            Sol1Cargo = txtAnexoESol1Cargo.Text.Trim(),
-
-                            // --- SOLICITANTE 2 ---
-                            Sol2ApeNom = txtAnexoESol2ApeNom.Text.Trim(),
-                            Sol2TipoDoc = cmbAnexoESol2TipoDoc.Text.Trim(),
-                            Sol2DocNro = txtAnexoESol2DocNro.Text.Trim(),
-                            Sol2Cargo = txtAnexoESol2Cargo.Text.Trim(),
-
-                            // --- SOLICITANTE 3 ---
-                            Sol3ApeNom = txtAnexoESol3ApeNom.Text.Trim(),
-                            Sol3TipoDoc = cmbAnexoESol3TipoDoc.Text.Trim(),
-                            Sol3DocNro = textBox1.Text.Trim(),
-                            Sol3Cargo = txtAnexoESol3Cargo.Text.Trim(),
-
-                            // --- SOLICITANTE 4 ---
-                            Sol4ApeNom = txtAnexoESol4ApeNom.Text.Trim(),
-                            Sol4TipoDoc = cmbAnexoESol4TipoDoc.Text.Trim(),
-                            Sol4DocNro = txtAnexoESol4DocNro.Text.Trim(),
-                            Sol4Cargo = txtAnexoESol4Cargo.Text.Trim(),
-
-                            // --- SOLICITANTE 5 ---
-                            Sol5ApeNom = txtAnexoESol5ApeNom.Text.Trim(),
-                            Sol5TipoDoc = comboBox1.Text.Trim(),
-                            Sol5DocNro = txtAnexoESol5DocNro.Text.Trim(),
-                            Sol5Cargo = txtAnexoESol5Cargo.Text.Trim(),
-
-                            // --- SECTORES (1 al 7) ---
-                            Sector1 = chkSector1.Checked,
-                            JustificacionSector1 = txtSector1Justif.Text.Trim(),
-                            Sector2 = chkSector2.Checked,
-                            JustificacionSector2 = txtSector2Justif.Text.Trim(),
-                            Sector3 = chkSector3.Checked,
-                            JustificacionSector3 = txtSector3Justif.Text.Trim(),
-                            Sector4 = chkSector4.Checked,
-                            JustificacionSector4 = txtSector4Justif.Text.Trim(),
-                            Sector5 = chkSector5.Checked,
-                            JustificacionSector5 = txtSector5Justif.Text.Trim(),
-                            Sector6 = chkSector6.Checked,
-                            JustificacionSector6 = txtSector6Justif.Text.Trim(),
-                            Sector7 = chkSector7.Checked,
-                            JustificacionSector7 = txtSector7Justif.Text.Trim(),
-
-                            // --- ACOMPAÑANTES / RESPONSABLES ---
-                            ResponsableApNombre = txtAnexoEResp1ApeNom.Text.Trim(),
-                            ResponsableNroPermiso = txtAnexoEResp1Permiso.Text.Trim(),
-                            ResponsableCargo = txtAnexoEResp1Cargo.Text.Trim(),
-
-                            Resp2ApeNom = txtAnexoEResp2ApeNom.Text.Trim(),
-                            Resp2NroPermiso = txtAnexoEResp2Permiso.Text.Trim(),
-                            Resp2Cargo = txtAnexoEResp2Cargo.Text.Trim()
-                        };
-
-                        context.Set<DetalleAnexoE>().Add(nuevoDetalleE);
-                        context.SaveChanges();
                     }
-                }
 
-                MessageBox.Show(
-                    "¡Solicitud y Anexo guardados correctamente!",
-                    "CredenSoft",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
+                    MessageBox.Show(
+                        "¡Solicitud y Anexo actualizados correctamente!",
+                        "CredenSoft",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+                }
+                else
+                {
+                    // =========================================================
+                    // MODO NUEVO (INSERT - EL CÓDIGO QUE YA TENÍAS)
+                    // =========================================================
+                    Solicitud nueva = new Solicitud
+                    {
+                        IdUsuario = SesionActual.UsuarioLogueado.IdUsuario,
+                        TipoSolicitud = tipoSeleccionado,
+                        Descripcion = txtDescripcion.Text.Trim(),
+                        FechaSolicitud = dateTimeFecha.Value,
+                        ArchivosAdjuntos = new List<DocumentoAdjunto>()
+                    };
+
+                    if (!string.IsNullOrEmpty(rutaArchivoSeleccionado))
+                    {
+                        var adjunto = new DocumentoAdjunto
+                        {
+                            NombreArchivo = System.IO.Path.GetFileName(rutaArchivoSeleccionado),
+                            RutaArchivo = rutaArchivoSeleccionado,
+                            TipoDocumento = "Respaldo"
+                        };
+                        nueva.ArchivosAdjuntos.Add(adjunto);
+                    }
+
+                    _solicitudService.CrearSolicitud(nueva);
+
+                    using (var context = new CredenSoftContext())
+                    {
+                        if (tipoSeleccionado.Contains("Anexo C"))
+                        {
+                            if (string.IsNullOrWhiteSpace(txtAnexoCAeropuerto.Text) ||
+                                string.IsNullOrWhiteSpace(txtAnexoCApellidos.Text) ||
+                                string.IsNullOrWhiteSpace(txtAnexoCDniPasaporte.Text))
+                            {
+                                MessageBox.Show("Por favor, completa los campos obligatorios del Anexo C (*).", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
+                            }
+
+                            string grupoSanguineoSeleccionado = "";
+                            if (rbtnGrupoA.Checked) grupoSanguineoSeleccionado = "A";
+                            else if (rbtnGrupoB.Checked) grupoSanguineoSeleccionado = "B";
+                            else if (rbtnGrupoAB.Checked) grupoSanguineoSeleccionado = "AB";
+                            else if (rbtnGrupoO.Checked) grupoSanguineoSeleccionado = "O";
+
+                            string factorRhSeleccionado = "";
+                            if (rbtnFactorPositivo.Checked) factorRhSeleccionado = "Positivo";
+                            else if (rbtnFactorNegativo.Checked) factorRhSeleccionado = "Negativo";
+
+                            DetalleAnexoC nuevoDetalleC = new DetalleAnexoC()
+                            {
+                                IdSolicitud = nueva.IdSolicitud,
+                                Aeropuerto = txtAnexoCAeropuerto.Text.Trim(),
+                                NumeroNotaPermiso = txtAnexoCNotaPermiso.Text.Trim(),
+                                Apellido = txtAnexoCApellidos.Text.Trim(),
+                                Nombres = txtAnexoCNombres.Text.Trim(),
+                                DniPasaporte = txtAnexoCDniPasaporte.Text.Trim(),
+                                EstadoCivil = cmbAnexoCEstadoCivil.SelectedItem?.ToString() ?? "",
+                                LugarNacimiento = txtAnexoCLugarNac.Text.Trim(),
+                                FechaNacimiento = dtpAnexoCFechaNac.Value,
+                                CargoFuncion = txtAnexoCCargo.Text.Trim(),
+                                Calle = txtAnexoCCalle.Text.Trim(),
+                                Nro = txtAnexoCNro.Text.Trim(),
+                                Depto = txtAnexoCDepto.Text.Trim(),
+                                Cp = txtAnexoCCP.Text.Trim(),
+                                Localidad = txtAnexoCLocalidad.Text.Trim(),
+                                TelParticular = txtAnexoCTelPart.Text.Trim(),
+                                TelLaboral = txtAnexoCTelLab.Text.Trim(),
+                                Mail = txtAnexoCMail.Text.Trim(),
+                                GrupoSanguineo = grupoSanguineoSeleccionado,
+                                FactorRh = factorRhSeleccionado,
+                                EnfermedadesAlergias = txtAnexoCEnfermedades.Text.Trim(),
+                                Socorrista = rbtnSocorristaSi.Checked,
+                                Conductor = rbtnConductorSi.Checked,
+                                Sector1 = chkSectorC1.Checked,
+                                Sector1Justif = txtSector1CJustif.Text.Trim(),
+                                Sector2 = chkSector2.Checked,
+                                Sector2Justif = txtSector2CJustif.Text.Trim(),
+                                Sector3 = chkSector3.Checked,
+                                Sector3Justif = txtSector3CJustif.Text.Trim(),
+                                Sector4 = chkSector4.Checked,
+                                Sector4Justif = txtSector4CJustif.Text.Trim(),
+                                Sector5 = chkSector5.Checked,
+                                Sector5Justif = txtSector5CJustif.Text.Trim(),
+                                Sector6 = chkSector6.Checked,
+                                Sector6Justif = txtSector6CJustif.Text.Trim(),
+                                Sector7 = chkSector7.Checked,
+                                Sector7Justif = txtSector7CJustif.Text.Trim(),
+                                JustifSnaRegionales = txtAnexoCJustifSna.Text.Trim()
+                            };
+
+                            context.Set<DetalleAnexoC>().Add(nuevoDetalleC);
+                            context.SaveChanges();
+                        }
+                        // (Aquí puedes dejar también tu lógica de Anexo E si la usas para insertar)
+                    }
+
+                    MessageBox.Show(
+                        "¡Solicitud y Anexo guardados correctamente!",
+                        "CredenSoft",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+                }
 
                 this.DialogResult = DialogResult.OK;
                 this.Close();
@@ -497,11 +491,13 @@ namespace CredenSoftUInuevo.Forms
             {
                 panelAnexoC.Visible = true;
                 panelAnexoE.Visible = false;
+                panelAnexoC.BringToFront();
             }
             else if (seleccion.Contains("Anexo E"))
             {
                 panelAnexoC.Visible = false;
                 panelAnexoE.Visible = true;
+                panelAnexoE.BringToFront();
             }
             else
             {
@@ -509,7 +505,11 @@ namespace CredenSoftUInuevo.Forms
                 panelAnexoC.Visible = false;
                 panelAnexoE.Visible = false;
             }
+
+
         }
+
+       
 
         private void label4_Click(object sender, EventArgs e)
         {

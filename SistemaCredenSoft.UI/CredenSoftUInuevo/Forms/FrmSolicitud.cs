@@ -480,23 +480,15 @@ namespace CredenSoftUInuevo.Forms
         {
             if (dgvSolicitudes.SelectedRows.Count > 0)
             {
-                // 1. Obtenemos el objeto básico de la grilla
+                // 1. Obtenemos la solicitud seleccionada de la grilla
                 Solicitud solicitudSeleccionada = (Solicitud)dgvSolicitudes.SelectedRows[0].DataBoundItem;
 
-                SolicitudService servicio = new SolicitudService();
-
-                // 2. ¡MUY IMPORTANTE! Traemos la solicitud completa con su usuario y archivos desde la BD
-                Solicitud solicitudCompleta = servicio.ObtenerPorId(solicitudSeleccionada.IdSolicitud);
-
-                if (solicitudCompleta != null)
+                // 2. Abrimos el formulario pasándole el ID al constructor (para que active el modo edición)
+                using (FrmAltaSolicitud frm = new FrmAltaSolicitud(solicitudSeleccionada.IdSolicitud))
                 {
-                    // 3. Abrimos el formulario de edición pasando el objeto completo
-                    using (FrmEditarSolicitud frm = new FrmEditarSolicitud(solicitudCompleta))
+                    if (frm.ShowDialog() == DialogResult.OK)
                     {
-                        if (frm.ShowDialog() == DialogResult.OK)
-                        {
-                            CargarGrilla(); // Refresca tu DataGridView principal
-                        }
+                        CargarGrilla(); // Refresca tu DataGridView principal
                     }
                 }
             }
