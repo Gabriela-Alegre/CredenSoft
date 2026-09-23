@@ -254,7 +254,7 @@
             Controls.Add(lblCodigoSolicitud);
             Controls.Add(lblTitulo);
             Name = "FrmEditarSolicitud";
-            Text = "Editar Solicitud";
+            Text = "   Editar Solicitud";
             ResumeLayout(false);
             PerformLayout();
         }

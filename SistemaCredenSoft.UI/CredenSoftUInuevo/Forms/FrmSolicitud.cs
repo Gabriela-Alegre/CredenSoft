@@ -100,10 +100,22 @@ namespace CredenSoftUInuevo.Forms
             {
                 // El agente crea, edita y ve, pero NO inactiva registros
                 btnEliminar.Visible = false;
-                // Ocultar controles de búsqueda por DNI si el agente no debe usarlos
-                txtBuscarDni.Visible = false;      // Etiqueta "DNI" (si existe)
-                lblBuscarDni.Visible = false;      // Caja de texto del DNI (si existe)
-                btnBuscarDni.Visible = false; // Botón de buscar por DNI (si existe)
+
+                // Ocultar controles de búsqueda por DNI
+                txtBuscarDni.Visible = false;
+                lblBuscarDni.Visible = false;
+                btnBuscarDni.Visible = false;
+
+                // === SUBIR AUTOMÁTICAMENTE EL FILTRO DE ESTADO ===
+                if (label3 != null && lblBuscarDni != null)
+                {
+                    label3.Top = lblBuscarDni.Top;
+                }
+
+                if (cmbEstado != null && txtBuscarDni != null)
+                {
+                    cmbEstado.Top = txtBuscarDni.Top;
+                }
             }
             else if (_rolUsuario == "Administrador Central")
             {
@@ -111,8 +123,14 @@ namespace CredenSoftUInuevo.Forms
                 btnNueva.Visible = false;
                 btnEditar.Visible = false;
                 btnEliminar.Visible = false;
-                // Ocultar controles de búsqueda por DNI si el agente no debe usarlos
-                
+
+                // === ACOMODAR EL BOTÓN VER ===
+                // Como quedan los otros botones ocultos, movemos el botón "Ver" 
+                // a la posición inicial (donde estaba el botón "Nueva") para que no quede flotando solo
+                if (btnVer != null && btnNueva != null)
+                {
+                    btnVer.Left = btnNueva.Left;
+                }
             }
             else if (_rolUsuario == "Administrador Local")
             {
@@ -120,6 +138,9 @@ namespace CredenSoftUInuevo.Forms
                 btnNueva.Visible = true;
                 btnEditar.Visible = true;
                 btnEliminar.Visible = true;
+
+                // Nos aseguramos de que el botón Ver esté en su posición original si fuera necesario
+                // (puedes omitirlo si ya lo tienes fijo en el diseñador)
             }
         }
 
@@ -141,13 +162,19 @@ namespace CredenSoftUInuevo.Forms
                 // FILTRO SEGÚN EL ROL:
                 if (_rolUsuario == "Agente")
                 {
-                    // El agente solo ve sus propias solicitudes
-                    dgvSolicitudes.DataSource = _solicitudService.ObtenerSolicitudesPorUsuario(_idUsuarioLogueado);
+                    // El agente solo ve sus propias solicitudes activas por defecto
+                    var misSolicitudes = _solicitudService.ObtenerSolicitudesPorUsuario(_idUsuarioLogueado);
+                    dgvSolicitudes.DataSource = misSolicitudes
+                        .Where(s => s.Estado != null && !s.Estado.Equals("Inactivo", StringComparison.OrdinalIgnoreCase))
+                        .ToList();
                 }
                 else
                 {
-                    // Los administradores ven el listado completo
-                    dgvSolicitudes.DataSource = _solicitudService.ObtenerTodas();
+                    // Los administradores ven el listado completo excluyendo las inactivas por defecto
+                    var todas = _solicitudService.ObtenerTodas();
+                    dgvSolicitudes.DataSource = todas
+                        .Where(s => s.Estado != null && !s.Estado.Equals("Inactivo", StringComparison.OrdinalIgnoreCase))
+                        .ToList();
                 }
 
                 // APLICAR RESTRICCIONES VISUALES SEGÚN EL ROL
@@ -272,6 +299,7 @@ namespace CredenSoftUInuevo.Forms
 
         private void btnVer_Click(object sender, EventArgs e)
         {
+            // 1. Validar que haya una fila seleccionada
             if (dgvSolicitudes.CurrentRow == null)
             {
                 MessageBox.Show(
@@ -279,42 +307,16 @@ namespace CredenSoftUInuevo.Forms
                     "CredenSoft",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
-
                 return;
             }
 
-            string datos = "";
+            // 2. Obtener el ID de la solicitud seleccionada desde la celda correspondiente
+            // (Asegurate de que el nombre de la columna sea exactamente "IdSolicitud" o el que uses en tu grilla)
+            int idSeleccionado = Convert.ToInt32(dgvSolicitudes.CurrentRow.Cells["IdSolicitud"].Value);
 
-            foreach (DataGridViewCell celda in dgvSolicitudes.CurrentRow.Cells)
-            {
-                string valorCelda = "";
-
-                // Si es la columna "Usuario", extraemos el nombre y apellido del objeto
-                if (dgvSolicitudes.Columns[celda.ColumnIndex].Name == "Usuario" && celda.Value != null)
-                {
-                    var usuarioObj = celda.Value as ModelsEntidades.Usuario;
-                    if (usuarioObj != null)
-                    {
-                        valorCelda = usuarioObj.Nombre + " " + usuarioObj.Apellido;
-                    }
-                    else
-                    {
-                        valorCelda = celda.Value.ToString();
-                    }
-                }
-                else
-                {
-                    valorCelda = celda.Value?.ToString() ?? "";
-                }
-
-                datos += valorCelda + " | ";
-            }
-
-            MessageBox.Show(
-                "Detalle de Solicitud:\n\n" + datos,
-                "Detalle",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+            // 3. Abrir el formulario reutilizable pasando el ID y 'true' para el modo solo lectura
+            FrmAltaSolicitud frm = new FrmAltaSolicitud(idSeleccionado, true);
+            frm.ShowDialog();
         }
 
         // =====================================================
@@ -413,7 +415,7 @@ namespace CredenSoftUInuevo.Forms
                 CargarGrilla();
             }
         }
-        
+
 
         // =====================================================
         // BUSCAR POR ESTADO
@@ -421,25 +423,26 @@ namespace CredenSoftUInuevo.Forms
 
         private void cmbEstado_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+
             try
             {
-                // Obtenemos el texto seleccionado en el ComboBox (ej: "Pendiente", "Aprobado", etc.)
                 string estadoSeleccionado = cmbEstado.SelectedItem?.ToString();
 
-                // RESTRICCIÓN SEGÚN EL ROL:
                 if (_rolUsuario == "Agente")
                 {
-                    // 1. Obtenemos únicamente las solicitudes que le pertenecen al agente logueado
                     var misSolicitudes = _solicitudService.ObtenerSolicitudesPorUsuario(_idUsuarioLogueado);
 
-                    // 2. Si selecciona "Todos" (o viene vacío), mostramos todo lo del agente
                     if (string.IsNullOrEmpty(estadoSeleccionado) || estadoSeleccionado.Equals("Todos", StringComparison.OrdinalIgnoreCase))
                     {
-                        dgvSolicitudes.DataSource = misSolicitudes;
+                        // Por defecto "Todos" para el agente excluye inactivos
+                        dgvSolicitudes.DataSource = misSolicitudes
+                            .Where(s => s.Estado != null && !s.Estado.Equals("Inactivo", StringComparison.OrdinalIgnoreCase))
+                            .ToList();
                     }
                     else
                     {
-                        // 3. Si selecciona un estado específico, filtramos solo dentro de las del agente
+                        // Si selecciona explícitamente "Inactivo" u otro estado, filtra exacto
                         dgvSolicitudes.DataSource = misSolicitudes
                             .Where(s => s.Estado != null && s.Estado.Equals(estadoSeleccionado, StringComparison.OrdinalIgnoreCase))
                             .ToList();
@@ -447,12 +450,23 @@ namespace CredenSoftUInuevo.Forms
                 }
                 else
                 {
-                    // Lógica normal para administradores: busca en todo el sistema
-                    var listaFiltrada = _solicitudService.ObtenerPorEstado(estadoSeleccionado);
-                    dgvSolicitudes.DataSource = listaFiltrada;
+                    // Lógica para administradores
+                    if (string.IsNullOrEmpty(estadoSeleccionado) || estadoSeleccionado.Equals("Todos", StringComparison.OrdinalIgnoreCase))
+                    {
+                        // Si el combo está en "Todos", ocultamos las inactivas
+                        var todas = _solicitudService.ObtenerTodas();
+                        dgvSolicitudes.DataSource = todas
+                            .Where(s => s.Estado != null && !s.Estado.Equals("Inactivo", StringComparison.OrdinalIgnoreCase))
+                            .ToList();
+                    }
+                    else
+                    {
+                        // Si el usuario elige explícitamente "Inactivo" (o Pendiente, Aprobado, etc.), trae los que coincidan
+                        var listaFiltrada = _solicitudService.ObtenerPorEstado(estadoSeleccionado);
+                        dgvSolicitudes.DataSource = listaFiltrada;
+                    }
                 }
 
-                // Limpiamos las columnas técnicas para que no se ensucie la vista
                 OcultarColumnasTecnicas();
             }
             catch (Exception ex)
@@ -461,6 +475,8 @@ namespace CredenSoftUInuevo.Forms
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
         private void OcultarColumnasTecnicas()
         {
             if (dgvSolicitudes.Columns["IdSolicitud"] != null)
