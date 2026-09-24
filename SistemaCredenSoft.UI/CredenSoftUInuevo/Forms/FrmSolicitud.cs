@@ -1,9 +1,10 @@
-﻿using System;
+﻿using DataEF;
+using Microsoft.EntityFrameworkCore;
+using ModelsEntidades;
+using ServicesNegocio;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using ServicesNegocio;
-using ModelsEntidades;
-using DataEF;
 
 namespace CredenSoftUInuevo.Forms
 {
@@ -70,11 +71,6 @@ namespace CredenSoftUInuevo.Forms
         {
             dgvSolicitudes.CellFormatting += dgvSolicitudes_CellFormatting;
 
-            // Seleccionamos "Todos" por defecto en el ComboBox (si cargaste los items en orden: 0=Todos)
-            if (cmbEstado.Items.Count > 0)
-            {
-                cmbEstado.SelectedIndex = 0;
-            }
 
             // APLICAR RESTRICCIONES VISUALES SEGÚN EL ROL
             ConfigurarInterfazSegunRol();
@@ -197,8 +193,10 @@ namespace CredenSoftUInuevo.Forms
 
                 if (dgvSolicitudes.Columns["DetalleAnexoE"] != null)
                     dgvSolicitudes.Columns["DetalleAnexoE"].Visible = false;
+
                 if (dgvSolicitudes.Columns["ArchivosAdjuntos"] != null)
                     dgvSolicitudes.Columns["ArchivosAdjuntos"].Visible = false;
+
 
                 // 3. Crear la columna DNI personalizada solo si no existe previamente
                 if (!dgvSolicitudes.Columns.Contains("DniUsuario"))
@@ -209,7 +207,18 @@ namespace CredenSoftUInuevo.Forms
                     dgvSolicitudes.Columns.Add(colDni);
                 }
 
+                // NUEVO: Crear la columna para la ruta del archivo adjunto
+                if (!dgvSolicitudes.Columns.Contains("RutaArchivoColumna"))
+                {
+                    DataGridViewTextBoxColumn colArchivo = new DataGridViewTextBoxColumn();
+                    colArchivo.Name = "RutaArchivoColumna";
+                    colArchivo.HeaderText = "Archivo Adjunto";
+                    dgvSolicitudes.Columns.Add(colArchivo);
+                }
+
+
                 // 4. Configurar Títulos de las columnas visibles
+                 
                 if (dgvSolicitudes.Columns["Usuario"] != null)
                     dgvSolicitudes.Columns["Usuario"].HeaderText = "Titular";
 
@@ -224,6 +233,9 @@ namespace CredenSoftUInuevo.Forms
 
                 if (dgvSolicitudes.Columns["Estado"] != null)
                     dgvSolicitudes.Columns["Estado"].HeaderText = "Estado";
+
+                if (dgvSolicitudes.Columns["RutaArchivoColumna"] != null)
+                    dgvSolicitudes.Columns["RutaArchivoColumna"].HeaderText = "Documento Adjunto";
 
                 // 5. Orden de las columnas (DisplayIndex) para que se vea profesional y prolijo
                 if (dgvSolicitudes.Columns["Usuario"] != null)
@@ -275,6 +287,22 @@ namespace CredenSoftUInuevo.Forms
                 if (nombreColumna == "DniUsuario")
                 {
                     e.Value = solicitud.Usuario.Dni?.ToString();
+                    e.FormattingApplied = true;
+                }
+                // NUEVO: Muestra la ruta del archivo adjunto si existe
+                if (nombreColumna == "RutaArchivoColumna")
+                {
+                    // Verificamos si la solicitud tiene archivos adjuntos cargados
+                    var primerArchivo = solicitud.ArchivosAdjuntos?.FirstOrDefault();
+
+                    if (primerArchivo != null)
+                    {
+                        e.Value = primerArchivo.RutaArchivo; 
+                    }
+                    else
+                    {
+                        e.Value = "Sin adjunto";
+                    }
                     e.FormattingApplied = true;
                 }
             }

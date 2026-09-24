@@ -39,6 +39,7 @@ namespace ServicesNegocio
             {
                 return context.Solicitudes
                     .Include(s => s.Usuario)
+                    .Include(s => s.ArchivosAdjuntos)
                     .ToList();
             }
         }
@@ -104,6 +105,7 @@ namespace ServicesNegocio
             {
                 return context.Solicitudes
                     .Include(s => s.Usuario)
+                    .Include(s => s.ArchivosAdjuntos)
                     .ToList();
             }
         }

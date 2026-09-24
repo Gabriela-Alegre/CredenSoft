@@ -2046,7 +2046,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             txtAnexoCCalle.Location = new Point(95, 9);
             txtAnexoCCalle.Name = "txtAnexoCCalle";
-            txtAnexoCCalle.PlaceholderText = "Calle";
+            txtAnexoCCalle.PlaceholderText = "Calle*";
             txtAnexoCCalle.Size = new Size(129, 25);
             txtAnexoCCalle.TabIndex = 70;
             // 
@@ -2054,7 +2054,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             txtAnexoCLocalidad.Location = new Point(20, 40);
             txtAnexoCLocalidad.Name = "txtAnexoCLocalidad";
-            txtAnexoCLocalidad.PlaceholderText = "Localidad";
+            txtAnexoCLocalidad.PlaceholderText = "Localidad*";
             txtAnexoCLocalidad.Size = new Size(524, 25);
             txtAnexoCLocalidad.TabIndex = 74;
             // 
@@ -2062,7 +2062,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             txtAnexoCNro.Location = new Point(230, 9);
             txtAnexoCNro.Name = "txtAnexoCNro";
-            txtAnexoCNro.PlaceholderText = "Número";
+            txtAnexoCNro.PlaceholderText = "Número*";
             txtAnexoCNro.Size = new Size(100, 25);
             txtAnexoCNro.TabIndex = 71;
             // 
@@ -2166,7 +2166,7 @@ namespace CredenSoftUInuevo.Forms
             // cmbAnexoCEstadoCivil
             // 
             cmbAnexoCEstadoCivil.FormattingEnabled = true;
-            cmbAnexoCEstadoCivil.Items.AddRange(new object[] { "Seleccione...", "Casado", "Soltero" });
+            cmbAnexoCEstadoCivil.Items.AddRange(new object[] { "", "Casado", "Soltero" });
             cmbAnexoCEstadoCivil.Location = new Point(341, 84);
             cmbAnexoCEstadoCivil.Name = "cmbAnexoCEstadoCivil";
             cmbAnexoCEstadoCivil.Size = new Size(121, 25);
