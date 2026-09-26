@@ -20,7 +20,7 @@ namespace ModelsEntidades
 
         [Column("tipo_documento")]
         [StringLength(50)]
-        public string TipoDocumento { get; set; }
+        public string? TipoDocumento { get; set; }
 
         [Column("nombre_archivo")]
         [StringLength(255)]

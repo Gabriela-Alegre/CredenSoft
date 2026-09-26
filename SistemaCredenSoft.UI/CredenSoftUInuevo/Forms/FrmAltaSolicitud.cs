@@ -168,6 +168,7 @@ namespace CredenSoftUInuevo.Forms
         {
             CargarTiposSolicitud();
             ConfigurarEventosSectores();
+           
 
             // Ocultar paneles al arrancar
             panelContenedorAnexoE.Visible = false;
@@ -313,8 +314,21 @@ namespace CredenSoftUInuevo.Forms
                 txtAnexoCNombres.Focus();
                 return false;
             }
+            //2.DNI/PASAPORTE
+            if (cmbTipoDocumento.SelectedIndex == 0 || string.IsNullOrWhiteSpace(cmbTipoDocumento.Text))
+            {
+                MessageBox.Show("Debe seleccionar un tipo de documento.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmbTipoDocumento.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtAnexoCDniPasaporte.Text))
+            {
+                MessageBox.Show("Debe colocar su numero de DNI o Pasaporte.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtAnexoCDniPasaporte.Focus();
+                return false;
+            }
 
-            // 2. Estado Civil (Validar que se haya seleccionado un elemento en el ComboBox)
+            // 3. Estado Civil (Validar que se haya seleccionado un elemento en el ComboBox)
             if (cmbAnexoCEstadoCivil.SelectedIndex == -1 || string.IsNullOrWhiteSpace(cmbAnexoCEstadoCivil.Text))
             {
                 MessageBox.Show("Debe seleccionar un Estado Civil.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -322,7 +336,7 @@ namespace CredenSoftUInuevo.Forms
                 return false;
             }
 
-            // 3. Domicilio (Validar los campos principales: Calle, Número, Localidad, etc., si son obligatorios)
+            // 4. Domicilio (Validar los campos principales: Calle, Número, Localidad, etc., si son obligatorios)
             if (string.IsNullOrWhiteSpace(txtAnexoCCalle.Text) ||
                 string.IsNullOrWhiteSpace(txtAnexoCNro.Text) ||
                 string.IsNullOrWhiteSpace(txtAnexoCLocalidad.Text))
@@ -331,22 +345,7 @@ namespace CredenSoftUInuevo.Forms
                 txtAnexoCCalle.Focus();
                 return false;
             }
-            //4. Cargo y Función 
-            if (string.IsNullOrWhiteSpace(txtAnexoCCargo.Text))
-            {
-                MessageBox.Show("El campo Cargo/Función es obligatorio.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtAnexoCCargo.Focus();
-                return false;
-            }
-
-            //5.Anual/nro permiso/nota
-            if (string.IsNullOrWhiteSpace(txtAnexoCNotaPermiso.Text))
-            {
-                MessageBox.Show("El campo Anual/Nota/nro Permiso es obligatorio.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtAnexoCNotaPermiso.Focus();
-                return false;
-            }
-            //6 Aeropuerto
+            //5. Aeropuerto
             if (string.IsNullOrWhiteSpace(txtAnexoCAeropuerto.Text))
             {
                 MessageBox.Show("El campo Aeropuerto es obligatorio.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -354,7 +353,22 @@ namespace CredenSoftUInuevo.Forms
                 return false;
             }
 
-            // 4. Justificaciones de Sectores (Si el checkbox está marcado, la justificación NO debe estar vacía)
+            //6.Anual/nro permiso/nota
+            if (string.IsNullOrWhiteSpace(txtAnexoCNotaPermiso.Text))
+            {
+                MessageBox.Show("El campo Anual/Nota/nro Permiso es obligatorio.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtAnexoCNotaPermiso.Focus();
+                return false;
+            }
+            //7. Cargo y Función 
+            if (string.IsNullOrWhiteSpace(txtAnexoCCargo.Text))
+            {
+                MessageBox.Show("El campo Cargo/Función es obligatorio.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtAnexoCCargo.Focus();
+                return false;
+            }
+
+            // 8. Justificaciones de Sectores (Si el checkbox está marcado, la justificación NO debe estar vacía)
             if (chkSectorC1.Checked && string.IsNullOrWhiteSpace(txtSector1CJustif.Text))
             {
                 MessageBox.Show("Debe ingresar la justificación para el Sector 1.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -397,9 +411,9 @@ namespace CredenSoftUInuevo.Forms
                 txtSector7CJustif.Focus();
                 return false;
             }
+            
 
-            
-            
+
 
             return true; // Si pasa todas las validaciones
         }
@@ -424,6 +438,9 @@ namespace CredenSoftUInuevo.Forms
                         // ==========================================
                         // MODO EDICIÓN (UPDATE)
                         // ==========================================
+                        string tipoDocAlta = cmbTipoDocumento.SelectedItem?.ToString() ?? "";
+                        string numeroDocAlta = txtAnexoCDniPasaporte.Text.Trim();
+
                         var solicitudExistente = context.Solicitudes
                             .Include(s => s.DetalleAnexoC)
                             .Include(s => s.ArchivosAdjuntos)
@@ -497,7 +514,9 @@ namespace CredenSoftUInuevo.Forms
                             Descripcion = txtDescripcion.Text.Trim(),
                             FechaSolicitud = dateTimeFecha.Value,
                             TipoSolicitud = cmbTipoDeSolicitud.Text.Trim(),
+                           
                             ArchivosAdjuntos = new List<DocumentoAdjunto>()
+                           
                         };
 
                         var nuevoDetalleC = new DetalleAnexoC();

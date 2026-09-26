@@ -185,6 +185,7 @@ namespace CredenSoftUInuevo.Forms
             panel3 = new Panel();
             label69 = new Label();
             panelSeccion2 = new Panel();
+            cmbTipoDocumento = new ComboBox();
             label83 = new Label();
             label82 = new Label();
             label81 = new Label();
@@ -1435,6 +1436,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             // txtSector7CJustif
             // 
+            txtSector7CJustif.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSector7CJustif.Location = new Point(130, 340);
             txtSector7CJustif.Name = "txtSector7CJustif";
             txtSector7CJustif.PlaceholderText = "Justificación obligatoria si tilda el sector";
@@ -1443,6 +1445,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             // txtSector6CJustif
             // 
+            txtSector6CJustif.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSector6CJustif.Location = new Point(130, 309);
             txtSector6CJustif.Name = "txtSector6CJustif";
             txtSector6CJustif.PlaceholderText = "Justificación obligatoria si tilda el sector";
@@ -1451,6 +1454,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             // txtSector5CJustif
             // 
+            txtSector5CJustif.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSector5CJustif.Location = new Point(130, 278);
             txtSector5CJustif.Name = "txtSector5CJustif";
             txtSector5CJustif.PlaceholderText = "Justificación obligatoria si tilda el sector";
@@ -1459,6 +1463,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             // txtSector4CJustif
             // 
+            txtSector4CJustif.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSector4CJustif.Location = new Point(130, 247);
             txtSector4CJustif.Name = "txtSector4CJustif";
             txtSector4CJustif.PlaceholderText = "Justificación obligatoria si tilda el sector";
@@ -1467,6 +1472,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             // txtSector2CJustif
             // 
+            txtSector2CJustif.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSector2CJustif.Location = new Point(130, 190);
             txtSector2CJustif.Name = "txtSector2CJustif";
             txtSector2CJustif.PlaceholderText = "Justificación obligatoria si tilda el sector";
@@ -1475,6 +1481,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             // txtSector3CJustif
             // 
+            txtSector3CJustif.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSector3CJustif.Location = new Point(130, 219);
             txtSector3CJustif.Name = "txtSector3CJustif";
             txtSector3CJustif.PlaceholderText = "Justificación obligatoria si tilda el sector";
@@ -1483,6 +1490,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             // txtSector1CJustif
             // 
+            txtSector1CJustif.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSector1CJustif.Location = new Point(130, 159);
             txtSector1CJustif.Name = "txtSector1CJustif";
             txtSector1CJustif.PlaceholderText = "Justificación obligatoria si tilda el sector";
@@ -1561,6 +1569,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             // txtAnexoCCargo
             // 
+            txtAnexoCCargo.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtAnexoCCargo.Location = new Point(130, 88);
             txtAnexoCCargo.Name = "txtAnexoCCargo";
             txtAnexoCCargo.Size = new Size(419, 25);
@@ -1609,6 +1618,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             // txtAnexoCNotaPermiso
             // 
+            txtAnexoCNotaPermiso.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtAnexoCNotaPermiso.Location = new Point(434, 49);
             txtAnexoCNotaPermiso.Name = "txtAnexoCNotaPermiso";
             txtAnexoCNotaPermiso.Size = new Size(115, 25);
@@ -1625,6 +1635,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             // txtAnexoCAeropuerto
             // 
+            txtAnexoCAeropuerto.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtAnexoCAeropuerto.Location = new Point(97, 50);
             txtAnexoCAeropuerto.Name = "txtAnexoCAeropuerto";
             txtAnexoCAeropuerto.Size = new Size(129, 25);
@@ -1866,6 +1877,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             // txtAnexoCEnfermedades
             // 
+            txtAnexoCEnfermedades.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtAnexoCEnfermedades.Location = new Point(169, 112);
             txtAnexoCEnfermedades.Multiline = true;
             txtAnexoCEnfermedades.Name = "txtAnexoCEnfermedades";
@@ -1928,6 +1940,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             panelSeccion2.BackColor = SystemColors.Window;
             panelSeccion2.BorderStyle = BorderStyle.FixedSingle;
+            panelSeccion2.Controls.Add(cmbTipoDocumento);
             panelSeccion2.Controls.Add(label83);
             panelSeccion2.Controls.Add(label82);
             panelSeccion2.Controls.Add(label81);
@@ -1958,6 +1971,17 @@ namespace CredenSoftUInuevo.Forms
             panelSeccion2.Size = new Size(566, 362);
             panelSeccion2.TabIndex = 1;
             // 
+            // cmbTipoDocumento
+            // 
+            cmbTipoDocumento.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbTipoDocumento.FormattingEnabled = true;
+            cmbTipoDocumento.Items.AddRange(new object[] { "DNI", "Pasaporte" });
+            cmbTipoDocumento.Location = new Point(111, 84);
+            cmbTipoDocumento.Name = "cmbTipoDocumento";
+            cmbTipoDocumento.Size = new Size(121, 21);
+            cmbTipoDocumento.TabIndex = 92;
+            cmbTipoDocumento.Text = "Seleccione Tipo";
+            // 
             // label83
             // 
             label83.AutoSize = true;
@@ -1972,7 +1996,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             label82.AutoSize = true;
             label82.ForeColor = Color.Red;
-            label82.Location = new Point(320, 77);
+            label82.Location = new Point(425, 80);
             label82.Name = "label82";
             label82.Size = new Size(14, 17);
             label82.TabIndex = 90;
@@ -1982,7 +2006,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             label81.AutoSize = true;
             label81.ForeColor = Color.Red;
-            label81.Location = new Point(113, 80);
+            label81.Location = new Point(101, 80);
             label81.Name = "label81";
             label81.Size = new Size(14, 17);
             label81.TabIndex = 89;
@@ -2044,6 +2068,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             // txtAnexoCCalle
             // 
+            txtAnexoCCalle.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtAnexoCCalle.Location = new Point(95, 9);
             txtAnexoCCalle.Name = "txtAnexoCCalle";
             txtAnexoCCalle.PlaceholderText = "Calle*";
@@ -2052,6 +2077,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             // txtAnexoCLocalidad
             // 
+            txtAnexoCLocalidad.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtAnexoCLocalidad.Location = new Point(20, 40);
             txtAnexoCLocalidad.Name = "txtAnexoCLocalidad";
             txtAnexoCLocalidad.PlaceholderText = "Localidad*";
@@ -2060,6 +2086,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             // txtAnexoCNro
             // 
+            txtAnexoCNro.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtAnexoCNro.Location = new Point(230, 9);
             txtAnexoCNro.Name = "txtAnexoCNro";
             txtAnexoCNro.PlaceholderText = "Número*";
@@ -2068,6 +2095,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             // txtAnexoCDepto
             // 
+            txtAnexoCDepto.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtAnexoCDepto.Location = new Point(336, 9);
             txtAnexoCDepto.Name = "txtAnexoCDepto";
             txtAnexoCDepto.PlaceholderText = "Depto";
@@ -2076,6 +2104,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             // txtAnexoCCP
             // 
+            txtAnexoCCP.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtAnexoCCP.Location = new Point(442, 9);
             txtAnexoCCP.Name = "txtAnexoCCP";
             txtAnexoCCP.PlaceholderText = "CP";
@@ -2101,6 +2130,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             // txtAnexoCLugarNac
             // 
+            txtAnexoCLugarNac.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtAnexoCLugarNac.Location = new Point(160, 171);
             txtAnexoCLugarNac.Name = "txtAnexoCLugarNac";
             txtAnexoCLugarNac.Size = new Size(100, 25);
@@ -2117,6 +2147,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             // txtAnexoCMail
             // 
+            txtAnexoCMail.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtAnexoCMail.Location = new Point(445, 286);
             txtAnexoCMail.Name = "txtAnexoCMail";
             txtAnexoCMail.Size = new Size(100, 25);
@@ -2133,6 +2164,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             // txtAnexoCTelLab
             // 
+            txtAnexoCTelLab.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtAnexoCTelLab.Location = new Point(300, 286);
             txtAnexoCTelLab.Name = "txtAnexoCTelLab";
             txtAnexoCTelLab.Size = new Size(100, 25);
@@ -2149,6 +2181,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             // txtAnexoCTelPart
             // 
+            txtAnexoCTelPart.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtAnexoCTelPart.Location = new Point(107, 286);
             txtAnexoCTelPart.Name = "txtAnexoCTelPart";
             txtAnexoCTelPart.Size = new Size(100, 25);
@@ -2165,9 +2198,10 @@ namespace CredenSoftUInuevo.Forms
             // 
             // cmbAnexoCEstadoCivil
             // 
+            cmbAnexoCEstadoCivil.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbAnexoCEstadoCivil.FormattingEnabled = true;
             cmbAnexoCEstadoCivil.Items.AddRange(new object[] { "", "Casado", "Soltero" });
-            cmbAnexoCEstadoCivil.Location = new Point(341, 84);
+            cmbAnexoCEstadoCivil.Location = new Point(440, 84);
             cmbAnexoCEstadoCivil.Name = "cmbAnexoCEstadoCivil";
             cmbAnexoCEstadoCivil.Size = new Size(121, 25);
             cmbAnexoCEstadoCivil.TabIndex = 68;
@@ -2175,7 +2209,7 @@ namespace CredenSoftUInuevo.Forms
             // label17
             // 
             label17.AutoSize = true;
-            label17.Location = new Point(241, 87);
+            label17.Location = new Point(346, 87);
             label17.Name = "label17";
             label17.Size = new Size(88, 17);
             label17.TabIndex = 67;
@@ -2183,9 +2217,11 @@ namespace CredenSoftUInuevo.Forms
             // 
             // txtAnexoCDniPasaporte
             // 
-            txtAnexoCDniPasaporte.Location = new Point(131, 84);
+            txtAnexoCDniPasaporte.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtAnexoCDniPasaporte.Location = new Point(233, 84);
             txtAnexoCDniPasaporte.Name = "txtAnexoCDniPasaporte";
-            txtAnexoCDniPasaporte.Size = new Size(100, 25);
+            txtAnexoCDniPasaporte.PlaceholderText = "Nro dni/pasaporte";
+            txtAnexoCDniPasaporte.Size = new Size(107, 22);
             txtAnexoCDniPasaporte.TabIndex = 66;
             // 
             // label15
@@ -2193,12 +2229,13 @@ namespace CredenSoftUInuevo.Forms
             label15.AutoSize = true;
             label15.Location = new Point(3, 87);
             label15.Name = "label15";
-            label15.Size = new Size(118, 17);
+            label15.Size = new Size(107, 17);
             label15.TabIndex = 65;
-            label15.Text = "D.N.I./Pasaporte: ";
+            label15.Text = "DNI/Pasaporte: ";
             // 
             // txtAnexoCNombres
             // 
+            txtAnexoCNombres.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtAnexoCNombres.Location = new Point(341, 35);
             txtAnexoCNombres.Name = "txtAnexoCNombres";
             txtAnexoCNombres.Size = new Size(167, 25);
@@ -2215,6 +2252,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             // txtAnexoCApellidos
             // 
+            txtAnexoCApellidos.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtAnexoCApellidos.Location = new Point(79, 38);
             txtAnexoCApellidos.Name = "txtAnexoCApellidos";
             txtAnexoCApellidos.Size = new Size(100, 25);
@@ -2299,6 +2337,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             // txtDni
             // 
+            txtDni.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtDni.Location = new Point(169, 131);
             txtDni.Name = "txtDni";
             txtDni.Size = new Size(286, 25);
@@ -2346,6 +2385,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             // dateTimeFecha
             // 
+            dateTimeFecha.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dateTimeFecha.Format = DateTimePickerFormat.Short;
             dateTimeFecha.Location = new Point(169, 268);
             dateTimeFecha.Margin = new Padding(2);
@@ -2355,6 +2395,7 @@ namespace CredenSoftUInuevo.Forms
             // 
             // txtDescripcion
             // 
+            txtDescripcion.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtDescripcion.Location = new Point(169, 172);
             txtDescripcion.Margin = new Padding(2);
             txtDescripcion.Multiline = true;
@@ -2377,6 +2418,7 @@ namespace CredenSoftUInuevo.Forms
             // cmbTipoDeSolicitud
             // 
             cmbTipoDeSolicitud.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbTipoDeSolicitud.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbTipoDeSolicitud.FormattingEnabled = true;
             cmbTipoDeSolicitud.Location = new Point(169, 90);
             cmbTipoDeSolicitud.Margin = new Padding(2);
@@ -2398,6 +2440,7 @@ namespace CredenSoftUInuevo.Forms
             // cmbUsuario
             // 
             cmbUsuario.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbUsuario.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbUsuario.FormattingEnabled = true;
             cmbUsuario.Location = new Point(169, 51);
             cmbUsuario.Margin = new Padding(2);
@@ -2728,5 +2771,6 @@ namespace CredenSoftUInuevo.Forms
         private Label label81;
         private Label label80;
         private Label label84;
+        private ComboBox cmbTipoDocumento;
     }
 }
