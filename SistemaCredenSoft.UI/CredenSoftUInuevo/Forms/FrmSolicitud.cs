@@ -63,6 +63,8 @@ namespace CredenSoftUInuevo.Forms
 
             this.Activated += FrmSolicitud_Activated;
         }
+
+
         // =====================================================
         // CARGA DEL FORMULARIO
         // =====================================================
