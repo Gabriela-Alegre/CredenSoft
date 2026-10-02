@@ -2133,7 +2133,7 @@ namespace CredenSoftUInuevo.Forms
             panel10.Controls.Add(txtAnexoCCP);
             panel10.Location = new Point(3, 202);
             panel10.Name = "panel10";
-            panel10.Size = new Size(547, 69);
+            panel10.Size = new Size(587, 69);
             panel10.TabIndex = 86;
             // 
             // label84
@@ -2161,7 +2161,7 @@ namespace CredenSoftUInuevo.Forms
             txtAnexoCCalle.Location = new Point(95, 9);
             txtAnexoCCalle.Name = "txtAnexoCCalle";
             txtAnexoCCalle.PlaceholderText = "Calle*";
-            txtAnexoCCalle.Size = new Size(129, 25);
+            txtAnexoCCalle.Size = new Size(118, 25);
             txtAnexoCCalle.TabIndex = 70;
             // 
             // txtAnexoCLocalidad
@@ -2176,16 +2176,16 @@ namespace CredenSoftUInuevo.Forms
             // txtAnexoCNro
             // 
             txtAnexoCNro.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtAnexoCNro.Location = new Point(230, 9);
+            txtAnexoCNro.Location = new Point(238, 9);
             txtAnexoCNro.Name = "txtAnexoCNro";
             txtAnexoCNro.PlaceholderText = "Número*";
-            txtAnexoCNro.Size = new Size(100, 25);
+            txtAnexoCNro.Size = new Size(95, 25);
             txtAnexoCNro.TabIndex = 71;
             // 
             // txtAnexoCDepto
             // 
             txtAnexoCDepto.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtAnexoCDepto.Location = new Point(336, 9);
+            txtAnexoCDepto.Location = new Point(360, 9);
             txtAnexoCDepto.Name = "txtAnexoCDepto";
             txtAnexoCDepto.PlaceholderText = "Depto";
             txtAnexoCDepto.Size = new Size(100, 25);
@@ -2194,7 +2194,7 @@ namespace CredenSoftUInuevo.Forms
             // txtAnexoCCP
             // 
             txtAnexoCCP.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtAnexoCCP.Location = new Point(442, 9);
+            txtAnexoCCP.Location = new Point(484, 9);
             txtAnexoCCP.Name = "txtAnexoCCP";
             txtAnexoCCP.PlaceholderText = "CP";
             txtAnexoCCP.Size = new Size(100, 25);

@@ -134,6 +134,7 @@ namespace ServicesNegocio
             {
                 return context.Solicitudes
                     .Include(s => s.Usuario)
+                     .Include(s => s.ArchivosAdjuntos)
                     .Where(s => s.IdUsuario == idUsuario)
                     .ToList();
             }
@@ -166,6 +167,7 @@ namespace ServicesNegocio
 
                 return context.Solicitudes
                     .Include(s => s.Usuario)
+                    .Include(s => s.ArchivosAdjuntos)
                     .Where(s => s.Estado != null && s.Estado.ToLower() == estado.ToLower())
                     .ToList();
             }
