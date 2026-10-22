@@ -284,5 +284,53 @@ namespace ServicesNegocio
                 context.SaveChanges();
             }
         }
+
+        /// <summary>
+        /// HU17: Aprueba una solicitud en estado 'Pendiente de revisión'.
+        /// </summary>
+        public void AprobarSolicitud(int idSolicitud)
+        {
+            using (var context = new CredenSoftContext())
+            {
+                var solicitud = context.Solicitudes.FirstOrDefault(s => s.IdSolicitud == idSolicitud);
+                if (solicitud == null)
+                {
+                    throw new Exception("La solicitud no existe.");
+                }
+                if (!solicitud.Estado.Equals("Pendiente de revisión", StringComparison.OrdinalIgnoreCase))
+                {
+                    throw new Exception("Solo se pueden aprobar solicitudes que se encuentren en estado 'Pendiente de revisión'.");
+                }
+                solicitud.Estado = "Aprobado";
+                context.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// HU17: Rechaza una solicitud en estado 'Pendiente de revisión' exigiendo un motivo obligatorio.
+        /// </summary>
+        public void RechazarSolicitud(int idSolicitud, string motivo)
+        {
+            if (string.IsNullOrWhiteSpace(motivo))
+            {
+                throw new Exception("Debe especificar un motivo para rechazar la solicitud.");
+            }
+
+            using (var context = new CredenSoftContext())
+            {
+                var solicitud = context.Solicitudes.FirstOrDefault(s => s.IdSolicitud == idSolicitud);
+                if (solicitud == null)
+                {
+                    throw new Exception("La solicitud no existe.");
+                }
+                if (!solicitud.Estado.Equals("Pendiente de revisión", StringComparison.OrdinalIgnoreCase))
+                {
+                    throw new Exception("Solo se pueden rechazar solicitudes que se encuentren en estado 'Pendiente de revisión'.");
+                }
+                solicitud.Estado = "Rechazado";
+                solicitud.MotivoRechazo = motivo.Trim();
+                context.SaveChanges();
+            }
+        }
     }
 }

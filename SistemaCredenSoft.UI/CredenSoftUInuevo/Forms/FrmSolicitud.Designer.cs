@@ -176,7 +176,7 @@
             // cmbEstado
             // 
             cmbEstado.FormattingEnabled = true;
-            cmbEstado.Items.AddRange(new object[] { "Todos", "Pendiente", "Inactivo", "Pendiente de Revisión", "Aprobada", "Rechazada" });
+            cmbEstado.Items.AddRange(new object[] { "Todos", "Pendiente", "Inactivo", "Pendiente de Revisión", "Aprobado", "Rechazado" });
             cmbEstado.Location = new Point(453, 61);
             cmbEstado.Name = "cmbEstado";
             cmbEstado.Size = new Size(121, 23);
