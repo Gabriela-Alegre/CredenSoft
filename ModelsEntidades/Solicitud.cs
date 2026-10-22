@@ -23,11 +23,16 @@ namespace ModelsEntidades
 
         [Column("descripcion")]
         [StringLength(255)]
-        public string Descripcion { get; set; }
+        public string? Descripcion { get; set; }
 
         [Column("estado")]
-        [StringLength(20)]
+        [StringLength(50)]
         public string Estado { get; set; } = "Pendiente";
+
+        // AGREGAR ESTO NUEVO:
+        [Column("motivo_rechazo")]
+        [StringLength(255)]
+        public string? MotivoRechazo { get; set; }
 
         // Propiedad de navegación para el Backend
         [ForeignKey("IdUsuario")]

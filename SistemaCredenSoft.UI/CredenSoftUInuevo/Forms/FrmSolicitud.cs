@@ -72,7 +72,7 @@ namespace CredenSoftUInuevo.Forms
         private void FrmSolicitud_Load(object sender, EventArgs e)
         {
             dgvSolicitudes.CellFormatting += dgvSolicitudes_CellFormatting;
-
+            dgvSolicitudes.CellContentClick += dgvSolicitudes_CellContentClick;
 
             // APLICAR RESTRICCIONES VISUALES SEGÚN EL ROL
             ConfigurarInterfazSegunRol();
@@ -199,6 +199,20 @@ namespace CredenSoftUInuevo.Forms
                 if (dgvSolicitudes.Columns["ArchivosAdjuntos"] != null)
                     dgvSolicitudes.Columns["ArchivosAdjuntos"].Visible = false;
 
+                // Ocultar o mostrar la columna MotivoRechazo según el rol
+                if (dgvSolicitudes.Columns["MotivoRechazo"] != null)
+                {
+                    if (_rolUsuario == "Administrador Central")
+                    {
+                        dgvSolicitudes.Columns["MotivoRechazo"].Visible = true;
+                        dgvSolicitudes.Columns["MotivoRechazo"].HeaderText = "Motivo de Rechazo";
+                    }
+                    else
+                    {
+                        dgvSolicitudes.Columns["MotivoRechazo"].Visible = false;
+                    }
+                }
+
 
                 // 3. Crear la columna DNI personalizada solo si no existe previamente
                 if (!dgvSolicitudes.Columns.Contains("DniUsuario"))
@@ -266,6 +280,34 @@ namespace CredenSoftUInuevo.Forms
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
+
+            // =====================================================
+            // BOTÓN "ENVIAR A REVISIÓN" (EXCLUSIVO ADMIN LOCAL)
+            // =====================================================
+            if (_rolUsuario == "Administrador Local")
+            {
+                if (!dgvSolicitudes.Columns.Contains("btnEnviarRevisionCol"))
+                {
+                    DataGridViewButtonColumn btnEnviar = new DataGridViewButtonColumn();
+                    btnEnviar.Name = "btnEnviarRevisionCol";
+                    btnEnviar.HeaderText = "Pases / Revisiones";
+                    btnEnviar.Text = "Enviar a Revisión";
+                    btnEnviar.UseColumnTextForButtonValue = true;
+                    btnEnviar.FlatStyle = FlatStyle.Flat;
+
+                    // Lo agregamos a la grilla
+                    dgvSolicitudes.Columns.Add(btnEnviar);
+                }
+            }
+            else
+            {
+                // Si la columna existe y no es Admin Local, nos aseguramos de quitarla o darle Visible = false
+                if (dgvSolicitudes.Columns.Contains("btnEnviarRevisionCol"))
+                {
+                    dgvSolicitudes.Columns["btnEnviarRevisionCol"].Visible = false;
+                }
+            }
+
         }
 
         private void dgvSolicitudes_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -273,11 +315,13 @@ namespace CredenSoftUInuevo.Forms
             if (e.RowIndex < 0) return;
 
             var solicitud = dgvSolicitudes.Rows[e.RowIndex].DataBoundItem as ModelsEntidades.Solicitud;
+            if (solicitud == null) return;
 
-            if (solicitud != null && solicitud.Usuario != null)
+            string nombreColumna = dgvSolicitudes.Columns[e.ColumnIndex].Name; // Asegúrate de mantener tu nombre de grilla 'dgvSolicitudes'
+
+            // 1. Validaciones exclusivas donde interviene el Usuario (con su propia protección de nulos)
+            if (solicitud.Usuario != null)
             {
-                string nombreColumna = dgvSolicitudes.Columns[e.ColumnIndex].Name;
-
                 // Muestra Nombre y Apellido en la columna Titular
                 if (nombreColumna == "Usuario")
                 {
@@ -291,21 +335,74 @@ namespace CredenSoftUInuevo.Forms
                     e.Value = solicitud.Usuario.Dni?.ToString();
                     e.FormattingApplied = true;
                 }
-                // NUEVO: Muestra la ruta del archivo adjunto si existe
-                if (nombreColumna == "RutaArchivoColumna")
+            }
+            else
+            {
+                // Si no tiene usuario, evitamos que la celda quede en blanco o explote
+                if (nombreColumna == "Usuario" || nombreColumna == "DniUsuario")
                 {
-                    // Verificamos si la solicitud tiene archivos adjuntos cargados
-                    var primerArchivo = solicitud.ArchivosAdjuntos?.FirstOrDefault();
-
-                    if (primerArchivo != null)
-                    {
-                        e.Value = primerArchivo.RutaArchivo; 
-                    }
-                    else
-                    {
-                        e.Value = "Sin adjunto";
-                    }
+                    e.Value = "Sin Asignar";
                     e.FormattingApplied = true;
+                }
+            }
+
+            // 2. Columna de Archivo Adjunto (Independiente del usuario)
+            if (nombreColumna == "RutaArchivoColumna")
+            {
+                var primerArchivo = solicitud.ArchivosAdjuntos?.FirstOrDefault();
+
+                if (primerArchivo != null)
+                {
+                    e.Value = primerArchivo.RutaArchivo;
+                }
+                else
+                {
+                    e.Value = "Sin adjunto";
+                }
+                e.FormattingApplied = true;
+            }
+        }
+
+        private void dgvSolicitudes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Ignorar clics en los encabezados de la tabla
+            if (e.RowIndex < 0) return;
+
+            // ACCIÓN PARA EL ADMINISTRADOR LOCAL: ENVIAR A REVISIÓN
+            if (_rolUsuario == "Administrador Local" && dgvSolicitudes.Columns[e.ColumnIndex].Name == "btnEnviarRevisionCol")
+            {
+                var solicitudSeleccionada = dgvSolicitudes.Rows[e.RowIndex].DataBoundItem as ModelsEntidades.Solicitud;
+                if (solicitudSeleccionada == null) return;
+
+                // Validar que la solicitud esté en estado 'Pendiente' para poder enviarla
+                if (!solicitudSeleccionada.Estado.Equals("Pendiente", StringComparison.OrdinalIgnoreCase))
+                {
+                    MessageBox.Show($"La solicitud ya se encuentra en estado '{solicitudSeleccionada.Estado}'. Solo se pueden enviar a revisión las solicitudes 'Pendientes'.",
+                                    "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Confirmación del operador
+                DialogResult confirm = MessageBox.Show($"¿Desea enviar la solicitud N° {solicitudSeleccionada.IdSolicitud} a la Bandeja Central de Revisión?",
+                                                     "Confirmar Pase a Central", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (confirm == DialogResult.Yes)
+                {
+                    try
+                    {
+                        // Llamamos al servicio
+                        _solicitudService.EnviarARevision(solicitudSeleccionada.IdSolicitud);
+
+                        MessageBox.Show("¡La solicitud fue enviada exitosamente a la Bandeja del Administrador Central!",
+                                        "Operación Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // Refrescamos la grilla para que se actualice el estado en pantalla
+                        CargarGrilla();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al enviar a revisión: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }

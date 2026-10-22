@@ -58,20 +58,20 @@ namespace ModelsEntidades
         // Domicilio separado
         [Column("calle")][StringLength(100)] public string Calle { get; set; }
         [Column("nro")][StringLength(20)] public string Nro { get; set; }
-        [Column("piso")][StringLength(10)] public string Piso { get; set; }
-        [Column("depto")][StringLength(10)] public string Depto { get; set; }
-        [Column("cp")][StringLength(20)] public string Cp { get; set; }
+        [Column("piso")][StringLength(10)] public string? Piso { get; set; }
+        [Column("depto")][StringLength(10)] public string? Depto { get; set; }
+        [Column("cp")][StringLength(20)] public string? Cp { get; set; }
         [Column("localidad")][StringLength(100)] public string Localidad { get; set; }
 
         // Contacto
         [Column("tel_particular")][StringLength(30)] public string TelParticular { get; set; }
-        [Column("tel_laboral")][StringLength(30)] public string TelLaboral { get; set; }
+        [Column("tel_laboral")][StringLength(30)] public string? TelLaboral { get; set; }
         [Column("mail")][StringLength(100)] public string Mail { get; set; }
 
         // Emergencia y adicionales (OACI Doc. 8973)
         [Column("grupo_sanguineo")][StringLength(10)] public string GrupoSanguineo { get; set; }
         [Column("factor_rh")][StringLength(10)] public string FactorRh { get; set; }
-        [Column("enfermedades_alergias")] public string EnfermedadesAlergias { get; set; }
+        [Column("enfermedades_alergias")] public string? EnfermedadesAlergias { get; set; }
 
         [Column("socorrista")]
         public bool Socorrista { get; set; }
@@ -93,7 +93,8 @@ namespace ModelsEntidades
         [Column("sector_4_justif")] public string Sector4Justif { get; set; }
 
         [Column("sector_5")] public bool Sector5 { get; set; }
-        [Column("sector_5_justif")] public string Sector5Justif { get; set; }
+        [Column("sector_5_justif")] public string
+            Sector5Justif { get; set; }
 
         [Column("sector_6")] public bool Sector6 { get; set; }
         [Column("sector_6_justif")] public string Sector6Justif { get; set; }

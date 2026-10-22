@@ -33,14 +33,33 @@ namespace ServicesNegocio
             }
         }
 
+        /*  public List<Solicitud> ObtenerTodas()
+          {
+              using (var context = new CredenSoftContext())
+              {
+                  return context.Solicitudes
+                      .Include(s => s.Usuario)
+                      .Include(s => s.ArchivosAdjuntos)
+                      .ToList();
+              }
+          }
+          */
         public List<Solicitud> ObtenerTodas()
         {
             using (var context = new CredenSoftContext())
             {
-                return context.Solicitudes
-                    .Include(s => s.Usuario)
-                    .Include(s => s.ArchivosAdjuntos)
-                    .ToList();
+                try
+                {
+                    return context.Solicitudes
+                        .Include(s => s.Usuario)
+                        .Include(s => s.ArchivosAdjuntos)
+                        .ToList();
+                }
+                catch (Exception ex)
+                {
+                    string mensajeReal = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+                    throw new Exception("Error al cargar solicitudes: " + mensajeReal, ex);
+                }
             }
         }
 
@@ -124,7 +143,25 @@ namespace ServicesNegocio
                 context.SaveChanges();
             }
         }
+        /// <summary>
+        /// HU16 / Transición del Admin Local: Cambia el estado de 'Pendiente' a 'Pendiente de revisión'
+        /// para que el Administrador Central pueda visualizarlo en su bandeja.
+        /// </summary>
+        public void EnviarARevision(int idSolicitud)
+        {
+            using (var context = new CredenSoftContext())
+            {
+                var solicitud = context.Solicitudes.FirstOrDefault(s => s.IdSolicitud == idSolicitud);
+                if (solicitud == null)
+                {
+                    throw new Exception("La solicitud no existe.");
+                }
 
+                // Cambiamos el estado exacto requerido por el Sprint 5
+                solicitud.Estado = "Pendiente de revisión";
+                context.SaveChanges();
+            }
+        }
         /// <summary>
         /// Consulta específica: Trae únicamente las solicitudes creadas por un agente en particular.
         /// </summary>
