@@ -332,5 +332,35 @@ namespace ServicesNegocio
                 context.SaveChanges();
             }
         }
+
+        /// <summary>
+        /// Filtra las solicitudes generales por un rango de fechas (Para Administradores).
+        /// </summary>
+        public List<Solicitud> ObtenerPorFecha(DateTime desde, DateTime hasta)
+        {
+            using (var context = new CredenSoftContext())
+            {
+                return context.Solicitudes
+                    .Include(s => s.Usuario)
+                    .Include(s => s.ArchivosAdjuntos)
+                    .Where(s => s.FechaSolicitud >= desde && s.FechaSolicitud <= hasta)
+                    .ToList();
+            }
+        }
+
+        /// <summary>
+        /// Filtra las solicitudes de un usuario específico por un rango de fechas (Para Agentes).
+        /// </summary>
+        public List<Solicitud> ObtenerPorUsuarioYFecha(int idUsuario, DateTime desde, DateTime hasta)
+        {
+            using (var context = new CredenSoftContext())
+            {
+                return context.Solicitudes
+                    .Include(s => s.Usuario)
+                    .Include(s => s.ArchivosAdjuntos)
+                    .Where(s => s.IdUsuario == idUsuario && s.FechaSolicitud >= desde && s.FechaSolicitud <= hasta)
+                    .ToList();
+            }
+        }
     }
 }

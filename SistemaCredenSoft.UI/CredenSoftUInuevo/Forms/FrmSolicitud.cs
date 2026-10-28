@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using ModelsEntidades;
 using ServicesNegocio;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -18,7 +19,7 @@ namespace CredenSoftUInuevo.Forms
         // NUEVAS VARIABLES DE SESIÓN
         private string _rolUsuario;
         private int _idUsuarioLogueado;
-        
+
 
         public FrmSolicitud(string rolUsuario, int idUsuarioLogueado)
         {
@@ -61,6 +62,10 @@ namespace CredenSoftUInuevo.Forms
             dgvSolicitudes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvSolicitudes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvSolicitudes.MultiSelect = false;
+
+            dgvSolicitudes.RowTemplate.Height = 32;
+            dgvSolicitudes.ColumnHeadersHeight = 38;
+            dgvSolicitudes.RowTemplate.DefaultCellStyle.Padding = new Padding(6, 4, 6, 4);
 
             this.Activated += FrmSolicitud_Activated;
         }
@@ -174,9 +179,9 @@ namespace CredenSoftUInuevo.Forms
                         // El Admin Central SOLO ve: Pendiente de revisión, Aprobado y Rechazado (Excluye Pendiente e Inactivo)
                         dgvSolicitudes.DataSource = todas
                             .Where(s => s.Estado != null &&
-                                       (s.Estado.Equals("Pendiente de revisión", StringComparison.OrdinalIgnoreCase) ||
-                                        s.Estado.Equals("Aprobado", StringComparison.OrdinalIgnoreCase) ||
-                                        s.Estado.Equals("Rechazado", StringComparison.OrdinalIgnoreCase)))
+                                        (s.Estado.Equals("Pendiente de revisión", StringComparison.OrdinalIgnoreCase) ||
+                                         s.Estado.Equals("Aprobado", StringComparison.OrdinalIgnoreCase) ||
+                                         s.Estado.Equals("Rechazado", StringComparison.OrdinalIgnoreCase)))
                             .ToList();
                     }
                     else
@@ -212,20 +217,9 @@ namespace CredenSoftUInuevo.Forms
                 if (dgvSolicitudes.Columns["ArchivosAdjuntos"] != null)
                     dgvSolicitudes.Columns["ArchivosAdjuntos"].Visible = false;
 
-                // Ocultar o mostrar la columna MotivoRechazo según el rol
                 if (dgvSolicitudes.Columns["MotivoRechazo"] != null)
-                {
-                    if (_rolUsuario == "Administrador Central")
-                    {
-                        dgvSolicitudes.Columns["MotivoRechazo"].Visible = true;
-                        dgvSolicitudes.Columns["MotivoRechazo"].HeaderText = "Motivo de Rechazo";
-                    }
-                    else
-                    {
-                        dgvSolicitudes.Columns["MotivoRechazo"].Visible = false;
-                    }
-                }
-
+                    dgvSolicitudes.Columns["MotivoRechazo"].Visible = true;
+                
 
                 // 3. Crear la columna DNI personalizada solo si no existe previamente
                 if (!dgvSolicitudes.Columns.Contains("DniUsuario"))
@@ -245,9 +239,7 @@ namespace CredenSoftUInuevo.Forms
                     dgvSolicitudes.Columns.Add(colArchivo);
                 }
 
-
                 // 4. Configurar Títulos de las columnas visibles
-                 
                 if (dgvSolicitudes.Columns["Usuario"] != null)
                     dgvSolicitudes.Columns["Usuario"].HeaderText = "Titular";
 
@@ -266,24 +258,9 @@ namespace CredenSoftUInuevo.Forms
                 if (dgvSolicitudes.Columns["RutaArchivoColumna"] != null)
                     dgvSolicitudes.Columns["RutaArchivoColumna"].HeaderText = "Documento Adjunto";
 
-                // 5. Orden de las columnas (DisplayIndex) para que se vea profesional y prolijo
-                if (dgvSolicitudes.Columns["Usuario"] != null)
-                    dgvSolicitudes.Columns["Usuario"].DisplayIndex = 0;
+                if (dgvSolicitudes.Columns["MotivoRechazo"] != null)
+                    dgvSolicitudes.Columns["MotivoRechazo"].HeaderText = "Motivo Rechazo";
 
-                if (dgvSolicitudes.Columns["DniUsuario"] != null)
-                    dgvSolicitudes.Columns["DniUsuario"].DisplayIndex = 1;
-
-                if (dgvSolicitudes.Columns["TipoSolicitud"] != null)
-                    dgvSolicitudes.Columns["TipoSolicitud"].DisplayIndex = 2;
-
-                if (dgvSolicitudes.Columns["FechaSolicitud"] != null)
-                    dgvSolicitudes.Columns["FechaSolicitud"].DisplayIndex = 3;
-
-                if (dgvSolicitudes.Columns["Descripcion"] != null)
-                    dgvSolicitudes.Columns["Descripcion"].DisplayIndex = 4;
-
-                if (dgvSolicitudes.Columns["Estado"] != null)
-                    dgvSolicitudes.Columns["Estado"].DisplayIndex = 5;
             }
             catch (Exception ex)
             {
@@ -308,13 +285,11 @@ namespace CredenSoftUInuevo.Forms
                     btnEnviar.UseColumnTextForButtonValue = true;
                     btnEnviar.FlatStyle = FlatStyle.Flat;
 
-                    // Lo agregamos a la grilla
                     dgvSolicitudes.Columns.Add(btnEnviar);
                 }
             }
             else
             {
-                // Si la columna existe y no es Admin Local, nos aseguramos de quitarla o darle Visible = false
                 if (dgvSolicitudes.Columns.Contains("btnEnviarRevisionCol"))
                 {
                     dgvSolicitudes.Columns["btnEnviarRevisionCol"].Visible = false;
@@ -354,6 +329,10 @@ namespace CredenSoftUInuevo.Forms
                     dgvSolicitudes.Columns["btnRechazarCol"].Visible = false;
             }
 
+            // =====================================================
+            // 👉 LLAMADA ÚNICA AL MÉTODO DE ORDENAMIENTO
+            // =====================================================
+            OrdenarColumnas();
         }
 
         private void dgvSolicitudes_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -783,6 +762,7 @@ namespace CredenSoftUInuevo.Forms
                 }
 
                 dgvSolicitudes.DataSource = listaFiltrada;
+                OrdenarColumnas();
                 OcultarColumnasTecnicas();
             }
             catch (Exception ex)
@@ -816,7 +796,7 @@ namespace CredenSoftUInuevo.Forms
                 if (_rolUsuario == "Agente")
                 {
                     var misSolicitudes = _solicitudService.ObtenerSolicitudesPorUsuario(_idUsuarioLogueado);
-                   
+
 
                     if (string.IsNullOrEmpty(estadoSeleccionado) || estadoSeleccionado.Equals("Todos", StringComparison.OrdinalIgnoreCase))
                     {
@@ -908,10 +888,12 @@ namespace CredenSoftUInuevo.Forms
                 Solicitud solicitudSeleccionada = (Solicitud)dgvSolicitudes.SelectedRows[0].DataBoundItem;
                 string estadoActual = solicitudSeleccionada.Estado != null ? solicitudSeleccionada.Estado.Trim() : string.Empty;
                 // 3. 👉 REGLA DE NEGOCIO: Si está en "Pendiente de revisión", BLOQUEAR edición
-                if (estadoActual.Equals("Pendiente de revisión", StringComparison.OrdinalIgnoreCase))
+                if (estadoActual.Equals("Pendiente de revisión", StringComparison.OrdinalIgnoreCase)||
+                    estadoActual.Equals("Aprobado", StringComparison.OrdinalIgnoreCase) ||
+                    estadoActual.Equals("Rechazado", StringComparison.OrdinalIgnoreCase))
                 {
-                    MessageBox.Show("No se puede editar esta solicitud porque se encuentra en estado 'Pendiente de revisión' y está bajo control central.",
-                                    "Edición No Permitida",
+                    MessageBox.Show("Esta solicitud ya ha sido enviada al Administrador Central o se encuentra resuelta, por lo que no puede ser modificada.",
+                                   "Edición No Permitida",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Warning);
                     return; // Detiene la ejecución para que no abra la ventana de edición
@@ -959,7 +941,8 @@ namespace CredenSoftUInuevo.Forms
             Button confirmation = new Button() { Text = "Reconfirmar Rechazo", Left = 130, Width = 150, Top = 145, BackColor = System.Drawing.Color.LightCoral };
             Button cancellation = new Button() { Text = "Cancelar", Left = 290, Width = 120, Top = 145 };
 
-            confirmation.Click += (sender, e) => {
+            confirmation.Click += (sender, e) =>
+            {
                 if (string.IsNullOrWhiteSpace(txtMotivo.Text))
                 {
                     MessageBox.Show("Debe especificar un motivo para rechazar la solicitud.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -971,7 +954,8 @@ namespace CredenSoftUInuevo.Forms
                 }
             };
 
-            cancellation.Click += (sender, e) => {
+            cancellation.Click += (sender, e) =>
+            {
                 prompt.DialogResult = DialogResult.Cancel;
                 prompt.Close();
             };
@@ -986,16 +970,20 @@ namespace CredenSoftUInuevo.Forms
             return prompt.ShowDialog() == DialogResult.OK ? txtMotivo.Text : string.Empty;
         }
 
+        // =====================================================
+        // ORDENAR COLUMNAS
+        // =====================================================
+
         private void OrdenarColumnas()
         {
-            // Ocultar las columnas técnicas si existen
+            // 1. Ocultar las columnas técnicas si existen
             if (dgvSolicitudes.Columns["IdSolicitud"] != null) dgvSolicitudes.Columns["IdSolicitud"].Visible = false;
             if (dgvSolicitudes.Columns["IdUsuario"] != null) dgvSolicitudes.Columns["IdUsuario"].Visible = false;
             if (dgvSolicitudes.Columns["DetalleAnexoC"] != null) dgvSolicitudes.Columns["DetalleAnexoC"].Visible = false;
             if (dgvSolicitudes.Columns["DetalleAnexoE"] != null) dgvSolicitudes.Columns["DetalleAnexoE"].Visible = false;
             if (dgvSolicitudes.Columns["ArchivosAdjuntos"] != null) dgvSolicitudes.Columns["ArchivosAdjuntos"].Visible = false;
 
-            // Configurar el orden secuencial fijo de izquierda a derecha
+            // 2. Configurar el orden secuencial fijo de izquierda a derecha
             int index = 0;
 
             if (dgvSolicitudes.Columns["Usuario"] != null) dgvSolicitudes.Columns["Usuario"].DisplayIndex = index++;
@@ -1003,16 +991,88 @@ namespace CredenSoftUInuevo.Forms
             if (dgvSolicitudes.Columns["TipoSolicitud"] != null) dgvSolicitudes.Columns["TipoSolicitud"].DisplayIndex = index++;
             if (dgvSolicitudes.Columns["FechaSolicitud"] != null) dgvSolicitudes.Columns["FechaSolicitud"].DisplayIndex = index++;
             if (dgvSolicitudes.Columns["Descripcion"] != null) dgvSolicitudes.Columns["Descripcion"].DisplayIndex = index++;
-            if (dgvSolicitudes.Columns["Estado"] != null) dgvSolicitudes.Columns["Estado"].DisplayIndex = index++;
             if (dgvSolicitudes.Columns["RutaArchivoColumna"] != null) dgvSolicitudes.Columns["RutaArchivoColumna"].DisplayIndex = index++;
 
-            // Forzar que los botones de acciones vayan juntos después de los datos
+            // 👉 Estado y Motivo de Rechazo siempre juntos antes de los botones
+            if (dgvSolicitudes.Columns["Estado"] != null) dgvSolicitudes.Columns["Estado"].DisplayIndex = index++;
+            if (dgvSolicitudes.Columns["MotivoRechazo"] != null) dgvSolicitudes.Columns["MotivoRechazo"].DisplayIndex = index++;
+
+            // 3. Botones de acciones al final de todo
             if (dgvSolicitudes.Columns["btnAprobarCol"] != null) dgvSolicitudes.Columns["btnAprobarCol"].DisplayIndex = index++;
             if (dgvSolicitudes.Columns["btnRechazarCol"] != null) dgvSolicitudes.Columns["btnRechazarCol"].DisplayIndex = index++;
             if (dgvSolicitudes.Columns["btnEnviarRevisionCol"] != null) dgvSolicitudes.Columns["btnEnviarRevisionCol"].DisplayIndex = index++;
-            if (dgvSolicitudes.Columns["MotivoRechazo"] != null) dgvSolicitudes.Columns["MotivoRechazo"].DisplayIndex = index++;
+
         }
 
+        // =====================================================
+        // FILTRAR POR FECHAS
+        // =====================================================
+        private void dtpDesde_ValueChanged(object sender, EventArgs e)
+        {
+            AplicarFiltroFechasAutomatico();
+        }
 
+        private void dtpHasta_ValueChanged(object sender, EventArgs e)
+        {
+            AplicarFiltroFechasAutomatico();
+        }
+
+        private void AplicarFiltroFechasAutomatico()
+        {
+            try
+            {
+                // 1. Tomar y formatear el rango completo del día
+                DateTime fechaDesde = dtpDesde.Value.Date;
+                DateTime fechaHasta = dtpHasta.Value.Date.AddDays(1).AddSeconds(-1);
+
+                // 2. Validar que la fecha "Desde" no sea mayor que la fecha "Hasta"
+                if (fechaDesde > fechaHasta)
+                {
+                    MessageBox.Show("La fecha inicial no puede ser mayor a la fecha final.",
+                                    "Validación de Fechas",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+                    return; // Bloquea y frena la ejecución para que no busque
+                }
+
+                List<Solicitud> listaFiltrada;
+
+                // 3. Aplicar el filtro según el rol (igual que hacés en CargarGrilla)
+                if (_rolUsuario == "Agente")
+                {
+                    listaFiltrada = _solicitudService.ObtenerPorUsuarioYFecha(_idUsuarioLogueado, fechaDesde, fechaHasta)
+                        .Where(s => s.Estado != null && !s.Estado.Equals("Inactivo", StringComparison.OrdinalIgnoreCase))
+                        .ToList();
+                }
+                else
+                {
+                    listaFiltrada = _solicitudService.ObtenerPorFecha(fechaDesde, fechaHasta)
+                        .Where(s => s.Estado != null && !s.Estado.Equals("Inactivo", StringComparison.OrdinalIgnoreCase))
+                        .ToList();
+                }
+
+                // 4. 👉 Validar si no hay registros en el rango seleccionado
+                if (listaFiltrada == null || listaFiltrada.Count == 0)
+                {
+                    dgvSolicitudes.DataSource = null; // Limpiamos la grilla para que no queden datos viejos
+                    MessageBox.Show("No hay registros de solicitud en ese rango de fechas.",
+                                    "Sin resultados",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information);
+                    return;
+                }
+                // 5. Refrescar la grilla
+                dgvSolicitudes.DataSource = null;
+                dgvSolicitudes.DataSource = listaFiltrada;
+
+                // Asegurar orden y visibilidad de columnas
+                OrdenarColumnas();
+                OcultarColumnasTecnicas();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al filtrar por fechas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
