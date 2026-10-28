@@ -362,5 +362,29 @@ namespace ServicesNegocio
                     .ToList();
             }
         }
+
+
+
+        /// <summary>
+        /// HU18: Calcula las estadísticas gerenciales (Totales, Aprobadas, Rechazadas, Pendientes) para el rango de fechas.
+        /// </summary>
+        public (int total, int aprobadas, int rechazadas, int pendientes) ObtenerEstadisticasGerenciales(DateTime fechaDesde, DateTime fechaHasta)
+        {
+            // Obtener todas las solicitudes del rango que no estén inactivas
+            var solicitudes = ObtenerPorFecha(fechaDesde, fechaHasta)
+                .Where(s => s.Estado != null && !s.Estado.Equals("Inactivo", StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            int aprobadas = solicitudes.Count(s => s.Estado.Equals("Aprobado", StringComparison.OrdinalIgnoreCase));
+            int rechazadas = solicitudes.Count(s => s.Estado.Equals("Rechazado", StringComparison.OrdinalIgnoreCase));
+
+            // Contar estrictamente "Pendiente de revisión" (excluyendo cualquier "Pendiente" a secas)
+            int pendientes = solicitudes.Count(s => s.Estado.Equals("Pendiente de revisión", StringComparison.OrdinalIgnoreCase));
+
+            // El total debe ser la suma exacta de los estados válidos que audita el Admin Central
+            int total = aprobadas + rechazadas + pendientes;
+
+            return (total, aprobadas, rechazadas, pendientes);
+        }
     }
 }

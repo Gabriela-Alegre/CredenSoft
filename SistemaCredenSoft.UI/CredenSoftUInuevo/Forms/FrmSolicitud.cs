@@ -107,6 +107,9 @@ namespace CredenSoftUInuevo.Forms
                 lblBuscarDni.Visible = false;
                 btnBuscarDni.Visible = false;
 
+                // Ocultar botón de informe para Agentes
+                if (btnGenerarInforme != null) btnGenerarInforme.Visible = false;
+
                 if (label3 != null && lblBuscarDni != null)
                 {
                     label3.Top = lblBuscarDni.Top;
@@ -122,13 +125,16 @@ namespace CredenSoftUInuevo.Forms
                 btnEditar.Visible = false;
                 btnEliminar.Visible = false;
 
+                // 👉 MOSTRAR EL BOTÓN DE INFORME GERENCIAL EXCLUSIVAMENTE AL ADMIN CENTRAL
+                if (btnGenerarInforme != null) btnGenerarInforme.Visible = true;
+
                 if (btnVer != null && btnNueva != null)
                 {
                     btnVer.Left = btnNueva.Left;
                 }
 
                 // =====================================================
-                // 👉 PASO 1: LIMITAR LAS OPCIONES DEL COMBOBOX AQUÍ
+                // 👉 LIMITAR LAS OPCIONES DEL COMBOBOX
                 // =====================================================
                 cmbEstado.Items.Clear();
                 cmbEstado.Items.Add("Todos");
@@ -142,6 +148,9 @@ namespace CredenSoftUInuevo.Forms
                 btnNueva.Visible = true;
                 btnEditar.Visible = true;
                 btnEliminar.Visible = true;
+
+                // Ocultar botón de informe para Administradores Locales (si corresponde solo al Central)
+                if (btnGenerarInforme != null) btnGenerarInforme.Visible = false;
             }
         }
 
@@ -219,7 +228,7 @@ namespace CredenSoftUInuevo.Forms
 
                 if (dgvSolicitudes.Columns["MotivoRechazo"] != null)
                     dgvSolicitudes.Columns["MotivoRechazo"].Visible = true;
-                
+
 
                 // 3. Crear la columna DNI personalizada solo si no existe previamente
                 if (!dgvSolicitudes.Columns.Contains("DniUsuario"))
@@ -888,7 +897,7 @@ namespace CredenSoftUInuevo.Forms
                 Solicitud solicitudSeleccionada = (Solicitud)dgvSolicitudes.SelectedRows[0].DataBoundItem;
                 string estadoActual = solicitudSeleccionada.Estado != null ? solicitudSeleccionada.Estado.Trim() : string.Empty;
                 // 3. 👉 REGLA DE NEGOCIO: Si está en "Pendiente de revisión", BLOQUEAR edición
-                if (estadoActual.Equals("Pendiente de revisión", StringComparison.OrdinalIgnoreCase)||
+                if (estadoActual.Equals("Pendiente de revisión", StringComparison.OrdinalIgnoreCase) ||
                     estadoActual.Equals("Aprobado", StringComparison.OrdinalIgnoreCase) ||
                     estadoActual.Equals("Rechazado", StringComparison.OrdinalIgnoreCase))
                 {
@@ -1072,6 +1081,23 @@ namespace CredenSoftUInuevo.Forms
             catch (Exception ex)
             {
                 MessageBox.Show("Error al filtrar por fechas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnGenerarInforme_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Instanciamos el formulario del Informe Gerencial
+                FrmInformeGerencial frmInforme = new FrmInformeGerencial();
+
+                // Lo mostramos como una ventana de diálogo modal (bloquea la de atrás hasta cerrar)
+                frmInforme.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al abrir el Informe Gerencial: " + ex.Message,
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

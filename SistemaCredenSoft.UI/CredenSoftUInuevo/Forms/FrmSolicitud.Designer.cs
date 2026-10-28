@@ -265,6 +265,7 @@
             btnGenerarInforme.Text = "Generar Informe";
             btnGenerarInforme.TextAlign = ContentAlignment.MiddleLeft;
             btnGenerarInforme.UseVisualStyleBackColor = false;
+            btnGenerarInforme.Click += btnGenerarInforme_Click;
             // 
             // FrmSolicitud
             // 

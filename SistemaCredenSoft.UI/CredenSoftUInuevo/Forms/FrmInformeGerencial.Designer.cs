@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmInformeGerencial));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             panelFiltros = new Panel();
             label1 = new Label();
             btnGenerarInforme = new Button();
-            dateTimePicker2 = new DateTimePicker();
-            dateTimePicker1 = new DateTimePicker();
+            dtpHasta = new DateTimePicker();
+            dtpDesde = new DateTimePicker();
             lblFechaHasta = new Label();
             lblFechaDesde = new Label();
             panelTotal = new Panel();
@@ -49,13 +49,11 @@
             panelAprobadas = new Panel();
             panelFondoAprobadas = new Panel();
             panelBarraAprobadas = new Panel();
-            lblPorcentajeAprobadas = new Label();
             label9 = new Label();
             lblValorAprobadas = new Label();
             pictureBox1 = new PictureBox();
             label2 = new Label();
             panelRechazadas = new Panel();
-            lblPorcentajeRechazadas = new Label();
             panelFondoRechazadas = new Panel();
             panelBarraRechazadas = new Panel();
             label11 = new Label();
@@ -65,16 +63,16 @@
             panelPendientes = new Panel();
             panelFondoPendientes = new Panel();
             panelBarraPendientes = new Panel();
-            lblPorcentajePendientes = new Label();
             label13 = new Label();
             lblValorPendientes = new Label();
             label5 = new Label();
             pictureBox4 = new PictureBox();
             panelVistaPrevia = new Panel();
+            lblMensajeInicial = new Label();
             tableLayoutPanel1 = new TableLayoutPanel();
             chartEstadisticas = new System.Windows.Forms.DataVisualization.Charting.Chart();
             dgvResumen = new DataGridView();
-            lblMensajeInicial = new Label();
+            btnExportarImagen = new Button();
             panelFiltros.SuspendLayout();
             panelTotal.SuspendLayout();
             panelFondoTotal.SuspendLayout();
@@ -99,8 +97,8 @@
             panelFiltros.BorderStyle = BorderStyle.FixedSingle;
             panelFiltros.Controls.Add(label1);
             panelFiltros.Controls.Add(btnGenerarInforme);
-            panelFiltros.Controls.Add(dateTimePicker2);
-            panelFiltros.Controls.Add(dateTimePicker1);
+            panelFiltros.Controls.Add(dtpHasta);
+            panelFiltros.Controls.Add(dtpDesde);
             panelFiltros.Controls.Add(lblFechaHasta);
             panelFiltros.Controls.Add(lblFechaDesde);
             panelFiltros.Location = new Point(12, 12);
@@ -129,22 +127,23 @@
             btnGenerarInforme.Text = "Generar Informe";
             btnGenerarInforme.TextAlign = ContentAlignment.MiddleLeft;
             btnGenerarInforme.UseVisualStyleBackColor = false;
+            btnGenerarInforme.Click += btnGenerarInforme_Click;
             // 
-            // dateTimePicker2
+            // dtpHasta
             // 
-            dateTimePicker2.Format = DateTimePickerFormat.Short;
-            dateTimePicker2.Location = new Point(429, 21);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(148, 23);
-            dateTimePicker2.TabIndex = 3;
+            dtpHasta.Format = DateTimePickerFormat.Short;
+            dtpHasta.Location = new Point(429, 21);
+            dtpHasta.Name = "dtpHasta";
+            dtpHasta.Size = new Size(148, 23);
+            dtpHasta.TabIndex = 3;
             // 
-            // dateTimePicker1
+            // dtpDesde
             // 
-            dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(188, 20);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(139, 23);
-            dateTimePicker1.TabIndex = 2;
+            dtpDesde.Format = DateTimePickerFormat.Short;
+            dtpDesde.Location = new Point(188, 20);
+            dtpDesde.Name = "dtpDesde";
+            dtpDesde.Size = new Size(139, 23);
+            dtpDesde.TabIndex = 2;
             // 
             // lblFechaHasta
             // 
@@ -180,6 +179,7 @@
             // 
             // panelFondoTotal
             // 
+            panelFondoTotal.BackColor = SystemColors.InactiveCaption;
             panelFondoTotal.Controls.Add(panelBarraTotal);
             panelFondoTotal.Location = new Point(8, 140);
             panelFondoTotal.Name = "panelFondoTotal";
@@ -239,7 +239,6 @@
             // 
             panelAprobadas.BorderStyle = BorderStyle.Fixed3D;
             panelAprobadas.Controls.Add(panelFondoAprobadas);
-            panelAprobadas.Controls.Add(lblPorcentajeAprobadas);
             panelAprobadas.Controls.Add(label9);
             panelAprobadas.Controls.Add(lblValorAprobadas);
             panelAprobadas.Controls.Add(pictureBox1);
@@ -251,6 +250,7 @@
             // 
             // panelFondoAprobadas
             // 
+            panelFondoAprobadas.BackColor = SystemColors.InactiveCaption;
             panelFondoAprobadas.Controls.Add(panelBarraAprobadas);
             panelFondoAprobadas.Location = new Point(15, 139);
             panelFondoAprobadas.Name = "panelFondoAprobadas";
@@ -264,17 +264,6 @@
             panelBarraAprobadas.Name = "panelBarraAprobadas";
             panelBarraAprobadas.Size = new Size(241, 20);
             panelBarraAprobadas.TabIndex = 5;
-            // 
-            // lblPorcentajeAprobadas
-            // 
-            lblPorcentajeAprobadas.AutoSize = true;
-            lblPorcentajeAprobadas.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblPorcentajeAprobadas.ForeColor = Color.Green;
-            lblPorcentajeAprobadas.Location = new Point(199, 72);
-            lblPorcentajeAprobadas.Name = "lblPorcentajeAprobadas";
-            lblPorcentajeAprobadas.Size = new Size(31, 30);
-            lblPorcentajeAprobadas.TabIndex = 4;
-            lblPorcentajeAprobadas.Text = "%";
             // 
             // label9
             // 
@@ -319,7 +308,6 @@
             // panelRechazadas
             // 
             panelRechazadas.BorderStyle = BorderStyle.Fixed3D;
-            panelRechazadas.Controls.Add(lblPorcentajeRechazadas);
             panelRechazadas.Controls.Add(panelFondoRechazadas);
             panelRechazadas.Controls.Add(label11);
             panelRechazadas.Controls.Add(lblValorRechazadas);
@@ -330,19 +318,9 @@
             panelRechazadas.Size = new Size(260, 168);
             panelRechazadas.TabIndex = 3;
             // 
-            // lblPorcentajeRechazadas
-            // 
-            lblPorcentajeRechazadas.AutoSize = true;
-            lblPorcentajeRechazadas.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblPorcentajeRechazadas.ForeColor = Color.Crimson;
-            lblPorcentajeRechazadas.Location = new Point(191, 72);
-            lblPorcentajeRechazadas.Name = "lblPorcentajeRechazadas";
-            lblPorcentajeRechazadas.Size = new Size(31, 30);
-            lblPorcentajeRechazadas.TabIndex = 4;
-            lblPorcentajeRechazadas.Text = "%";
-            // 
             // panelFondoRechazadas
             // 
+            panelFondoRechazadas.BackColor = SystemColors.InactiveCaption;
             panelFondoRechazadas.Controls.Add(panelBarraRechazadas);
             panelFondoRechazadas.Location = new Point(16, 136);
             panelFondoRechazadas.Name = "panelFondoRechazadas";
@@ -401,7 +379,6 @@
             // 
             panelPendientes.BorderStyle = BorderStyle.Fixed3D;
             panelPendientes.Controls.Add(panelFondoPendientes);
-            panelPendientes.Controls.Add(lblPorcentajePendientes);
             panelPendientes.Controls.Add(label13);
             panelPendientes.Controls.Add(lblValorPendientes);
             panelPendientes.Controls.Add(label5);
@@ -413,6 +390,7 @@
             // 
             // panelFondoPendientes
             // 
+            panelFondoPendientes.BackColor = SystemColors.InactiveCaption;
             panelFondoPendientes.Controls.Add(panelBarraPendientes);
             panelFondoPendientes.Location = new Point(3, 136);
             panelFondoPendientes.Name = "panelFondoPendientes";
@@ -426,17 +404,6 @@
             panelBarraPendientes.Name = "panelBarraPendientes";
             panelBarraPendientes.Size = new Size(239, 21);
             panelBarraPendientes.TabIndex = 5;
-            // 
-            // lblPorcentajePendientes
-            // 
-            lblPorcentajePendientes.AutoSize = true;
-            lblPorcentajePendientes.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblPorcentajePendientes.ForeColor = Color.DarkGoldenrod;
-            lblPorcentajePendientes.Location = new Point(187, 72);
-            lblPorcentajePendientes.Name = "lblPorcentajePendientes";
-            lblPorcentajePendientes.Size = new Size(31, 30);
-            lblPorcentajePendientes.TabIndex = 4;
-            lblPorcentajePendientes.Text = "%";
             // 
             // label13
             // 
@@ -487,6 +454,18 @@
             panelVistaPrevia.Size = new Size(1092, 266);
             panelVistaPrevia.TabIndex = 5;
             // 
+            // lblMensajeInicial
+            // 
+            lblMensajeInicial.Dock = DockStyle.Fill;
+            lblMensajeInicial.Font = new Font("Palatino Linotype", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblMensajeInicial.ForeColor = Color.DimGray;
+            lblMensajeInicial.Location = new Point(0, 0);
+            lblMensajeInicial.Name = "lblMensajeInicial";
+            lblMensajeInicial.Size = new Size(1092, 266);
+            lblMensajeInicial.TabIndex = 7;
+            lblMensajeInicial.Text = "\"Vista previa de informe consolidado - Seleccione un rango de fechas y presione Generar Informe\".";
+            lblMensajeInicial.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.ColumnCount = 2;
@@ -504,17 +483,17 @@
             // 
             // chartEstadisticas
             // 
-            chartArea3.Name = "ChartArea1";
-            chartEstadisticas.ChartAreas.Add(chartArea3);
+            chartArea2.Name = "ChartArea1";
+            chartEstadisticas.ChartAreas.Add(chartArea2);
             chartEstadisticas.Dock = DockStyle.Fill;
-            legend3.Name = "Legend1";
-            chartEstadisticas.Legends.Add(legend3);
+            legend2.Name = "Legend1";
+            chartEstadisticas.Legends.Add(legend2);
             chartEstadisticas.Location = new Point(3, 3);
             chartEstadisticas.Name = "chartEstadisticas";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            chartEstadisticas.Series.Add(series3);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            chartEstadisticas.Series.Add(series2);
             chartEstadisticas.Size = new Size(540, 260);
             chartEstadisticas.TabIndex = 0;
             chartEstadisticas.Text = "chart1";
@@ -528,22 +507,26 @@
             dgvResumen.Size = new Size(540, 260);
             dgvResumen.TabIndex = 1;
             // 
-            // lblMensajeInicial
+            // btnExportarImagen
             // 
-            lblMensajeInicial.Dock = DockStyle.Fill;
-            lblMensajeInicial.Font = new Font("Palatino Linotype", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMensajeInicial.Location = new Point(0, 0);
-            lblMensajeInicial.Name = "lblMensajeInicial";
-            lblMensajeInicial.Size = new Size(1092, 266);
-            lblMensajeInicial.TabIndex = 7;
-            lblMensajeInicial.Text = "\"Vista previa de informe consolidado - Seleccione un rango de fechas y presione Generar Informe\".";
-            lblMensajeInicial.TextAlign = ContentAlignment.MiddleCenter;
+            btnExportarImagen.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnExportarImagen.Image = (Image)resources.GetObject("btnExportarImagen.Image");
+            btnExportarImagen.ImageAlign = ContentAlignment.MiddleLeft;
+            btnExportarImagen.Location = new Point(495, 560);
+            btnExportarImagen.Name = "btnExportarImagen";
+            btnExportarImagen.Size = new Size(145, 40);
+            btnExportarImagen.TabIndex = 6;
+            btnExportarImagen.Text = "Exportar a Imagen";
+            btnExportarImagen.TextAlign = ContentAlignment.MiddleRight;
+            btnExportarImagen.UseVisualStyleBackColor = true;
+            btnExportarImagen.Click += btnExportarImagen_Click;
             // 
             // FrmInformeGerencial
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1154, 612);
+            Controls.Add(btnExportarImagen);
             Controls.Add(panelVistaPrevia);
             Controls.Add(panelPendientes);
             Controls.Add(panelRechazadas);
@@ -582,8 +565,8 @@
         private Panel panelFiltros;
         private Label lblFechaHasta;
         private Label lblFechaDesde;
-        private DateTimePicker dateTimePicker2;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dtpHasta;
+        private DateTimePicker dtpDesde;
         private Button btnGenerarInforme;
         private Label label1;
         private Panel panelTotal;
@@ -606,9 +589,6 @@
         private Label lblValorRechazadas;
         private Label label13;
         private Label lblValorPendientes;
-        private Label lblPorcentajeAprobadas;
-        private Label lblPorcentajeRechazadas;
-        private Label lblPorcentajePendientes;
         private Panel panelBarraTotal;
         private Panel panelBarraAprobadas;
         private Panel panelBarraRechazadas;
@@ -622,5 +602,6 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chartEstadisticas;
         private DataGridView dgvResumen;
         private Label lblMensajeInicial;
+        private Button btnExportarImagen;
     }
 }

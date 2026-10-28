@@ -1,14 +1,20 @@
 ﻿using ModelsEntidades;
+using ServicesNegocio;
 using System;
+using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace CredenSoftUInuevo.Forms
 {
     public partial class FrmDashboardAdmin : Form
     {
+        private readonly SolicitudService _solicitudService;
+
         public FrmDashboardAdmin()
         {
             InitializeComponent();
+            _solicitudService = new SolicitudService();
         }
 
         // =====================================================
@@ -66,13 +72,72 @@ namespace CredenSoftUInuevo.Forms
             lblStatus.Text =
                 "● Sesión activa | Conexión segura";
 
-            // =====================================================
-            // DATOS INFORMATIVOS
-            // =====================================================
-            lblUsuariosActivos.Text = "Usuarios Activos: --";
-            lblSolicitudesPendientes.Text = "Solicitudes Pendientes: --";
-            lblCredencialesEmitidas.Text = "Credenciales Emitidas: --";
-            lblAccesosRegistradosHoy.Text = "Accesos Registrados Hoy: --";
+            // Cargar datos y métricas gerenciales
+            CargarDatosDashboard();
+        }
+
+
+        // =====================================================
+        // CARGAR DATOS DASH
+        // =====================================================
+        private void CargarDatosDashboard()
+        {
+            try
+            {
+                // Definimos el rango del mes actual por defecto para las métricas del panel
+                DateTime fechaDesde = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                DateTime fechaHasta = DateTime.Now;
+
+                // 1. Obtener estadísticas gerenciales usando tu servicio
+                var stats = _solicitudService.ObtenerEstadisticasGerenciales(fechaDesde, fechaHasta);
+
+                // Asignar textos claros y acordes al informe gerencial
+                lblUsuariosActivos.Text = $"Total Registradas: {stats.total}";
+                lblSolicitudesPendientes.Text = $"Pendientes de revisión: {stats.pendientes}";
+                lblCredencialesEmitidas.Text = $"Solicitudes Aprobadas: {stats.aprobadas}";
+                lblAccesosRegistradosHoy.Text = $"Solicitudes Rechazadas: {stats.rechazadas}";
+
+                // 2. Cargar la grilla de "Últimas Solicitudes" (dgvSolicitudes)
+                var ultimasSolicitudes = _solicitudService.ObtenerPorFecha(fechaDesde.AddMonths(-3), fechaHasta)
+                    .Where(s => s.Estado != null &&
+               (s.Estado.Equals("Aprobado", StringComparison.OrdinalIgnoreCase) ||
+                s.Estado.Equals("Rechazado", StringComparison.OrdinalIgnoreCase) ||
+                s.Estado.Equals("Pendiente de revisión", StringComparison.OrdinalIgnoreCase)))
+                    .OrderByDescending(s => s.FechaSolicitud)
+                    .Take(5) // Tomamos las últimas 5 solicitudes
+                    .Select(s => new
+                    {
+                        ID = s.IdSolicitud,
+                        Estado = s.Estado,
+                        Fecha = s.FechaSolicitud.ToString("dd/MM/yyyy HH:mm"),
+                        Tipo = s.TipoSolicitud
+                    })
+                    .ToList();
+
+                dgvSolicitudes.AutoGenerateColumns = false;
+                // Evitar que duplique columnas automáticas desactivando AutoGenerateColumns o limpiándolas
+                dgvSolicitudes.AutoGenerateColumns = true;
+                dgvSolicitudes.DataSource = ultimasSolicitudes;
+
+                // 3. Aplicar diseño gerencial profesional a la grilla `dgvSolicitudes`
+                dgvSolicitudes.EnableHeadersVisualStyles = false;
+                dgvSolicitudes.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(45, 66, 91); // Azul gerencial
+                dgvSolicitudes.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                dgvSolicitudes.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+                dgvSolicitudes.ColumnHeadersHeight = 30;
+
+                dgvSolicitudes.DefaultCellStyle.Font = new Font("Segoe UI", 9F);
+                dgvSolicitudes.DefaultCellStyle.ForeColor = Color.FromArgb(40, 40, 40);
+                dgvSolicitudes.DefaultCellStyle.SelectionBackColor = Color.FromArgb(52, 152, 219);
+                dgvSolicitudes.DefaultCellStyle.SelectionForeColor = Color.White;
+                dgvSolicitudes.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 243, 246); // Efecto cebra
+                dgvSolicitudes.GridColor = Color.LightGray;
+                dgvSolicitudes.RowHeadersVisible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los datos del dashboard: " + ex.Message, "Error de Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         // =====================================================
@@ -86,7 +151,6 @@ namespace CredenSoftUInuevo.Forms
 
         // =====================================================
         // GESTIÓN DE USUARIOS
-        // SOLO ADMINISTRADOR LOCAL
         // =====================================================
         private void btnGestiónDeUsuarios_Click(object sender, EventArgs e)
         {
@@ -140,7 +204,6 @@ namespace CredenSoftUInuevo.Forms
 
         private void btnConfiguracion_Click(object sender, EventArgs e)
         {
-            // Solo Administrador Local (IdRol = 2) puede acceder
             if (SesionActual.UsuarioLogueado.IdRol != 2)
             {
                 MessageBox.Show(
@@ -148,7 +211,7 @@ namespace CredenSoftUInuevo.Forms
                     "Permiso restringido",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
-                return; // no abre nada
+                return;
             }
 
             FrmConfiguracion frm = new FrmConfiguracion();
@@ -159,7 +222,7 @@ namespace CredenSoftUInuevo.Forms
         {
             FrmSolicitud frm = new FrmSolicitud(
                 SesionActual.UsuarioLogueado.Rol.NombreRol,
-        SesionActual.UsuarioLogueado.IdUsuario
+                SesionActual.UsuarioLogueado.IdUsuario
                 );
             frm.ShowDialog();
         }
