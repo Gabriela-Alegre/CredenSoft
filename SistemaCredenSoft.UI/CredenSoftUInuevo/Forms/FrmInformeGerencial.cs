@@ -88,6 +88,11 @@ namespace CredenSoftUInuevo.Forms
                     lblValorRechazadas.Text = "0 (0.0%)";
                     lblValorPendientes.Text = "0 (0.0%)";
 
+                    panelBarraTotal.Width = 0;
+                    panelBarraAprobadas.Width = 0;
+                    panelBarraRechazadas.Width = 0;
+                    panelBarraPendientes.Width = 0;
+
                     // Mostrar mensaje inicial y ocultar elementos de datos
                     lblMensajeInicial.Visible = true;
                     lblMensajeInicial.BringToFront();
@@ -132,6 +137,12 @@ namespace CredenSoftUInuevo.Forms
                 series.Points[0].Color = Color.SeaGreen;
                 series.Points[1].Color = Color.Firebrick;
                 series.Points[2].Color = Color.Goldenrod;
+
+                chartEstadisticas.ChartAreas[0].AxisY.Minimum = 0;
+                // El máximo será el valor más alto entre tus estadísticas + 1 de margen arriba
+                int maxValor = Math.Max(Math.Max(stats.aprobadas, stats.rechazadas), stats.pendientes);
+                chartEstadisticas.ChartAreas[0].AxisY.Maximum = maxValor > 0 ? maxValor + 1 : 2;
+                chartEstadisticas.ChartAreas[0].AxisY.Interval = 1; // Muestra saltos enteros (0, 1, 2, 3...)
 
                 // =========================================================
                 // B) CARGAR LA GRILLA RESUMEN (Columna Derecha)
