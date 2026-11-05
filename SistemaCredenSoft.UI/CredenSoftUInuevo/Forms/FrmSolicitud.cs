@@ -945,7 +945,7 @@ namespace CredenSoftUInuevo.Forms
                 MinimizeBox = false
             };
 
-            Label lblAdvertencia = new Label() { Left = 20, Top = 20, Text = "ADVERTENCIA: ¿Está seguro de RECHAZAR la solicitud seleccionada?\nIngrese el Motivo del Rechazo:", Width = 390, Height = 40, ForeColor = System.Drawing.Color.DarkRed };
+            Label lblAdvertencia = new Label() { Left = 20, Top = 20, Text = "ADVERTENCIA: ¿Está seguro de RECHAZAR la solicitud seleccionada?\nIngrese el Motivo del Rechazo:*", Width = 390, Height = 40, ForeColor = System.Drawing.Color.DarkRed };
             TextBox txtMotivo = new TextBox() { Left = 20, Top = 70, Width = 390, Height = 60, Multiline = true };
             Button confirmation = new Button() { Text = "Reconfirmar Rechazo", Left = 130, Width = 150, Top = 145, BackColor = System.Drawing.Color.LightCoral };
             Button cancellation = new Button() { Text = "Cancelar", Left = 290, Width = 120, Top = 145 };
@@ -954,7 +954,7 @@ namespace CredenSoftUInuevo.Forms
             {
                 if (string.IsNullOrWhiteSpace(txtMotivo.Text))
                 {
-                    MessageBox.Show("Debe especificar un motivo para rechazar la solicitud.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Debe especificar un motivo para rechazar la solicitud. * ", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {

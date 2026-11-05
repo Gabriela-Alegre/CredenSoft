@@ -84,42 +84,39 @@ namespace CredenSoftUInuevo.Forms
         {
             try
             {
-                // Definimos el rango del mes actual por defecto para las métricas del panel
-                DateTime fechaDesde = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-                DateTime fechaHasta = DateTime.Now;
+                // Rango histórico amplio para las tarjetas de resumen general
+                DateTime fechaDesde = new DateTime(2025, 1, 1);
+                DateTime fechaHasta = DateTime.Now.AddYears(1);
 
-                // 1. Obtener estadísticas gerenciales usando tu servicio
+                // 1. Obtener estadísticas gerenciales globales
                 var stats = _solicitudService.ObtenerEstadisticasGerenciales(fechaDesde, fechaHasta);
 
-                // Asignar textos claros y acordes al informe gerencial
                 lblUsuariosActivos.Text = $"Total Registradas: {stats.total}";
                 lblSolicitudesPendientes.Text = $"Pendientes de revisión: {stats.pendientes}";
                 lblCredencialesEmitidas.Text = $"Solicitudes Aprobadas: {stats.aprobadas}";
                 lblAccesosRegistradosHoy.Text = $"Solicitudes Rechazadas: {stats.rechazadas}";
 
-                // 2. Cargar la grilla de "Últimas Solicitudes" (dgvSolicitudes)
-                var ultimasSolicitudes = _solicitudService.ObtenerPorFecha(fechaDesde.AddMonths(-3), fechaHasta)
-                    .Where(s => s.Estado != null &&
-               (s.Estado.Equals("Aprobado", StringComparison.OrdinalIgnoreCase) ||
-                s.Estado.Equals("Rechazado", StringComparison.OrdinalIgnoreCase) ||
-                s.Estado.Equals("Pendiente de revisión", StringComparison.OrdinalIgnoreCase)))
-                    .OrderByDescending(s => s.FechaSolicitud)
-                    .Take(5) // Tomamos las últimas 5 solicitudes
-                    .Select(s => new
-                    {
-                        ID = s.IdSolicitud,
-                        Estado = s.Estado,
-                        Fecha = s.FechaSolicitud.ToString("dd/MM/yyyy HH:mm"),
-                        Tipo = s.TipoSolicitud
-                    })
-                    .ToList();
+                // 2. Cargar la grilla de "Últimas Solicitudes" con el histórico completo
+                var ultimasSolicitudes = _solicitudService.ObtenerPorFecha(fechaDesde, fechaHasta)
+     .Where(s => s.Estado != null &&
+            s.Estado.Equals("Pendiente de revisión", StringComparison.OrdinalIgnoreCase)) // 🔴 Filtrar solo este estado
+     .OrderByDescending(s => s.FechaSolicitud)
+     .Take(5) // Tomamos las últimas 5 de ese estado específico
+     .Select(s => new
+     {
+         ID = s.IdSolicitud,
+         Estado = s.Estado,
+         Fecha = s.FechaSolicitud.ToString("dd/MM/yyyy HH:mm"),
+         Tipo = s.TipoSolicitud
+     })
+     .ToList();
 
-                dgvSolicitudes.AutoGenerateColumns = false;
-                // Evitar que duplique columnas automáticas desactivando AutoGenerateColumns o limpiándolas
+                // IMPORTANTE: Aseguramos que se generen las columnas automáticamente para la lista
+                dgvSolicitudes.DataSource = null;
                 dgvSolicitudes.AutoGenerateColumns = true;
                 dgvSolicitudes.DataSource = ultimasSolicitudes;
 
-                // 3. Aplicar diseño gerencial profesional a la grilla `dgvSolicitudes`
+                // 3. Aplicar diseño gerencial profesional a la grilla
                 dgvSolicitudes.EnableHeadersVisualStyles = false;
                 dgvSolicitudes.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(45, 66, 91); // Azul gerencial
                 dgvSolicitudes.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
