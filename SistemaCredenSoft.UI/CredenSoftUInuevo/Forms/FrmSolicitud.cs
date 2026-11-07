@@ -211,8 +211,13 @@ namespace CredenSoftUInuevo.Forms
                 }
 
                 // 2. Ocultar columnas técnicas que no deben verse
+                // 2. Mostrar la columna del ID de la solicitud y ubicarla primera
                 if (dgvSolicitudes.Columns["IdSolicitud"] != null)
-                    dgvSolicitudes.Columns["IdSolicitud"].Visible = false;
+                {
+                    dgvSolicitudes.Columns["IdSolicitud"].Visible = true;
+                    dgvSolicitudes.Columns["IdSolicitud"].HeaderText = "ID";
+                    dgvSolicitudes.Columns["IdSolicitud"].DisplayIndex = 0; // Lo manda al extremo izquierdo
+                }
 
                 if (dgvSolicitudes.Columns["IdUsuario"] != null)
                     dgvSolicitudes.Columns["IdUsuario"].Visible = false;
@@ -876,8 +881,7 @@ namespace CredenSoftUInuevo.Forms
 
         private void OcultarColumnasTecnicas()
         {
-            if (dgvSolicitudes.Columns["IdSolicitud"] != null)
-                dgvSolicitudes.Columns["IdSolicitud"].Visible = false;
+            
 
             if (dgvSolicitudes.Columns["IdUsuario"] != null)
                 dgvSolicitudes.Columns["IdUsuario"].Visible = false;
@@ -985,8 +989,14 @@ namespace CredenSoftUInuevo.Forms
 
         private void OrdenarColumnas()
         {
-            // 1. Ocultar las columnas técnicas si existen
-            if (dgvSolicitudes.Columns["IdSolicitud"] != null) dgvSolicitudes.Columns["IdSolicitud"].Visible = false;
+
+            
+            // 1. Ocultar las columnas técnicas si existen (EXCEPTO IdSolicitud)
+            if (dgvSolicitudes.Columns["IdSolicitud"] != null)
+            {
+                dgvSolicitudes.Columns["IdSolicitud"].Visible = true; // Forzamos que sea visible
+                dgvSolicitudes.Columns["IdSolicitud"].HeaderText = "ID"; // Título corto
+            }
             if (dgvSolicitudes.Columns["IdUsuario"] != null) dgvSolicitudes.Columns["IdUsuario"].Visible = false;
             if (dgvSolicitudes.Columns["DetalleAnexoC"] != null) dgvSolicitudes.Columns["DetalleAnexoC"].Visible = false;
             if (dgvSolicitudes.Columns["DetalleAnexoE"] != null) dgvSolicitudes.Columns["DetalleAnexoE"].Visible = false;
@@ -994,6 +1004,8 @@ namespace CredenSoftUInuevo.Forms
 
             // 2. Configurar el orden secuencial fijo de izquierda a derecha
             int index = 0;
+            // 👉 Ponemos el ID en la primera posición (index 0)
+            if (dgvSolicitudes.Columns["IdSolicitud"] != null) dgvSolicitudes.Columns["IdSolicitud"].DisplayIndex = index++;
 
             if (dgvSolicitudes.Columns["Usuario"] != null) dgvSolicitudes.Columns["Usuario"].DisplayIndex = index++;
             if (dgvSolicitudes.Columns["DniUsuario"] != null) dgvSolicitudes.Columns["DniUsuario"].DisplayIndex = index++;
